@@ -1,4 +1,8 @@
 ---
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import '../styles/global.css'
+
 const pageTitle = "About Me"
 const identity = {
 	firstName: "Ankit",
@@ -10,7 +14,7 @@ const skills =["data analytics", "data science", "web visualization development"
 
 const happy = true;
 const finished = false;
-const goal = 4;
+const goal = 3;
 
 const skillColor = "gold";
 const fontWeight = "bold";
@@ -26,7 +30,7 @@ const fontWeight = "bold";
 		<style define:vars={{skillColor, fontWeight}}>
 			h1 {
 			color: purple;
-			font-size: 4rem;
+			/* font-size: 4rem; */
 			}
 			.skill {
 				/* color: green; */
@@ -37,9 +41,7 @@ const fontWeight = "bold";
 		</style>
 	</head>
 	<body>
-        <a href="/">Home</a>
-        <a href="/about">About</a>
-		<a href="/blog/">Blog</a>
+		<Header />
 		<h1>{pageTitle}</h1>
 		<p>Here are a few facts about me:</p>
 		<ul>
@@ -55,5 +57,6 @@ const fontWeight = "bold";
 		{happy && <p>I am happy to be learning Astro!</p>}
 		{finished && <p>I finished this tutorial!</p>}
 		{goal === 3 ? <p>My goal is to finish in 3 days.</p> : <p>My goal is not 3 days.</p>}
+	<Footer />
 	</body>
 </html>
