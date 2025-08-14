@@ -14,12 +14,32 @@ const { pageTitle } = Astro.props;
 		<title>{pageTitle}</title>
 	</head>
 	<body>
-		<Header />
-		<h1>{pageTitle}</h1>
-        <slot />
+		<div class="layout">
+			<Header />
+			<main>
+				<h1>{pageTitle}</h1>
+				<slot />
+			</main>
+		</div>
+		<!-- <Header /> -->
+		
 		<Footer />
 		<script>
 			import "../scripts/menu.js"
 		</script>
 	</body>
 </html>
+
+<style>
+.layout {
+    display: flex;
+    min-height: 100vh;
+}
+/* .layout > header, .layout > Header {
+    flex-shrink: 0;
+} */
+.layout > main {
+    flex: 1;
+    padding: 2rem;
+}
+</style>

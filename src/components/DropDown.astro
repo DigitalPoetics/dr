@@ -1,0 +1,38 @@
+---
+const { label, links = [] } = Astro.props;
+---
+<details>
+    <summary>
+        {label}
+        <span class="arrow"></span>
+    </summary>
+    {links.map((link: {href: string, text: string}) => (
+        <a href={link.href}>{link.text}</a>
+    ))}
+</details>
+
+<style>
+details summary {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+}
+.arrow {
+  display: inline-block;
+  transition: transform 0.2s;
+  border: solid #333;
+  border-width: 0 2px 2px 0;
+  padding: 3px;
+  margin-left: 4px;
+  transform: rotate(-45deg);
+}
+details[open] .arrow {
+  transform: rotate(45deg);
+}
+details > a {
+  display: block;
+  padding-left: 1.5em;
+  text-decoration: none;
+}
+</style>

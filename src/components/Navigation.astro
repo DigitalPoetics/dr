@@ -1,8 +1,11 @@
 ---
+import DropDown from "./DropDown.astro"
 ---
 <div class="nav-links">
-    <a href="/">Home</a>
-    <a href="/about/">About</a>
-    <a href="/blog/">Blog</a>
-    <a href="/tags/">Tags</a>
+    <DropDown 
+        label="Home" 
+        links={[
+            {href: "/about", text: "About"},
+            {href: "/blog", text: "Blog"},
+    ]}
 </div>
