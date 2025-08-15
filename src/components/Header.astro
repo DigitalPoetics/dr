@@ -1,6 +1,6 @@
 ---
 import Hamburger from "./Hamburger.astro";
-import Navigation from "./Navigation.astro";
+// import Navigation from "./Navigation.astro";
 import ThemeIcons from "./ThemeIcons.astro";
 ---
 <header>
@@ -8,6 +8,7 @@ import ThemeIcons from "./ThemeIcons.astro";
         <div class="nav-top">
             <div class="nav-left">
                 <Hamburger />
+                <a href="/">~ DR ~</a>
             </div>
             <div class="nav-right">
                 <ThemeIcons />
@@ -24,6 +25,17 @@ import ThemeIcons from "./ThemeIcons.astro";
     align-items: center;
     justify-content: space-between;
     min-height: 3rem;
+}
+
+.nav-left {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+nav a {
+    text-decoration: none;
+    font-size: 1.5rem;
+    color: goldenrod
 }
 
 </style>
