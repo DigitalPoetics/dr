@@ -5,3 +5,26 @@
     <span class="line"></span>
     <span class="line"></span>
 </div>
+
+<style>
+
+.hamburger {
+  padding-right: 20px;
+  cursor: pointer;
+}
+
+.hamburger .line {
+  display: block;
+  width: 3rem;
+  height: 2.5px;
+  margin-bottom: 10px;
+  background-color: #ff9776;
+}
+
+@media screen and (min-width: 636px) {
+  :global(.hamburger) {
+    display: none;
+  }
+
+}
+</style>

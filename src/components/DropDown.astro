@@ -1,6 +1,10 @@
 ---
-const { label, links = [] } = Astro.props;
+const { pages =[], label, links = [], pagesPosition = 'above' } = Astro.props;
 ---
+{pagesPosition === 'above' && pages.map((page: { href: string, text: string }) => (
+  <a href={page.href}>{page.text}</a>
+))}
+
 <details>
     <summary>
         {label}
@@ -11,15 +15,20 @@ const { label, links = [] } = Astro.props;
     ))}
 </details>
 
+{pagesPosition === 'below' && pages.map((page: { href: string, text: string }) => (
+  <a href={page.href}>{page.text}</a>
+))}
+
 <style>
-details summary {
+a, details summary {
   cursor: pointer;
   display: flex;
   align-items: center;
   gap: 0.5rem;
   font-weight: bold;
   font-size: 1.2rem;
-  margin-top: 1rem;
+  padding-top: 0.5rem;
+  text-decoration: none;
 }
 .arrow {
   display: inline-block;
@@ -39,6 +48,12 @@ details > a {
   text-decoration: none;
   text-align: left;
   font-size: 1rem;
-  /* justify-content: left; */
+  font-weight: normal;
+  padding-top: 0rem;
+}
+
+details a:hover,
+details a:focus {
+  color: goldenrod
 }
 </style>

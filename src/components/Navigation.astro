@@ -1,11 +1,57 @@
 ---
 import DropDown from "./DropDown.astro"
 ---
-<div class="nav-links">
+<div class="nav-bar">
+  <!-- <a href="/home">Home</a> -->
     <DropDown 
-        label="Home" 
+        label="Digital Poetics", 
+        links={[
+            {href: "/digitalArchaeology", text: "Digital Archaeology"},
+            {href: "/blog", text: "Blog"},
+         ]}, 
+        pages={[{ href: "/", text: "Home"}]}
+        pagesPosition="above"
+    />
+    <DropDown 
+        label="Home", 
         links={[
             {href: "/about", text: "About"},
             {href: "/blog", text: "Blog"},
-    ]}
+         ]},
+        pages={[{ href: "/about", text: "About Us"},
+                { href: "/tags", text: "Tags" }
+        ]}
+        pagesPosition="below"
+    />
 </div>
+
+<style>
+
+
+.nav-bar {
+  min-width: 100vw;
+  top: 5rem;
+  margin-left: 0.5rem;
+  /* left: 48px; */
+  /* background-color: #ff9776; */
+  display: none;
+  margin: 0;
+}
+
+
+.expanded {
+  display: unset;
+}
+
+@media screen and (min-width: 636px) {
+  .nav-bar {
+    margin-left: 0.5rem;
+    /* margin-left: 1rem; */
+    display: block;
+    position: static;
+    min-width: 15rem;
+    background: none;
+  }
+}
+
+</style>
