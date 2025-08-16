@@ -29,13 +29,16 @@ import DropDown from "./DropDown.astro"
 
 
 .nav-bar {
-  min-width: 100vw;
-  top: 5rem;
-  margin-left: 0.5rem;
+  /* position: static; */
+  width: 100vw;
   /* left: 48px; */
-  /* background-color: #ff9776; */
+  left: 0;
+  background-color: #0d0950;
   display: none;
+  position: fixed;
+  z-index: 10;
   margin: 0;
+  /* padding: 0rem; */
 }
 
 
@@ -49,7 +52,7 @@ import DropDown from "./DropDown.astro"
     /* margin-left: 1rem; */
     display: block;
     position: static;
-    min-width: 15rem;
+    width: 15rem;
     background: none;
   }
 }
