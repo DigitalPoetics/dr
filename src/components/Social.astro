@@ -2,13 +2,22 @@
 const {platform, username} = Astro.props;
 ---
 
-<a href={`https://www.${platform}.com/${username}`}>{platform}</a>
+<!-- <a href={`https://www.${platform}.com/${username}`}><i class="{`fab fa-${platform}`}"></i>{platform}</a> -->
+
+<a href={`https://www.${platform}.com/${username}`} target="_black">
+  <img src={`/${platform}.svg`} width="30" height="30" />
+</a>
+
 
 <style>
 a {
     padding = 0.5rem 1rem;
     color: var(--light-text);
     text-decoration: none;
+}
+
+html.dark img {
+    filter: invert(1);
 }
 
 html.dark a {
