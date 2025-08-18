@@ -29,7 +29,6 @@ body {
 }
 
 
-
 h1 {
     margin: 1rem 0;
     font-size: 2.5rem;
@@ -41,13 +40,6 @@ a, p, h1, h2 {
 
 
 /* Theme Icons */
-/* html.dark {
-  background-color: var(--dark-background);
-}
-
-html.dark a, p, h1, h2 {
-  color: var(--dark-text);
-} */
 
 html.dark body {
   background-color: var(--dark-background);
@@ -60,8 +52,4 @@ a:focus {
   color: var(--hover-color);
 }
 
-html.dark a:hover,
-html.dark a:focus {
-  color: var(--hover-color);
-}
 
