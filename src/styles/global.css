@@ -21,7 +21,7 @@ body {
     padding: 1rem;
     line-height: 1.5;
     background-color: var(--light-background);
-    color: var(--light-text)
+    color: var(--light-text);
 }
 
 * {
