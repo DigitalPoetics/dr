@@ -7,8 +7,14 @@ const {platform, username} = Astro.props;
 <style>
 a {
     padding = 0.5rem 1rem;
-    color: white;
-    background-color: #4c1d95;
+    color: var(--light-text);
     text-decoration: none;
+}
+
+html.dark a {
+    color: var(--dark-text);
+}
+html.light a {
+    color: var(--light-text);
 }
 </style>
