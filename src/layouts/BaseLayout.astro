@@ -32,14 +32,18 @@ const { pageTitle } = Astro.props;
 
 <style>
 .layout {
-    display: flex;
+    display: block;
     min-height: 80vh;
+}
+
+@media screen and (min-width: 636px) {
+  .layout {
+		display: flex;
+    	min-height: 80vh;
+  }
 }
 /* .layout > header, .layout > Header {
     flex-shrink: 0;
 } */
-.layout > main {
-    flex: 1;
-    padding: 2rem;
-}
+
 </style>
