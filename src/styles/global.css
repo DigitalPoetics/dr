@@ -1,5 +1,6 @@
 html {
     /* background-color: #f1f5f9; */
+    background-color: var(--light-background);
     font-family: sans-serif;;
 }
 
@@ -27,6 +28,14 @@ h1 {
     font-size: 2.5rem;
 }
 
+a {
+  /* text-decoration: none; */
+  color:var(--light-text);
+}
+
+p, h1, h2{
+  color: var(--light-text);
+}
 
 /* Theme Icons */
 html.dark {
@@ -37,17 +46,21 @@ html.dark a, p, h1, h2 {
   color: var(--dark-text);
 }
 
-html.light {
+/* html.light {
   background-color: var(--light-background);
 }
 
 html.light a, p, h1, h2, details {
   color: var(--light-text);
-}
-
-
+} */
 
 a:hover,
 a:focus {
   color: var(--hover-color);
 }
+
+html.dark a:hover,
+a:focus {
+  color: var(--hover-color);
+}
+

@@ -35,8 +35,23 @@ import ThemeIcons from "./ThemeIcons.astro";
     gap: 0.5rem;
 }
 nav a {
-    text-decoration: none;
     font-size: 1.5rem;
+    text-decoration: none;
+    color: var(--light-text);
+}
+
+nav a:hover,
+a:focus {
+    color: var(--hover-color);
+}
+
+html.dark nav a {
+    color: var(--dark-text);
+}
+
+html.dark nav a:hover,
+a:focus {
+    color: var(--hover-color);
 }
 
 </style>
