@@ -24,8 +24,8 @@ a, details summary {
   cursor: pointer;
   display: flex;
   align-items: center;
-  gap: 0.5rem;
-  padding-left: 1rem;
+  /* gap: 1rem; */
+  /* padding-left: 1.5rem; */
   font-weight: bold;
   font-size: 1.2rem;
   padding-top: 0.5rem;
@@ -47,7 +47,17 @@ html.light details {
 .arrow {
   display: inline-block;
   transition: transform 0.2s;
-  border: solid #333;
+  border: solid var(--light-text);
+  border-width: 0 2px 2px 0;
+  padding: 3px;
+  margin-left: 4px;
+  transform: rotate(-45deg);
+}
+
+html.dark .arrow {
+  display: inline-block;
+  transition: transform 0.2s;
+  border: solid var(--dark-text);
   border-width: 0 2px 2px 0;
   padding: 3px;
   margin-left: 4px;
@@ -57,6 +67,7 @@ html.light details {
 details[open] .arrow {
   transform: rotate(45deg);
 }
+
 details > a {
   display: block;
   padding-left: 2rem;

@@ -1,7 +1,16 @@
+:root {
+    --dark-background: #333333;
+    --light-background: #f1f5f9;
+    --dark-text: #f1f5f9;
+    --light-text: #333333;
+    --hover-color: goldenrod;
+}
+
 html {
     /* background-color: #f1f5f9; */
     background-color: var(--light-background);
-    font-family: sans-serif;;
+    font-family: sans-serif;
+    /* color: var(--light-text); */
 }
 
 body {
@@ -10,32 +19,25 @@ body {
     /* max-width: 80ch; */
     padding: 1rem;
     line-height: 1.5;
+    /* background-color: var(--light-background); */
+    /* color: var(--light-text) */
 }
 
 * {
     box-sizing: border-box;
 }
 
-:root {
-    --dark-background: #333333;
-    --light-background: #f1f5f9;
-    --dark-text: #f1f5f9;
-    --light-text: #333333;
-    --hover-color: goldenrod;
-}
+
+
 h1 {
     margin: 1rem 0;
     font-size: 2.5rem;
 }
 
-a {
-  /* text-decoration: none; */
-  color:var(--light-text);
-}
-
-p, h1, h2{
+a, p, h1, h2 {
   color: var(--light-text);
 }
+
 
 /* Theme Icons */
 html.dark {
