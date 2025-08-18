@@ -46,14 +46,6 @@ html.dark a, p, h1, h2 {
   color: var(--dark-text);
 }
 
-/* html.light {
-  background-color: var(--light-background);
-}
-
-html.light a, p, h1, h2, details {
-  color: var(--light-text);
-} */
-
 a:hover,
 a:focus {
   color: var(--hover-color);
