@@ -27,10 +27,14 @@ const { frontmatter } = Astro.props;
     }
     .tag {
         margin: 0.25rem;
-        border: dotted 1px #a1a1a1;
-        border-radius: .5em;
-        padding: .5em 1em;
-        font-size: 1.15em;
-        background-color: #F8FCFD;
+        /* border: dotted 1px #a1a1a1; */
+        /* border-radius: .5rem; */
+        padding: .5rem .5rem;
+        font-size: 1.15rem;
+        /* background-color: #F8FCFD; */
+    }
+
+    html.dark .tag {
+        color: var(--dark-text);
     }
 </style>

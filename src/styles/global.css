@@ -4,6 +4,7 @@
     --dark-text: #f1f5f9;
     --light-text: #333333;
     --hover-color: goldenrod;
+    --border-color: 1px solid #ccc;
 }
 
 html {
