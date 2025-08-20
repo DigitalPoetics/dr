@@ -3,8 +3,10 @@
     --light-background: #f1f5f9;
     --dark-text: #f1f5f9;
     --light-text: #333333;
-    --hover-color: goldenrod;
-    --border-color: 1px solid #ccc;
+    --hover-color: #fc7d0b;
+    /* --border-color: 1px solid #ccc; */
+    --border-color: 2px solid #1170aa;
+
 }
 
 html {
@@ -23,9 +25,6 @@ body {
     background-color: var(--light-background);
     color: var(--light-text);
 }
-
-
-
 
 h1 {
     /* margin: 1rem 0; */
