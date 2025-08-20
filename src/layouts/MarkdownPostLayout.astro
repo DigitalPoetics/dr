@@ -1,10 +1,13 @@
 ---
 import BaseLayout from "./BaseLayout.astro";
+import BlogPost from '../components/BlogPost.astro';
+const allPosts = Object.values(import.meta.glob('./posts/*.md', { eager: true }));
 const { frontmatter } = Astro.props;
 ---
 <BaseLayout pageTitle={frontmatter.title}>
     <!-- <p><em>{frontmatter.pubDate.toString()}</em></p> -->
-    <img src={frontmatter.image.url} width="300" alt={frontmatter.image.alt} />
+     <!-- front matter -->
+    <img src={frontmatter.image.url} alt={frontmatter.image.alt} />
     
     <div class="byline">
         <p>BY {frontmatter.author},</p>
@@ -19,11 +22,35 @@ const { frontmatter } = Astro.props;
     </div>
 
     <slot />
+
+   
+    <!-- Blog posts -->
+    <p>Posts in {frontmatter.title}</p>
+
+    <ul>
+      {allPosts.map((post: any) => <BlogPost url={post.url} title={post.frontmatter.title} />)}
+    </ul>
+    <ul>test</ul>
 </BaseLayout>
 
+<script>
+//   import { Astro } from 'astro';
+  const allPosts = Object.values(import.meta.glob('./posts/*.md', { eager: true }));
+  console.log(allPosts);
+</script>
 <style>
+
+    /* front matter */
+    img {
+        max-width: 100%;
+        height: auto;
+        /* padding: 0 0.5rem 0 0.5rem; */
+    }
+
     .byline p{
-        display: inline;
+        display: inline-block;
+        /* padding: 1rem 0 0 0; */
+        margin: 1rem 0 0 0;
     }
     .tags {
         display: flex;
@@ -48,7 +75,25 @@ const { frontmatter } = Astro.props;
         color: var(--dark-text);
     }
 
-    .tags a:hover {
+    .tags a:hover, .tags a:focus {
         color: var(--hover-color);
     }
+
+    /* blog posts */
+    ul {
+        list-style: none;
+        padding: 0;
+        border: 1px solid red;
+    }
+
+    @media screen and (min-width: 636px) {
+        img {
+            max-width: 90%;
+            height: auto;
+            /* padding: 0 2rem 0 2rem; */
+        }
+        
+    }
+
+
 </style>

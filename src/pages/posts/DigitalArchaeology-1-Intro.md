@@ -9,6 +9,6 @@ image:
     alt: 'The Astro logo on a dark background with a pink glow'
 tags: ['digital archaeology', 'blogging', 'learning in public']
 ---
-# What should I write about?
-
+# Digital Archaeology
+How might we delimit the domain of poetics in the digital present? Taking the audio archives of poetry recordings as our primary object, we develop bi-modal approaches to poetics.
 Welcome to my _new blog_ about learning Astro!

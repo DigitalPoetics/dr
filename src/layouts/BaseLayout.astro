@@ -37,11 +37,19 @@ const { pageTitle } = Astro.props;
 	padding: 0 1rem 0 1rem;
 }
 
-
+main {
+	max-width: 90vw;
+	margin: 0 auto;
+}
 @media screen and (min-width: 636px) {
   .layout {
 		display: flex;
     	min-height: 80vh;
+  }
+
+  main {
+	max-width: 60vw;
+	margin: 0 1rem 0 1rem;
   }
 }
 /* .layout > header, .layout > Header {
