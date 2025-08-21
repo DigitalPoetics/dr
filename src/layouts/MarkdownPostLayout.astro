@@ -23,6 +23,7 @@ const { frontmatter } = Astro.props;
         <div class="selected-posts">
             <SelectedPosts 
                 frontmatter={frontmatter} 
+                index={frontmatter.index} 
                 />
         </div>
     </div>
