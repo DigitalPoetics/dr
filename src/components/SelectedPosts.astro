@@ -1,0 +1,42 @@
+---
+import BlogPost from './BlogPost.astro';
+const {index, frontmatter } = Astro.props;
+
+// selected posts
+const allPosts = Object.values(import.meta.glob('../pages/posts/*.md', { eager: true }));
+// const allPosts = Object.values(import.meta.glob('../pages/posts/*.md', { eager: true }));
+const selectedPosts = allPosts.filter((post:any) =>
+    post.frontmatter?.tags?.includes(frontmatter.tags[0])
+
+)
+---
+ <!-- Blog posts -->
+<a href={index}><i>Index</i></a>
+<ul>
+    {selectedPosts.map((post: any) => 
+    <BlogPost 
+        url={post.url} 
+        title={post.frontmatter.title} 
+        description={post.frontmatter.description}/>)}
+</ul>
+
+<style>
+    a {
+        text-decoration: none;
+        padding: 0 0 0 2rem;
+        margin-top: 2rem;
+        color: var(--light-text);
+    }
+
+    a:hover, a:focus {
+        color: var(--hover-color);
+    }
+
+    html.dark a {
+        color: var(--dark-text);
+    }
+
+    html.dark a:hover, html.dark a:focus {
+        color: var(--hover-color);
+    }
+</style>

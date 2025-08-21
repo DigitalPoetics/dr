@@ -1,4 +1,35 @@
 ---
-const {title, url } = Astro.props;
+const {title, url, description } = Astro.props;
 ---
-<li><a href={url}>{title}</a></li>
+<li>
+    <a href={url}>{title}</a>
+    <p>{description}</p>
+</li>
+
+<style>
+    li {
+        list-style: square;
+    }
+
+    li::marker {
+        color: var(--hover-color);
+    }
+
+    li p {
+        border-left: var(--border-color);
+        margin: 0 0 0.5rem -0.9rem;
+        padding-left: 0.90rem;
+    }
+
+    a {
+        text-decoration: none;
+    }
+
+    a:hover, a:focus {
+        color: var(--hover-color);
+    }
+    
+    p {
+        margin: 0 0 1rem 0;
+    }
+</style>
