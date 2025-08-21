@@ -1,9 +1,10 @@
 ---
 const {title, url, description } = Astro.props;
+const isActive = Astro.url.pathname === url;
 ---
 <li>
-    <a href={url}>{title}</a>
-    <p>{description}</p>
+  <a href={url} class={isActive ? 'active' : ''}>{title}</a>
+  <p>{description}</p>
 </li>
 
 <style>
@@ -29,6 +30,17 @@ const {title, url, description } = Astro.props;
         color: var(--hover-color);
     }
     
+    /* same page url */
+    a.active {
+        font-weight: bold;
+        color: var(--highlight-color);
+        /* border-bottom: var(--border-color); */
+    }
+
+    html.dark a.active {
+        color: var(--highlight-color);
+    }
+
     p {
         margin: 0 0 1rem 0;
     }
