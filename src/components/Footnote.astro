@@ -1,0 +1,21 @@
+---
+// Props: id (string), content (string)
+const { id, content } = Astro.props;
+---
+<p id={`footnote-${id}`}>
+  <sup>{id}</sup> <span set:html={content} />
+  <a href={`#ref-${id}`} aria-label="Back to reference">↩</a>
+</p>
+
+<style>
+  p {
+    font-size: 0.9rem;
+    margin: 0.5rem 0;
+  }
+
+  p a {
+    margin-left: 0.5rem;
+    font-size: 0.8rem;
+    text-decoration: none;
+  }
+</style>

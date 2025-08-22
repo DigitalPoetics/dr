@@ -1,0 +1,28 @@
+---
+// Props: text (string), cite (string), footnoteId (string)
+const { text, cite, footnoteId } = Astro.props;
+---
+<blockquote>
+  {text}<br />
+  <cite>~ {cite}</cite>
+  <sup>
+    <a href={`#footnote-${footnoteId}`} id={`ref-${footnoteId}`} aria-label={`See footnote ${footnoteId}`}>
+      [{footnoteId}]
+    </a>
+  </sup>
+</blockquote>
+
+<style>
+  blockquote {
+    /* font-style: italic; */
+    margin: 2rem 0 2rem 3rem;
+    padding-left: 1rem;
+    border-left: var(--border-color);
+  }
+
+  blockquote sup a {
+    text-decoration: none;
+    font-size: 0.8rem;
+    margin-left: 0.25rem;
+  }
+</style>

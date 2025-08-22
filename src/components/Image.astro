@@ -1,0 +1,31 @@
+---
+// Props: src, alt, caption (HTML string), width, height
+const { src, alt, caption, width = "100%", height = "auto" } = Astro.props;
+---
+<figure>
+  <img src={src} alt={alt} style={`width: ${width}; height: ${height};`} loading="lazy" />
+  <figcaption><span set:html={caption} /></figcaption>
+</figure>
+
+<style>
+  figure {
+    margin: 1rem 1rem 1rem 1rem;
+    text-align: center;
+  }
+
+  img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 0.5rem;
+  }
+
+  figcaption {
+    margin-top: 0.5rem;
+    font-size: 0.9rem;
+    color: var(--light-text);
+  }
+
+  html.dark figcaption {
+    color: var(--dark-text);
+  }
+</style>

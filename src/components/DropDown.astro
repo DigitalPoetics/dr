@@ -1,8 +1,9 @@
 ---
 const { pages =[], label, links = [], pagesPosition = 'above' } = Astro.props;
+// const isActive = Astro.url.pathname;
 ---
 {pagesPosition === 'above' && pages.map((page: { href: string, text: string }) => (
-  <a href={page.href}>{page.text}</a>
+  <a href={page.href} class={Astro.url.pathname === page.href ? 'active' : ''}>{page.text}</a>
 ))}
 
 <details>
@@ -11,12 +12,12 @@ const { pages =[], label, links = [], pagesPosition = 'above' } = Astro.props;
         <span class="arrow"></span>
     </summary>
     {links.map((link: {href: string, text: string}) => (
-        <a href={link.href}>{link.text}</a>
+        <a href={link.href} class={Astro.url.pathname === link.href ? 'active' : ''}}>{link.text}</a>
     ))}
 </details>
 
 {pagesPosition === 'below' && pages.map((page: { href: string, text: string }) => (
-  <a href={page.href}>{page.text}</a>
+  <a href={page.href} class={Astro.url.pathname === page.href ? 'active' : ''}>{page.text}</a>
 ))}
 
 <style>
@@ -79,5 +80,14 @@ details > a {
   padding: 0 0 0 0.5rem;
 }
 
+/* isActive */
+a.active {
+  color: var(--highlight-color);
+  font-weight: bold;
+}
+
+html.dark a.active {
+  color: var(--highlight-color);
+}
 
 </style>
