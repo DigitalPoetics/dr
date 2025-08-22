@@ -1,6 +1,6 @@
 ---
 const {title, url, description } = Astro.props;
-const isActive = Astro.url.pathname === url;
+const isActive = Astro.url.pathname === `${url}/`;
 ---
 <li>
   <a href={`${url}/`} class={isActive ? 'active' : ''}>{title}</a>
