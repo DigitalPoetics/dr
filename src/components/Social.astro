@@ -4,7 +4,7 @@ const {platform, username} = Astro.props;
 
 <!-- <a href={`https://www.${platform}.com/${username}`}><i class="{`fab fa-${platform}`}"></i>{platform}</a> -->
 
-<a href={`https://www.${platform}.com/${username}`} target="_black">
+<a href={`https://www.${platform}.com/${username}`} target="_blank">
   <img src={`/favicon/${platform}.svg`} width="30" height="30" />
 </a>
 
@@ -22,6 +22,10 @@ img:hover {
 
 html.dark img {
     filter: invert(1);
+}
+
+html.dark img:hover {
+    background-color: var(--hover-color);
 }
 
 html.dark a {
