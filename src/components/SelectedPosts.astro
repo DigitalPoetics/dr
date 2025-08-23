@@ -17,9 +17,15 @@ const selectedPosts = allPosts.filter((post:any) =>
 
 ---
  <!-- Blog posts -->
-<a href={`/${index}/`} 
-    class={isIndexActive ? 'active' : ''}
-    >~ <i>{frontmatter?.tags?.[0] ?? 'Index'}</i></a>
+<ul>
+    <li>
+        <a href={`/${index}/`} 
+            class={isIndexActive ? 'active' : ''}
+            >{frontmatter?.tags?.[0] ?? 'Index'}</a>
+    </li>
+</ul>
+
+
 <ul>
     {selectedPosts.map((post: any) => 
     <BlogPost 
@@ -29,10 +35,22 @@ const selectedPosts = allPosts.filter((post:any) =>
 </ul>
 
 <style>
+    li {
+        list-style: square;
+    }
+
+    li::marker {
+        color: var(--hover-color);
+    }
+
+    li:has(> a.active)::marker {
+        color: var(--highlight-color);
+    }
+
     a {
         text-decoration: none;
-        padding: 0 0 0 2rem;
-        margin-top: 2rem;
+        /* padding: 0 0 0 2rem; */
+        /* margin-top: 2rem; */
         color: var(--light-text);
     }
 
