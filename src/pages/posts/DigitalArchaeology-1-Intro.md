@@ -14,7 +14,7 @@ index: 'digitalArchaeology'
 How might we delimit the domain of poetics in the digital present? Taking the audio archives of poetry recordings as our primary object, we develop bi-modal approaches to poetics.
 
 > the act of creating an inflection<br>
-> <cite>~ Drucker[^1]</cite>
+> <cite>~ Drucker [^1]</cite>
 [^1]: Johanna Drucker.
 
 Welcome to my _new blog_ about learning Astro!

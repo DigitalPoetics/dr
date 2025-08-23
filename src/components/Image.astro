@@ -9,23 +9,30 @@ const { src, alt, caption, width = "100%", height = "auto" } = Astro.props;
 
 <style>
   figure {
-    margin: 1rem 1rem 1rem 1rem;
-    text-align: center;
+    margin: 1rem 0 1rem 0;
+    /* text-align: center; */
   }
 
   img {
     max-width: 100%;
     height: auto;
     border-radius: 0.5rem;
+    border: var(--image-border);
   }
 
   figcaption {
-    margin-top: 0.5rem;
+    margin-top: 0.2rem;
     font-size: 0.9rem;
     color: var(--light-text);
   }
 
   html.dark figcaption {
     color: var(--dark-text);
+  }
+
+  @media screen and (min-width: 636px) {
+    figure {
+      margin: 1rem 1rem 1rem 1rem;
+    }
   }
 </style>

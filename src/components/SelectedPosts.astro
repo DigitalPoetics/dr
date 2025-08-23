@@ -17,7 +17,9 @@ const selectedPosts = allPosts.filter((post:any) =>
 
 ---
  <!-- Blog posts -->
-<a href={`/${index}/`} class={isIndexActive ? 'active' : ''}>~ <i>{frontmatter?.tags?.[0] ?? 'Index'}</i></a>
+<a href={`/${index}/`} 
+    class={isIndexActive ? 'active' : ''}
+    >~ <i>{frontmatter?.tags?.[0] ?? 'Index'}</i></a>
 <ul>
     {selectedPosts.map((post: any) => 
     <BlogPost 

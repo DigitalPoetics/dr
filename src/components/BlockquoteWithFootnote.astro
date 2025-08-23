@@ -7,7 +7,7 @@ const { text, cite, footnoteId } = Astro.props;
   <cite>~ {cite}</cite>
   <sup>
     <a href={`#footnote-${footnoteId}`} id={`ref-${footnoteId}`} aria-label={`See footnote ${footnoteId}`}>
-      [{footnoteId}]
+      {footnoteId}
     </a>
   </sup>
 </blockquote>
@@ -15,7 +15,7 @@ const { text, cite, footnoteId } = Astro.props;
 <style>
   blockquote {
     /* font-style: italic; */
-    margin: 2rem 0 2rem 3rem;
+    margin: 2rem 0 2rem 2rem;
     padding-left: 1rem;
     border-left: var(--border-color);
   }
@@ -23,6 +23,6 @@ const { text, cite, footnoteId } = Astro.props;
   blockquote sup a {
     text-decoration: none;
     font-size: 0.8rem;
-    margin-left: 0.25rem;
+    /* margin-left: 0.25rem; */
   }
 </style>

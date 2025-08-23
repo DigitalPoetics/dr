@@ -7,6 +7,7 @@
     /* --border-color: 1px solid #ccc; */
     --border-color: 2px solid #1170aa;
     --highlight-color: #1170aa;
+    --image-border: 1px solid #ccc;
 
 }
 
@@ -49,5 +50,22 @@ a:hover,
 a:focus {
   color: var(--hover-color);
 }
+
+/* md css, footnote */
+/* Remove underline from footnote reference links */
+sup a {
+  text-decoration: none;
+}
+
+/* Remove underline from footnote return arrow */
+.footnotes a {
+  text-decoration: none;
+}
+
+cite {
+  font-style: normal;
+}
+
+
 
 
