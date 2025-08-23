@@ -1,6 +1,9 @@
 ---
 const { pages = [], label, links = [], pagesPosition = 'above' } = Astro.props;
 // const isActive = Astro.url.pathname;
+console.log('Pages:', pages);
+console.log('Links:', links);
+console.log('Current pathname:', Astro.url.pathname);
 ---
 {pagesPosition === 'above' && pages.map((page: { href: string, text: string }) => (
   <a href={page.href} class={Astro.url.pathname === page.href ? 'active' : ''}>{page.text}</a>
