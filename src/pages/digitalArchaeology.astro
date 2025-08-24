@@ -4,9 +4,10 @@ import SelectedPosts from '../components/SelectedPosts.astro';
 // const allPosts = Object.values(import.meta.glob('./posts/*.md', { eager: true }));
 const {frontmatter } = Astro.props;
 const pageTitle = "Digital Archaeology"
+const description = "Of Stratas and Historical Formations"
 const index = 'digitalArchaeology'
 ---
-<BaseLayout pageTitle={pageTitle}>
+<BaseLayout pageTitle={pageTitle} description={description}>
     <p>This is where I will post about my journey learning Astro.</p>
         <div class="selected-posts">
             <SelectedPosts 

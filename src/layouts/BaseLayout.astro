@@ -3,7 +3,12 @@ import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro"
 import Navigation from "../components/Navigation.astro";
 import "../styles/global.css";
-const { pageTitle } = Astro.props;
+
+interface Props {
+	pageTitle: string;
+	description?: string;
+}
+const { pageTitle, description } = Astro.props;
 ---
 
 <html lang="en">
@@ -12,6 +17,7 @@ const { pageTitle } = Astro.props;
 		<link rel="icon" type="image/svg+xml" href="/favicon/DR.png" />
 		<meta name="viewport" content="width=device-width" />
 		<meta name="generator" content={Astro.generator} />
+		<meta name="description" content={description} />
 		<title>{pageTitle}</title>
 	</head>
 	<body>
