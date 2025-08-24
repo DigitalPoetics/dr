@@ -6,7 +6,7 @@ const { frontmatter } = Astro.props;
 
 
 ---
-<BaseLayout pageTitle={frontmatter.title}>
+<BaseLayout pageTitle={frontmatter.title} description=`${frontmatter.description} + ${frontmatter.tags}`>
      <!-- front matter -->
     <div class="front-matter">
         <div class="front-matter-left">
