@@ -51,4 +51,13 @@ const isActive = Astro.url.pathname === `${url}/`;
     p {
         margin: 0 0 1rem 0;
     }
+
+    @media screen and (min-width: 636px) {
+            li p {
+        border-left: var(--image-border);
+        margin: 0 0 0.5rem -0.70rem;
+        padding-left: 0.70rem;
+    }
+    
+    }
 </style>
