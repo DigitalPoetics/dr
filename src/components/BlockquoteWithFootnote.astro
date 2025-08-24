@@ -1,15 +1,12 @@
 ---
 // Props: text (string), cite (string), footnoteId (string)
-const { text, cite, footnoteId } = Astro.props;
+import Superscript from "./Superscript.astro";
+const { text, cite, id } = Astro.props;
 ---
 <blockquote>
   {text}<br />
   <cite>~ {cite}</cite>
-  <sup>
-    <a href={`#footnote-${footnoteId}`} id={`ref-${footnoteId}`} aria-label={`See footnote ${footnoteId}`}>
-      {footnoteId}
-    </a>
-  </sup>
+  <Superscript id={id} />
 </blockquote>
 
 <style>
@@ -20,9 +17,4 @@ const { text, cite, footnoteId } = Astro.props;
     border-left: var(--border-color);
   }
 
-  blockquote sup a {
-    text-decoration: none;
-    font-size: 0.8rem;
-    /* margin-left: 0.25rem; */
-  }
 </style>

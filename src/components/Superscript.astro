@@ -1,0 +1,21 @@
+---
+// Props: id (string or number)
+const { id } = Astro.props;
+---
+<sup class="footnote-ref">
+  <a href={`#footnote-${id}`} id={`ref-${id}`} aria-label={`See footnote ${id}`}>
+    {id}
+  </a>
+</sup>
+
+<style>
+  .footnote-ref {
+    line-height: 1;
+    vertical-align: super;
+    margin-left: -0.15rem;
+  }
+  sup a {
+    text-decoration: none;
+    font-size: 0.8rem;
+  }
+</style>

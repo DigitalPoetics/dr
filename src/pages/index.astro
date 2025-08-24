@@ -1,26 +1,51 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import BlockquoteWithFootnote from '../components/BlockquoteWithFootnote.astro';
+import Superscript from '../components/Superscript.astro';
 import Footnote from '../components/Footnote.astro';
 import Image from '../components/Image.astro';
 const pageTitle = "Diagrammatic Readings"
 const desription = "How to model the materials and forces of cultural and aesthetic forms";
 ---
 <BaseLayout pageTitle={pageTitle} description={desription}>
-	<h2>Coming Soon...</h2>
+	<p>
+	   Digital and computational tools we use for analytics of cultural and aesthetic forms were usually not developed to model these materials.
+	   They have to be adapted from technical and scientific domains.
+	   How might we repurpose these tools to model these forms and formations?
+	</p>
+	<p>
+	   More importantly, as researchers across the humanities and arts are increasingly turning to these tools, 
+	   how might we repurpose them for humanistic research?
+	</p>
+	<p>
+		Digital humanists and data science scholars have proposed methods such as 
+		pursuing novel algorithms to model cultural objects,<Superscript id="1" />
+		building mixed-methods research frameworks,<Superscript id="2" />
+		or advancing critically informed analytical practices.<Superscript id="3" />
+	</p>
+	<p>
+		We take cue from Johanna Drucker, who suggests that these interventions should be made at the diagrammatic plance.
+	</p>
+
+
 
 	<BlockquoteWithFootnote
     text="An act of creating an inflection, adding an attribute, or making a change in a graph would feed back into the structured data. This would create data and could also intervene in the formal structures of the data, even changing its structure."
     cite="Johanna Drucker"
-    footnoteId="1"
+    id="4"
   	/>
 
+	<p>
+		In fig. 1, Drucker gives a sketch of "creating an inflection" on the network graph.
+		According to the top right figure, more than one centrality measurements could be rendered on each node, e.g.,
+		shading for degree centrality, brightness for eigenvector centrality, and glow for betweenness centrality.
+	</p>
 
-	<BlockquoteWithFootnote
+	<!-- <BlockquoteWithFootnote
     text="the act of creating an inflection"
     cite="Drucker"
     footnoteId="2"
-  	/>
+  	/> -->
 
 	<Image 
 	src="./home/drucker-inflection.jpg" 
@@ -34,7 +59,10 @@ const desription = "How to model the materials and forces of cultural and aesthe
 	<!-- FOOTNOTES SECTION -->
 	<footer class="footnotes">
 		<hr />
-		<Footnote id="1" content="Johanna Drucker, <i>Visualization and Interpretation: Humanistic Approaches to Display</i> (Cambridge, Massachusetts: Massachusetts Institute of Technology, 2020), 2-3." />
-  		<Footnote id="2" content='See <a href="https://example.com">this source</a>.' />	</footer>
+		<Footnote id="1" content='Johanna Drucker, <i>Visualization and Interpretation: Humanistic Approaches to Display</i> (Cambridge, Massachusetts: MIT Press, 2020), 2–3.' />
+		<Footnote id="2" content="Johanna Drucker, <i>Visualization and Interpretation: Humanistic Approaches to Display</i> (Cambridge, Massachusetts: Massachusetts Institute of Technology, 2020), 2-3." />
+		<Footnote id="3" content='See <a href="https://example.com">this source</a>.' />
+  		<Footnote id="4" content='See <a href="https://example.com">this source</a>.' />	
+	</footer>
 
-</BaseLayout>
+	</BaseLayout>
