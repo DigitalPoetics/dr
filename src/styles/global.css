@@ -11,17 +11,24 @@
 
 }
 
-html {
-    /* background-color: #f1f5f9; */
-    /* background-color: var(--light-background); */
-    font-family: sans-serif;
-    /* color: var(--light-text); */
+/* Register font */
+@font-face {
+    font-family: "IM Fell English";
+    src: url("/fonts/IMFellEnglish-Regular.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
 }
+
+
 
 body {
     margin: 0 auto;
+    font-family: 'IM Fell English', serif;
+    font-size: 1.2rem;
     /* margin: 0 1rem 0 1rem; */
     /* padding: 0 1rem 0 1rem; */
+    /* font-family: 'IMFellEnglish', serif; */
     width: 100%;
     line-height: 1.5;
     background-color: var(--light-background);

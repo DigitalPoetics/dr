@@ -4,19 +4,21 @@ import BlockquoteWithFootnote from '../components/BlockquoteWithFootnote.astro';
 import Superscript from '../components/Superscript.astro';
 import Footnote from '../components/Footnote.astro';
 import Image from '../components/Image.astro';
+import Table from '../components/Table.astro';
 const pageTitle = "Diagrammatic Readings"
 const desription = "How to model the materials and forces of cultural and aesthetic forms";
 ---
 <BaseLayout pageTitle={pageTitle} description={desription}>
 	<p>
-	   Digital and computational tools we use for analytics of cultural and aesthetic forms were usually not developed to model these materials.
-	   They have to be adapted from technical and scientific domains.
-	   How might we repurpose these tools to model these forms and formations?
+	   Digital and computational tools we use for analytics of cultural and aesthetic content are typically not developed to model its matter and form.
+		When borrowing from technical and scientific domains,
+	   how might we adapt these tools to model cultural and artistic practices?
 	</p>
 	<p>
-	   More importantly, as researchers across the humanities and arts are increasingly turning to these tools, 
+	   More specifically, as researchers across the humanities and arts are increasingly turning to these tools, 
 	   how might we repurpose them for humanistic research?
 	</p>
+	<h3>Why Diagrams?</h3>
 	<p>
 		Digital humanists and data science scholars have proposed methods such as 
 		pursuing novel algorithms to model cultural objects,<Superscript id="1" />
@@ -53,6 +55,33 @@ const desription = "How to model the materials and forces of cultural and aesthe
 	caption="Figure 1: Drucker's sketch of inflection in network graphs." 
 	width="100%" 
 	height="auto"
+	/>
+
+	<p>
+		Here, Drucker is proposing a comparative approach to analytics, namely,
+		how does the node behave in a network when rendered with different centrality measurements?
+		Although this particular example is not practically feasible--
+		the nodes will be visually cluttered if all three measurements are rendered at once, 
+		and, in our experience, it's better to depict the centrality measurements on different graphs--
+		it illustrates the virtuality of graphical expressions.
+	</p>
+
+	<h3>
+		Materials and forces of graphical expressions
+	</h3>
+
+	<Table
+	columns={["Matter", "Form"]}
+	rows={[
+		{
+		rowHeader: "Content",
+		cells: ["author (work)", "inclusion/exclusion"]
+		},
+		{
+		rowHeader: "Expression",
+		cells: ["author-venue link", "closeness/betweenness"]
+		}
+	]}
 	/>
 
 

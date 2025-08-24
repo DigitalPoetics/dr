@@ -1,0 +1,43 @@
+---
+// Props:
+// columns: array of column header strings (excluding row header)
+// rows: array of objects with { rowHeader: string, cells: array of strings }
+
+const { columns = [], rows = [] } = Astro.props;
+---
+<table border="1">
+  <thead>
+    <tr>
+      <th></th>
+      {columns.map((col: any) => <th>{col}</th>)}
+    </tr>
+  </thead>
+  <tbody>
+    {rows.map((row: any) => (
+      <tr>
+        <th>{row.rowHeader}</th>
+        {row.cells.map((cell: any) => <td>{cell}</td>)}
+      </tr>
+    ))}
+  </tbody>
+</table>
+
+<style>
+  table {
+    /* border-collapse: collapse; */
+    width: auto;
+    margin: 1rem auto 1rem auto;
+    border-collapse: separate; /* Important for border-radius to work */
+    border-spacing: 0;
+    border-radius: 0.5rem; /* Adjust the radius as needed */
+    overflow: hidden;   /* Ensures corners are clipped */
+  }
+
+  th, td {
+    padding: 0.5rem;
+    text-align: left;
+  }
+
+
+
+</style>
