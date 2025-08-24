@@ -5,27 +5,36 @@
 
 const { columns = [], rows = [] } = Astro.props;
 ---
-<table border="1">
-  <thead>
-    <tr>
-      <th></th>
-      {columns.map((col: any) => <th>{col}</th>)}
-    </tr>
-  </thead>
-  <tbody>
-    {rows.map((row: any) => (
+<div class="table-container">
+  <table border="1">
+    <thead>
       <tr>
-        <th>{row.rowHeader}</th>
-        {row.cells.map((cell: any) => <td>{cell}</td>)}
+        <th></th>
+        {columns.map((col: any) => <th>{col}</th>)}
       </tr>
-    ))}
-  </tbody>
-</table>
+    </thead>
+    <tbody>
+      {rows.map((row: any) => (
+        <tr>
+          <th>{row.rowHeader}</th>
+          {row.cells.map((cell: any) => <td>{cell}</td>)}
+        </tr>
+      ))}
+    </tbody>
+  </table>
+</div>
+
 
 <style>
+  .table-container {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  }
+
   table {
     /* border-collapse: collapse; */
-    max-width: 90%;
+    /* max-width: 90%; */
     margin: 1rem auto 1rem auto;
     border-collapse: separate; /* Important for border-radius to work */
     border-spacing: 0;
@@ -37,6 +46,12 @@ const { columns = [], rows = [] } = Astro.props;
     padding: 0.5rem;
     text-align: left;
   }
+
+  @media screen and (min-width: 636px {
+    table {
+      margin: 1rem auto 1rem auto;
+    }
+  })
 
 
 
