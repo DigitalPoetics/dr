@@ -85,16 +85,18 @@ function getMatchingParagraphs(text: string, term: string): Array<{ index: numbe
   flex: 1;
   padding: 0.5rem;
   font-size: 1rem;
+  font-family: 'IM Fell English', serif;
 }
 
 .search-bar button {
   padding: 0.5rem 1rem;
   font-size: 1rem;
   cursor: pointer;
+  font-family: 'IM Fell English', serif;
 }
 
 .search-summary {
-  margin-bottom: 1rem;
+  margin: 0 0 0 0;
   font-size: 1rem;
   color: var(--light-text);
 }
@@ -133,13 +135,19 @@ html.dark .arrow {
 }
 
 ul {
-  margin-top: 0.5rem;
+  margin: 0 0 0.5rem 0;
   padding-left: 1.5rem;
   list-style-type: disc;
 }
 
 .paragraph-match {
   list-style: square;
+}
+
+.paragraph-match p {
+  margin: 0 0 0.5rem 0;
+    font-size: 1rem;
+
 }
 
 .paragraph-match::marker {
