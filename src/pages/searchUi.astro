@@ -1,8 +1,10 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+
 // import language from '../data/digitalTropology/language.json';
 
-const response = await fetch('http://localhost:4321/api/language');
+//import from api
+const response = await fetch('http://www.diagrammaticreadings.com/api/language');
 const language = await response.json();
 // server-side rendering
 export const prerender = false;
