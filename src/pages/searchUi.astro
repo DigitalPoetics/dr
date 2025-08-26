@@ -2,12 +2,17 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import language from '../data/digitalTropology/language.json';
 
+// server-side rendering
+export const prerender = false;
+
 const pageTitle = "Search UI";
 const description = "In-text search UI";
 
 // ✅ Get search term from query string
-const searchTerm = Astro.url.searchParams.get('searchTerm')?.trim() || '';
+const searchTerm = Astro.url.searchParams.get('searchTerm')?.trim() || 'lyric';
+console.log('Search Term:', searchTerm);
 
+// ✅ Highlight search term
 function highlightTerm(paragraph: string, term: string): string {
   const escapedTerm = term.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
   const regex = new RegExp(`(${escapedTerm})`, 'gi');
@@ -66,6 +71,7 @@ function getMatchingParagraphs(text: string, term: string): Array<{ index: numbe
       );
     })}
   </ol>
+
 </BaseLayout>
 
 <style>
