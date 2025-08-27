@@ -1,0 +1,158 @@
+---
+// SearchText.astro
+export interface Props {
+  data: Array<Record<string, unknown>>;
+  fields: {
+    author: string;
+    title: string;
+    date: string;
+    url: string;
+    text: string;
+  };
+}
+
+const { data, fields } = Astro.props;
+const searchTerm = Astro.url.searchParams.get('searchTerm')?.trim() || '';
+
+function highlightTerm(paragraph: string, term: string): string {
+  const escapedTerm = term.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  const regex = new RegExp(`(${escapedTerm})`, 'gi');
+  return paragraph.replace(
+    regex,
+    `<mark style="background-color: transparent; color: var(--hover-color); font-weight: bold;">$1</mark>`
+  );
+}
+
+function getMatchingParagraphs(text: string, term: string): Array<{ index: number, html: string }> {
+  if (!term) return [];
+  return text
+    .split(/\n{2,}/)
+    .map(p => p.replace(/\n/g, ' ').trim())
+    .map((p, i) => ({ index: i, html: highlightTerm(p, term) }))
+    .filter(p => p.html.toLowerCase().includes(term.toLowerCase()));
+}
+---
+
+<form method="GET" class="search-bar">
+  <input
+    type="text"
+    name="searchTerm"
+    placeholder="Enter search term..."
+    value={searchTerm}
+  />
+  <button type="submit">Search</button>
+</form>
+
+<p>Search term: <strong>{searchTerm || 'None'}</strong></p>
+
+<ol>
+  {data.map((entry) => {
+    const matches = getMatchingParagraphs(entry[fields.text], searchTerm);
+    return matches.length > 0 && (
+      <li>
+        <details>
+          <summary>
+            <span class="entry-label">
+              <strong>{entry[fields.author]},</strong>
+              <a href={entry[fields.url]} target="_blank">{entry[fields.title]}</a> ({entry[fields.date]})
+            </span>
+            <span class="arrow"></span>
+          </summary>
+          <ul>
+            {matches.map(match => (
+              <li class="paragraph-match">
+                <p><span set:html={match.html} /></p>
+              </li>
+            ))}
+          </ul>
+        </details>
+      </li>
+    );
+  })}
+</ol>
+
+<style>
+ol {
+  padding-left: 1rem;
+  margin: 0;
+}
+.search-bar {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.search-bar input {
+  flex: 1;
+  padding: 0.5rem;
+  font-size: 1rem;
+  font-family: 'IM Fell English', serif;
+}
+
+.search-bar button {
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  cursor: pointer;
+  font-family: 'IM Fell English', serif;
+}
+
+details summary {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  /* gap: 0.5rem; */
+  font-weight: bold;
+  font-size: 1.1rem;
+  /* margin: 0 0 0 0; */
+  /* padding: 0.5rem 0; */
+}
+
+
+summary::-webkit-details-marker {
+  display: none;
+}
+
+.arrow {
+  display: inline-block;
+  transition: transform 0.2s;
+  border: solid var(--light-text);
+  border-width: 0 2px 2px 0;
+  padding: 3px;
+  margin-left: 4px;
+  transform: rotate(-45deg);
+}
+
+details[open] .arrow {
+  transform: rotate(45deg);
+}
+
+html.dark .arrow {
+  border-color: var(--dark-text);
+}
+
+ul {
+  margin: 0 0 1rem 0;
+  padding-left: 1.2rem;
+  list-style-type: disc;
+}
+
+.paragraph-match {
+  list-style: square;
+}
+
+.paragraph-match p {
+  margin: 0 0 0.5rem 0;
+  font-size: 1rem;
+}
+
+.paragraph-match::marker {
+  color: var(--hover-color);
+}
+
+mark {
+  background-color: transparent;
+  color: var(--hover-color);
+  font-weight: bold;
+}
+</style>

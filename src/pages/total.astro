@@ -1,0 +1,177 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import language from '../data/digitalTropology/language.json';
+
+export const prerender = false;
+
+const pageTitle = "Search UI";
+const description = "In-text and metadata search UI";
+
+// ✅ Get search terms from query string
+const searchText = Astro.url.searchParams.get('searchText')?.trim().toLowerCase() || '';
+const searchMeta = Astro.url.searchParams.get('searchMeta')?.trim().toLowerCase() || '';
+
+function highlightTerm(text: string, term: string): string {
+  const escapedTerm = term.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  const regex = new RegExp(`(${escapedTerm})`, 'gi');
+  return text.replace(
+    regex,
+    `<mark style="background-color: transparent; color: var(--hover-color); font-weight: bold;">$1</mark>`
+  );
+}
+
+function getMatchingParagraphs(text: string, term: string): Array<{ index: number, html: string }> {
+  if (!term) return [];
+  return text
+    .split(/\n{2,}/)
+    .map(p => p.replace(/\n/g, ' ').trim())
+    .map((p, i) => ({ index: i, html: highlightTerm(p, term) }))
+    .filter(p => p.html.toLowerCase().includes(term.toLowerCase()));
+}
+
+function matchesMeta(lang: any, term: string): boolean {
+  if (!term) return true;
+  return (
+    lang.author.toLowerCase().includes(term) ||
+    lang.shortTitle.toLowerCase().includes(term)
+  );
+}
+---
+<BaseLayout pageTitle={pageTitle} description={description}>
+  <!-- ✅ Dual Search Form -->
+  <form method="GET" class="search-bar">
+    <input
+      type="text"
+      name="searchText"
+      placeholder="Search in text..."
+      value={searchText}
+    />
+    <input
+      type="text"
+      name="searchMeta"
+      placeholder="Search author/title..."
+      value={searchMeta}
+    />
+    <button type="submit">Search</button>
+  </form>
+
+  <!-- ✅ Show current search terms -->
+  <p>Text search: <strong>{searchText || 'None'}</strong></p>
+  <p>Metadata search: <strong>{searchMeta || 'None'}</strong></p>
+
+  <ol>
+    {language.map((lang, index) => {
+      const textMatches = getMatchingParagraphs(lang.text, searchText);
+      const metaMatches = matchesMeta(lang, searchMeta);
+      return textMatches.length > 0 && metaMatches && (
+        <li>
+          <details>
+            <summary>
+              <span class="entry-label">
+                <strong>{highlightTerm(lang.author, searchMeta)},</strong>
+                <a href={lang.url} target="_blank">{highlightTerm(lang.shortTitle, searchMeta)}</a> ({lang.date})
+              </span>
+              <span class="arrow"></span>
+            </summary>
+            <ul>
+              {textMatches.map(match => (
+                <li class="paragraph-match">
+                  <p><span set:html={match.html} /></p>
+                </li>
+              ))}
+            </ul>
+          </details>
+        </li>
+      );
+    })}
+  </ol>
+</BaseLayout>
+
+
+<style>
+.search-bar {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.search-bar input {
+  flex: 1;
+  padding: 0.5rem;
+  font-size: 1rem;
+  font-family: 'IM Fell English', serif;
+  min-width: 0;
+}
+
+.search-bar button {
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  cursor: pointer;
+  font-family: 'IM Fell English', serif;
+}
+
+.search-summary {
+  margin: 0 0 0 0;
+  font-size: 1rem;
+  color: var(--light-text);
+}
+
+details summary {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  font-weight: bold;
+  font-size: 1.1rem;
+  padding: 0.5rem 0;
+}
+
+summary::-webkit-details-marker {
+  display: none;
+}
+
+.arrow {
+  display: inline-block;
+  transition: transform 0.2s;
+  border: solid var(--light-text);
+  border-width: 0 2px 2px 0;
+  padding: 3px;
+  margin-left: 4px;
+  transform: rotate(-45deg);
+}
+
+details[open] .arrow {
+  transform: rotate(45deg);
+}
+
+html.dark .arrow {
+  border-color: var(--dark-text);
+}
+
+ul {
+  margin: 0 0 0.5rem 0;
+  padding-left: 1.5rem;
+  list-style-type: disc;
+}
+
+.paragraph-match {
+  list-style: square;
+}
+
+.paragraph-match p {
+  margin: 0 0 0.5rem 0;
+    font-size: 1rem;
+
+}
+
+.paragraph-match::marker {
+  color: var(--hover-color);
+}
+
+mark {
+  background-color: transparent;
+  color: var(--hover-color);
+  font-weight: bold;
+}
+</style>
