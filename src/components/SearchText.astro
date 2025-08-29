@@ -40,7 +40,7 @@ function getMatchingParagraphs(text: string, term: string): Array<{ index: numbe
     placeholder="Enter search term..."
     value={searchTerm}
   />
-  <button type="submit">Search</button>
+  <button type="submit" class="search-button">Search</button>
 </form>
 
 <p>Search term: <strong>{searchTerm || 'None'}</strong></p>
@@ -87,6 +87,7 @@ ol {
   padding: 0.5rem;
   font-size: 1rem;
   font-family: 'IM Fell English', serif;
+  box-sizing: border-box;
 }
 
 .search-bar button {
@@ -94,6 +95,17 @@ ol {
   font-size: 1rem;
   cursor: pointer;
   font-family: 'IM Fell English', serif;
+}
+
+.search-button {
+  /* background-color: var(--light-background); */
+  border: var(--image-border);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.search-button:hover {
+  background-color: var(--hover-color);
+  color: white; /* or contrast color */
 }
 
 details summary {
@@ -155,4 +167,6 @@ mark {
   color: var(--hover-color);
   font-weight: bold;
 }
+
+
 </style>
