@@ -111,9 +111,14 @@ function getMatchingParagraphs(text: string, keyword: string, similar: string[])
     const matches = word2vecData.filter(d => d.word.toLowerCase().includes(term));
     
     if (matches.length > 0) {
-      results.innerHTML = matches.map(match => 
-        '<a href="?searchTerm=' + match.word + '" class="dropdown-item">' + match.word + '</a>'
-      ).join('');
+      results.innerHTML = `
+        <style>
+          .dropdown-item { display: block; padding: 0 0 0 0.5rem; font-size: 1rem; text-decoration: none; color: var(--light-text); }
+          .dropdown-item:hover { color: var(--hover-color); }
+        </style>
+        ${matches.map(match => 
+          `<a href="?searchTerm=${match.word}" class="dropdown-item">${match.word}</a>`
+        ).join('')}`;
       dropdown.classList.add('is-active');
     } else {
       dropdown.classList.remove('is-active');
@@ -165,7 +170,7 @@ function getMatchingParagraphs(text: string, keyword: string, similar: string[])
     top: 100%;
     left: 0;
     z-index: 10;
-    display: none;
+    /* display: none; */
   }
   
   .dropdown.is-active {
@@ -175,17 +180,17 @@ function getMatchingParagraphs(text: string, keyword: string, similar: string[])
   .dropdown-content {
     display: flex;
     flex-direction: column;
+    background-color: #f5f5f5;
+    border: var(--image-border);
   }
   
   .dropdown-menu {
     width: 100%;
-    max-height: 400px;
+    max-height: 20rem;
     overflow-y: auto;
-    background-color: var(--light-background);
-    border: var(--image-border);
   }
   
-  .dropdown-item {
+  /* .dropdown-item {
     display: block;
     padding: 8px 12px;
     text-decoration: none;
@@ -194,7 +199,7 @@ function getMatchingParagraphs(text: string, keyword: string, similar: string[])
 
   .dropdown-item:hover {
     background-color: #f5f5f5;
-  }
+  } */
   
   .search-results {
     margin: 1rem 0;

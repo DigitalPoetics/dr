@@ -54,12 +54,18 @@ const searchTerm = Astro.url.searchParams.get('searchTerm')?.trim().toLowerCase(
 
     const matches = data.filter(d => d.word.toLowerCase().includes(term));
     
-    if (matches.length > 0) {
-      results.innerHTML = matches.map(match => 
-        `<a href="?searchTerm=${match.word}" class="dropdown-item">${match.word}</a>`
-      ).join('');
-      dropdown.classList.add('is-active');
-    } else {
+if (matches.length > 0) {
+  results.innerHTML = `
+    <style>
+      .dropdown-item { display: block; padding: 0 0 0 0.5rem; font-size: 1rem; text-decoration: none; color: var(--light-text); }
+      .dropdown-item:hover { color: var(--hover-color); }
+    </style>
+    ${matches.map(match => 
+      `<a href="?searchTerm=${match.word}" class="dropdown-item">${match.word}</a>`
+    ).join('')}`;
+  dropdown.classList.add('is-active');
+}
+ else {
       dropdown.classList.remove('is-active');
     }
   });
@@ -109,7 +115,6 @@ const searchTerm = Astro.url.searchParams.get('searchTerm')?.trim().toLowerCase(
     top: 100%;
     left: 0;
     z-index: 10;
-    display: none;
   }
 
   .dropdown.is-active {
@@ -119,24 +124,16 @@ const searchTerm = Astro.url.searchParams.get('searchTerm')?.trim().toLowerCase(
   .dropdown-content {
     display: flex;
     flex-direction: column;
+    background-color: #f5f5f5;
+    border: var(--image-border);
   }
 
   .dropdown-menu {
     width: 100%;
-    max-height: 400px;
+    max-height: 20rem;
     overflow-y: auto;
-    background-color: var(--light-background);
-    border: var(--image-border);
-  }
-  
-  .dropdown-item {
-    display: block;
-    padding: 8px 12px;
-    text-decoration: none;
-    color: var(--text-color);
+
   }
 
-  .dropdown-item:hover {
-    background-color: #f5f5f5;
-  }
+
 </style>
