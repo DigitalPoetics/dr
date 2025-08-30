@@ -46,7 +46,7 @@ const selectedWord = Astro.url.searchParams.get('searchTerm')?.trim() || '';
     svg.insert("rect", ":first-child")
       .attr("width", width)
       .attr("height", height)
-      .attr("fill", "#e0f7ff");
+      .attr("fill", "#f5f5f5 ");
 
     const xScale = d3.scaleLinear()
       .domain(d3.extent(data, d => d.x))
@@ -110,7 +110,7 @@ const selectedWord = Astro.url.searchParams.get('searchTerm')?.trim() || '';
         
         points
           .style("display", d => highlightWords.has(d.word) ? "block" : "none")
-          .attr("fill", d => d.word === match.word ? "blue" : "red")
+          .attr("fill", d => d.word === match.word ? "var(--hover-color)" : "var(--highlight-color)")
           .attr("font-size", "12px")
           .attr("font-weight", "bold");
 

@@ -10,7 +10,7 @@ const searchTerm = Astro.url.searchParams.get('searchTerm')?.trim().toLowerCase(
     <input
       type="text"
       name="searchTerm"
-      placeholder="Find a word..."
+      placeholder="Enter search term..."
       value={searchTerm}
     />
     <button type="submit" class="search-button">Search</button>
@@ -80,7 +80,7 @@ if (matches.length > 0) {
 <style>
   .autocomplete {
     position: relative;
-    width: 300px;
+    width: 100%;
   }
   
   .search-bar {
@@ -116,7 +116,7 @@ if (matches.length > 0) {
 
   .dropdown {
     position: absolute;
-    width: 300px;
+    width: 100%;
     top: 100%;
     left: 0;
     z-index: 10;
