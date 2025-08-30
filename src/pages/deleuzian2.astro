@@ -1,0 +1,43 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SearchWord2vec2 from '../components/SearchWord2vec2.astro';
+import Word2vec from '../components/Word2vec.astro';
+// import data from '../data/deleuze/theDeleuzeSeminars.json'
+
+import word2vecData from '../data/deleuze/deleuzeWord2vec.json';
+// import data from '../data/deleuze/theDeleuzeSeminars.json';
+// export const prerender = false;
+
+
+const pageTitle = "Word2vec Visualization";
+const pageDescription = "Word2vec visualization using D3.js";
+
+const fields = {
+  word: "word",
+  x: "x",
+  y: "y",
+  similar: "similar"
+}
+
+// const textFields = {
+//   author: "author",
+//   title: "title", 
+//   date: "date",
+//   url: "url",
+//   text: "text"
+// };
+---
+<BaseLayout pageTitle={pageTitle} description={pageDescription}>
+    <h3>Word2vec Visualization for
+        <a href="https://deleuze.cla.purdue.edu/seminars/" target="_blank">the Deleuze Seminars</a>
+    </h3>
+    <SearchWord2vec2 
+    data={word2vecData} 
+
+  />
+  <Word2vec/>
+</BaseLayout>
+
+<!-- <script>
+  window.word2vecData = JSON.parse(decodeURIComponent(`{{JSON.stringify(data)}}`));
+</script> -->

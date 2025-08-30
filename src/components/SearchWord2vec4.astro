@@ -1,0 +1,264 @@
+---
+const { word2vecData, textData, textFields } = Astro.props;
+const searchTerm = Astro.url.searchParams.get('searchTerm')?.trim() || '';
+
+// Get similar words for the search term
+const wordMatch = word2vecData.find(item => item.word === searchTerm);
+const similarWords = wordMatch ? wordMatch.similar : [];
+
+function highlightTerms(paragraph: string, keyword: string, similar: string[]): string {
+    let result = paragraph;
+  
+    // Highlight keyword using SearchText mark styling
+    if (keyword) {
+        const escapedKeyword = keyword.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+        const keywordRegex = new RegExp(`\\b(${escapedKeyword}\\w*)`, 'gi');
+        result = result.replace(keywordRegex, '<mark style="background-color:transparent; color:var(--hover-color);">$1</mark>');
+        
+    }
+    
+    // Highlight similar words in blue using same mark structure
+    similar.forEach(word => {
+        const escapedWord = word.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+        const wordRegex = new RegExp(`\\b(${escapedWord}\\w*)`, 'gi');
+        result = result.replace(wordRegex, '<mark style="background-color:transparent; color:var(--highlight-color);">$1</mark>');
+    });
+    
+    return result;
+}
+
+function getMatchingParagraphs(text: string, keyword: string, similar: string[]): Array<{ index: number, html: string }> {
+    if (!keyword) return [];
+    
+    return text
+        .split(/\n{2,}/)
+        .map(p => p.replace(/\n/g, ' ').trim())
+        .filter(p => {
+            const lowerP = p.toLowerCase();
+            const hasKeyword = keyword && lowerP.includes(keyword.toLowerCase());
+            return hasKeyword; // Only return paragraphs that contain the keyword
+        })
+        .map((p, i) => ({ index: i, html: highlightTerms(p, keyword, similar) }));
+}
+---
+
+<div class="autocomplete">
+  <form method="GET" class="search-bar">
+    <input
+      type="text"
+      name="searchTerm"
+      placeholder="Find a word..."
+      value={searchTerm}
+    />
+    <button type="submit" class="search-button">Search</button>
+  </form>
+
+  <div class="dropdown">
+    <div class="dropdown-menu">
+      <div class="dropdown-content results"></div>
+    </div>
+  </div>
+</div>
+
+{searchTerm && (
+  <div class="search-results">
+    <p><strong>Keyword:</strong> {searchTerm}</p>
+    {similarWords.length > 0 && (
+      <p><strong>Vectors:</strong> {similarWords.join(', ')}</p>
+    )}
+  </div>
+)}
+
+<ol>
+  {textData.map((entry) => {
+    const matches = getMatchingParagraphs(entry[textFields.text], searchTerm, similarWords);
+    return matches.length > 0 && (
+      <li>
+        <details>
+          <summary>
+            <span class="entry-label">
+              <strong>{entry[textFields.author]},</strong>
+              <a href={entry[textFields.url]} target="_blank">{entry[textFields.title]}</a> ({entry[textFields.date]})
+            </span>
+            <span class="arrow"></span>
+          </summary>
+          <ul>
+            {matches.map(match => (
+              <li class="paragraph-match">
+                <p><span set:html={match.html} /></p>
+              </li>
+            ))}
+          </ul>
+        </details>
+      </li>
+    );
+  })}
+</ol>
+
+<script define:vars={{ word2vecData }}>
+  const input = document.querySelector('input[name="searchTerm"]');
+  const dropdown = document.querySelector('.dropdown');
+  const results = document.querySelector('.results');
+
+  input.addEventListener('input', (e) => {
+    const term = e.target.value.trim().toLowerCase();
+    
+    if (!term) {
+      dropdown.classList.remove('is-active');
+      return;
+    }
+
+    const matches = word2vecData.filter(d => d.word.toLowerCase().includes(term));
+    
+    if (matches.length > 0) {
+      results.innerHTML = matches.map(match => 
+        '<a href="?searchTerm=' + match.word + '" class="dropdown-item">' + match.word + '</a>'
+      ).join('');
+      dropdown.classList.add('is-active');
+    } else {
+      dropdown.classList.remove('is-active');
+    }
+  });
+</script>
+
+<style>
+  .autocomplete {
+    position: relative;
+    width: 300px;
+    margin-bottom: 1rem;
+  }
+  
+  .search-bar {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .search-bar input {
+    flex: 1;
+    padding: 0.5rem;
+    font-size: 1rem;
+    font-family: 'IM Fell English', serif;
+    box-sizing: border-box;
+  }
+
+  .search-bar button {
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    cursor: pointer;
+    font-family: 'IM Fell English', serif;
+  }
+
+  .search-button {
+    border: var(--image-border);
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+
+  .search-button:hover {
+    background-color: var(--hover-color);
+    color: white;
+  }
+
+  .dropdown {
+    position: absolute;
+    width: 300px;
+    top: 100%;
+    left: 0;
+    z-index: 10;
+    display: none;
+  }
+  
+  .dropdown.is-active {
+    display: block;
+  }
+  
+  .dropdown-content {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .dropdown-menu {
+    width: 100%;
+    max-height: 400px;
+    overflow-y: auto;
+    background-color: var(--light-background);
+    border: var(--image-border);
+  }
+  
+  .dropdown-item {
+    display: block;
+    padding: 8px 12px;
+    text-decoration: none;
+    color: var(--text-color);
+  }
+
+  .dropdown-item:hover {
+    background-color: #f5f5f5;
+  }
+  
+  .search-results {
+    margin: 1rem 0;
+  }
+  
+  ol {
+    padding-left: 1rem;
+    margin: 0;
+  }
+  
+  details summary {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-weight: bold;
+    font-size: 1.2rem;
+    padding: 0 0 0.5rem 0;
+  }
+
+  summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .arrow {
+    display: inline-block;
+    transition: transform 0.2s;
+    border: solid var(--light-text);
+    border-width: 0 2px 2px 0;
+    padding: 3px;
+    margin-left: 4px;
+    transform: rotate(-45deg);
+  }
+
+  details[open] .arrow {
+    transform: rotate(45deg);
+  }
+
+  html.dark .arrow {
+    border-color: var(--dark-text);
+  }
+
+  ul {
+    margin: 0 0 1rem 0;
+    padding-left: 1.2rem;
+    list-style-type: disc;
+  }
+
+  .paragraph-match {
+    list-style: square;
+  }
+
+  .paragraph-match p {
+    margin: 0 0 0.5rem 0;
+    font-size: 1.1rem;
+  }
+
+  .paragraph-match::marker {
+    color: var(--hover-color);
+  }
+
+  mark {
+    background-color: transparent;
+    /* color: var(--hover-color); */
+    font-weight: bold;
+  }
+</style>

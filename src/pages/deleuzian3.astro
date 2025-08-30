@@ -1,0 +1,30 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SearchWord2vec4 from '../components/SearchWord2vec4.astro';
+import textData from '../data/deleuze/theDeleuzeSeminars.json';
+import word2vecData from '../data/deleuze/deleuzeWord2vec.json';
+// export const prerender = false;
+
+const pageTitle = "Deleuzian";
+const description = "In-text search UI for the Deleuze Seminars.";
+
+// You can customize these keys to match your data structure
+const textFields = {
+  author: "author",
+  title: "title",
+  date: "date",
+  url: "url",
+  text: "text"
+};
+---
+
+<BaseLayout pageTitle={pageTitle} description={description}>
+  <h3>Search UI for
+    <a href="https://deleuze.cla.purdue.edu/seminars/" target="_blank">the Deleuze Seminars</a>
+  </h3>
+  <SearchWord2vec4 
+    textData={textData} 
+    word2vecData={word2vecData} 
+    textFields={textFields}
+  />
+</BaseLayout>

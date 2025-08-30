@@ -1,25 +1,36 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import dataSrc from '../data/deleuze/deleuzeWord2vec.json';
-import Word2vec from '../components/Word2vec.astro';
-import SearchWord2vec2 from '../components/SearchWord2vec2.astro';
+import SearchWord2vec4 from '../components/SearchWord2vec4.astro';
+// import data from '../data/deleuze/theDeleuzeSeminars.json'
 
+import word2vecData from '../data/deleuze/deleuzeWord2vec.json';
+import textData from '../data/deleuze/theDeleuzeSeminars.json';
 // export const prerender = false;
 
-const data = '../data/deleuze/deleuzeWord2vec.json';
 const pageTitle = "Word2vec Visualization";
 const pageDescription = "An interactive visualization of Word2Vec embeddings.";
 
-const fields = {
-  word: "word",
-  x: "x",
-  y: "y",
-  similar: "similar"
-}
+// const fields = {
+//   word: "word",
+//   x: "x",
+//   y: "y",
+//   similar: "similar"
+// }
+
+const textFields = {
+  author: "author",
+  title: "title", 
+  date: "date",
+  url: "url",
+  text: "text"
+};
 ---
 <BaseLayout pageTitle={pageTitle} description={pageDescription}>
-    <SearchWord2vec2 data={dataSrc} fields={fields}/>
-    <Word2vec fields={fields}/>
+  <SearchWord2vec4 
+    word2vecData={word2vecData} 
+    textData={textData}
+    textFields={textFields} 
+  />
 </BaseLayout>
 
 <!-- <script>
