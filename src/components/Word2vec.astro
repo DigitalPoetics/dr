@@ -21,7 +21,7 @@ const selectedWord = Astro.url.searchParams.get('searchTerm')?.trim() || '';
 
 <!-- Load D3 from CDN --> 
 <!-- <script is:inline src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script> -->
-<script is:inline src="../../public/plugins/d3.7.9.0.min.js"></script>
+<script is:inline src="./plugins/d3.7.9.0.min.js"></script>
 
 <script define:vars={{ selectedWord }}>
   window.addEventListener("DOMContentLoaded", () => {
