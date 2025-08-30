@@ -56,15 +56,25 @@ const selectedWord = Astro.url.searchParams.get('searchTerm')?.trim() || '';
       .domain(d3.extent(data, d => d.y))
       .range([height - 50, 50]);
 
+    
+
     svg.append("g")
       .attr("class", "x axis")
       .attr("transform", `translate(0, ${height - 50})`)
-      .call(d3.axisBottom(xScale));
+      .call(d3.axisBottom(xScale))
+      .selectAll("text, path, line")
+      // .style("fill", axisColor)
+      .style("stroke", "var(--light-text)")
+      .style("stroke-width", "0.5px");
 
     svg.append("g")
       .attr("class", "y axis")
       .attr("transform", `translate(50, 0)`)
-      .call(d3.axisLeft(yScale));
+      .call(d3.axisLeft(yScale))
+      .selectAll("text, path, line")
+      // .style("fill", axisColor)
+      .style("stroke", "var(--light-text)")
+      .style("stroke-width", "0.5px");
 
     const points = svg.append("g")
       .attr("class", "word")

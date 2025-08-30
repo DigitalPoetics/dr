@@ -99,7 +99,12 @@ function getMatchingParagraphs(text: string, keyword: string, similar: string[])
   const input = document.querySelector('input[name="searchTerm"]');
   const dropdown = document.querySelector('.dropdown');
   const results = document.querySelector('.results');
+  const form = document.querySelector('.search-bar');
 
+  form.addEventListener('submit', (e) => {
+    input.value = input.value.trim().toLowerCase();
+  });
+  
   input.addEventListener('input', (e) => {
     const term = e.target.value.trim().toLowerCase();
     
