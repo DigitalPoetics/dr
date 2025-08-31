@@ -1,5 +1,7 @@
 # Bookish theme for Astro js
-Under construction...
+### Under construction...
+
+Demo: [Diagrammatic Readings](https://www.diagrammaticreadings.com)
 
 The theme currently supports:
 
