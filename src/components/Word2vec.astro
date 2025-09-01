@@ -58,31 +58,32 @@ const selectedWord = Astro.url.searchParams.get('searchTerm')?.trim() || '';
 
     
 
-    svg.append("g")
+    const xAxis = svg.append("g")
       .attr("class", "x axis")
       .attr("transform", `translate(0, ${height - 50})`)
       .call(d3.axisBottom(xScale))
-      .selectAll("text, path, line")
-      // .style("fill", axisColor)
-      .style("stroke", "var(--light-text)")
-      .style("stroke-width", "0.5px");
 
-    svg.append("g")
+    xAxis.selectAll("text").style("fill", "var(--light-text)");
+    xAxis.selectAll("path, line").style("stroke", "var(--light-text)").style("stroke-width", "0.5px");
+
+
+    const yAxis = svg.append("g")
       .attr("class", "y axis")
       .attr("transform", `translate(50, 0)`)
       .call(d3.axisLeft(yScale))
-      .selectAll("text, path, line")
-      // .style("fill", axisColor)
-      .style("stroke", "var(--light-text)")
-      .style("stroke-width", "0.5px");
 
-    const points = svg.append("g")
+    yAxis.selectAll("text").style("fill", "var(--light-text)");
+    yAxis.selectAll("path, line").style("stroke", "var(--light-text)").style("stroke-width", "0.5px");
+
+      const match = selectedWord ? data.find(item => item.word === selectedWord) : null;
+      const filteredData = match ? 
+        data.filter(d => [match.word, ...match.similar].includes(d.word)) : 
+        data.sort(() => 0.5 - Math.random()).slice(0, 100);
+
+      const points = svg.append("g")
       .attr("class", "word")
       .selectAll("text")
-      .data(selectedWord ? data.filter(d => {
-        const match = data.find(item => item.word === selectedWord);
-        return match ? [match.word, ...match.similar].includes(d.word) : false;
-        }) : data.sort(() => 0.5 - Math.random()).slice(0, 100))
+      .data(filteredData)
       .enter()
       .append("text")
       .attr("x", d => xScale(d.x))

@@ -123,9 +123,9 @@ if (searchTerm) {
   queryMatches = getQueryMatches(queryTokens);
   
   if (queryMatches.length > 0) {
+    // Vector-based search when words are in word2vec data
     const queryVector = calculateQueryVector(queryMatches);
     
-    // Calculate similarity for ALL documents (like Python)
     rankedDocs = textData.map(doc => {
       const docVector = doc.docVector;
       if (!docVector) return null;
@@ -135,7 +135,6 @@ if (searchTerm) {
       const queryMag = Math.sqrt(queryVector.reduce((sum, val) => sum + val * val, 0));
       const similarity = dotProduct / (docMag * queryMag);
       
-      // Get paragraphs AFTER similarity calculation
       const matchingParagraphs = getMatchingParagraphs(doc[textFields.text], queryMatches);
       
       return {
@@ -145,6 +144,26 @@ if (searchTerm) {
       };
     }).filter(doc => doc && doc.matchingParagraphs.length > 0)
       .sort((a, b) => b.similarity - a.similarity);
+  } else {
+    // Fallback: simple text search when words not in word2vec data
+    rankedDocs = textData.map(doc => {
+      const matchingParagraphs = doc[textFields.text]
+        .split(/\n{2,}/)
+        .map(p => p.replace(/\n/g, ' ').trim())
+        .filter(p => {
+          const lowerP = p.toLowerCase();
+          return queryTokens.some(token => lowerP.includes(token.toLowerCase()));
+        })
+        .map((p, i) => ({ 
+          index: i, 
+          html: queryTokens.reduce((result, token) => {
+            const regex = new RegExp(`\\b(${token}\\w*)`, 'gi');
+            return result.replace(regex, '<mark style="background-color:transparent; color:var(--hover-color);">$1</mark>');
+          }, p)
+        }));
+      
+      return matchingParagraphs.length > 0 ? { ...doc, similarity: 0, matchingParagraphs } : null;
+    }).filter(Boolean);
   }
 }
 
@@ -184,7 +203,9 @@ if (searchTerm) {
               <strong>{doc[textFields.author]},</strong>
               <a href={doc[textFields.url]} target="_blank">{doc[textFields.title]}</a>
               ({doc[textFields.date]})
-              <span class="similarity-score">Similarity: {doc.similarity.toFixed(4)}</span>
+              {doc.similarity > 0 && (
+                <span class="similarity-score">Similarity: {doc.similarity.toFixed(4)}</span>
+              )}
             </span>
             <span class="arrow"></span>
           </summary>
@@ -252,9 +273,6 @@ if (searchTerm) {
     margin-bottom: 0.5rem;
   }
 
-  .document-result {
-    margin-bottom: 1rem;
-  }
 
   .similarity-score {
     font-weight: bold;
@@ -268,8 +286,8 @@ if (searchTerm) {
     align-items: center;
     justify-content: space-between;
     font-weight: bold;
-    font-size: 1.1rem;
-    padding: 0.5rem 0;
+    font-size: 1rem;
+    /* padding: 0.5rem 0; */
   }
 
   summary::-webkit-details-marker {
