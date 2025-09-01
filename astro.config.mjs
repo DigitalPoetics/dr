@@ -9,5 +9,8 @@ import spotlightjs from '@spotlightjs/astro';
 export default defineConfig({
   output: "server",
   adapter: netlify(),
-  integrations: [sentry(), spotlightjs()],
+  integrations: [
+    ...(process.env.NODE_ENV === 'production' ? [sentry()] : []),
+    ...(process.env.NODE_ENV === 'development' ? [spotlightjs()] : [])
+  ],
 });
