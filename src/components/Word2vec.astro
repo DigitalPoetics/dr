@@ -23,7 +23,7 @@ const selectedWord = Astro.url.searchParams.get('searchTerm')?.trim() || '';
 <script is:inline src="./plugins/d3.7.9.0.min.js"></script>
 
 <script define:vars={{ selectedWord }}>
-  window.addEventListener("DOMContentLoaded", () => {
+
     // const data = (window as any).word2vecData;
   // const data = '../data/deleuze/deleuzeWord2vec.json';
 
@@ -31,7 +31,7 @@ const selectedWord = Astro.url.searchParams.get('searchTerm')?.trim() || '';
     const d3 = globalThis.d3;
     // const data = (window as any).word2vecData;
 
-    d3.json('./data/deleuzeWord2vec.json').then((data) => {
+    d3.json('./data/deleuzeWord2vecCoordinates.json').then((data) => {
 
   
     const container = d3.select("#word2vec");
@@ -140,7 +140,6 @@ const selectedWord = Astro.url.searchParams.get('searchTerm')?.trim() || '';
     
   
     });
-  });
 </script>
 
 <style>
