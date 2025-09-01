@@ -79,7 +79,10 @@ const selectedWord = Astro.url.searchParams.get('searchTerm')?.trim() || '';
     const points = svg.append("g")
       .attr("class", "word")
       .selectAll("text")
-      .data(data)
+      .data(selectedWord ? data.filter(d => {
+        const match = data.find(item => item.word === selectedWord);
+        return match ? [match.word, ...match.similar].includes(d.word) : false;
+        }) : data.sort(() => 0.5 - Math.random()).slice(0, 100))
       .enter()
       .append("text")
       .attr("x", d => xScale(d.x))

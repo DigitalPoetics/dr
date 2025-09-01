@@ -49,31 +49,35 @@ const searchTerm = Astro.url.searchParams.get('searchTerm')?.trim().toLowerCase(
     input.value = input.value.trim().toLowerCase();
   });
 
-  input.addEventListener('input', (e) => {
-    const term = e.target.value.trim().toLowerCase();
-    
-    if (!term) {
-      dropdown.classList.remove('is-active');
-      return;
-    }
+      let timeout;
+      input.addEventListener('input', (e) => {
+        clearTimeout(timeout);
+        timeout = setTimeout(() => {
+          const term = e.target.value.trim().toLowerCase();
+          
+          if (!term) {
+            dropdown.classList.remove('is-active');
+            return;
+          }
 
-    const matches = data.filter(d => d.word.toLowerCase().includes(term));
-    
-if (matches.length > 0) {
-  results.innerHTML = `
-    <style>
-      .dropdown-item { display: block; padding: 0 0 0 0.5rem; font-size: 1rem; text-decoration: none; color: var(--light-text); }
-      .dropdown-item:hover { color: var(--hover-color); }
-    </style>
-    ${matches.map(match => 
-      `<a href="?searchTerm=${match.word}" class="dropdown-item">${match.word}</a>`
-    ).join('')}`;
-  dropdown.classList.add('is-active');
-}
- else {
-      dropdown.classList.remove('is-active');
-    }
-  });
+      const matches = data.filter(d => d.word.toLowerCase().includes(term)).slice(0, 10);
+      
+      if (matches.length > 0) {
+        results.innerHTML = `
+          <style>
+            .dropdown-item { display: block; padding: 0 0 0 0.5rem; font-size: 1rem; text-decoration: none; color: var(--light-text); }
+            .dropdown-item:hover { color: var(--hover-color); }
+          </style>
+          ${matches.map(match => 
+            `<a href="?searchTerm=${match.word}" class="dropdown-item">${match.word}</a>`
+          ).join('')}`;
+        dropdown.classList.add('is-active');
+      } else {
+        dropdown.classList.remove('is-active');
+      }
+    }, 300);
+});
+
 </script>
 
 
