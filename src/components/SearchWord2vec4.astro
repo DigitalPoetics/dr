@@ -113,11 +113,11 @@ function getMatchingParagraphs(text: string, keyword: string, similar: string[])
 {totalPages > 1 && (
   <div class="pagination">
     {page > 1 && (
-      <a href={`?searchTerm=${searchTerm}&page=${page - 1}`}>⟨⟨</a>
+      <a href={`?searchTerm=${searchTerm}&page=${page - 1}`}>⟨⟨⟨</a>
     )}
     <span>Page {page} of {totalPages}</span>
     {page < totalPages && (
-      <a href={`?searchTerm=${searchTerm}&page=${page + 1}`}>⟩⟩</a>
+      <a href={`?searchTerm=${searchTerm}&page=${page + 1}`}>⟩⟩⟩</a>
     )}
   </div>
 )}
@@ -296,8 +296,8 @@ function getMatchingParagraphs(text: string, keyword: string, similar: string[])
   
   .pagination a {
     padding: 0.5rem 1rem;
-    font-size: 1rem;
-    font-weight: bold;
+    font-size: 1.2rem;
+    /* font-weight: bold; */
     cursor: pointer;
     font-family: 'IM Fell English', serif;
     border: var(--image-border);
