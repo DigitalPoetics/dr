@@ -9,6 +9,6 @@ export default defineConfig({
   adapter: netlify(),
   integrations: [],
   build: {
-    inlineStylesheets: "auto",
+    inlineStylesheets: "always",
   }
 });
