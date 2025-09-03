@@ -23,11 +23,20 @@ const selectedWord = Astro.url.searchParams.get('searchTerm')?.trim() || '';
 <script is:inline src="./plugins/d3.7.9.0.min.js" defer></script>
 
 <script type="module" define:vars={{ selectedWord }}>
-    import { debounce } from "/src/scripts/utils.js";
 
     // const data = (window as any).word2vecData;
   // const data = '../data/deleuze/deleuzeWord2vec.json';
-
+    const debounce = (func, delay = 1000) => {
+      let timeoutId;
+      return (...args) => {
+        if (timeoutId) {
+          clearTimeout(timeoutId);
+        }
+        timeoutId = setTimeout(() => {
+          func.apply(null, args);
+        }, delay);
+      };
+    };
 
     const d3 = globalThis.d3;
     // const data = (window as any).word2vecData;
