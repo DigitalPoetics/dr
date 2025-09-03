@@ -106,7 +106,6 @@ const selectedWord = Astro.url.searchParams.get('searchTerm')?.trim() || '';
     // expose highlightWord globally
 
     // Auto-highlight selected word from URL
-    // Auto-highlight selected word from URL
     if (selectedWord) {
       const match = data.find(d => d.word === selectedWord);
       if (match) {
@@ -126,9 +125,9 @@ const selectedWord = Astro.url.searchParams.get('searchTerm')?.trim() || '';
         });
 
         d3.forceSimulation(visibleData)
-          .force("x", d3.forceX(d => xScale(d.x)).strength(1))
+          .force("x", d3.forceX(d => xScale(d.x)).strength(0.5))
           .force("y", d3.forceY(d => yScale(d.y)).strength(1))
-          .force("collide", d3.forceCollide(15))
+          .force("collide", d3.forceCollide(12))
           .on("tick", () => {
             points
               .filter(d => highlightWords.has(d.word))
@@ -136,10 +135,24 @@ const selectedWord = Astro.url.searchParams.get('searchTerm')?.trim() || '';
               .attr("y", d => d.y);
           });
       }
+    } else {
+      // Force simulation for 100 random words
+      filteredData.forEach(d => {
+        d.x = d.x;
+        d.y = d.y;
+      });
+
+      d3.forceSimulation(filteredData)
+        .force("x", d3.forceX(d => xScale(d.x)).strength(0.5))
+        .force("y", d3.forceY(d => yScale(d.y)).strength(1))
+        .force("collide", d3.forceCollide(12))
+        .on("tick", () => {
+          points
+            .attr("x", d => d.x)
+            .attr("y", d => d.y);
+        });
     }
 
-    
-  
     });
 </script>
 
