@@ -156,6 +156,13 @@ function getMatchingParagraphs(text: string, keyword: string, similar: string[])
       
       const li = document.createElement('li');
       li.innerHTML = `
+      <style>
+      details summary { cursor: pointer; display: flex; align-items: center; justify-content: space-between; font-weight: bold; font-size: 1.2rem; padding: 0 0 0.5rem 0; }
+      summary::-webkit-details-marker { display: none; }
+      .arrow { display: inline-block; transition: transform 0.2s; border: solid var(--light-text); border-width: 0 2px 2px 0; padding: 3px; margin-left: 4px; transform: rotate(-45deg); }
+      details[open] .arrow { transform: rotate(45deg); }
+      html.dark .arrow { border-color: var(--dark-text); }
+      </style>
         <details>
           <summary>
             <span class="entry-label">
@@ -167,7 +174,7 @@ function getMatchingParagraphs(text: string, keyword: string, similar: string[])
           <ul>
             ${matches.map(match => `
               <li class="paragraph-match">
-                <p>${match.html}</p>
+                <p><span>${match.html}</span></p>
               </li>
             `).join('')}
           </ul>
