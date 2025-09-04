@@ -1,59 +1,73 @@
 ---
 const { word2vecData, textData, textFields } = Astro.props;
 const searchTerm = Astro.url.searchParams.get('searchTerm')?.trim() || '';
+const page = parseInt(Astro.url.searchParams.get('page') || '1');
+const perPage = 10;
 
+// Get similar words for the search term
 const wordMatch = word2vecData.find(item => item.word === searchTerm);
-const similarWords = wordMatch ? wordMatch.similar.slice(0, 20) : [];
+const similarWords = wordMatch ? wordMatch.similar.slice(0,20) : [];
 
-const allMatchingEntries = searchTerm
-  ? textData.filter((entry) => {
-      const text = entry[textFields.text];
-      const paragraphs = text.split(/\n{2,}/).map(p => p.replace(/\n/g, ' ').trim());
-      return paragraphs.some(p => p.toLowerCase().includes(searchTerm.toLowerCase()));
-    })
-  : [];
+// Filter entries that have matches first
+const entriesWithMatches = textData.filter((entry) => {
+    if (!searchTerm) return false;
+    const text = entry[textFields.text];
+    const paragraphs = text.split(/\n{2,}/).map(p => p.replace(/\n/g, ' ').trim());
+    return paragraphs.some(p => p.toLowerCase().includes(searchTerm.toLowerCase()));
+});
+
+// Paginate the filtered entries
+const startIndex = (page - 1) * perPage;
+const endIndex = startIndex + perPage;
+const paginatedEntries = entriesWithMatches.slice(startIndex, endIndex);
+const totalPages = Math.ceil(entriesWithMatches.length / perPage);
 
 function highlightTerms(paragraph: string, keyword: string, similar: string[]): string {
-  let result = paragraph;
-
-  similar.forEach(word => {
-    const escapedWord = word.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-    const wordRegex = new RegExp(`\\b(${escapedWord}\\w*)`, 'gi');
-    result = result.replace(wordRegex, '<mark style="background-color:transparent; color:var(--highlight-color);">$1</mark>');
-  });
-
-  if (keyword) {
-    const escapedKeyword = keyword.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-    const keywordRegex = new RegExp(`\\b(${escapedKeyword}\\w*)`, 'gi');
-    result = result.replace(keywordRegex, '<mark style="background-color:transparent; color:var(--hover-color);">$1</mark>');
-  }
-
-  return result;
+    let result = paragraph;
+  
+    // First highlight similar words
+    similar.forEach(word => {
+        const escapedWord = word.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+        const wordRegex = new RegExp(`\\b(${escapedWord}\\w*)`, 'gi');
+        result = result.replace(wordRegex, '<mark style="background-color:transparent; color:var(--highlight-color);">$1</mark>');
+    });
+    
+    // Then highlight keyword (will override similar word highlighting)
+    if (keyword) {
+        const escapedKeyword = keyword.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+        const keywordRegex = new RegExp(`\\b(${escapedKeyword}\\w*)`, 'gi');
+        result = result.replace(keywordRegex, '<mark style="background-color:transparent; color:var(--hover-color);">$1</mark>');
+    }
+    
+    return result;
 }
 
-function getMatchingParagraphs(text: string, keyword: string, similar: string[]) {
-  if (!keyword) return [];
-
-  return text
-    .split(/\n{2,}/)
-    .map(p => p.replace(/\n/g, ' ').trim())
-    .filter(p => p.toLowerCase().includes(keyword.toLowerCase()))
-    .map((p, i) => ({ index: i, html: highlightTerms(p, keyword, similar) }));
+function getMatchingParagraphs(text: string, keyword: string, similar: string[]): Array<{ index: number, html: string }> {
+    if (!keyword) return [];
+    
+    return text
+        .split(/\n{2,}/)
+        .map(p => p.replace(/\n/g, ' ').trim())
+        .filter(p => {
+            const lowerP = p.toLowerCase();
+            const hasKeyword = keyword && lowerP.includes(keyword.toLowerCase());
+            return hasKeyword; // Only return paragraphs that contain the keyword
+        })
+        .map((p, i) => ({ index: i, html: highlightTerms(p, keyword, similar) }));
 }
-
-const perPage = 10;
-const totalPages = Math.ceil(allMatchingEntries.length / perPage);
-const pageParam = parseInt(Astro.url.searchParams.get('page') || '1', 10);
-const currentPage = Math.max(1, Math.min(pageParam, totalPages));
-
-const paginatedEntries = allMatchingEntries.slice((currentPage - 1) * perPage, currentPage * perPage);
 ---
 
 <div class="autocomplete">
   <form method="GET" class="search-bar">
-    <input type="text" name="searchTerm" placeholder="Find a word..." value={searchTerm} />
+    <input
+      type="text"
+      name="searchTerm"
+      placeholder="Find a word..."
+      value={searchTerm}
+    />
     <button type="submit" class="search-button">Search</button>
   </form>
+
   <div class="dropdown">
     <div class="dropdown-menu">
       <div class="dropdown-content results"></div>
@@ -70,7 +84,7 @@ const paginatedEntries = allMatchingEntries.slice((currentPage - 1) * perPage, c
   </div>
 )}
 
-<ol start={(currentPage - 1) * perPage + 1} id="results-list">
+<ol start={startIndex + 1}>
   {paginatedEntries.map((entry) => {
     const matches = getMatchingParagraphs(entry[textFields.text], searchTerm, similarWords);
     return (
@@ -96,14 +110,15 @@ const paginatedEntries = allMatchingEntries.slice((currentPage - 1) * perPage, c
   })}
 </ol>
 
-{allMatchingEntries.length > perPage && (
+{totalPages > 1 && (
   <div class="pagination">
-    <form method="GET">
-      <input type="hidden" name="searchTerm" value={searchTerm} />
-      <button type="submit" name="page" value={currentPage - 1} disabled={currentPage === 1}>⟨⟨</button>
-      <span>Page {currentPage} of {totalPages}</span>
-      <button type="submit" name="page" value={currentPage + 1} disabled={currentPage === totalPages}>⟩⟩</button>
-    </form>
+    {page > 1 && (
+      <a href={`?searchTerm=${searchTerm}&page=${page - 1}`}>⟨⟨⟨</a>
+    )}
+    <span>Page {page} of {totalPages}</span>
+    {page < totalPages && (
+      <a href={`?searchTerm=${searchTerm}&page=${page + 1}`}>⟩⟩⟩</a>
+    )}
   </div>
 )}
 
@@ -111,7 +126,12 @@ const paginatedEntries = allMatchingEntries.slice((currentPage - 1) * perPage, c
   const input = document.querySelector('input[name="searchTerm"]');
   const dropdown = document.querySelector('.dropdown');
   const results = document.querySelector('.results');
+  const form = document.querySelector('.search-bar');
 
+  form.addEventListener('submit', (e) => {
+    input.value = input.value.trim().toLowerCase();
+  });
+  
   input.addEventListener('input', (e) => {
     const term = e.target.value.trim().toLowerCase();
     
@@ -123,9 +143,14 @@ const paginatedEntries = allMatchingEntries.slice((currentPage - 1) * perPage, c
     const matches = word2vecData.filter(d => d.word.toLowerCase().includes(term));
     
     if (matches.length > 0) {
-      results.innerHTML = matches.map(match => 
-        `<a href="?searchTerm=${match.word}" class="dropdown-item">${match.word}</a>`
-      ).join('');
+      results.innerHTML = `
+        <style>
+          .dropdown-item { display: block; padding: 0 0 0 0.5rem; font-size: 1rem; text-decoration: none; color: var(--light-text); }
+          .dropdown-item:hover { color: var(--hover-color); }
+        </style>
+        ${matches.map(match => 
+          `<a href="?searchTerm=${match.word}" class="dropdown-item">${match.word}</a>`
+        ).join('')}`;
       dropdown.classList.add('is-active');
     } else {
       dropdown.classList.remove('is-active');
@@ -194,18 +219,6 @@ const paginatedEntries = allMatchingEntries.slice((currentPage - 1) * perPage, c
     width: 100%;
     max-height: 20rem;
     overflow-y: auto;
-  }
-
-  .dropdown-item {
-    display: block;
-    padding: 0 0 0 0.5rem;
-    font-size: 1rem;
-    text-decoration: none;
-    color: var(--light-text);
-  }
-
-  .dropdown-item:hover {
-    color: var(--hover-color);
   }
   
   .search-results {
@@ -280,34 +293,25 @@ const paginatedEntries = allMatchingEntries.slice((currentPage - 1) * perPage, c
     gap: 1rem;
     margin: 1rem 0 2rem 0;
   }
-
-  .pagination form {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-  }
   
-  .pagination button {
+  .pagination a {
     padding: 0.5rem 1rem;
     font-size: 1.2rem;
+    /* font-weight: bold; */
     cursor: pointer;
     font-family: 'IM Fell English', serif;
     border: var(--image-border);
     transition: background-color 0.3s ease, color 0.3s ease;
+    text-decoration: none;
     background-color: ButtonFace;
   }
 
-  .pagination button:hover:not(:disabled) {
+  .pagination a:hover {
     background-color: var(--hover-color);
     color: white;
   }
 
-  .pagination button:disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
-  }
-
-  html.dark .pagination button {
+  html.dark .pagination a {
     color: var(--light-text);
   }
 </style>
