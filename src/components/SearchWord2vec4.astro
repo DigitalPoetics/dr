@@ -2,51 +2,63 @@
 const { word2vecData, textData, textFields } = Astro.props;
 const searchTerm = Astro.url.searchParams.get('searchTerm')?.trim() || '';
 
+// Get similar words for the search term
 const wordMatch = word2vecData.find(item => item.word === searchTerm);
-const similarWords = wordMatch ? wordMatch.similar.slice(0, 20) : [];
+const similarWords = wordMatch ? wordMatch.similar.slice(0,20) : [];
 
-const allMatchingEntries = searchTerm
-  ? textData.filter((entry) => {
-      const text = entry[textFields.text];
-      const paragraphs = text.split(/\n{2,}/).map(p => p.replace(/\n/g, ' ').trim());
-      return paragraphs.some(p => p.toLowerCase().includes(searchTerm.toLowerCase()));
-    })
-  : [];
+// Process ALL matching entries but only render first 10
+const allMatchingEntries = searchTerm ? textData.filter((entry) => {
+    const text = entry[textFields.text];
+    const paragraphs = text.split(/\n{2,}/).map(p => p.replace(/\n/g, ' ').trim());
+    return paragraphs.some(p => p.toLowerCase().includes(searchTerm.toLowerCase()));
+}) : [];
 
 function highlightTerms(paragraph: string, keyword: string, similar: string[]): string {
-  let result = paragraph;
-
-  similar.forEach(word => {
-    const escapedWord = word.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-    const wordRegex = new RegExp(`\\b(${escapedWord}\\w*)`, 'gi');
-    result = result.replace(wordRegex, '');
-  });
-
-  if (keyword) {
-    const escapedKeyword = keyword.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-    const keywordRegex = new RegExp(`\\b(${escapedKeyword}\\w*)`, 'gi');
-    result = result.replace(keywordRegex, '');
-  }
-
-  return result;
+    let result = paragraph;
+    
+    // First highlight similar words
+    similar.forEach(word => {
+        const escapedWord = word.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+        const wordRegex = new RegExp(`\\b(${escapedWord}\\w*)`, 'gi');
+        result = result.replace(wordRegex, '<mark style="background-color:transparent; color:var(--highlight-color);">$1</mark>');
+    });
+    
+    // Then highlight keyword (will override similar word highlighting)
+    if (keyword) {
+        const escapedKeyword = keyword.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+        const keywordRegex = new RegExp(`\\b(${escapedKeyword}\\w*)`, 'gi');
+        result = result.replace(keywordRegex, '<mark style="background-color:transparent; color:var(--hover-color);">$1</mark>');
+    }
+    
+    return result;
 }
 
-function getMatchingParagraphs(text: string, keyword: string, similar: string[]) {
-  if (!keyword) return [];
-
-  return text
-    .split(/\n{2,}/)
-    .map(p => p.replace(/\n/g, ' ').trim())
-    .filter(p => p.toLowerCase().includes(keyword.toLowerCase()))
-    .map((p, i) => ({ index: i, html: highlightTerms(p, keyword, similar) }));
+function getMatchingParagraphs(text: string, keyword: string, similar: string[]): Array<{ index: number, html: string }> {
+    if (!keyword) return [];
+    
+    return text
+        .split(/\n{2,}/)
+        .map(p => p.replace(/\n/g, ' ').trim())
+        .filter(p => {
+            const lowerP = p.toLowerCase();
+            const hasKeyword = keyword && lowerP.includes(keyword.toLowerCase());
+            return hasKeyword;
+        })
+        .map((p, i) => ({ index: i, html: highlightTerms(p, keyword, similar) }));
 }
 ---
 
 <div class="autocomplete">
   <form method="GET" class="search-bar">
-    <input type="text" name="searchTerm" placeholder="Find a word..." value={searchTerm} />
+    <input
+      type="text"
+      name="searchTerm"
+      placeholder="Find a word..."
+      value={searchTerm}
+    />
     <button type="submit" class="search-button">Search</button>
   </form>
+
   <div class="dropdown">
     <div class="dropdown-menu">
       <div class="dropdown-content results"></div>
@@ -64,7 +76,7 @@ function getMatchingParagraphs(text: string, keyword: string, similar: string[])
 )}
 
 <ol id="results-list">
-  {allMatchingEntries.slice(0, 10).map((entry) => {
+  {allMatchingEntries.slice(0, 10).map((entry, index) => {
     const matches = getMatchingParagraphs(entry[textFields.text], searchTerm, similarWords);
     return (
       <li>
@@ -164,11 +176,14 @@ function getMatchingParagraphs(text: string, keyword: string, similar: string[])
       resultsList.appendChild(li);
     });
     
+    // Update pagination
     document.getElementById('prev-btn').disabled = page === 1;
     document.getElementById('next-btn').disabled = page === totalPages;
     document.getElementById('page-info').textContent = `Page ${page} of ${totalPages}`;
   }
+
   
+  // Pagination event listeners
   document.getElementById('prev-btn')?.addEventListener('click', () => {
     if (currentPage > 1) {
       currentPage--;
@@ -183,10 +198,16 @@ function getMatchingParagraphs(text: string, keyword: string, similar: string[])
     }
   });
 
+  // Autocomplete functionality
   const input = document.querySelector('input[name="searchTerm"]');
   const dropdown = document.querySelector('.dropdown');
   const results = document.querySelector('.results');
+  const form = document.querySelector('.search-bar');
 
+  form.addEventListener('submit', (e) => {
+    input.value = input.value.trim().toLowerCase();
+  });
+  
   input.addEventListener('input', (e) => {
     const term = e.target.value.trim().toLowerCase();
     
@@ -198,9 +219,14 @@ function getMatchingParagraphs(text: string, keyword: string, similar: string[])
     const matches = word2vecData.filter(d => d.word.toLowerCase().includes(term));
     
     if (matches.length > 0) {
-      results.innerHTML = matches.map(match => 
-        `<a href="?searchTerm=${match.word}" class="dropdown-item">${match.word}</a>`
-      ).join('');
+      results.innerHTML = `
+        <style>
+          .dropdown-item { display: block; padding: 0 0 0 0.5rem; font-size: 1rem; text-decoration: none; color: var(--light-text); }
+          .dropdown-item:hover { color: var(--hover-color); }
+        </style>
+        ${matches.map(match => 
+          `<a href="?searchTerm=${match.word}" class="dropdown-item">${match.word}</a>`
+        ).join('')}`;
       dropdown.classList.add('is-active');
     } else {
       dropdown.classList.remove('is-active');
@@ -270,18 +296,6 @@ function getMatchingParagraphs(text: string, keyword: string, similar: string[])
     max-height: 20rem;
     overflow-y: auto;
   }
-
-  .dropdown-item {
-    display: block;
-    padding: 0 0 0 0.5rem;
-    font-size: 1rem;
-    text-decoration: none;
-    color: var(--light-text);
-  }
-
-  .dropdown-item:hover {
-    color: var(--hover-color);
-  }
   
   .search-results {
     margin: 1rem 0;
@@ -345,18 +359,6 @@ function getMatchingParagraphs(text: string, keyword: string, similar: string[])
 
   mark {
     background-color: transparent;
-    font-weight: bold;
-  }
-
-  .highlight-similar {
-    background-color: transparent;
-    color: var(--highlight-color);
-    font-weight: bold;
-  }
-
-  .highlight-keyword {
-    background-color: transparent;
-    color: var(--hover-color);
     font-weight: bold;
   }
 
