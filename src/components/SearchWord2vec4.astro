@@ -157,11 +157,14 @@ function getMatchingParagraphs(text: string, keyword: string, similar: string[])
       const li = document.createElement('li');
       li.innerHTML = `
       <style>
-      details summary { cursor: pointer; display: flex; align-items: center; justify-content: space-between; font-weight: bold; font-size: 1.2rem; padding: 0 0 0.5rem 0; }
-      summary::-webkit-details-marker { display: none; }
-      .arrow { display: inline-block; transition: transform 0.2s; border: solid var(--light-text); border-width: 0 2px 2px 0; padding: 3px; margin-left: 4px; transform: rotate(-45deg); }
-      details[open] .arrow { transform: rotate(45deg); }
-      html.dark .arrow { border-color: var(--dark-text); }
+      #results-list details summary { cursor: pointer; display: flex; align-items: center; justify-content: space-between; font-weight: bold; font-size: 1.2rem; padding: 0 0 0.5rem 0; }
+      #results-list summary::-webkit-details-marker { display: none; }
+      #results-list .arrow { display: inline-block; transition: transform 0.2s; border: solid var(--light-text); border-width: 0 2px 2px 0; padding: 3px; margin-left: 4px; transform: rotate(-45deg); }
+      #results-list details[open] .arrow { transform: rotate(45deg); }
+      html.dark #results-list .arrow { border-color: var(--dark-text); }
+      #results-list .paragraph-match { list-style: square;}
+      #results-list .paragraph-match p { margin: 0 0 0.5rem 0; font-size: 1.1rem;}
+      #results-list .paragraph-match::marker { color: var(--hover-color);}
       </style>
         <details>
           <summary>
@@ -214,31 +217,36 @@ function getMatchingParagraphs(text: string, keyword: string, similar: string[])
   form.addEventListener('submit', (e) => {
     input.value = input.value.trim().toLowerCase();
   });
-  
-  input.addEventListener('input', (e) => {
-    const term = e.target.value.trim().toLowerCase();
-    
-    if (!term) {
-      dropdown.classList.remove('is-active');
-      return;
-    }
 
-    const matches = word2vecData.filter(d => d.word.toLowerCase().includes(term));
-    
-    if (matches.length > 0) {
-      results.innerHTML = `
-        <style>
-          .dropdown-item { display: block; padding: 0 0 0 0.5rem; font-size: 1rem; text-decoration: none; color: var(--light-text); }
-          .dropdown-item:hover { color: var(--hover-color); }
-        </style>
-        ${matches.map(match => 
-          `<a href="?searchTerm=${match.word}" class="dropdown-item">${match.word}</a>`
-        ).join('')}`;
-      dropdown.classList.add('is-active');
-    } else {
-      dropdown.classList.remove('is-active');
-    }
+  let timeout;
+  input.addEventListener('input', (e) => {
+    clearTimeout(timeout);
+    timeout = setTimeout(() => {
+      const term = e.target.value.trim().toLowerCase();
+      
+      if (!term) {
+        dropdown.classList.remove('is-active');
+        return;
+      }
+
+      const matches = word2vecData.filter(d => d.word.toLowerCase().includes(term)).slice(0, 10);
+      
+      if (matches.length > 0) {
+        results.innerHTML = `
+          <style>
+            .dropdown-item { display: block; padding: 0 0 0 0.5rem; font-size: 1rem; text-decoration: none; color: var(--light-text); }
+            .dropdown-item:hover { color: var(--hover-color); }
+          </style>
+          ${matches.map(match => 
+            `<a href="?searchTerm=${match.word}" class="dropdown-item">${match.word}</a>`
+          ).join('')}`;
+        dropdown.classList.add('is-active');
+      } else {
+        dropdown.classList.remove('is-active');
+      }
+    }, 300);
   });
+
 </script>
 
 <style>

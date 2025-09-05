@@ -3,10 +3,13 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import BlockquoteWithFootnote from '../components/BlockquoteWithFootnote.astro';
 import Superscript from '../components/Superscript.astro';
 import Footnote from '../components/Footnote.astro';
-import Image from '../components/Image.astro';
+import Figure from '../components/Figure.astro';
+import {Image} from "astro:assets";
 import Table from '../components/Table.astro';
 const pageTitle = "Diagrammatic Readings"
 const desription = "How to model the materials and forces of cultural and aesthetic forms";
+
+import druckerImage from "../assets/images/home/drucker-inflection.jpg"
 ---
 <BaseLayout pageTitle={pageTitle} description={desription}>
 	<p>
@@ -49,16 +52,16 @@ const desription = "How to model the materials and forces of cultural and aesthe
     footnoteId="2"
   	/> -->
 
-	<Image 
-		src="./home/drucker-inflection.jpg" 
-		alt="Drucker's sketch of inflection" 
-		width="100%" 
-		height="auto"
-	>
+	<Figure>
+		<Image slot="image"
+			src={druckerImage}
+			alt="Drucker's sketch of inflection in network graphs"
+			class="responsive-image"
+		/>
 	  	<span slot="caption">
 			Figure 1: Drucker's sketch of inflection in network graphs.<Superscript id="5" />
 		</span>
-  	</Image>
+  	</Figure>
 
 	<p>
 		Here, Drucker is proposing a comparative approach to analytics, namely,

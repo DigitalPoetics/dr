@@ -1,31 +1,28 @@
 ---
-const {platform, username} = Astro.props;
+
+const { platform, username } = Astro.props;
 ---
 
 <!-- <a href={`https://www.${platform}.com/${username}`}><i class="{`fab fa-${platform}`}"></i>{platform}</a> -->
 
 <a href={`https://www.${platform}.com/${username}`} target="_blank">
-  <img src={`/favicon/${platform}.svg`} width="30" height="30" />
+    <!-- <AstroImage 
+        src={iconSrc}
+        alt={`${platform} logo`}
+        width={30} 
+        height={30}
+    /> -->
+  <!-- <img src={`/favicon/${platform}.svg`} width="30" height="30" /> -->
+   <slot />
 </a>
 
 
 <style>
 a {
-    padding = 0.5rem 1rem;
+    /* padding: 0.5rem 1rem; */
+    /* display: inline-block; */
     color: var(--light-text);
     text-decoration: none;
-}
-
-img:hover {
-    background-color: var(--hover-color);
-}
-
-html.dark img {
-    filter: invert(1);
-}
-
-html.dark img:hover {
-    background-color: var(--hover-color);
 }
 
 html.dark a {

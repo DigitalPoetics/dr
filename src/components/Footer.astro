@@ -1,5 +1,7 @@
 ---
 import Social from "./Social.astro";
+import { Image } from "astro:assets";
+import githubIcon from "../assets/images/favicon/github.svg";
 ---
 <!-- <footer>
   <Social platform="twitter" username="astrodotbuild" />
@@ -9,7 +11,14 @@ import Social from "./Social.astro";
 <footer>
   <div class="columns">
     <div class="column">
-        <Social platform="github" username="digitalpoetics" />  
+        <Social platform="github" username="digitalpoetics/dr">
+        <Image 
+          src={githubIcon}
+          alt="Github logo"
+          width={30}
+          height={30}
+        />
+        <Social />
     </div>
     <div class="column">
         <p>&copy; {new Date().getFullYear()} All Rights Reserved</p>
@@ -54,5 +63,16 @@ html.dark .column {
   }
 }
 
+img:hover {
+    background-color: var(--hover-color);
+}
+
+html.dark img {
+    filter: invert(1);
+}
+
+html.dark img:hover {
+    background-color: var(--hover-color);
+}
 
 </style>
