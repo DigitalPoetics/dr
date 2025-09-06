@@ -1,36 +1,45 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import SearchWord2vec4 from '../components/SearchWord2vec4.astro';
+import SearchWord2vec from '../components/SearchWord2vec.astro';
+import Word2vecViz from '../components/Word2vecViz.astro';
 // import data from '../data/deleuze/theDeleuzeSeminars.json'
 
-import word2vecData from '../data/deleuze/deleuzeWord2vec.json';
-import textData from '../data/deleuze/theDeleuzeSeminars.json';
+import word2vecDataCoordinates from '../data/deleuze/deleuzeWord2vecCoordinates.json';
+// import data from '../data/deleuze/theDeleuzeSeminars.json';
 // export const prerender = false;
 
-const pageTitle = "Word2vec Visualization";
-const pageDescription = "An interactive visualization of Word2Vec embeddings.";
 
-// const fields = {
-//   word: "word",
-//   x: "x",
-//   y: "y",
-//   similar: "similar"
-// }
+const pageTitle = "Deleuzian";
+const pageDescription = "Word2vec visualization using D3.js";
 
-const textFields = {
-  author: "author",
-  title: "title", 
-  date: "date",
-  url: "url",
-  text: "text"
-};
+const fields = {
+  word: "word",
+  x: "x",
+  y: "y",
+  similar: "similar"
+}
+
+// const textFields = {
+//   author: "author",
+//   title: "title", 
+//   date: "date",
+//   url: "url",
+//   text: "text"
+// };
 ---
 <BaseLayout pageTitle={pageTitle} description={pageDescription}>
-  <SearchWord2vec4 
-    word2vecData={word2vecData} 
-    textData={textData}
-    textFields={textFields} 
+    <!-- <Fragment slot="head">
+      <link rel="preload" href="/plugins/d3.7.9.0.min.js" as="script">
+      <link rel="preload" href="/data/deleuzeWord2vecCoordinates.json" as="fetch" crossorigin>
+    </Fragment> -->
+    <h3>Word2vec Visualization for
+        <a href="https://deleuze.cla.purdue.edu/seminars/" target="_blank">the Deleuze Seminars</a>
+    </h3>
+    <SearchWord2vec 
+    word2vecData={word2vecDataCoordinates} 
+
   />
+  <Word2vecViz/>
 </BaseLayout>
 
 <!-- <script>
