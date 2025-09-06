@@ -7,11 +7,17 @@ const wordMatch = word2vecData.find(item => item.word === searchTerm);
 const similarWords = wordMatch ? wordMatch.similar.slice(0,20) : [];
 
 // Process ALL matching entries but only render first 10
+// const allMatchingEntries = searchTerm ? textData.filter((entry) => {
+//     const text = entry[textFields.text];
+//     const paragraphs = text.split(/\n{2,}/).map(p => p.replace(/\n/g, ' ').trim());
+//     return paragraphs.some(p => p.toLowerCase().includes(searchTerm.toLowerCase()));
+// }) : [];
+
 const allMatchingEntries = searchTerm ? textData.filter((entry) => {
-    const text = entry[textFields.text];
-    const paragraphs = text.split(/\n{2,}/).map(p => p.replace(/\n/g, ' ').trim());
-    return paragraphs.some(p => p.toLowerCase().includes(searchTerm.toLowerCase()));
+    const text = entry[textFields.text].toLowerCase();
+    return text.includes(searchTerm.toLowerCase());
 }) : [];
+
 
 function highlightTerms(paragraph: string, keyword: string, similar: string[]): string {
     let result = paragraph;
