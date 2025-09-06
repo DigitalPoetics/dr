@@ -19,8 +19,8 @@ function getAllMatches(queryTokens) {
   return queryTokens.map(token => {
     const match = word2vecData.find(item => item.word === token);
     return match ? 
-      { word: token, similar: match.similar, wordVector: match.wordVector } : 
-      { word: token, similar: null, wordVector: null };
+      { word: token, similar: match.similar } : 
+      { word: token, similar: null };
   });
 }
 

@@ -56,24 +56,35 @@ if (searchTerm) {
       const queryMag = Math.sqrt(queryVector.reduce((sum, val) => sum + val * val, 0));
       const similarity = dotProduct / (docMag * queryMag);
       
-      const text = doc[textFields.text];
-      const paragraphs = text.split(/\n{2,}/).map(p => p.replace(/\n/g, ' ').trim());
-      const hasMatches = paragraphs.some(p => {
-        const lowerP = p.toLowerCase();
-        return queryMatches.some(match => lowerP.includes(match.word.toLowerCase()));
-      });
+      // const text = doc[textFields.text];
+      // const paragraphs = text.split(/\n{2,}/).map(p => p.replace(/\n/g, ' ').trim());
+      // const hasMatches = paragraphs.some(p => {
+      //   const lowerP = p.toLowerCase();
+      //   return queryMatches.some(match => lowerP.includes(match.word.toLowerCase()));
+      // });
+
+      // Quick text check before expensive paragraph processing
+      const text = doc[textFields.text].toLowerCase();
+      const hasMatches = queryMatches.some(match => text.includes(match.word.toLowerCase()));
+
       
       return hasMatches ? { ...doc, similarity: isNaN(similarity) ? 0 : similarity, queryMatches } : null;
     }).filter(Boolean).sort((a, b) => b.similarity - a.similarity);
   } else {
+    // allMatchingEntries = textData.filter((entry) => {
+    //   const text = entry[textFields.text];
+    //   const paragraphs = text.split(/\n{2,}/).map(p => p.replace(/\n/g, ' ').trim());
+    //   return paragraphs.some(p => {
+    //     const lowerP = p.toLowerCase();
+    //     return queryTokens.some(token => lowerP.includes(token.toLowerCase()));
+    //   });
+    // }).map(entry => ({ ...entry, similarity: 0, queryTokens }));
+
     allMatchingEntries = textData.filter((entry) => {
-      const text = entry[textFields.text];
-      const paragraphs = text.split(/\n{2,}/).map(p => p.replace(/\n/g, ' ').trim());
-      return paragraphs.some(p => {
-        const lowerP = p.toLowerCase();
-        return queryTokens.some(token => lowerP.includes(token.toLowerCase()));
-      });
+      const text = entry[textFields.text].toLowerCase();
+      return queryTokens.some(token => text.includes(token.toLowerCase()));
     }).map(entry => ({ ...entry, similarity: 0, queryTokens }));
+
   }
 }
 
