@@ -1,30 +1,46 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import SearchWord2vec5 from '../components/SearchWord2vec5.astro';
-import textData from '../data/deleuze/deleuzeWord2vecDocuments.json';
-import word2vecData from '../data/deleuze/deleuzeWord2vec.json';
+import SearchWord2vec1 from '../components/SearchWord2vec1.astro';
+import Word2vecViz2 from '../components/Word2vecViz2.astro';
+// import data from '../data/deleuze/theDeleuzeSeminars.json'
+
+import word2vecDataCoordinates from '../data/deleuze/deleuzeWord2vecCoordinates.json';
+// import data from '../data/deleuze/theDeleuzeSeminars.json';
 // export const prerender = false;
 
+
 const pageTitle = "Deleuzian";
-const description = "Testing Search UI for the Deleuze Seminars.";
+const pageDescription = "Word2vec visualization using D3.js";
 
-// You can customize these keys to match your data structure
-const textFields = {
-  author: "author",
-  title: "title",
-  date: "date",
-  url: "url",
-  text: "text"
-};
+const fields = {
+  word: "word",
+  x: "x",
+  y: "y",
+  similar: "similar"
+}
+
+// const textFields = {
+//   author: "author",
+//   title: "title", 
+//   date: "date",
+//   url: "url",
+//   text: "text"
+// };
 ---
-
-<BaseLayout pageTitle={pageTitle} description={description}>
-  <h3>Testing Search UI for
-    <a href="https://deleuze.cla.purdue.edu/seminars/" target="_blank">the Deleuze Seminars</a>
-  </h3>
-  <SearchWord2vec5 
-    textData={textData} 
-    word2vecData={word2vecData} 
-    textFields={textFields}
+<BaseLayout pageTitle={pageTitle} description={pageDescription}>
+    <!-- <Fragment slot="head">
+      <link rel="preload" href="/plugins/d3.7.9.0.min.js" as="script">
+      <link rel="preload" href="/data/deleuzeWord2vecCoordinates.json" as="fetch" crossorigin>
+    </Fragment> -->
+    <h3>Multi-Word Word2vec Visualization for
+        <a href="https://deleuze.cla.purdue.edu/seminars/" target="_blank">the Deleuze Seminars</a>
+    </h3>
+    <SearchWord2vec1 
+    word2vecData={word2vecDataCoordinates} 
   />
+  <Word2vecViz2/>
 </BaseLayout>
+
+<!-- <script>
+  window.word2vecData = JSON.parse(decodeURIComponent(`{{JSON.stringify(data)}}`));
+</script> -->
