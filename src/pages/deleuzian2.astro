@@ -1,6 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import SearchWord2vec2 from '../components/SearchWord2vec2.astro';
+import SearchWord2vec from '../components/SearchWord2vec.astro';
 import Word2vec from '../components/Word2vec.astro';
 // import data from '../data/deleuze/theDeleuzeSeminars.json'
 
@@ -35,8 +35,8 @@ const fields = {
     <h3>Word2vec Visualization for
         <a href="https://deleuze.cla.purdue.edu/seminars/" target="_blank">the Deleuze Seminars</a>
     </h3>
-    <SearchWord2vec2 
-    data={word2vecData} 
+    <SearchWord2vec 
+    word2vecData={word2vecData} 
 
   />
   <Word2vec/>

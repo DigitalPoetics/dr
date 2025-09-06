@@ -1,7 +1,12 @@
 ---
-const { data} = Astro.props;
-const searchTerm = Astro.url.searchParams.get('searchTerm')?.trim().toLowerCase() || '';
+const { word2vecData } = Astro.props;
+const searchTerm = Astro.url.searchParams.get('searchTerm')?.trim() || '';
+
+// Get similar words for the search term
+const wordMatch = word2vecData.find(item => item.word === searchTerm);
+const similarWords = wordMatch ? wordMatch.similar.slice(0,20) : [];
 ---
+
 <div class="autocomplete">
   <form method="GET" class="search-bar">
     <input
@@ -12,19 +17,19 @@ const searchTerm = Astro.url.searchParams.get('searchTerm')?.trim().toLowerCase(
     />
     <button type="submit" class="search-button">Search</button>
   </form>
-    <div class="dropdown">
-        <div class="dropdown-menu">
-            <div class="dropdown-content results"></div>
-        </div>
+  <div class="dropdown">
+    <div class="dropdown-menu">
+      <div class="dropdown-content results"></div>
     </div>
-</div>
-<div>
-  {searchTerm && (
-  <p><strong>Keyword:</strong> {searchTerm}</p>
-)}
+  </div>
 </div>
 
-<script define:vars={{ data }}>
+<div class="search-results">
+  <p><strong>Keyword:</strong> {searchTerm || 'None'}</p>
+  <p><strong>Vectors:</strong> {similarWords.length > 0 ? similarWords.join(', ') : 'None'}</p>
+</div>
+
+<script define:vars={{ word2vecData }}>
   const input = document.querySelector('input[name="searchTerm"]');
   const dropdown = document.querySelector('.dropdown');
   const results = document.querySelector('.results');
@@ -34,18 +39,18 @@ const searchTerm = Astro.url.searchParams.get('searchTerm')?.trim().toLowerCase(
     input.value = input.value.trim().toLowerCase();
   });
 
-      let timeout;
-      input.addEventListener('input', (e) => {
-        clearTimeout(timeout);
-        timeout = setTimeout(() => {
-          const term = e.target.value.trim().toLowerCase();
-          
-          if (!term) {
-            dropdown.classList.remove('is-active');
-            return;
-          }
+  let timeout;
+  input.addEventListener('input', (e) => {
+    clearTimeout(timeout);
+    timeout = setTimeout(() => {
+      const term = e.target.value.trim().toLowerCase();
+      
+      if (!term) {
+        dropdown.classList.remove('is-active');
+        return;
+      }
 
-      const matches = data.filter(d => d.word.toLowerCase().includes(term)).slice(0, 10);
+      const matches = word2vecData.filter(d => d.word.toLowerCase().includes(term)).slice(0, 10);
       
       if (matches.length > 0) {
         results.innerHTML = `
@@ -60,11 +65,9 @@ const searchTerm = Astro.url.searchParams.get('searchTerm')?.trim().toLowerCase(
       } else {
         dropdown.classList.remove('is-active');
       }
-    }, 0);
-});
-
+    }, 300);
+  });
 </script>
-
 
 <style>
   .autocomplete {
@@ -126,8 +129,9 @@ const searchTerm = Astro.url.searchParams.get('searchTerm')?.trim().toLowerCase(
     width: 100%;
     max-height: 20rem;
     overflow-y: auto;
-
   }
 
-
+  .search-results {
+    margin: 1rem 0;
+  }
 </style>
