@@ -1,10 +1,10 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import SearchWord2vec from '../components/SearchWord2vec.astro';
-import Word2vec from '../components/Word2vec.astro';
+import Word2vecViz from '../components/Word2vecViz.astro';
 // import data from '../data/deleuze/theDeleuzeSeminars.json'
 
-import word2vecData from '../data/deleuze/deleuzeWord2vecCoordinates.json';
+import word2vecDataCoordinates from '../data/deleuze/deleuzeWord2vecCoordinates.json';
 // import data from '../data/deleuze/theDeleuzeSeminars.json';
 // export const prerender = false;
 
@@ -36,10 +36,10 @@ const fields = {
         <a href="https://deleuze.cla.purdue.edu/seminars/" target="_blank">the Deleuze Seminars</a>
     </h3>
     <SearchWord2vec 
-    word2vecData={word2vecData} 
+    word2vecData={word2vecDataCoordinates} 
 
   />
-  <Word2vec/>
+  <Word2vecViz/>
 </BaseLayout>
 
 <!-- <script>
