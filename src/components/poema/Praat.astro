@@ -7,7 +7,7 @@ export interface Props {
 const { pitchData, praatData } = Astro.props;
 ---
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js" defer></script>
 
 <script define:vars={{ pitchData, praatData }}>
   function drawPitchVisualization() {
@@ -37,6 +37,11 @@ const { pitchData, praatData } = Astro.props;
       setTimeout(drawPitchVisualization, 500);
       return;
     }
+
+    // canvas background color
+    // const canvasesDiv = shadow.querySelector('.canvases');
+    // canvasesDiv.style.backgroundColor = 'var(--button-background)';
+
 
     const waveformWidth = shadow.offsetWidth;
     const margin = {top: 10, right: 0, bottom: 30, left: 0};
@@ -92,7 +97,7 @@ const { pitchData, praatData } = Astro.props;
         .attr('cx', d => xAxisScale(d.Time))
         .attr('cy', d => yAxisScale(d.Frequency))
         .attr('r', 1.25)
-        .style('fill', `var(--highlight-color)`);
+        .style('fill', document.documentElement.classList.contains('dark') ? '#f1f5f9' : '#333333');
     }
 
     // Tiers in shadow DOM (below pitch)
@@ -106,7 +111,7 @@ const { pitchData, praatData } = Astro.props;
         .attr('class', 'praat-tier')
         .attr('width', waveformWidth)
         .attr('height', tierHeight)
-        .style('background-color', 'pink')
+        .style('background-color', `var(--button-background)`)
         // .style('position', 'absolute')
         .style('top', `${waveformHeight + height + margin.top + margin.bottom + (index * tierHeight)}px`)
         // .style('transform', 'translateX(-20px)')
@@ -170,29 +175,32 @@ const { pitchData, praatData } = Astro.props;
       .attr('transform', `translate(20, ${(height + margin.top) / 2}) rotate(-90)`) // Adjust for new height
       .style('text-anchor', 'middle')
       .style('font-size', '0.8rem')
-      .text('Pitch (Hz)');
+      .text('Pitch (Hz)')
+      .style('fill', document.documentElement.classList.contains('dark') ? '#f1f5f9' : '#333333')
+;
 
     // Labels - match natural stacking of tiers (no absolute positioning)
     const svgLabels = d3.select('#praat-labels')
         .append('svg')
-        .attr('class', 'praat-labels')
         .attr('height', (tiers.length + 1) * tierHeight)
         .attr('width', 60)
         .style('margin-top', '-30px');
 
     ['tones', 'words', 'beats', 'breaks'].forEach((label, i) => {
-    svgLabels.append('text')
+    svgLabels.append('g')
+        .attr('class', 'praat-labels')
+        .append('text')
         .attr('x', 55)
         .attr('y', 20 + (i * (tierHeight + 9))) // Small top margin + equal spacing
         .style('text-anchor', 'end')
         .style('font-size', '1rem')
-        // .style('fill', document.documentElement.classList.contains('dark') ? '#f1f5f9' : '#333333')
+        .style('fill', document.documentElement.classList.contains('dark') ? '#f1f5f9' : '#333333')
         .text(label);
     });
 
     console.log('Pitch visualization complete!');
   }
   
-  setTimeout(drawPitchVisualization, 1000);
+  setTimeout(drawPitchVisualization, 200);
   window.addEventListener('wavesurfer-ready', drawPitchVisualization);
 </script>

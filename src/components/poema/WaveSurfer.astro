@@ -3,6 +3,7 @@ export interface Props {
   audioUrl: string;
   waveColor?: string;
   progressColor?: string;
+  cursorColor?: string;
   height?: number;
   barHeight?: number;
   minPxPerSec?: number;
@@ -14,8 +15,9 @@ export interface Props {
 
 const {
   audioUrl,
-  waveColor = 'gray',
-  progressColor = 'black',
+  waveColor = '#e8ecf0',
+  progressColor = '#ccc',
+  cursorColor = 'var(--highlight-color)',
   height = 64,
   barHeight = 1,
   minPxPerSec = 100,
@@ -32,11 +34,20 @@ const {
   <div id="praat-labels"></div>
 </div>
 
-<div class="button-container">
+<!-- <div class="button-container">
   <button class="btn" id="play-pause-btn">
     ▶ ⏸
   </button>
+</div> -->
+
+<div class="button-container">
+  <button class="btn" id="play-pause-btn" aria-label="Play or pause the audio">
+    <span id="play-icon">▶</span>
+    <span id="pause-icon" style="display: none;">⏸</span>
+  </button>
 </div>
+
+
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/wavesurfer.js/7.8.11/wavesurfer.min.js"></script>
 
@@ -44,6 +55,7 @@ const {
   audioUrl, 
   waveColor, 
   progressColor, 
+  cursorColor,
   height, 
   barHeight, 
   minPxPerSec, 
@@ -59,6 +71,7 @@ const {
       container: '#waveform',
       waveColor,
       progressColor,
+      cursorColor,
       url: audioUrl,
       barHeight,
       minPxPerSec,
@@ -84,6 +97,18 @@ const {
     });
 
     document.getElementById('play-pause-btn').onclick = () => {
+
+        const playIcon = document.getElementById('play-icon');
+  const pauseIcon = document.getElementById('pause-icon');
+  
+      if (wavesurfer.isPlaying()) {
+        playIcon.style.display = 'inline';
+        pauseIcon.style.display = 'none';
+      } else {
+        playIcon.style.display = 'none';
+        pauseIcon.style.display = 'inline';
+      }
+
       wavesurfer.playPause();
     };
   });
@@ -95,7 +120,7 @@ const {
     width: 100%;
     overflow-x: auto;
     overflow-y: visible;
-    border: 1px solid lightgray;
+    border: var(--image-border);
   }
 
   #y-axis {
@@ -110,6 +135,7 @@ const {
     margin-left: 60px;
     position: relative;
   }
+
 
   #praat-labels {
     position: absolute;
@@ -126,16 +152,20 @@ const {
 
   .btn {
     padding: 0.5rem 1rem;
-    font-size: 1rem;
+    font-size: 1.5rem;
     cursor: pointer;
     font-family: 'IM Fell English', serif;
     border: var(--image-border);
     transition: background-color 0.3s ease, color 0.3s ease;
     margin: 1rem 0;
+    width: 5rem;
+    height: 3rem;
+    background-color: var(--button-background);
   }
 
   .btn:hover {
     background-color: var(--hover-color);
     color: white;
   }
+
 </style>

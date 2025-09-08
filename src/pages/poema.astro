@@ -6,7 +6,8 @@ import Praat from '../components/poema/Praat.astro';
 
 export const prerender = false;
 
-const pageTitle = "The Red Wheelbarrow";
+const pageTitle = "Poema";
+const description = "Poema uses wavesurfer.js and d3.js to implement Praat display on the browser, somewhat extending the Tones and Breaks Indices (ToBI) framework by including beats and text to analyze rhythm and enjambments of verse."
 
 // Fetch data in frontmatter
 const pitchResponse = await fetch(new URL('/poema/WCW_The_Red_Wheelbarrow_1945_LoC.json', Astro.url));
@@ -16,13 +17,11 @@ const pitchData = await pitchResponse.json();
 const praatData = await praatResponse.json();
 ---
 
-<BaseLayout pageTitle={pageTitle}>
+<BaseLayout pageTitle={pageTitle} description={description}>
   <div class="poema-container">
     <div class="waveform-section">
       <WaveSurfer 
         audioUrl="/poema/WCW_The_Red_Wheelbarrow_1945_LoC.wav"
-        waveColor="gray"
-        progressColor="black"
         height={64}
         minPxPerSec={110}
       />
