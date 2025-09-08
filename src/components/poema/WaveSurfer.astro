@@ -1,0 +1,141 @@
+---
+export interface Props {
+  audioUrl: string;
+  waveColor?: string;
+  progressColor?: string;
+  height?: number;
+  barHeight?: number;
+  minPxPerSec?: number;
+  cursorWidth?: number;
+  autoCenter?: boolean;
+  normalize?: boolean;
+  fillParent?: boolean;
+}
+
+const {
+  audioUrl,
+  waveColor = 'gray',
+  progressColor = 'black',
+  height = 64,
+  barHeight = 1,
+  minPxPerSec = 100,
+  cursorWidth = 1,
+  autoCenter = true,
+  normalize = true,
+  fillParent = true
+} = Astro.props;
+---
+
+<div class="diagram-overflow">
+  <div id="y-axis"></div>
+  <div id="waveform"></div>
+  <div id="praat-labels"></div>
+</div>
+
+<div class="button-container">
+  <button class="btn" id="play-pause-btn">
+    ▶ ⏸
+  </button>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/wavesurfer.js/7.8.11/wavesurfer.min.js"></script>
+
+<script define:vars={{ 
+  audioUrl, 
+  waveColor, 
+  progressColor, 
+  height, 
+  barHeight, 
+  minPxPerSec, 
+  cursorWidth, 
+  autoCenter, 
+  normalize, 
+  fillParent 
+}}>
+  let wavesurfer;
+  
+  document.addEventListener('DOMContentLoaded', () => {
+    wavesurfer = WaveSurfer.create({
+      container: '#waveform',
+      waveColor,
+      progressColor,
+      url: audioUrl,
+      barHeight,
+      minPxPerSec,
+      height,
+      fillParent,
+      cursorWidth,
+      autoCenter,
+      normalize,
+    });
+
+    window.wavesurfer = wavesurfer;
+
+    wavesurfer.on('timeupdate', (currentTime) => {
+      if (window.highlightText) {
+        window.highlightText(currentTime);
+      }
+    });
+
+    wavesurfer.on('ready', () => {
+      window.dispatchEvent(new CustomEvent('wavesurfer-ready', { 
+        detail: { duration: wavesurfer.getDuration() }
+      }));
+    });
+
+    document.getElementById('play-pause-btn').onclick = () => {
+      wavesurfer.playPause();
+    };
+  });
+</script>
+
+<style>
+  .diagram-overflow {
+    position: relative;
+    width: 100%;
+    overflow-x: auto;
+    overflow-y: visible;
+    border: 1px solid lightgray;
+  }
+
+  #y-axis {
+    position: absolute;
+    left: 0;
+    top: 63px; /* Offset for pitch area */
+    width: 60px;
+    z-index: 2;
+  }
+
+  #waveform {
+    margin-left: 60px;
+    position: relative;
+  }
+
+  #praat-labels {
+    position: absolute;
+    left: 0;
+    top: 250px; /* Below y-axis, aligned with tiers */
+    width: 60px;
+    z-index: 2;
+  }
+  
+  .button-container {
+    text-align: center;
+    margin-top: 1rem;
+  }
+
+  .btn {
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    cursor: pointer;
+    font-family: 'IM Fell English', serif;
+    border: var(--image-border);
+    transition: background-color 0.3s ease, color 0.3s ease;
+    margin: 1rem 0;
+  }
+
+  .btn:hover {
+    background-color: var(--hover-color);
+    color: white;
+  }
+</style>

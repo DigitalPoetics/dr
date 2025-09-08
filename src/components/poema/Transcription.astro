@@ -1,0 +1,112 @@
+---
+export interface Props {
+  transcriptionUrl: string;
+  title?: string;
+}
+
+const {
+  transcriptionUrl,
+  title = "The Red Wheelbarrow"
+} = Astro.props;
+---
+
+<div id="annotations">
+  <h3 class="title">{title}</h3>
+</div>
+
+<script define:vars={{ transcriptionUrl }}>
+  let poem = [];
+  let currentHighlighted = null; // Track currently highlighted element
+  
+  async function loadTranscription() {
+    try {
+      const response = await fetch(transcriptionUrl);
+      const praatData = await response.json();
+      
+      let poemSpan = document.querySelector('#annotations');
+      poem = praatData.filter(d => d.tier_name === 'text');
+
+      let i = 0;
+      poem.forEach(item => {
+          item.id = 'text' + i;
+          i += 1;
+      });
+
+      // Add styles once at the beginning
+      poemSpan.innerHTML += `
+        <style>
+          .poem-text { 
+            font-size: 1.1rem;
+            cursor: pointer; 
+            transition: all 0.1s; 
+          }
+          .poem-text:hover { 
+            color: var(--highlight-color); 
+          }
+          .poem-text.highlighted {
+            background-color: transparent;
+            color: var(--hover-color);
+          }
+        </style>
+      `;
+      
+      // Display the text of the poem using span
+      poem.forEach((d, i) => {
+          const text = d.text.replace(/\\n/g, '<br>').replace(/\n/g, '<br>');
+          const lines = text.split('\n');
+          lines.forEach(line => {
+              const spanId = `text${i}`;
+              poemSpan.innerHTML += `<span id="${spanId}" class="poem-text">${line} </span>`;
+              i += 1;
+          });
+      });
+
+      // Add click listeners
+      poem.forEach((segment) => {
+          const element = document.getElementById(segment.id);
+          if (element) {
+              element.addEventListener('click', () => {
+                  if (window.wavesurfer) {
+                      const duration = window.wavesurfer.getDuration();
+                      const startTimePercentage = segment.start_time / duration;
+                      window.wavesurfer.seekTo(startTimePercentage);
+                      window.wavesurfer.play();
+                  }
+              });
+          }
+      });
+      
+    } catch (err) {
+      console.error('Error loading transcription:', err);
+    }
+  }
+  
+  // Highlight function using CSS classes instead of innerHTML
+  window.highlightText = function(currentTime) {
+    poem.forEach((segment) => {
+        const element = document.getElementById(segment.id);
+        if (element) {
+            if (currentTime >= segment.start_time && currentTime <= segment.end_time) {
+                element.classList.add('highlighted');
+                currentHighlighted = element;
+            } else {
+                element.classList.remove('highlighted');
+            }
+        }
+    });
+  };
+  
+  document.addEventListener('DOMContentLoaded', loadTranscription);
+</script>
+
+<style>
+  #annotations {
+    margin: 0.5rem 0;
+    width: 100%;
+  }
+  
+  .title {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+  }
+</style>

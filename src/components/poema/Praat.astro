@@ -1,0 +1,198 @@
+---
+export interface Props {
+  pitchData: any[];
+  praatData: any[];
+}
+
+const { pitchData, praatData } = Astro.props;
+---
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
+
+<script define:vars={{ pitchData, praatData }}>
+  function drawPitchVisualization() {
+    if (!window.d3 || !window.wavesurfer) {
+      setTimeout(drawPitchVisualization, 500);
+      return;
+    }
+    
+    const d3 = window.d3;
+    const audioDuration = window.wavesurfer.getDuration();
+
+    if (!audioDuration || audioDuration <= 0) {
+      setTimeout(drawPitchVisualization, 500);
+      return;
+    }
+
+    const waveformDiv = document.querySelector('#waveform');
+    const host = waveformDiv?.querySelector('div');
+    
+    if (!host?.shadowRoot) {
+      setTimeout(drawPitchVisualization, 500);
+      return;
+    }
+    
+    const shadow = host.shadowRoot.querySelector('.wrapper');
+    if (!shadow) {
+      setTimeout(drawPitchVisualization, 500);
+      return;
+    }
+
+    const waveformWidth = shadow.offsetWidth;
+    const margin = {top: 10, right: 0, bottom: 30, left: 0};
+    const height = 110;
+    const tierHeight = 30;
+
+    const xAxisScale = d3.scaleLinear()
+      .domain([0, audioDuration])
+      .range([0, waveformWidth]);
+
+    const yAxisScale = d3.scaleLinear()
+      .domain([50, 250])
+      .range([height, 0]);
+
+    // Clear existing
+    d3.select(shadow).selectAll('svg.praat-pitch, svg.praat-tier').remove();
+    d3.select('#y-axis').selectAll('svg').remove();
+    d3.select('#praat-labels').selectAll('svg').remove();
+
+    // Get waveform height to position pitch below it
+    const waveformHeight = shadow.querySelector('canvas')?.height || 64;
+
+    // Pitch SVG in shadow DOM (below waveform)
+    const svgPitch = d3.select(shadow)
+      .append('svg')
+      .attr('class', 'praat-pitch')
+      .attr('width', waveformWidth)
+      .attr('height', height + margin.top + margin.bottom)
+    //   .style('position', 'absolute')
+      .style('top', `${waveformHeight}px`)
+    //   .style('left', '-30px')
+    //   .style('transform', 'translateX(-20px)')
+      .style('pointer-events', 'none');
+
+    const pitchBox = svgPitch.append('g')
+      .attr('transform', `translate(0, ${margin.top})`);
+
+    // X Axis - positioned at bottom of pitch area
+    pitchBox.append('g')
+      .attr('transform', `translate(0, ${height})`)
+      .call(d3.axisBottom(xAxisScale).ticks(Math.floor(audioDuration)))
+      .style('font-size', '0.8rem')
+      .style('font-family', 'IM Fell English, serif');
+
+    // Filter and render pitch points - only show points within Y-axis range
+    if (pitchData?.length > 0) {
+      const filteredPitchData = pitchData.filter(d => d.Frequency >= 50 && d.Frequency <= 250);
+      
+      pitchBox.selectAll('circle')
+        .data(filteredPitchData)
+        .enter()
+        .append('circle')
+        .attr('cx', d => xAxisScale(d.Time))
+        .attr('cy', d => yAxisScale(d.Frequency))
+        .attr('r', 1.25)
+        .style('fill', `var(--highlight-color)`);
+    }
+
+    // Tiers in shadow DOM (below pitch)
+    const tiers = ['tones', 'words', 'beats', 'breaks'];
+    tiers.forEach((tierName, index) => {
+      const tierData = praatData.filter(d => d.tier_name === tierName);
+      if (tierData.length === 0) return;
+
+      const svgTier = d3.select(shadow)
+        .append('svg')
+        .attr('class', 'praat-tier')
+        .attr('width', waveformWidth)
+        .attr('height', tierHeight)
+        .style('background-color', 'pink')
+        // .style('position', 'absolute')
+        .style('top', `${waveformHeight + height + margin.top + margin.bottom + (index * tierHeight)}px`)
+        // .style('transform', 'translateX(-20px)')
+        .style('pointer-events', 'none');
+
+      tierData.forEach(d => {
+        // Start line
+        svgTier.append('line')
+          .attr('x1', xAxisScale(d.start_time))
+          .attr('y1', 0)
+          .attr('x2', xAxisScale(d.start_time))
+          .attr('y2', tierHeight)
+          .style('stroke', 'white')
+          .style('stroke-width', '2')
+          .style('stroke-dasharray', tierName === 'tones' || tierName === 'beats' || tierName === 'breaks' ? '10' : null);
+
+        // End line for words
+        if (tierName === 'words') {
+          svgTier.append('line')
+            .attr('x1', xAxisScale(d.end_time))
+            .attr('y1', 0)
+            .attr('x2', xAxisScale(d.end_time))
+            .attr('y2', tierHeight)
+            .style('stroke', 'white')
+            .style('stroke-width', '2');
+        }
+
+        // Text
+        svgTier.append('text')
+          .attr('x', xAxisScale((d.start_time + d.end_time) / 2))
+          .attr('y', 20)
+          .text(d.text)
+          .style('text-anchor', 'middle')
+          .style('font-size', '0.9rem')
+          .style('fill', 'black');
+      });
+    });
+
+    // Extend shadow DOM height to include pitch and tiers
+    const totalHeight = waveformHeight + height + margin.top + margin.bottom + (tiers.length * tierHeight);
+    // shadow.style.height = `${totalHeight}px`;
+    shadow.style.height = 'auto';
+    shadow.style.overflow = 'visible';
+
+    // Y-axis - adjust height to align bottom with X-axis
+    const svgY = d3.select('#y-axis')
+    .append('svg')
+    .attr('height', height + margin.top + margin.bottom) // Keep full height
+    .attr('width', 60)
+    .style('margin-right', '-30px');
+
+    svgY.append('g')
+    .attr('class', 'y-axis')
+    .attr('transform', `translate(60, ${margin.top})`) // Right edge, same top margin as pitch
+    .call(d3.axisLeft(yAxisScale.range([height, 0])).ticks(5)) // Adjust range to match pitch area
+    .style('font-size', '0.8rem')
+    .style('font-family', 'IM Fell English, serif');
+
+    // Y Label
+    svgY.append('text')
+      .attr('transform', `translate(20, ${(height + margin.top) / 2}) rotate(-90)`) // Adjust for new height
+      .style('text-anchor', 'middle')
+      .style('font-size', '0.8rem')
+      .text('Pitch (Hz)');
+
+    // Labels - match natural stacking of tiers (no absolute positioning)
+    const svgLabels = d3.select('#praat-labels')
+        .append('svg')
+        .attr('class', 'praat-labels')
+        .attr('height', (tiers.length + 1) * tierHeight)
+        .attr('width', 60)
+        .style('margin-top', '-30px');
+
+    ['tones', 'words', 'beats', 'breaks'].forEach((label, i) => {
+    svgLabels.append('text')
+        .attr('x', 55)
+        .attr('y', 20 + (i * (tierHeight + 9))) // Small top margin + equal spacing
+        .style('text-anchor', 'end')
+        .style('font-size', '1rem')
+        // .style('fill', document.documentElement.classList.contains('dark') ? '#f1f5f9' : '#333333')
+        .text(label);
+    });
+
+    console.log('Pitch visualization complete!');
+  }
+  
+  setTimeout(drawPitchVisualization, 1000);
+  window.addEventListener('wavesurfer-ready', drawPitchVisualization);
+</script>
