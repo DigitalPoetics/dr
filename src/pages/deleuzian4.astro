@@ -4,8 +4,9 @@ import SearchWord2vec1 from '../components/SearchWord2vec1.astro';
 import SimilarityQueryWord2vec from '../components/SimilarityQueryWord2vec.astro';
 import textData from '../data/deleuze/deleuzeWord2vecDocuments.json';
 import word2vecData from '../data/deleuze/deleuzeWord2vec.json';
-// export const prerender = false;
 import word2vecDataCoordinates from '../data/deleuze/deleuzeWord2vecCoordinates.json';  
+
+export const prerender = false;
 
 const pageTitle = "Deleuzian";
 const description = "Query search UI for the Deleuze Seminars.";
