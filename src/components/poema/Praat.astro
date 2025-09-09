@@ -76,15 +76,22 @@ const { pitchData, praatData } = Astro.props;
     //   .style('transform', 'translateX(-20px)')
       .style('pointer-events', 'none');
 
+    
     const pitchBox = svgPitch.append('g')
       .attr('transform', `translate(0, ${margin.top})`);
 
     // X Axis - positioned at bottom of pitch area
-    pitchBox.append('g')
+    const xAxis = pitchBox.append('g')
       .attr('transform', `translate(0, ${height})`)
       .call(d3.axisBottom(xAxisScale).ticks(Math.floor(audioDuration)))
       .style('font-size', '0.8rem')
-      .style('font-family', 'IM Fell English, serif');
+      .style('font-family', 'IM Fell English, serif')
+
+      // fix color
+    xAxis.selectAll('text').style('fill', `var(--light-text)`);
+    xAxis.selectAll('line').style('stroke', `var(--light-text)`);
+    xAxis.select('.domain').style('stroke', `var(--light-text)`);
+
 
     // Filter and render pitch points - only show points within Y-axis range
     if (pitchData?.length > 0) {
@@ -97,7 +104,8 @@ const { pitchData, praatData } = Astro.props;
         .attr('cx', d => xAxisScale(d.Time))
         .attr('cy', d => yAxisScale(d.Frequency))
         .attr('r', 1.25)
-        .style('fill', document.documentElement.classList.contains('dark') ? '#f1f5f9' : '#333333');
+        // .style('fill', document.documentElement.classList.contains('dark') ? '#f1f5f9' : '#333333')
+        .style('fill', 'var(--light--text');
     }
 
     // Tiers in shadow DOM (below pitch)
@@ -161,30 +169,42 @@ const { pitchData, praatData } = Astro.props;
     .append('svg')
     .attr('height', height + margin.top + margin.bottom) // Keep full height
     .attr('width', 60)
-    .style('margin-right', '-30px');
+    .style('margin-right', '-30px')
+    .style('background-color', `var(--viz-background)`);
 
-    svgY.append('g')
+    const yAxis = svgY.append('g')
     .attr('class', 'y-axis')
     .attr('transform', `translate(60, ${margin.top})`) // Right edge, same top margin as pitch
     .call(d3.axisLeft(yAxisScale.range([height, 0])).ticks(5)) // Adjust range to match pitch area
     .style('font-size', '0.8rem')
     .style('font-family', 'IM Fell English, serif');
 
-    // Y Label
-    svgY.append('text')
-      .attr('transform', `translate(20, ${(height + margin.top) / 2}) rotate(-90)`) // Adjust for new height
+            // Y Label
+    yAxis.append('g')
+      .append('text')
+    //   .attr('transform', `translate(20, ${(height + margin.top) / 2}) rotate(-90)`) // Adjust for new height
+      .attr('transform', `translate(-40, ${height / 2}) rotate(-90)`)
       .style('text-anchor', 'middle')
       .style('font-size', '0.8rem')
+        // .style('stroke', 'black')
       .text('Pitch (Hz)')
-      .style('fill', document.documentElement.classList.contains('dark') ? '#f1f5f9' : '#333333')
-;
+    //   .style('fill', document.documentElement.classList.contains('dark') ? '#f1f5f9' : '#333333')
+    //   .style('fill', 'red');
+
+      // fix color
+    yAxis.selectAll('text').style('fill', `var(--light-text)`);
+    yAxis.selectAll('line').style('stroke',`var(--light-text)`);
+    yAxis.select('.domain').style('stroke',`var(--light-text)`);
+
+
 
     // Labels - match natural stacking of tiers (no absolute positioning)
     const svgLabels = d3.select('#praat-labels')
         .append('svg')
         .attr('height', (tiers.length + 1) * tierHeight)
         .attr('width', 60)
-        .style('margin-top', '-30px');
+        .style('margin-top', '-30px')
+        .style('background-color', `var(--viz-background)`);
 
     ['tones', 'words', 'beats', 'breaks'].forEach((label, i) => {
     svgLabels.append('g')
@@ -193,9 +213,12 @@ const { pitchData, praatData } = Astro.props;
         .attr('x', 55)
         .attr('y', 20 + (i * (tierHeight + 9))) // Small top margin + equal spacing
         .style('text-anchor', 'end')
-        .style('font-size', '1rem')
-        .style('fill', document.documentElement.classList.contains('dark') ? '#f1f5f9' : '#333333')
-        .text(label);
+        .style('font-size', '0.8rem')
+        // .style('stroke', 'red')
+        // .style('fill', document.documentElement.classList.contains('dark') ? '#f1f5f9' : '#333333')
+        .text(label)
+        .style('stroke', `var(--light--text)`)
+;
     });
 
     console.log('Pitch visualization complete!');

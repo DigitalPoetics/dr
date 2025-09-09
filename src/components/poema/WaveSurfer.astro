@@ -15,9 +15,9 @@ export interface Props {
 
 const {
   audioUrl,
-  waveColor = '#e8ecf0',
-  progressColor = '#ccc',
-  cursorColor = 'var(--highlight-color)',
+  waveColor = '#ccc',
+  progressColor = ' #333333',
+  cursorColor = '#333333',
   height = 64,
   barHeight = 1,
   minPxPerSec = 100,
@@ -121,6 +121,7 @@ const {
     overflow-x: auto;
     overflow-y: visible;
     border: var(--image-border);
+    background-color: var(--viz-background);
   }
 
   #y-axis {
@@ -134,6 +135,7 @@ const {
   #waveform {
     margin-left: 60px;
     position: relative;
+    /* background-color: #f5f5f5; */
   }
 
 
