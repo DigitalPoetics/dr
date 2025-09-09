@@ -57,7 +57,11 @@ const { pitchData, praatData } = Astro.props;
       .range([height, 0]);
 
     // Clear existing
-    d3.select(shadow).selectAll('svg.praat-pitch, svg.praat-tier').remove();
+    // d3.select(shadow).selectAll('svg.praat-pitch, svg.praat-tier').remove();
+    // Clear only Praat-specific elements
+d3.select(shadow).selectAll('svg.praat-pitch').remove();
+d3.select(shadow).selectAll('svg.praat-tier').remove();
+
     d3.select('#y-axis').selectAll('svg').remove();
     d3.select('#praat-labels').selectAll('svg').remove();
 
@@ -221,7 +225,6 @@ const { pitchData, praatData } = Astro.props;
 ;
     });
 
-    console.log('Pitch visualization complete!');
   }
   
   setTimeout(drawPitchVisualization, 200);

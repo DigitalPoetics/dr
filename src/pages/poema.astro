@@ -1,8 +1,9 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import WaveSurfer from '../components/poema/WaveSurfer.astro';
+// import WaveSurfer from '../components/poema/WaveSurfer.astro';
 import Transcription from '../components/poema/Transcription.astro';
 import Praat from '../components/poema/Praat.astro';
+import Spectrogram from '../components/poema/Spectrogram.astro';
 
 export const prerender = false;
 
@@ -20,9 +21,14 @@ const praatData = await praatResponse.json();
 <BaseLayout pageTitle={pageTitle} description={description}>
   <div class="poema-container">
     <div class="waveform-section">
-      <WaveSurfer 
+      <!-- <WaveSurfer 
         audioUrl="/poema/WCW_The_Red_Wheelbarrow_1945_LoC.wav"
         height={64}
+        minPxPerSec={110}
+      /> -->
+      <Spectrogram 
+        audioUrl="/poema/WCW_The_Red_Wheelbarrow_1945_LoC.wav"
+        height={32}
         minPxPerSec={110}
       />
       <Praat 
@@ -38,6 +44,8 @@ const praatData = await praatResponse.json();
       />
     </div>
   </div>
+
+
 </BaseLayout>
 
 <style>

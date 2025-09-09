@@ -11,6 +11,13 @@ export interface Props {
   autoCenter?: boolean;
   normalize?: boolean;
   fillParent?: boolean;
+  spectrogramHeight?: number;
+  spectrogramLabels?: boolean;
+  spectrogramScale?: string;
+  fftSamples?: number;
+  colorMap?: string;
+  useWebWorker?: boolean;
+  windowFunc?: string;
 }
 
 const {
@@ -24,7 +31,14 @@ const {
   cursorWidth = 1,
   autoCenter = true,
   normalize = true,
-  fillParent = true
+  fillParent = true,
+  spectrogramHeight = 200,
+  spectrogramLabels = true,
+  spectrogramScale = 'mel',
+  fftSamples = 1024,
+  colorMap = 'gray',
+  useWebWorker = true,
+  windowFunc = 'hann'
 } = Astro.props;
 ---
 
@@ -43,7 +57,7 @@ const {
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/wavesurfer.js/7.8.11/wavesurfer.min.js"></script>
 
-<script define:vars={{ 
+<script type="module" define:vars={{ 
   audioUrl, 
   waveColor, 
   progressColor, 
@@ -54,8 +68,17 @@ const {
   cursorWidth, 
   autoCenter, 
   normalize, 
-  fillParent 
+  fillParent,
+  spectrogramHeight,
+  spectrogramLabels,
+  spectrogramScale,
+  fftSamples,
+  colorMap,
+  useWebWorker,
+  windowFunc
 }}>
+  import SpectrogramPlugin from '/plugins/spectrogram7.esm.js'
+
   let wavesurfer;
   
   document.addEventListener('DOMContentLoaded', () => {
@@ -72,6 +95,17 @@ const {
       cursorWidth,
       autoCenter,
       normalize,
+      plugins: [
+        SpectrogramPlugin.create({
+          height: spectrogramHeight,
+          labels: spectrogramLabels,
+          scale: spectrogramScale,
+          fftSamples: fftSamples,
+          colorMap: colorMap,
+          useWebWorker: useWebWorker,
+          windowFunc: windowFunc,
+        })
+      ]
     });
 
     window.wavesurfer = wavesurfer;
