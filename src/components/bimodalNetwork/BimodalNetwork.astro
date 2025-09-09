@@ -1,0 +1,234 @@
+---
+export interface Props {
+  nodesData: any[];
+  linksData: any[];
+  linkDistance?: number;
+  chargeStrength?: number;
+  chargeTheta?: number;
+  chargeDistanceMax?: number;
+  collisionStrength?: number;
+  collisionRadius?: number;
+  collisionIterations?: number;
+  rotation?: number;
+}
+
+const { 
+  nodesData, 
+  linksData, 
+  linkDistance = 50,
+  chargeStrength = -150,
+  chargeTheta = 0.5,
+  chargeDistanceMax = 400,
+  collisionStrength = 0.8,
+  collisionRadius = 5,
+  collisionIterations = 10,
+  rotation = 0 
+} = Astro.props;
+---
+
+<div id="network"></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js" defer></script>
+
+<script define:vars={{ nodesData, linksData, linkDistance, chargeStrength, chargeTheta, chargeDistanceMax, collisionStrength, collisionRadius, collisionIterations, rotation }}>
+  function initNetwork() {
+    if (!window.d3) {
+      setTimeout(initNetwork, 100);
+      return;
+    }
+
+    const d3 = window.d3;
+    const w = 700;
+    const h = window.innerHeight * 0.85;
+
+    d3.select("#network").selectAll("*").remove();
+
+    const svg = d3.select("#network")
+      .append("svg")
+      .attr("width", w)
+      .attr("height", h)
+      .style("border", `var(--image-border)`);
+
+    const g = svg.append("g");
+
+    function translate(d) {
+      const centerX = w / 2;
+      const centerY = h / 2;
+
+      let x = d.x - centerX;
+      let y = d.y - centerY;
+
+      // Normalize rotation to 0–360
+      const normalized = ((rotation % 360) + 360) % 360;
+
+      // Use proportional logic to simulate rotation
+      const fraction = normalized / 360;
+
+      // Approximate rotation by stepping through a square path
+      // Each quarter represents 90°, so we interpolate along edges
+      let tx = x;
+      let ty = y;
+
+      if (fraction <= 0.25) {
+        // Top-right to bottom-right
+        tx = x + (y * 4 * fraction);
+        ty = y - (x * 4 * fraction);
+      } else if (fraction <= 0.5) {
+        // Bottom-right to bottom-left
+        const f = fraction - 0.25;
+        tx = x - (y * 4 * f);
+        ty = y - (x * 4 * f);
+      } else if (fraction <= 0.75) {
+        // Bottom-left to top-left
+        const f = fraction - 0.5;
+        tx = x - (y * 4 * f);
+        ty = y + (x * 4 * f);
+      } else {
+        // Top-left to top-right
+        const f = fraction - 0.75;
+        tx = x + (y * 4 * f);
+        ty = y + (x * 4 * f);
+      }
+
+      return {
+        x: tx + centerX,
+        y: ty + centerY
+      };
+    }
+
+
+    const simulation = d3.forceSimulation().alpha(1).nodes(nodesData);
+
+    const link_force = d3.forceLink(linksData)
+      .id(d => d.name)
+      .distance(linkDistance);
+
+    const charge_force = d3.forceManyBody()
+      .strength(chargeStrength)
+      .theta(chargeTheta)
+      .distanceMax(chargeDistanceMax);
+
+    const center_force = d3.forceCenter(w / 2, h / 2);
+
+    const collision_force = d3.forceCollide()
+      .strength(collisionStrength)
+      .radius(collisionRadius)
+      .iterations(collisionIterations);
+
+    simulation
+      .force("charge", charge_force)
+      .force("center", center_force)
+      .force("collision", collision_force)
+      .force("link", link_force);
+
+    linksData.forEach(link => {
+      if (!link.source.linkCount) link.source.linkCount = 0;
+      if (!link.target.linkCount) link.target.linkCount = 0;
+      link.source.linkCount++;
+      link.target.linkCount++;
+    });
+
+    // Add scaling here
+    const memberNodes = nodesData.filter(d => d.type === "member");
+    const institutionNodes = nodesData.filter(d => d.type !== "member");
+
+    const memberExtent = d3.extent(memberNodes, d => d.linkCount || 0);
+    const institutionExtent = d3.extent(institutionNodes, d => d.linkCount || 0);
+
+    const memberScale = d3.scaleLinear().domain(memberExtent).range([3, 10]);
+    const institutionScale = d3.scaleLinear().domain(institutionExtent).range([8, 50]);
+
+    const memberFontScale = d3.scaleLinear().domain(memberExtent).range([5, 12]);
+    const institutionFontScale = d3.scaleLinear().domain(institutionExtent).range([8, 35]);
+
+
+    const linkedByIndex = {};
+    nodesData.forEach((d, i) => linkedByIndex[i + "," + i] = 1);
+    linksData.forEach(d => {
+      linkedByIndex[d.source.index + "," + d.target.index] = 1;
+      linkedByIndex[d.target.index + "," + d.source.index] = 1;
+    });
+
+    const neighboring = (a, b) => linkedByIndex[a.index + "," + b.index];
+
+    const link = g.append("g")
+      .selectAll("line")
+      .data(linksData)
+      .enter()
+      .append("line")
+      .attr("stroke-width", 0.1)
+      .style("stroke", "#a6a6a6");
+
+    const node = g.append("g")
+      .selectAll("circle")
+      .data(nodesData)
+      .enter()
+      .append("circle")
+      .attr("r", d => d.type === "member" ? memberScale(d.linkCount || 0) : institutionScale(d.linkCount || 0))
+      .style("fill", d => d.type === "member" ? "#ffbd80" : "#8aded8")
+      .call(d3.drag()
+        .on("start", (e, d) => { if (!e.active) simulation.alphaTarget(0.3).restart(); d.fx = d.x; d.fy = d.y; })
+        .on("drag", (e, d) => { d.fx = e.x; d.fy = e.y; })
+        .on("end", (e, d) => { if (!e.active) simulation.alphaTarget(0); d.fx = null; d.fy = null; }))
+      .on("click", (e, d) => {
+        const clickedNode = d3.select(e.target);
+        const nodeIndex = `node-${d.index}`;
+        const isActive = clickedNode.classed("clicked");
+        
+        if (!isActive) {
+          clickedNode.classed("clicked", true);
+          node.each(function(n) {
+            if (neighboring(d, n) || n === d) {
+              d3.select(this).classed(nodeIndex, true);
+            }
+          });
+          link.each(function(l) {
+            if (l.source === d || l.target === d) {
+              d3.select(this).classed(nodeIndex, true);
+            }
+          });
+        } else {
+          clickedNode.classed("clicked", false);
+          node.classed(nodeIndex, false);
+          link.classed(nodeIndex, false);
+        }
+        
+        node.style("fill", function(n) {
+          const hasAnyClass = this.classList.length > 0;
+          return hasAnyClass ? "#ff0000" : (n.type === "member" ? "#ffbd80" : "#8aded8");
+        });
+        
+        link.style("stroke", function(l) {
+          const hasAnyClass = this.classList.length > 0;
+          return hasAnyClass ? "#ff0000" : "#a6a6a6";
+        });
+      });
+
+    const text = g.append("g")
+      .selectAll("text")
+      .data(nodesData)
+      .enter()
+      .append("text")
+      .attr("font-size", d => d.type === "member" ? memberFontScale(d.linkCount || 0) : institutionFontScale(d.linkCount || 0))
+      .text(d => d.name)
+      .attr("text-anchor", "middle")
+      .attr("dominant-baseline", "middle")
+      .style("pointer-events", "none");
+
+    svg.call(d3.zoom().on("zoom", e => g.attr("transform", e.transform)));
+
+    simulation.on("tick", () => {
+      link.attr("x1", d => translate(d.source).x).attr("y1", d => translate(d.source).y)
+          .attr("x2", d => translate(d.target).x).attr("y2", d => translate(d.target).y);
+      node.attr("cx", d => translate(d).x).attr("cy", d => translate(d).y);
+      text.attr("x", d => translate(d).x).attr("y", d => translate(d).y);
+    });
+  }
+
+  initNetwork();
+</script>
+
+<style>
+  #network { width: 100%; height: 85vh; margin: 1rem 0;}
+  circle { cursor: pointer; }
+</style>

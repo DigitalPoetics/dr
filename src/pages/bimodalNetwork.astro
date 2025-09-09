@@ -1,0 +1,24 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import BimodalNetwork from '../components/bimodalNetwork/BimodalNetwork.astro';
+import nodesData from '../data/bimodalNetwork/nodes.json';
+import linksData from '../data/bimodalNetwork/links.json';
+
+const pageTitle = "Network Visualization";
+const description = "Bimodal network visualization of members and institutions";
+---
+
+<BaseLayout pageTitle={pageTitle} description={description}>
+    <BimodalNetwork 
+    nodesData={nodesData}
+    linksData={linksData}
+    linkDistance={50}
+    chargeStrength={-150}
+    chargeTheta={0.5}
+    chargeDistanceMax={400}
+    collisionStrength={0.8}
+    collisionRadius={5}
+    collisionIterations={10}
+    rotation={45}
+    />
+</BaseLayout>

@@ -1,13 +1,21 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import SelectedPosts from '../components/SelectedPosts.astro';
-// const allPosts = Object.values(import.meta.glob('./posts/*.md', { eager: true }));
-const {frontmatter } = Astro.props;
 const pageTitle = "Digital Formalism"
-const description = "Model verse rhythms using literary and linguistic prosodies"
-const index = 'digitalFormalism'
+const description = "Audio visualization"
 ---
-<BaseLayout pageTitle={pageTitle} description={description}>
-    <h2>Coming Soon ...</h2>
-</BaseLayout> 
 
+<BaseLayout pageTitle={pageTitle} description={description}>
+    <h3>Audio Viz</h3>
+    <ul>
+        <li>
+            <a href="/poema" target="_blank">Test</a>
+        </li>
+        <li>
+            <a href="/poema1" target="_blank">Praat display for &ldquo;The Red Wheelbarrow&rdquo;</a>
+        </li>
+        <li>
+            <a href="/poema2" target="_blank">Praat display (w/ spectrogram) for &ldquo;The Red Wheelbarrow&rdquo;</a>
+        </li>
+    </ul>
+
+</BaseLayout>
