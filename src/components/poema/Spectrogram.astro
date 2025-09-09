@@ -13,6 +13,8 @@ export interface Props {
   fillParent?: boolean;
   spectrogramHeight?: number;
   spectrogramLabels?: boolean;
+  labelsColor?: string;
+  labelsBackground?: string;
   spectrogramScale?: string;
   fftSamples?: number;
   colorMap?: string;
@@ -34,6 +36,8 @@ const {
   fillParent = true,
   spectrogramHeight = 200,
   spectrogramLabels = true,
+  labelsColor = '#333333',
+  labelsBackground = 'rgba(0, 0, 0, 0.1)',
   spectrogramScale = 'mel',
   fftSamples = 1024,
   colorMap = 'gray',
@@ -50,8 +54,8 @@ const {
 
 <div class="button-container">
   <button class="btn" id="play-pause-btn" aria-label="Play or pause the audio">
-    <span id="play-icon">&#9654;</span>
-    <span id="pause-icon" style="display: none;">&#9208;</span>
+    <span id="play-icon">></span>
+    <span id="pause-icon" style="display: none;">| |</span>
   </button>
 </div>
 
@@ -71,6 +75,8 @@ const {
   fillParent,
   spectrogramHeight,
   spectrogramLabels,
+  labelsColor,
+  labelsBackground,
   spectrogramScale,
   fftSamples,
   colorMap,
@@ -99,6 +105,8 @@ const {
         SpectrogramPlugin.create({
           height: spectrogramHeight,
           labels: spectrogramLabels,
+          labelsColor: labelsColor,
+          labelsBackground: labelsBackground,
           scale: spectrogramScale,
           fftSamples: fftSamples,
           colorMap: colorMap,
@@ -152,7 +160,7 @@ const {
   #y-axis {
     position: absolute;
     left: 0;
-    top: 63px;
+    /* top: 160px; */
     width: 60px;
     z-index: 2;
   }
@@ -165,10 +173,11 @@ const {
   #praat-labels {
     position: absolute;
     left: 0;
-    top: 250px;
+    /* top: 410px; */
     width: 60px;
     z-index: 2;
   }
+
   
   .button-container {
     text-align: center;
@@ -178,6 +187,7 @@ const {
   .btn {
     padding: 0.5rem 1rem;
     font-size: 1.5rem;
+    font-weight: bold;
     cursor: pointer;
     font-family: 'IM Fell English', serif;
     border: var(--image-border);

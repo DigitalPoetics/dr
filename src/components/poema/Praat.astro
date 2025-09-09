@@ -2,14 +2,15 @@
 export interface Props {
   pitchData: any[];
   praatData: any[];
+  waveformHeight?: number;
 }
 
-const { pitchData, praatData } = Astro.props;
+const { pitchData, praatData, waveformHeight = 32 } = Astro.props;
 ---
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js" defer></script>
 
-<script define:vars={{ pitchData, praatData }}>
+<script define:vars={{ pitchData, praatData, waveformHeight }}>
   function drawPitchVisualization() {
     if (!window.d3 || !window.wavesurfer) {
       setTimeout(drawPitchVisualization, 500);
@@ -45,7 +46,7 @@ const { pitchData, praatData } = Astro.props;
 
     const waveformWidth = shadow.offsetWidth;
     const margin = {top: 10, right: 0, bottom: 30, left: 0};
-    const height = 110;
+    const height = 120;
     const tierHeight = 30;
 
     const xAxisScale = d3.scaleLinear()
@@ -66,7 +67,7 @@ const { pitchData, praatData } = Astro.props;
     d3.select('#praat-labels').selectAll('svg').remove();
 
     // Get waveform height to position pitch below it
-    const waveformHeight = shadow.querySelector('canvas')?.height || 64;
+    // const waveformHeight = shadow.querySelector('canvas')?.height || 32;
 
     // Pitch SVG in shadow DOM (below waveform)
     const svgPitch = d3.select(shadow)
@@ -173,6 +174,7 @@ const { pitchData, praatData } = Astro.props;
     .append('svg')
     .attr('height', height + margin.top + margin.bottom) // Keep full height
     .attr('width', 60)
+    .style('margin-top', `${waveformHeight}px`)
     .style('margin-right', '-30px')
     .style('background-color', `var(--viz-background)`);
 
@@ -203,11 +205,16 @@ const { pitchData, praatData } = Astro.props;
 
 
     // Labels - match natural stacking of tiers (no absolute positioning)
+    // Set Praat labels position dynamically
+    const praatLabelsDiv = document.querySelector('#praat-labels');
+    const praatLabelsTop = waveformHeight + height + margin.top + margin.bottom;
+    praatLabelsDiv.style.top = `${praatLabelsTop}px`;
+
     const svgLabels = d3.select('#praat-labels')
         .append('svg')
         .attr('height', (tiers.length + 1) * tierHeight)
         .attr('width', 60)
-        .style('margin-top', '-30px')
+        // .style('margin-top', `${waveformHeight + height + margin.top + margin.bottom}px`)
         .style('background-color', `var(--viz-background)`);
 
     ['tones', 'words', 'beats', 'breaks'].forEach((label, i) => {
@@ -215,7 +222,7 @@ const { pitchData, praatData } = Astro.props;
         .attr('class', 'praat-labels')
         .append('text')
         .attr('x', 55)
-        .attr('y', 20 + (i * (tierHeight + 9))) // Small top margin + equal spacing
+        .attr('y', 30 + (i * (tierHeight + 9))) // Small top margin + equal spacing
         .style('text-anchor', 'end')
         .style('font-size', '0.8rem')
         // .style('stroke', 'red')

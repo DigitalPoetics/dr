@@ -1,13 +1,13 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-// import WaveSurfer from '../components/poema/WaveSurfer.astro';
+import WaveSurfer from '../components/poema/WaveSurfer.astro';
 import Transcription from '../components/poema/Transcription.astro';
 import Praat from '../components/poema/Praat.astro';
-import Spectrogram from '../components/poema/Spectrogram.astro';
+// import Spectrogram from '../components/poema/Spectrogram.astro';
 
 export const prerender = false;
 
-const pageTitle = "Poema Test";
+const pageTitle = "Poema";
 const description = "Poema uses wavesurfer.js and d3.js to implement Praat display on the browser, somewhat extending the Tones and Breaks Indices (ToBI) framework by including beats and text to analyze rhythm and enjambments of verse."
 
 // Fetch data in frontmatter
@@ -26,7 +26,7 @@ const praatData = await praatResponse.json();
         height={64}
         minPxPerSec={110}
       /> -->
-      <Spectrogram 
+      <WaveSurfer 
         audioUrl="/poema/WCW_The_Red_Wheelbarrow_1945_LoC.wav"
         height={32}
         minPxPerSec={110}
@@ -35,7 +35,7 @@ const praatData = await praatResponse.json();
       <Praat 
         pitchData={pitchData}
         praatData={praatData}
-        waveformHeight={160} 
+        waveformHeight={32}
       />
     </div>
 
