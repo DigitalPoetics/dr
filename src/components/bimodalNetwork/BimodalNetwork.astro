@@ -37,8 +37,12 @@ const {
       return;
     }
 
+
     const d3 = window.d3;
-    const w = 700;
+    // width and height
+    const container = d3.select("#network");
+    const containerWidth = container.node().getBoundingClientRect().width;
+    const w = containerWidth;
     const h = window.innerHeight * 0.85;
 
     d3.select("#network").selectAll("*").remove();
@@ -47,6 +51,7 @@ const {
       .append("svg")
       .attr("width", w)
       .attr("height", h)
+      .style('background-color', `var(--viz-background)`)
       .style("border", `var(--image-border)`);
 
     const g = svg.append("g");
@@ -229,6 +234,6 @@ const {
 </script>
 
 <style>
-  #network { width: 100%; height: 85vh; margin: 1rem 0;}
+  #network { width: 100%; height: 85vh; margin: 1rem 0.5rem;}
   circle { cursor: pointer; }
 </style>
