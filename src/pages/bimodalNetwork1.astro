@@ -1,6 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import BimodalNetwork from '../components/bimodalNetwork/BimodalNetwork.astro';
+import BimodalNetwork1 from '../components/bimodalNetwork/BimodalNetwork1.astro';
 import nodesData from '../data/bimodalNetwork/nodes.json';
 import linksData from '../data/bimodalNetwork/links.json';
 
@@ -10,16 +10,18 @@ const description = "Bimodal network visualization of members and institutions";
 
 <BaseLayout pageTitle={pageTitle} description={description}>
   <p>Network Analysis of Postwar U.S. Poetry in the Age of Digital Audio Archives</p>
-    <BimodalNetwork 
+    <BimodalNetwork1 
     nodesData={nodesData}
     linksData={linksData}
     linkDistance={50}
     chargeStrength={-150}
+    centerStrength={1}
     chargeTheta={0.5}
     chargeDistanceMax={400}
     collisionStrength={0.8}
     collisionRadius={5}
-    collisionIterations={10}
+    collisionIterations={1}
     rotation={-50}
+    height={65}
   />
 </BaseLayout>

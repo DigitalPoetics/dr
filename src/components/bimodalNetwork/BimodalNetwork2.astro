@@ -1,53 +1,126 @@
 ---
 export interface Props {
+  id?: string;
   nodesData: any[];
   linksData: any[];
   linkDistance?: number;
   chargeStrength?: number;
+  centerStrength?: number;
   chargeTheta?: number;
   chargeDistanceMax?: number;
   collisionStrength?: number;
   collisionRadius?: number;
   collisionIterations?: number;
   rotation?: number;
+  height?: number;
+  filter?: { member?: string[], institution?: string[] };
 }
 
 const { 
+  id = "network",
   nodesData, 
   linksData, 
   linkDistance = 50,
   chargeStrength = -150,
+  centerStrength = 1,
   chargeTheta = 0.5,
   chargeDistanceMax = 400,
   collisionStrength = 0.8,
   collisionRadius = 5,
   collisionIterations = 10,
-  rotation = 0 
+  rotation = 0,
+  height = 85,
+  filter
 } = Astro.props;
+
+function filterData(nodes, links, filter) {
+  if (!filter) return { nodes, links };
+  
+  let memberLinks = [];
+  let institutionLinks = [];
+  
+  // Handle member filtering - get all links where member targets appear
+  if (filter.member?.length) {
+    const memberTargets = new Set();
+    links.forEach(link => {
+      if (filter.member.includes(link.source)) {
+        memberTargets.add(link.target);
+      }
+    });
+    memberLinks = links.filter(link => 
+      filter.member.includes(link.source) || memberTargets.has(link.target)
+    );
+  }
+  
+  // Handle institution filtering - simple target match
+  if (filter.institution?.length) {
+    institutionLinks = links.filter(link => 
+      filter.institution.includes(link.target)
+    );
+  }
+  
+  // Combine results
+  let filteredLinks = [];
+  if (filter.member?.length && filter.institution?.length) {
+    // Union of both filters
+    const combinedLinks = [...memberLinks, ...institutionLinks];
+    filteredLinks = combinedLinks.filter((link, index, self) => 
+      index === self.findIndex(l => l.source === link.source && l.target === link.target)
+    );
+  } else if (filter.member?.length) {
+    filteredLinks = memberLinks;
+  } else if (filter.institution?.length) {
+    filteredLinks = institutionLinks;
+  }
+  
+  const usedNodes = new Set();
+  filteredLinks.forEach(link => {
+    usedNodes.add(link.source);
+    usedNodes.add(link.target);
+  });
+  
+  const filteredNodes = nodes.filter(node => usedNodes.has(node.name));
+  
+  return { nodes: filteredNodes, links: filteredLinks };
+}
+
+const { nodes: filteredNodes, links: filteredLinks } = filterData(nodesData, linksData, filter);
 ---
 
-<div id="network"></div>
+<div id={id} class="network-container"></div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js" defer></script>
 
-<script define:vars={{ nodesData, linksData, linkDistance, chargeStrength, chargeTheta, chargeDistanceMax, collisionStrength, collisionRadius, collisionIterations, rotation }}>
+<script define:vars={{
+  id, 
+  nodesData: filteredNodes, 
+  linksData: filteredLinks, 
+  linkDistance, 
+  chargeStrength, 
+  centerStrength, 
+  chargeTheta, 
+  chargeDistanceMax, 
+  collisionStrength, 
+  collisionRadius, 
+  collisionIterations, 
+  rotation, 
+  height 
+}}>
   function initNetwork() {
     if (!window.d3) {
       setTimeout(initNetwork, 100);
       return;
     }
 
-
     const d3 = window.d3;
-    // width and height
-    const container = d3.select("#network");
+    const container = d3.select(`#${id}`);
     const containerWidth = container.node().getBoundingClientRect().width;
     const w = containerWidth;
-    const h = window.innerHeight * 0.85;
+    const h = window.innerHeight * (height / 100);
 
-    d3.select("#network").selectAll("*").remove();
+    d3.select(`#${id}`).selectAll("*").remove();
 
-    const svg = d3.select("#network")
+    const svg = d3.select(`#${id}`)
       .append("svg")
       .attr("width", w)
       .attr("height", h)
@@ -56,23 +129,20 @@ const {
 
     const g = svg.append("g");
 
-
-function translate(d) {
-  const svgElem = document.querySelector("#network svg");
-  const rectSize = svgElem.getBoundingClientRect();
-  const centerX = Math.floor((rectSize.width / 2) * 10000) / 10000;
-  const centerY = Math.floor((rectSize.height / 2) * 10000) / 10000;
-  
-  const relX = d.x - centerX;
-  const relY = d.y - centerY;
-  
-  const radians = (rotation * Math.PI) / 180;
-  
-  d.x = centerX + relX * Math.cos(radians) - relY * Math.sin(radians);
-  d.y = centerY + relX * Math.sin(radians) + relY * Math.cos(radians);
-}
-
-
+    function translate(d) {
+      const svgElem = document.querySelector(`#${id} svg`);
+      const rectSize = svgElem.getBoundingClientRect();
+      const centerX = Math.floor((rectSize.width / 2) * 10000) / 10000;
+      const centerY = Math.floor((rectSize.height / 2) * 10000) / 10000;
+      
+      const relX = d.x - centerX;
+      const relY = d.y - centerY;
+      
+      const radians = (rotation * Math.PI) / 180;
+      
+      d.x = centerX + relX * Math.cos(radians) - relY * Math.sin(radians);
+      d.y = centerY + relX * Math.sin(radians) + relY * Math.cos(radians);
+    }
 
     const simulation = d3.forceSimulation().alpha(1).nodes(nodesData);
 
@@ -85,7 +155,8 @@ function translate(d) {
       .theta(chargeTheta)
       .distanceMax(chargeDistanceMax);
 
-    const center_force = d3.forceCenter(w / 2, h / 2);
+    const center_force = d3.forceCenter(w / 2, h / 2)
+      .strength(centerStrength);
 
     const collision_force = d3.forceCollide()
       .strength(collisionStrength)
@@ -105,19 +176,17 @@ function translate(d) {
       link.target.linkCount++;
     });
 
-    // Add scaling here
     const memberNodes = nodesData.filter(d => d.type === "member");
     const institutionNodes = nodesData.filter(d => d.type !== "member");
 
     const memberExtent = d3.extent(memberNodes, d => d.linkCount || 0);
     const institutionExtent = d3.extent(institutionNodes, d => d.linkCount || 0);
 
-    const memberScale = d3.scaleLinear().domain(memberExtent).range([3, 10]);
-    const institutionScale = d3.scaleLinear().domain(institutionExtent).range([8, 50]);
+    const memberScale = d3.scaleLinear().domain(memberExtent).range([3, 8]);
+    const institutionScale = d3.scaleLinear().domain(institutionExtent).range([10, 30]);
 
-    const memberFontScale = d3.scaleLinear().domain(memberExtent).range([5, 12]);
-    const institutionFontScale = d3.scaleLinear().domain(institutionExtent).range([8, 35]);
-
+    const memberFontScale = d3.scaleLinear().domain(memberExtent).range([5, 15]);
+    const institutionFontScale = d3.scaleLinear().domain(institutionExtent).range([15, 30]);
 
     const linkedByIndex = {};
     nodesData.forEach((d, i) => linkedByIndex[i + "," + i] = 1);
@@ -194,13 +263,6 @@ function translate(d) {
 
     svg.call(d3.zoom().on("zoom", e => g.attr("transform", e.transform)));
 
-    // simulation.on("tick", () => {
-    //   link.attr("x1", d => translate(d.source).x).attr("y1", d => translate(d.source).y)
-    //       .attr("x2", d => translate(d.target).x).attr("y2", d => translate(d.target).y);
-    //   node.attr("cx", d => translate(d).x).attr("cy", d => translate(d).y);
-    //   text.attr("x", d => translate(d).x).attr("y", d => translate(d).y);
-    // });
-
     simulation.on("tick", () => {
       link.attr("x1", d => d.source.x).attr("y1", d => d.source.y)
           .attr("x2", d => d.target.x).attr("y2", d => d.target.y);
@@ -208,23 +270,21 @@ function translate(d) {
       text.attr("x", d => d.x).attr("y", d => d.y);
     });
 
-// Apply translation after simulation settles
-setTimeout(() => {
-  if (rotation !== 0) {
-    nodesData.forEach(translate);
-    link.attr("x1", d => d.source.x).attr("y1", d => d.source.y)
-        .attr("x2", d => d.target.x).attr("y2", d => d.target.y);
-    node.attr("cx", d => d.x).attr("cy", d => d.y);
-    text.attr("x", d => d.x).attr("y", d => d.y);
-  }
-}, 100);
-
+    setTimeout(() => {
+      if (rotation !== 0) {
+        nodesData.forEach(translate);
+        link.attr("x1", d => d.source.x).attr("y1", d => d.source.y)
+            .attr("x2", d => d.target.x).attr("y2", d => d.target.y);
+        node.attr("cx", d => d.x).attr("cy", d => d.y);
+        text.attr("x", d => d.x).attr("y", d => d.y);
+      }
+    }, 100);
   }
 
   initNetwork();
 </script>
 
 <style>
-  #network { width: 100%; height: 85vh; margin: 1rem 0.5rem;}
+  .network-container { width: 100%; margin: 2rem 0 2rem 0rem;}
   circle { cursor: pointer; }
 </style>
