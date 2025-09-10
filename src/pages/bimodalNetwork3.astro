@@ -1,0 +1,59 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import BimodalNetwork3 from '../components/bimodalNetwork/BimodalNetwork3.astro';
+import nodesData from '../data/bimodalNetwork/nodes.json';
+import linksData from '../data/bimodalNetwork/links.json';
+
+const pageTitle = "Network Visualization";
+const description = "Bimodal network visualization of members and institutions";
+---
+
+<BaseLayout pageTitle={pageTitle} description={description}>
+
+  <BimodalNetwork3 
+    id="bimodal-network"
+    networkType="bimodal"
+    display={true}
+    nodesData={nodesData}
+    linksData={linksData}
+    linkDistance={80}
+    chargeStrength={-200}
+    centerStrength={0.3}
+    chargeTheta={0.5}
+    chargeDistanceMax={250}
+    collisionStrength={0.5}
+    collisionRadius={1}
+    collisionIterations={1}
+    rotation={-60}
+    height={85}
+    memberNodeRange={[3, 8]}
+    institutionNodeRange={[10, 30]}
+    memberFontRange={[5, 10]}
+    institutionFontRange={[10, 30]}
+  />
+
+  <!-- <BimodalNetwork3 
+    id="member-network"
+    networkType="member"
+    nodesData={nodesData}
+    linksData={linksData}
+    height={85}
+    uniNodeRange={[5, 15]}
+    uniFontRange={[8, 14]}
+    uniStrokeRange={[0.5, 2.5]}
+    uniZoomScale={0.7}
+  /> -->
+
+  <BimodalNetwork3 
+    id="institution-network"
+    networkType="institution"
+    nodesData={nodesData}
+    linksData={linksData}
+    height={85}
+    rotation={-60}
+    uniNodeRange={[20, 45]}
+    uniFontRange={[20, 35]}
+    uniStrokeRange={[1, 10]}
+    uniZoomScale={0.3}
+  />
+</BaseLayout>
