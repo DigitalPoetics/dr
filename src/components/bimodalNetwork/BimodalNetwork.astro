@@ -56,50 +56,22 @@ const {
 
     const g = svg.append("g");
 
-    function translate(d) {
-      const centerX = w / 2;
-      const centerY = h / 2;
 
-      let x = d.x - centerX;
-      let y = d.y - centerY;
+function translate(d) {
+  const svgElem = document.querySelector("#network svg");
+  const rectSize = svgElem.getBoundingClientRect();
+  const centerX = Math.floor((rectSize.width / 2) * 10000) / 10000;
+  const centerY = Math.floor((rectSize.height / 2) * 10000) / 10000;
+  
+  const relX = d.x - centerX;
+  const relY = d.y - centerY;
+  
+  const radians = (rotation * Math.PI) / 180;
+  
+  d.x = centerX + relX * Math.cos(radians) - relY * Math.sin(radians);
+  d.y = centerY + relX * Math.sin(radians) + relY * Math.cos(radians);
+}
 
-      // Normalize rotation to 0–360
-      const normalized = ((rotation % 360) + 360) % 360;
-
-      // Use proportional logic to simulate rotation
-      const fraction = normalized / 360;
-
-      // Approximate rotation by stepping through a square path
-      // Each quarter represents 90°, so we interpolate along edges
-      let tx = x;
-      let ty = y;
-
-      if (fraction <= 0.25) {
-        // Top-right to bottom-right
-        tx = x + (y * 4 * fraction);
-        ty = y - (x * 4 * fraction);
-      } else if (fraction <= 0.5) {
-        // Bottom-right to bottom-left
-        const f = fraction - 0.25;
-        tx = x - (y * 4 * f);
-        ty = y - (x * 4 * f);
-      } else if (fraction <= 0.75) {
-        // Bottom-left to top-left
-        const f = fraction - 0.5;
-        tx = x - (y * 4 * f);
-        ty = y + (x * 4 * f);
-      } else {
-        // Top-left to top-right
-        const f = fraction - 0.75;
-        tx = x + (y * 4 * f);
-        ty = y + (x * 4 * f);
-      }
-
-      return {
-        x: tx + centerX,
-        y: ty + centerY
-      };
-    }
 
 
     const simulation = d3.forceSimulation().alpha(1).nodes(nodesData);
@@ -222,12 +194,31 @@ const {
 
     svg.call(d3.zoom().on("zoom", e => g.attr("transform", e.transform)));
 
+    // simulation.on("tick", () => {
+    //   link.attr("x1", d => translate(d.source).x).attr("y1", d => translate(d.source).y)
+    //       .attr("x2", d => translate(d.target).x).attr("y2", d => translate(d.target).y);
+    //   node.attr("cx", d => translate(d).x).attr("cy", d => translate(d).y);
+    //   text.attr("x", d => translate(d).x).attr("y", d => translate(d).y);
+    // });
+
     simulation.on("tick", () => {
-      link.attr("x1", d => translate(d.source).x).attr("y1", d => translate(d.source).y)
-          .attr("x2", d => translate(d.target).x).attr("y2", d => translate(d.target).y);
-      node.attr("cx", d => translate(d).x).attr("cy", d => translate(d).y);
-      text.attr("x", d => translate(d).x).attr("y", d => translate(d).y);
+      link.attr("x1", d => d.source.x).attr("y1", d => d.source.y)
+          .attr("x2", d => d.target.x).attr("y2", d => d.target.y);
+      node.attr("cx", d => d.x).attr("cy", d => d.y);
+      text.attr("x", d => d.x).attr("y", d => d.y);
     });
+
+// Apply translation after simulation settles
+setTimeout(() => {
+  if (rotation !== 0) {
+    nodesData.forEach(translate);
+    link.attr("x1", d => d.source.x).attr("y1", d => d.source.y)
+        .attr("x2", d => d.target.x).attr("y2", d => d.target.y);
+    node.attr("cx", d => d.x).attr("cy", d => d.y);
+    text.attr("x", d => d.x).attr("y", d => d.y);
+  }
+}, 100);
+
   }
 
   initNetwork();

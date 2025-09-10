@@ -9,6 +9,7 @@ const description = "Bimodal network visualization of members and institutions";
 ---
 
 <BaseLayout pageTitle={pageTitle} description={description}>
+  <p>Network Analysis of Postwar U.S. Poetry in the Age of Digital Audio Archives</p>
     <BimodalNetwork 
     nodesData={nodesData}
     linksData={linksData}
@@ -19,6 +20,6 @@ const description = "Bimodal network visualization of members and institutions";
     collisionStrength={0.8}
     collisionRadius={5}
     collisionIterations={10}
-    rotation={45}
-    />
+    rotation={-50}
+  />
 </BaseLayout>
