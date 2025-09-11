@@ -26,6 +26,8 @@ export interface Props {
   uniFontRange?: [number, number];
   uniStrokeRange?: [number, number];
   uniZoomScale?: number;
+  // Centrality metric for unimodal
+  centralityMetric?: "degree" | "betweenness";
 }
 
 const { 
@@ -54,7 +56,8 @@ const {
   uniNodeRange = [5, 20],
   uniFontRange = [8, 16],
   uniStrokeRange = [0.5, 3],
-  uniZoomScale = 0.6
+  uniZoomScale = 0.6,
+  centralityMetric = "degree"
 } = Astro.props;
 
 function convertToUnimodal(nodes, links, type) {
@@ -66,63 +69,67 @@ function convertToUnimodal(nodes, links, type) {
   );
   
   const validNodeNames = new Set(uniNodes.map(n => n.name));
-  const connectionMap = new Map();
   
+  // Build institution -> members mapping
+  const institutionMembers = new Map();
   links.forEach(link => {
     const source = link.source;
     const target = link.target;
     
-    if (targetType === "member") {
-      const member = nodes.find(n => n.name === source && n.type === "member");
-      const institution = nodes.find(n => n.name === target && n.type !== "member");
-      
-      if (member && institution && validNodeNames.has(member.name)) {
-        if (!connectionMap.has(institution.name)) {
-          connectionMap.set(institution.name, new Set());
-        }
-        connectionMap.get(institution.name).add(member.name);
-      }
-    } else {
+    if (targetType === "institution") {
       const member = nodes.find(n => n.name === source && n.type === "member");
       const institution = nodes.find(n => n.name === target && n.type !== "member");
       
       if (member && institution && validNodeNames.has(institution.name)) {
-        if (!connectionMap.has(member.name)) {
-          connectionMap.set(member.name, new Set());
+        if (!institutionMembers.has(institution.name)) {
+          institutionMembers.set(institution.name, new Set());
         }
-        connectionMap.get(member.name).add(institution.name);
+        institutionMembers.get(institution.name).add(member.name);
+      }
+    } else {
+      // Handle member projection similarly
+      const member = nodes.find(n => n.name === source && n.type === "member");
+      const institution = nodes.find(n => n.name === target && n.type !== "member");
+      
+      if (member && institution && validNodeNames.has(member.name)) {
+        if (!institutionMembers.has(member.name)) {
+          institutionMembers.set(member.name, new Set());
+        }
+        institutionMembers.get(member.name).add(institution.name);
       }
     }
   });
   
+  // Create links between nodes that share any connections
   const uniLinks = [];
   const linkWeights = new Map();
   
-  connectionMap.forEach((connectedNodes, connector) => {
-    const nodeArray = Array.from(connectedNodes).filter(name => validNodeNames.has(name));
-    for (let i = 0; i < nodeArray.length; i++) {
-      for (let j = i + 1; j < nodeArray.length; j++) {
-        const node1 = nodeArray[i];
-        const node2 = nodeArray[j];
-        const linkKey = [node1, node2].sort().join("-");
-        
-        if (!linkWeights.has(linkKey)) {
-          linkWeights.set(linkKey, 0);
-        }
-        linkWeights.set(linkKey, linkWeights.get(linkKey) + 1);
+  const nodeNames = Array.from(institutionMembers.keys());
+  for (let i = 0; i < nodeNames.length; i++) {
+    for (let j = i + 1; j < nodeNames.length; j++) {
+      const node1 = nodeNames[i];
+      const node2 = nodeNames[j];
+      const connections1 = institutionMembers.get(node1);
+      const connections2 = institutionMembers.get(node2);
+      
+      // Count shared connections
+      const sharedConnections = new Set([...connections1].filter(c => connections2.has(c)));
+      
+      if (sharedConnections.size > 0) {
+        const linkKey = [node1, node2].sort().join("|||");
+        linkWeights.set(linkKey, sharedConnections.size);
       }
     }
-  });
+  }
   
   linkWeights.forEach((weight, linkKey) => {
-    const [source, target] = linkKey.split("-");
-    if (validNodeNames.has(source) && validNodeNames.has(target)) {
-      uniLinks.push({ source, target, weight });
-    }
+    const [source, target] = linkKey.split("|||");
+    uniLinks.push({ source, target, weight });
   });
   
   return { nodes: uniNodes, links: uniLinks };
 }
+
 
 function filterData(nodes, links, filter) {
   if (!filter) return { nodes, links };
@@ -214,8 +221,138 @@ const shouldDisplay = networkType === "bimodal" ? display : true;
   uniNodeRange,
   uniFontRange,
   uniStrokeRange,
-  uniZoomScale
+  uniZoomScale,
+  centralityMetric
 }}>
+  function bfs(adj, start, end) {
+    const queue = [[start]];
+    const visited = new Set([start]);
+    
+    while (queue.length > 0) {
+      const path = queue.shift();
+      const node = path[path.length - 1];
+      
+      if (node === end) return path;
+      
+      for (const neighbor of adj[node] || []) {
+        if (!visited.has(neighbor)) {
+          visited.add(neighbor);
+          queue.push([...path, neighbor]);
+        }
+      }
+    }
+    return null;
+  }
+
+    function dijkstra(adj, start, end) {
+        const distances = {};
+        const previous = {};
+        const unvisited = new Set();
+        
+        Object.keys(adj).forEach(node => {
+            distances[node] = Infinity;
+            unvisited.add(node);
+        });
+        distances[start] = 0;
+        
+        while (unvisited.size > 0) {
+            const current = Array.from(unvisited).reduce((min, node) => 
+            distances[node] < distances[min] ? node : min
+            );
+            
+            if (current === end) break;
+            unvisited.delete(current);
+            
+            adj[current].forEach(neighbor => {
+            if (unvisited.has(neighbor.node)) {
+                const alt = distances[current] + neighbor.weight;
+                if (alt < distances[neighbor.node]) {
+                distances[neighbor.node] = alt;
+                previous[neighbor.node] = current;
+                }
+            }
+            });
+        }
+        
+        const path = [];
+        let current = end;
+        while (current) {
+            path.unshift(current);
+            current = previous[current];
+        }
+        
+        return path[0] === start ? path : [];
+        }
+
+
+  function calculateCentrality(nodes, links, metric) {
+    if (metric === "degree") {
+      nodes.forEach(node => {
+        node.linkCount = 0;
+        node.weightedDegree = 0;
+      });
+
+      links.forEach(link => {
+        const sourceNode = nodes.find(n => n.name === (typeof link.source === 'string' ? link.source : link.source.name));
+        const targetNode = nodes.find(n => n.name === (typeof link.target === 'string' ? link.target : link.target.name));
+        
+        if (sourceNode) {
+          sourceNode.linkCount++;
+          sourceNode.weightedDegree += (link.weight || 1);
+        }
+        if (targetNode) {
+          targetNode.linkCount++;
+          targetNode.weightedDegree += (link.weight || 1);
+        }
+      });
+
+        // Debug: Check for isolated nodes
+        const isolatedNodes = nodes.filter(n => n.weightedDegree === 0);
+        if (isolatedNodes.length > 0) {
+            console.log("Isolated nodes (0 degree):", isolatedNodes.map(n => n.name));
+        }
+
+      const result = nodes.map(n => ({ name: n.name, centrality: n.weightedDegree }));
+      console.log("Degree centrality:", result.slice(0, 80));
+      return result;
+        } else if (metric === "betweenness") {
+            const centrality = {};
+            nodes.forEach(n => centrality[n.name] = 0);
+            
+            const adj = {};
+            nodes.forEach(n => adj[n.name] = []);
+            links.forEach(link => {
+                const source = typeof link.source === 'string' ? link.source : link.source.name;
+                const target = typeof link.target === 'string' ? link.target : link.target.name;
+                const weight = 1 / (link.weight || 1);
+                adj[source].push({ node: target, weight });
+                adj[target].push({ node: source, weight });
+            });
+            
+            nodes.forEach(start => {
+                nodes.forEach(end => {
+                    if (start.name !== end.name) {
+                        const path = dijkstra(adj, start.name, end.name);
+                        if (path && path.length > 2) {
+                            path.slice(1, -1).forEach(node => centrality[node]++);
+                        }
+                    }
+                });
+            });
+            
+        // Square root transformation - gentler compression
+        const result = nodes.map(n => ({ 
+            name: n.name, 
+            centrality: Math.sqrt(centrality[n.name]) 
+        }));
+        console.log("Sqrt Betweenness centrality:", result.slice(0, 80));
+        return result;
+
+        }
+
+    }
+
+
   function initNetwork() {
     if (!window.d3) {
       setTimeout(initNetwork, 100);
@@ -313,19 +450,14 @@ const shouldDisplay = networkType === "bimodal" ? display : true;
         }
       });
 
-      // Apply zoom transform for unimodal
       g.attr("transform", `translate(${w/2}, ${h/2}) scale(${uniZoomScale}) translate(${-w/2}, ${-h/2})`);
 
-      nodesData.forEach(node => {
-        node.linkCount = 0;
-      });
-
-      linksData.forEach(link => {
-        const sourceNode = nodesData.find(n => n.name === (typeof link.source === 'string' ? link.source : link.source.name));
-        const targetNode = nodesData.find(n => n.name === (typeof link.target === 'string' ? link.target : link.target.name));
-        
-        if (sourceNode) sourceNode.linkCount++;
-        if (targetNode) targetNode.linkCount++;
+      // Calculate centrality for unimodal networks
+      const centralityData = calculateCentrality(nodesData, linksData, centralityMetric);
+      
+      centralityData.forEach(c => {
+        const node = nodesData.find(n => n.name === c.name);
+        if (node) node.centrality = c.centrality;
       });
 
       simulation.stop();
@@ -426,7 +558,7 @@ const shouldDisplay = networkType === "bimodal" ? display : true;
       });
 
     } else {
-      // UNIMODAL SCALING WITH PROPS
+      // UNIMODAL SCALING WITH CENTRALITY
       const linkedByIndex = {};
       nodesData.forEach((d, i) => linkedByIndex[i + "," + i] = 1);
       linksData.forEach(d => {
@@ -441,9 +573,9 @@ const shouldDisplay = networkType === "bimodal" ? display : true;
         nodePositions.set(node.name, { x: node.x, y: node.y });
       });
 
-      const nodeExtent = d3.extent(nodesData, d => d.linkCount || 0);
-      const uniNodeScale = d3.scaleLinear().domain(nodeExtent).range(uniNodeRange);
-      const uniFontScale = d3.scaleLinear().domain(nodeExtent).range(uniFontRange);
+      const centralityExtent = d3.extent(nodesData, d => d.centrality || 0);
+      const uniNodeScale = d3.scaleLinear().domain(centralityExtent).range(uniNodeRange);
+      const uniFontScale = d3.scaleLinear().domain(centralityExtent).range(uniFontRange);
 
       const weightExtent = d3.extent(linksData, d => d.weight || 1);
       const strokeScale = d3.scaleLinear().domain(weightExtent).range(uniStrokeRange);
@@ -498,49 +630,61 @@ const shouldDisplay = networkType === "bimodal" ? display : true;
         .data(nodesData)
         .enter()
         .append("circle")
-        .attr("r", d => uniNodeScale(d.linkCount || 0))
+        .attr("r", d => uniNodeScale(d.centrality || 0))
         .style("fill", networkType === "member" ? "#ffbd80" : "#8aded8")
         .attr("cx", d => d.x || 0)
         .attr("cy", d => d.y || 0)
-        .call(d3.drag()
-          .on("start", (e, d) => { d.fx = d.x; d.fy = d.y; })
-          .on("drag", (e, d) => { 
-            d.fx = e.x; 
-            d.fy = e.y;
-            d.x = e.x;
-            d.y = e.y;
-            nodePositions.set(d.name, { x: e.x, y: e.y });
-            
-            link.attr("x1", function(l) {
-              const sourcePos = nodePositions.get(typeof l.source === 'string' ? l.source : l.source.name);
-              return sourcePos ? sourcePos.x : 0;
-            })
-            .attr("y1", function(l) {
-              const sourcePos = nodePositions.get(typeof l.source === 'string' ? l.source : l.source.name);
-              return sourcePos ? sourcePos.y : 0;
-            })
-            .attr("x2", function(l) {
-              const targetPos = nodePositions.get(typeof l.target === 'string' ? l.target : l.target.name);
-              return targetPos ? targetPos.x : 0;
-            })
-            .attr("y2", function(l) {
-              const targetPos = nodePositions.get(typeof l.target === 'string' ? l.target : l.target.name);
-              return targetPos ? targetPos.y : 0;
-            });
-            
-            linkLabels.attr("x", function(l) {
-              const sourcePos = nodePositions.get(typeof l.source === 'string' ? l.source : l.source.name);
-              const targetPos = nodePositions.get(typeof l.target === 'string' ? l.target : l.target.name);
-              return ((sourcePos?.x || 0) + (targetPos?.x || 0)) / 2;
-            })
-            .attr("y", function(l) {
-              const sourcePos = nodePositions.get(typeof l.source === 'string' ? l.source : l.source.name);
-              const targetPos = nodePositions.get(typeof l.target === 'string' ? l.target : l.target.name);
-              return ((sourcePos?.y || 0) + (targetPos?.y || 0)) / 2;
-            });
-          })
-          .on("end", (e, d) => { d.fx = e.x; d.fy = e.y; }))
-        .on("click", (e, d) => {
+.call(d3.drag()
+  .on("start", (e, d) => {
+    // Don't set any fixed positions
+  })
+  .on("drag", (e, d) => { 
+    d.x = e.x;
+    d.y = e.y;
+    nodePositions.set(d.name, { x: e.x, y: e.y });
+    
+    // Update this node's position
+    d3.select(e.sourceEvent.target).attr("cx", e.x).attr("cy", e.y);
+    
+    // Update text for this node
+    text.filter(t => t.name === d.name).attr("x", e.x).attr("y", e.y);
+    
+    // Update all links
+    link.attr("x1", function(l) {
+      const sourcePos = nodePositions.get(typeof l.source === 'string' ? l.source : l.source.name);
+      return sourcePos ? sourcePos.x : 0;
+    })
+    .attr("y1", function(l) {
+      const sourcePos = nodePositions.get(typeof l.source === 'string' ? l.source : l.source.name);
+      return sourcePos ? sourcePos.y : 0;
+    })
+    .attr("x2", function(l) {
+      const targetPos = nodePositions.get(typeof l.target === 'string' ? l.target : l.target.name);
+      return targetPos ? targetPos.x : 0;
+    })
+    .attr("y2", function(l) {
+      const targetPos = nodePositions.get(typeof l.target === 'string' ? l.target : l.target.name);
+      return targetPos ? targetPos.y : 0;
+    });
+    
+    linkLabels.attr("x", function(l) {
+      const sourcePos = nodePositions.get(typeof l.source === 'string' ? l.source : l.source.name);
+      const targetPos = nodePositions.get(typeof l.target === 'string' ? l.target : l.target.name);
+      return ((sourcePos?.x || 0) + (targetPos?.x || 0)) / 2;
+    })
+    .attr("y", function(l) {
+      const sourcePos = nodePositions.get(typeof l.source === 'string' ? l.source : l.source.name);
+      const targetPos = nodePositions.get(typeof l.target === 'string' ? l.target : l.target.name);
+      return ((sourcePos?.y || 0) + (targetPos?.y || 0)) / 2;
+    });
+  })
+  .on("end", (e, d) => { 
+    // Don't set fixed positions - let nodes move freely
+  }))
+
+
+        
+          .on("click", (e, d) => {
           const clickedNode = d3.select(e.target);
           const nodeIndex = `node-${d.index}`;
           const isActive = clickedNode.classed("clicked");
@@ -581,7 +725,7 @@ const shouldDisplay = networkType === "bimodal" ? display : true;
         .data(nodesData)
         .enter()
         .append("text")
-        .attr("font-size", d => uniFontScale(d.linkCount || 0))
+        .attr("font-size", d => uniFontScale(d.centrality || 0))
         .text(d => d.name)
         .attr("text-anchor", "middle")
         .attr("dominant-baseline", "middle")
@@ -590,23 +734,22 @@ const shouldDisplay = networkType === "bimodal" ? display : true;
         .attr("y", d => d.y || 0);
     }
 
-        // ZOOM - Fixed for unimodal networks
-        if (networkType === "bimodal") {
-        svg.call(d3.zoom().on("zoom", e => {
-            g.attr("transform", e.transform);
-        }));
-        } else {
-        // For unimodal, preserve the base zoom scale
-        svg.call(d3.zoom().on("zoom", e => {
-            const userZoom = e.transform;
-            const baseScale = uniZoomScale;
-            const combinedScale = userZoom.k * baseScale;
-            
-            g.attr("transform", 
-            `translate(${w/2 + userZoom.x}, ${h/2 + userZoom.y}) scale(${combinedScale}) translate(${-w/2}, ${-h/2})`
-            );
-        }));
-        }
+    // ZOOM
+    if (networkType === "bimodal") {
+      svg.call(d3.zoom().on("zoom", e => {
+        g.attr("transform", e.transform);
+      }));
+    } else {
+      svg.call(d3.zoom().on("zoom", e => {
+        const userZoom = e.transform;
+        const baseScale = uniZoomScale;
+        const combinedScale = userZoom.k * baseScale;
+        
+        g.attr("transform", 
+          `translate(${w/2 + userZoom.x}, ${h/2 + userZoom.y}) scale(${combinedScale}) translate(${-w/2}, ${-h/2})`
+        );
+      }));
+    }
 
     setTimeout(() => {
       if (rotation !== 0) {

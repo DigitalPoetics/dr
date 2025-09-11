@@ -1,0 +1,69 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import BimodalNetwork4 from '../components/bimodalNetwork/BimodalNetwork4.astro';
+import nodesData from '../data/bimodalNetwork/nodes.json';
+import linksData from '../data/bimodalNetwork/links.json';
+
+const pageTitle = "Network Visualization";
+const description = "Bimodal network visualization of members and institutions";
+
+const memberFilter = []
+const institutionFilter= ["Bernstein_43 Poets_1985", 
+  "Bernstein_Language Sampler_1982", 
+  "McGann_Postmodern Poetries_1990", 
+  'Messerli_"Language" Poetries_1994', 
+  "Silliman_In the American Tree_1986", 
+  "Silliman_The Dwelling Place_1975", 
+  "Silliman_Realism_1982", 
+  "Sloan_Moving Borders_1998",
+  "Hoover_Postmodern American Poetry_1994", 
+  "Hoover_Postmodern American Poetry_2013",
+  "Nelson_Contemporary American Poetry_2015",
+  "Ramazani_Contemporary Poetry_2003",
+  "Swensen_American Hybrid_2009", 
+  "Halpern_The New Poetry Anthology_1975", 
+  "Smith_The Morrow Anthology_1985", 
+  "Dacey_Strong Measures_1986", 
+  "Finch_A Formal Feeling Comes_1994", 
+  "Jarman_Rebel Angels_1996", 
+  "Richman_The Direction of Poetry_1988", 
+  "Elliston", 
+  "PennSound", 
+  "Voca"
+]
+
+const institutionFilter2 = [
+  "Hoover_Postmodern American Poetry_1994", 
+  "Hoover_Postmodern American Poetry_2013",
+  "Nelson_Contemporary American Poetry_2015",
+  "Ramazani_Contemporary Poetry_2003",
+  "Swensen_American Hybrid_2009", 
+  "Halpern_The New Poetry Anthology_1975", 
+  "Smith_The Morrow Anthology_1985", 
+]
+
+---
+
+<BaseLayout pageTitle={pageTitle} description={description}>
+  <p>Network Analysis: Yifan Hu appromixation </p>
+    <BimodalNetwork4 
+      id="network1"
+      nodesData={nodesData}
+      linksData={linksData}
+      linkDistance={80}
+      chargeStrength={-200}
+      centerStrength={0.3}
+      chargeTheta={0.5}
+      chargeDistanceMax={250}
+      collisionStrength={0.5}
+      collisionRadius={1}
+      collisionIterations={1}
+      rotation={-120}
+      height={65}
+      memberNodeRange={[2, 6]}
+      institutionNodeRange={[8, 25]}
+      memberFontRange={[4, 12]}
+      institutionFontRange={[12, 25]}
+    />
+
+</BaseLayout>
