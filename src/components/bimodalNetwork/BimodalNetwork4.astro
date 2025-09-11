@@ -4,13 +4,16 @@ export interface Props {
   nodesData: any[];
   linksData: any[];
   linkDistance?: number;
+  linkStrength?: number;
   chargeStrength?: number;
-  centerStrength?: number;
   chargeTheta?: number;
   chargeDistanceMax?: number;
-  collisionStrength?: number;
+  centerStrength?: number;
   collisionRadius?: number;
-  collisionIterations?: number;
+  collisionStrength?: number;
+  alphaDecay?: number;
+  velocityDecay?: number;
+  maxIterations?: number;
   rotation?: number;
   height?: number;
   filter?: { member?: string[], institution?: string[] };
@@ -27,17 +30,20 @@ const {
   nodesData, 
   linksData, 
   linkDistance = 50,
-  chargeStrength = -150,
-  centerStrength = 1,
-  chargeTheta = 0.5,
-  chargeDistanceMax = 400,
+  linkStrength = 0.7,
+  chargeStrength = -300,
+  chargeTheta = 0.8,
+  chargeDistanceMax = 300,
+  centerStrength = 0.1,
+  collisionRadius = 8,
   collisionStrength = 0.8,
-  collisionRadius = 5,
-  collisionIterations = 10,
+  alphaDecay = 0.02,
+  velocityDecay = 0.6,
+  maxIterations = 1000,
   rotation = 0,
   height = 85,
   filter,
-    // Defaults for node and font ranges
+  // Node and font ranges
   memberNodeRange = [3, 8],
   institutionNodeRange = [10, 30],
   memberFontRange = [5, 15],
@@ -50,7 +56,6 @@ function filterData(nodes, links, filter) {
   let memberLinks = [];
   let institutionLinks = [];
   
-  // Handle member filtering - get all links where member targets appear
   if (filter.member?.length) {
     const memberTargets = new Set();
     links.forEach(link => {
@@ -63,17 +68,14 @@ function filterData(nodes, links, filter) {
     );
   }
   
-  // Handle institution filtering - simple target match
   if (filter.institution?.length) {
     institutionLinks = links.filter(link => 
       filter.institution.includes(link.target)
     );
   }
   
-  // Combine results
   let filteredLinks = [];
   if (filter.member?.length && filter.institution?.length) {
-    // Union of both filters
     const combinedLinks = [...memberLinks, ...institutionLinks];
     filteredLinks = combinedLinks.filter((link, index, self) => 
       index === self.findIndex(l => l.source === link.source && l.target === link.target)
@@ -106,14 +108,17 @@ const { nodes: filteredNodes, links: filteredLinks } = filterData(nodesData, lin
   id, 
   nodesData: filteredNodes, 
   linksData: filteredLinks, 
-  linkDistance, 
-  chargeStrength, 
-  centerStrength, 
-  chargeTheta, 
-  chargeDistanceMax, 
-  collisionStrength, 
-  collisionRadius, 
-  collisionIterations, 
+  linkDistance,
+  linkStrength,
+  chargeStrength,
+  chargeTheta,
+  chargeDistanceMax,
+  centerStrength,
+  collisionRadius,
+  collisionStrength,
+  alphaDecay,
+  velocityDecay,
+  maxIterations,
   rotation, 
   height,
   memberNodeRange,
@@ -159,36 +164,34 @@ const { nodes: filteredNodes, links: filteredLinks } = filterData(nodesData, lin
       d.y = centerY + relX * Math.sin(radians) + relY * Math.cos(radians);
     }
 
-    const simulation = d3.forceSimulation().alpha(1).nodes(nodesData);
+    // Standard simulation setup
+    const simulation = d3.forceSimulation(nodesData)
+      .alpha(1)
+      .alphaDecay(alphaDecay)
+      .velocityDecay(velocityDecay);
 
+    // Link force
     const link_force = d3.forceLink(linksData)
       .id(d => d.name)
-      .distance(linkDistance);
+      .distance(linkDistance)
+      .strength(linkStrength);
 
+    // Charge force
     const charge_force = d3.forceManyBody()
       .strength(chargeStrength)
       .theta(chargeTheta)
       .distanceMax(chargeDistanceMax);
 
+    // Center force
     const center_force = d3.forceCenter(w / 2, h / 2)
       .strength(centerStrength);
 
-    const collision_force = d3.forceCollide()
-      .strength(collisionStrength)
-      .radius(collisionRadius)
-      .iterations(collisionIterations);
 
-    simulation
-      .force("charge", charge_force)
-      .force("center", center_force)
-      .force("collision", collision_force)
-      .force("link", link_force);
-
-    linksData.forEach(link => {
-      if (!link.source.linkCount) link.source.linkCount = 0;
-      if (!link.target.linkCount) link.target.linkCount = 0;
-      link.source.linkCount++;
-      link.target.linkCount++;
+    // Calculate linkCount on actual nodes
+    nodesData.forEach(node => {
+        node.linkCount = linksData.filter(link => 
+            link.source === node.name || link.target === node.name
+        ).length;
     });
 
     const memberNodes = nodesData.filter(d => d.type === "member");
@@ -202,6 +205,23 @@ const { nodes: filteredNodes, links: filteredLinks } = filterData(nodesData, lin
 
     const memberFontScale = d3.scaleLinear().domain(memberExtent).range(memberFontRange);
     const institutionFontScale = d3.scaleLinear().domain(institutionExtent).range(institutionFontRange);
+
+    // Collision force
+    const collision_force = d3.forceCollide()
+        .radius(d => {
+            const nodeRadius = d.type === "member" ? memberScale(d.linkCount || 0) : institutionScale(d.linkCount || 0);
+            return nodeRadius + collisionRadius;
+        })      
+        .strength(collisionStrength)
+        .iterations(3);
+
+
+
+    simulation
+      .force("link", link_force)
+      .force("charge", charge_force)
+      .force("center", center_force)
+      .force("collision", collision_force);
 
     const linkedByIndex = {};
     nodesData.forEach((d, i) => linkedByIndex[i + "," + i] = 1);
@@ -235,7 +255,7 @@ const { nodes: filteredNodes, links: filteredLinks } = filterData(nodesData, lin
         const clickedNode = d3.select(e.target);
         const nodeIndex = `node-${d.index}`;
         const isActive = clickedNode.classed("clicked");
-        
+
         if (!isActive) {
           clickedNode.classed("clicked", true);
           node.each(function(n) {
@@ -268,7 +288,7 @@ const { nodes: filteredNodes, links: filteredLinks } = filterData(nodesData, lin
     const text = g.append("g")
       .selectAll("text")
       .data(nodesData)
-      .enter()
+      .enter()// Collision force
       .append("text")
       .attr("font-size", d => d.type === "member" ? memberFontScale(d.linkCount || 0) : institutionFontScale(d.linkCount || 0))
       .text(d => d.name)

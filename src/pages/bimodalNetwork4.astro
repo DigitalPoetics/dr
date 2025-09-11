@@ -4,8 +4,8 @@ import BimodalNetwork4 from '../components/bimodalNetwork/BimodalNetwork4.astro'
 import nodesData from '../data/bimodalNetwork/nodes.json';
 import linksData from '../data/bimodalNetwork/links.json';
 
-const pageTitle = "Network Visualization";
-const description = "Bimodal network visualization of members and institutions";
+const pageTitle = "Yifan Hu Layout with d3-force";
+const description = "D3.js force simulations appromixation of Yifan Hu Network Layout";
 
 const memberFilter = []
 const institutionFilter= ["Bernstein_43 Poets_1985", 
@@ -45,25 +45,30 @@ const institutionFilter2 = [
 ---
 
 <BaseLayout pageTitle={pageTitle} description={description}>
-  <p>Network Analysis: Yifan Hu appromixation </p>
-    <BimodalNetwork4 
-      id="network1"
-      nodesData={nodesData}
-      linksData={linksData}
-      linkDistance={80}
-      chargeStrength={-200}
-      centerStrength={0.3}
-      chargeTheta={0.5}
-      chargeDistanceMax={250}
-      collisionStrength={0.5}
-      collisionRadius={1}
-      collisionIterations={1}
-      rotation={-120}
-      height={65}
-      memberNodeRange={[2, 6]}
-      institutionNodeRange={[8, 25]}
-      memberFontRange={[4, 12]}
-      institutionFontRange={[12, 25]}
-    />
-
+  <p>
+    <a href="https://d3js.org/d3-force" target="_blank">D3.js force simulations</a>
+    appromixation of Yifan Hu Network Layout
+  </p>
+  <BimodalNetwork4 
+    id="yifan-hu-network"
+    nodesData={nodesData}
+    linksData={linksData}
+    linkDistance={60}
+    linkStrength={0.6}
+    chargeStrength={-50}
+    chargeTheta={0.8}
+    chargeDistanceMax={400}
+    centerStrength={0.1}
+    collisionRadius={5}
+    collisionStrength={0.7}
+    alphaDecay={0.0228}
+    velocityDecay={0.5}
+    maxIterations={1000}
+    rotation={-60}
+    height={65}
+    memberNodeRange={[1, 5]}
+    institutionNodeRange={[3, 25]}
+    memberFontRange={[2, 6]}
+    institutionFontRange={[5, 12]}
+  />
 </BaseLayout>
