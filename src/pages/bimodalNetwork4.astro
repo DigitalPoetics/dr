@@ -3,6 +3,8 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import BimodalNetwork4 from '../components/bimodalNetwork/BimodalNetwork4.astro';
 import nodesData from '../data/bimodalNetwork/nodes.json';
 import linksData from '../data/bimodalNetwork/links.json';
+import audioNodesData from '../data/bimodalNetwork/audioNodes.json';
+import audioLinksData from '../data/bimodalNetwork/audioLinks.json';
 
 const pageTitle = "Network Visualization";
 const description = "D3.js force simulations appromixation of Yifan Hu Network Layout";
@@ -58,9 +60,11 @@ const institutionFilter2 = [
     chargeStrength={-50}
     chargeTheta={0.8}
     chargeDistanceMax={400}
-    centerStrength={0.1}
+    centerStrength={0.05}
     collisionRadius={5}
     collisionStrength={0.7}
+    forceXStrength={null}
+    forceYStrength={null}
     alphaDecay={0.04}
     maxIterations={1000}
     rotation={-60}
@@ -70,5 +74,33 @@ const institutionFilter2 = [
     memberFontRange={[2, 6]}
     institutionFontRange={[5, 12]}
     clickedNodes={{nodes: ["Rita Dove"], color: "blue"}}
+  />
+
+  <p>
+    Fruchterman Reingold Layout
+  </p>
+  <BimodalNetwork4 
+    id="fruchterman-reingold"
+    nodesData={audioNodesData}
+    linksData={audioLinksData}
+    linkDistance={50}
+    linkStrength={0.6}
+    chargeStrength={-40}
+    chargeTheta={0.8}
+    chargeDistanceMax={500}
+    centerStrength={null}
+    collisionRadius={5}
+    collisionStrength={0.7}
+    forceXStrength={0.4}
+    forceYStrength={0.4}
+    alphaDecay={0.04}
+    maxIterations={500}
+    rotation={-60}
+    height={65}
+    memberNodeRange={[1, 5]}
+    institutionNodeRange={[15, 25]}
+    memberFontRange={[2, 6]}
+    institutionFontRange={[8, 15]}
+    clickedNodes={{nodes: ["John Ashbery"], color: "red"}}
   />
 </BaseLayout>

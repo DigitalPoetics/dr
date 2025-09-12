@@ -1,0 +1,9912 @@
+[
+  {
+    "source": "Edward Abbey",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "David Abel",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Emily Abendroth",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Dannie Abse",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Vito Acconci",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Samuel Ace",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Kathy Acker",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Kathy Acker",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Diane Ackerman",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Tomomi Adachi",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Tomomi Adachi",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Helen Adam",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Kim Addonizio",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Etel Adnan",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Adonis (Ali Ahmad Said Esber)",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Vidhu Aggarwal",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Kathleen Aguero",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Ai",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Conrad Aiken",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Anna Akhmatova",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Francisco X. Alarc\u00f3n",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Francisco X. Alarc\u00f3n",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Pierre Albert-Birot",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Anne-Marie Albiach",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Rosa Alcal\u00e1",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Ammiel Alcalay",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Sandra Alcosser",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Claribel Alegr\u00eda",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Charles Alexander",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Charles Alexander",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Elizabeth Alexander",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Will Alexander",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Sherman Alexie",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Agha Shahid Ali",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Kazim Ali",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Taha Muhammad Ali",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Dick Allen",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Marcel Alocco",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Altagor (Jean Vernier)",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Howard Altmann",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Julia Alvarez",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Yehuda Amichai",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Yehuda Amichai",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Charles Amirkhanian",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Lisa Ampleman",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Barbara Anderson",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Beth Anderson",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Beth Anderson",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Daniel Anderson",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Jon Anderson",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Lee Anderson",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Carl Andre",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Bruce Andrews",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Brian Ang",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Renee Angle",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "David Antin",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "David Antin",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Sinan Antoon",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Gloria E. Anzald\u00faa",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Gullaume Apollinaire",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Gullaume Apollinaire",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Karel Appel",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Philip Appleman",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Louis Aragon",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Jos\u00e9 Angel Araguz",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Pierre Andr\u00e9 Arcand",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Homero Aridjis",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Rae Armantrout",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Rae Armantrout",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Jean (Hans) Arp",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Cynthia Arrieu-King",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Antonin Artaud",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Sarah Arvio",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "L. S. Asekoff",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "John Ashbery",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "John Ashbery",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "John Ashbery",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "John Ashbery",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Robert Ashley",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Robert Ashley",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "The Audio Players",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Paul Auster",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Oana Avasilichioaei",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Jimmy Santiago Baca",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Julianna Baggott",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "David Baker",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "David Baker",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Houston Baker",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "John Baldessari",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Noah Baldino",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Hugo Ball",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Giacomo Balla",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Stephanie Balzer",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Mary Jo Bang",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Amiri Baraka (LeRoi Jones)",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Amiri Baraka (LeRoi Jones)",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Lloren\u00e7 Barber",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Coleman Barks",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Dennis Barone",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Jim Barnes",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Catherine Barnett",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Vincent Barras",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Rafael Barreto-Rivera",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Ed Barrett",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Judith Barrington",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Polina Barskova",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "R. L. Barth",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Jennifer Bartlett",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Gary Barwin",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Michael Basinski",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Michael Basinski",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Natalie Basinski",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Jean-Michel Basquiat",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Alan Basting",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Jean Baudrillard",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Erica Baum",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Bob Baumeister",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Eric Baus",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Charles Baxter",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Byrd Baylor",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Dan Beachy-Quick",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Paul Beatty",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Herman Beavers",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Julian Beck",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Phillipe Beck",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Samuel Beckett",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Joshua Beckman",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Cal Bedient",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Susan Bee",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Patricia Beer",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Daryl Ross Begay",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Dao Bei",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Erik Belgum",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Josh Bell",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Marvin Bell",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Dodie Bellamy",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Martine Bellen",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Naomi Benaron",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Molly Bendall",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Michael Benedikt",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Michael Benedikt",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "John M. Bennett",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Louise Bennett",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Steve Benson",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Aeron Bergman",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Caroline Bergvall",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Caroline Bergvall",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Caroline Bergvall",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Bill Berkson",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Elizabeth Bernays",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Deborah Bernhardt",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Alan Bernheimer",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Jordan Bernsmeier",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Charles Bernstein",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Charles Bernstein",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Charles Bernstein",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Felix Bernstein",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Jesse Steven Bernstein",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Jake Berry",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Wendell Berry",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Anselm Berrigan",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Edmund Berrigan",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Ted Berrigan",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Ted Berrigan",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "John Berryman",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Mei-mei Berssenbrugge",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Mei-mei Berssenbrugge",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "James Bertolino",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Jen Bervin",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Jen Bervin",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "John Betjeman",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Reginald Betts",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Frank Bidart",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "bill bissett",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "bill bissett",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Sherwin Bitsui",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Black Took Collective",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Paul Blackburn",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Julien Blaine",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "William Blake",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Brian Blanchfield",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Alberto Blanco",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Robin Blaser",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Julia Bloch",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Jaap Blonk",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Jaap Blonk",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Maureen Bloomfield",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Robert Bly",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Robert Bly",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Umberto Boccioni",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Andrew Bode-Lang",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Murray Bodo",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Louise Bogan",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Don Bogen",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Michelle Boisseau",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Christian B\u00f6k",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Christian B\u00f6k",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Christian B\u00f6k",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Eavan Boland",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "April Bolton",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Chuck Bolton",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Roger Bonair-Agard",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Sean Bonney",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "R\u00e9gis Bonvicino",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Dexter L. Booth",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Jorge Luis Borges",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Charles Borkhuis",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Marie Boroff",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Amaranth Borsuk",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Amaranth Borsuk",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Marianne Boruch",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Jean Fran\u00e7ois Bory",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Daniel Borzutzky",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Jenny Boully",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Lisa Bowden",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Pual Bowles",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "George Bowering",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Anne Boyer",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Jules Boykoff",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Ana Bo\u017ei\u010devi\u0107",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Joe Brainard",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Joe Brainard",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Kamau Brathwaite",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Jean-Louis Brau",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "James Braziel",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Bertolt Brecht",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "George Brecht",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Jason Bredle",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Karen Brennan",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Andr\u00e9 Breton",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Breyten Breytenbach",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Susan Briante",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Robert Bringhurst",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Geoffrey Brock",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Brian Brodeur",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Jim Brodey",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Joseph Brodsky",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "William Bronk",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "William Bronk",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Marcel Broodthaers",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Donna Brook",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Evelin Brosin",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Nicole Brossard",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Olga Broumas",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Brandon Brown",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Jason Brown",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Lee Ann Brown",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Lee Ann Brown",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Rosellen Brown",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Sterling A. Brown",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Colin Browne",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Laynie Browne",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Laynie Browne",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Michael Dennis Browne",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Michael Brownstein",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "James Bryant",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Tisa Bryant",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Camille Bryen",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Melissa Buckheit",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Vincent Buckley",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Harold Budd",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Basil Bunting",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Charles Bukowski",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Christopher Burawa",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Wendy Burk",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Michael Burkard",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Michael Burkard",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Kenneth Burke",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Michelle Burke",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "David Burliuk",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Deborah Burnham",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Stanley Burnshaw",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "William S. Burroughs",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Scott Burton",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "David Buuck",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Greta Byrum",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Darryl Keola Cabacungan",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Louis Cabri",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Olivier Cadiot",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "John Cage",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "John Cale",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Scott Cairns",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Joseph Campana",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Rafael Campo",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Rafael Campo",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Criss E. Cannady",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Francesco Cangiullo",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Nick Carb\u00f3",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Henry Carlile",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Teresa Carmody",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Brian Carpenter",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Julie Carr",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Julie Carr",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Ulises Carri\u00f3n",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Hayden Carruth",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Jefferson Carter",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Raymond Carver",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Cyrus Cassells",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Nina Cassian",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Turner Cassity",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Jose Luis Castillejo",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Rosemary Catacalos",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Paul Celan",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Thomas Centolella",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Thomas Centolella",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Joseph Ceravolo",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Joseph Ceravolo",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Lorna Dee Cervantes",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Miles Champion",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Sylvia Chan",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Victoria Chang",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Michael Chant",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Marie-Louise Chapelle",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Jos Charles",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Denise Ch\u00e1vez",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "cris cheek",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "cris cheek",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Ching-In Chen",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Maxine Chernoff",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Maxine Chernoff",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Simon Chikovani",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Abigail Child",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Marilyn Chin",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Henri Chopin",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Gi\u014drgos Chouliaras",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Margaret Christakos",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Lonely Christopher",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "John Ciardi",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Sandra Cisneros",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Clairaudient",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Paula Claire",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Amy Clampitt",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Neil Claremon",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Thomas A. Clark",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Jennifer Clarvoe",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Carlfriedrich Claus",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Pat Clifford",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Lucille Clifton",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Claude Closky",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Joshua Clover",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Joshua Clover",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Bob Cobbing",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Bob Cobbing",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Jean Cocteau",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Robert P. Tristram Coffin",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Christopher Cokinos",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Kate Colby",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Todd Colby",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Barbara Cole",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Barbara Cole",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Henri Cole",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Norma Cole",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Peter Cole",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Wanda Coleman",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Wanda Coleman",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "John Coletti",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Michael Collier",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Tyronne Collier",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Billy Collins",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Martha Collins",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Stephen Collis",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "CAConrad",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "CAConrad",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Matthew Conley",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Geraldine Connolly",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Peter Cooley",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Clark Coolidge",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Clark Coolidge",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Dennis Cooper",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Jane Cooper",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "William Corbett",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Martin Corless-Smith",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Cid Corman",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Alfred Corn",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Philip Corner",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Eduardo C. Corral",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Cecilia Corrigan",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Gregory Corso",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Jayne Cortez",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Eduardo Costa",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Gerald Costanzo",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Brenda Coultas",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Bruce Covey",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Hart Crane",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Marisa Crawford",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Robert Creeley",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Robert Creeley",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Robert Creeley",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Robert Creeley",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Quentin Crisp (Denis Charles Pratt)",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Aleister Crowley",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Caroline Crumpacker",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Victor Hern\u00e1ndez Cruz",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Michael Cuddihy",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Peter Culley",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Barbara Cully",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "e.e. cummings",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "James Cummins",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Richard Cummins",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Brent Cunningham",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Allen Curnow",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Wystan Curnow",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Wystan Curnow",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Felipe Cussen",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Tytus Czy\u017cewski",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Beverly Dahlen",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Beverly Dahlen",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "David Daiches",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Salvador Dal\u00ed",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Maria Damon",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Hanne Darboven",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Tina Darragh",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Joe Darwish",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "David Daniels",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Kate Daniels",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Nora Marks Dauenhauer",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Richard Dauenhauer",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Daniel Davidson",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Michael Davidson",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Donald Davie",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Alan Davies",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Kevin Davies",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Allison Davis",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Allison Pitinii Davis",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Jon Davis",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Jordan Davis",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Lydia Davis",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Lydia Davis",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Olena Kalytiak Davis",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Peter Davison",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Erica Dawson",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Fielding Dawson",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Jean Day",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Cecil Day Lewis",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Augusto de Campos",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Haroldo de Campos",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Haroldo de Campos",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Michel Deguy",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Timothy Dekin",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Walter De Maria",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Jacques Demierre",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Alison Hawthorne Deming",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Richard Deming",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Edwin Denby",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Carl Dennis",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Carl Dennis",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Fortunato Depero",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Jeff Derksen",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Toi Derricotte",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Robert Desnos",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Danielle Cadena Deulen",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Babette Deutsch",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Thomas Devaney",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Christopher Dewdney",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Emily Dickinson",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "LaTasha N. Nevada Diggs",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Jim Dine",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Linh Dinh",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Ray DiPalma",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "W. S. Di Piero",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Natalie Diaz",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "DJ Renegade",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Greg Djanikian",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Dubravka Djuri\u0107",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Tim Dlugos",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Lucia Dlugoszewski",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Stephen Dobyns",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Fabio Doctorovich",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Owen Dodson",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Sandra Doller",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "David Dominguez",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Joseph Donahue",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Timothy Donnelly",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Denis Donoghue",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Thom Donovan",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "H.D.",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Stacy Doris",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Edward Dorn",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Edward Dorn",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Edward Dorn",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Mark Doty",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Mark Doty",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Franz Douskey",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Rita Dove",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Rita Dove",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Sarah Dowling",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Brandon Downing",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Buck Downs",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Arkadii Dragomoschenko",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Jane Draycott",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Lynne Dreyer",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Johanna Drucker",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "John Drury",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Stella Pope Duarte",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Norman Dubie",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Marcel Duchamp",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Fran\u00e7ois Dufr\u00eane",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Alan Dugan",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Denise Duhamel",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Jas H. Duke",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Robert Duncan",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Robert Duncan",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Camille T. Dungy",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "David Dunn",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Stephen Dunn",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Stephen Dunn",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Rachel Blau DuPlessis",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Marcella Durand",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Patrick F. Durgin",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Paul Dutton",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Paul Dutton",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Craig Dworkin",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Craig Dworkin",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Bob Dylan",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Cornelius Eady",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Tom Early",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Richard Eberhart",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Richard Eberhart",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Frederick Eckman",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "George Economou",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Russell Edson",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "kari edwards",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Desmond Egan",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Gretel Ehrlich",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Eduardo Jorge Eielson",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Larry Eigner",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Nancy Eimers",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Nikolaus Einhorn",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "George P. Elliott",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Thomas Sayers Ellis",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Thomas Sayers Ellis",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Richard Elman",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Kenward Elmslie",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Laura Elrick",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Paul \u00c9luard",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Lynn Emanuel",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Lynn Emanuel",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Claudia Emerson",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Margarita Engle",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Theodore Enslin",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Elaine Equi",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Zhang Er",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Max Ernst",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Escodam\u00e9 (Michele Leskovic)",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Clayton Eshleman",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Clayton Eshleman",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Mart\u00edn Espada",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Eduardo Espina",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Jean-Michel Espitallier",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Carlos Estevez",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "George Evans",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Peter Everwine",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Richard Exner",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Kathy Fagan",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Larry Fagin",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Tarfia Faizullah",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Karen Falkenstrom",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Brian Fallon",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Farfa (Vittorio Osvaldo Tommasini)",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Steven Farmer",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Peg Farrar",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Dan Farrell",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Forough Farrokhzad",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Raymond Federman",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Raymond Federman",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Alan Feldman",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Alan Feldman",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Holly Feldman Karapetkova",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Beth Ann Fennelly",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Lawrence Ferlinghetti",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Lawrence Ferlinghetti",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Pablo Armando Ferna\u0301ndez",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Rosario Ferr\u00e9",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "John Ficociello",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Edward Field",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Edward Field",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Thalia Field",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Adam Fieled",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Robert Filliou",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Annie Finch",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Norman Finkelstein",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Norman Finkelstein",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Alec Finlay",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Karen Finley",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Nikky Finney",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Norman Fischer",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Norman Fischer",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Allen Fisher",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Robert Fitterman",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Robert Fitterman",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Blas Falconer",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Douglas Flaherty",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Bob Flanagan",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Jane Flanders",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Flatus Vocal Trio",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Roland Flint",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Nick Flynn",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Adelle Foley",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Jack Foley",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Giovanni Fontana",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Carolyn Forch\u00e9",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Carolyn Forch\u00e9",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Terri Ford",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Ed Foster",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Tonya Foster",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "The Four Horsemen",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "The Four Horsemen",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Dominique Fourcade",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Ter\u00e9 Fowler-Chapman",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Rebecca Morgan Frank",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Kathleen Fraser",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Kathleen Fraser",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Stephen Frech",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Michael Fried",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Ben Friedlander",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Carol Frost",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Robert Frost",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Robert Frost",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Gene Frumkin",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Gene Frumkin",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Greg Fuchs",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Joanna Fuhrman",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Heather Fuller",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "R. Buckminster Fuller",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Alice Fulton",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Alice Fulton",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Allison Funk",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Chris Funkhouser",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Jeannine Hall Gailey",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Kristen Gallagher",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Tess Gallagher",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Tess Gallagher",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Odilia Galv\u00e1n Rodr\u00edguez",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "James Galvin",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Eric Gamalinda",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Forrest Gander",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Forrest Gander",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Sergei Gandlevsky",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Diana Garc\u00eda",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Enrique Garc\u00eda Naranjo",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Suzanne Gardinier",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Drew Gardner",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Isabella Gardner",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "John Gardner",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "John Gardner",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Ruth Gardner",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Rita Garitano",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Ilse Garnier",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Pierre Garnier",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Jessica Garratt",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "George Garrett",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "George Garrett",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "J\u00f6rgen Gassilewski",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Ross Gay",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "H\u00e9l\u00e8ne Gel\u00e8ns",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Jean Genet",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Dan Gerber",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Susan Gevirtz",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Reginald Gibbons",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Regie Gibson",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Andr\u00e9\u00a0Gide",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Lawrence Giffin",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Alan Gilbert",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Jack Gilbert",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Abubakar Gimba",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Carmen Gim\u00e9nez Smith",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Madeline Gins",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Allen Ginsberg",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Allen Ginsberg",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Allen Ginsberg",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Allen Ginsberg",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Dana Gioia",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "John Giorno",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "John Giorno",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Nikki Giovanni",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Nikki Giovanni",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Aracelis Girmay",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "C. S. Giscombe",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "C. S. Giscombe",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "David Gitin",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Peter Gizzi",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Diane Glancy",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Jesse Glass",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Louise Gl\u00fcck",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Louise Gl\u00fcck",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Robert Gl\u00fcck",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Vasilisk Gnedov",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "John Godfrey",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Albert Goldbarth",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Albert Goldbarth",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Albert Goldbarth",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Beckian Fritz Goldberg",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Eli Goldblatt",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Judith Goldman",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Judith Goldman",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Kenneth Goldsmith",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Kenneth Goldsmith",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Kenneth Goldsmith",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Dmitry Golynko",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Eugen Gomringer",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Odi Gonzales",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Ray Gonzalez",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Rigoberto Gonz\u00e1lez",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Yanko Gonz\u00e1lez",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Loren Goodman",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Nada Gordon",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Michael Gottlieb",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Andrew Grace",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Dan Graham",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Jorie Graham",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Jorie Graham",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "K. Lorraine Graham",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Tony Green",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Alvin Greenberg",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Lily Greenham",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Peter Greenham",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Kate Greenstreet",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Ted Greenwald",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Linda Gregerson",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Linda Gregerson",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Linda Gregg",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Linda Gregg",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Robert Grenier",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Eamon Grennan",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Bill Griffiths",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Eliza Griswold",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "David Grubbs",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "David Grubbs",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Gerry Grubbs",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Barbara Guest",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Paul Guest",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Jeffrey Gene Gundy",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Thom Gunn",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Thom Gunn",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Elena Genrikhovna Guro",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Annie Guthrie",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Pierre Guyotat",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Brion Gysin",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "H2SO4 Group",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Marilyn Hacker",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Marilyn Hacker",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Pamela White Hadas",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Drum Hadley",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Richard Hague",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Kimiko Hahn",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "John Haines",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "John Haines",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Rebecca Hale",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Donald Hall",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Donald Hall",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Donald Hall",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "James Allen Hall",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "James M. Hall",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Anna Hallberg",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Mark Halperin",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Daniel Halpern",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Rob Halpern",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Thomas Hammons",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Alex Hamburger",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Patricia Hampl",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Nathalie Handal",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Al Hansen",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Sten Hanson",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Joy Harjo",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "William Harmon",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Michael S. Harper",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Michael S. Harper",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Duriel E. Harris",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Francine Harris",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "William J. Harris",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Jeffrey Harrison",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Jim Harrison",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Carla Harryman",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Matt Hart",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Matt Hart",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Matthea Harvey",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Yona Harvey",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Yona Harvey",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Lee Harwood",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Michael Haslam",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Robert Hass",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "James Hathaway",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "William Hathaway",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Raoul Hausmann",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "V\u00e1clav Havel",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Christian Hawkey",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Bobbie Louise Hawkins",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Terrance Hayes",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Terrance Hayes",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Eloise Klein Healy",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Seamus Heaney",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Seamus Heaney",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Allison Adelle Hedge Coke",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Travis Hedge Coke",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Kevin Hehir",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Bernard Heidsieck",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Cole Heinowitz",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Lyn Hejinian",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Lyn Hejinian",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Piero Heliczer",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Richard Hell",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Michael Heller",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Hans G. Helms",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Brent Hendricks",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Michael S. Hennessey",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Barbara Henning",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "C.C. Hennix",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Adrian Henri",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Niki Herd",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Juan Felipe Herrera",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Juan Felipe Herrera",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Mari Herreras",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Bob Hershon",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Bob Hicok",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Juan Hidalgo",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Dick Higgins",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Mitch Highfill",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Conrad Hilberry",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Roberta J. Hill",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Brenda Hillman",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Brenda Hillman",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Rolando Hinojosa",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Rozalie Hirs",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Jane Hirshfield",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Jane Hirshfield",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "George Hitchcock",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "George Hitchcock",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Tony Hoagland",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Emmanuel Hocquard",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "\u00c5ke Hodell",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Jen Hofer",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Jen Hofer",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Daniel Hoffman",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Linda Hogan",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Cynthia Hogue",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Cynthia Hogue",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Susan Holbrook",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Harmony Holiday",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Benjamin Hollander",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "John Hollander",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Anselm Hollo",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Bob Holman",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Bob Holman",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Janet Holmes",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "K. J. Holmes",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Karl Holmqvist",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Miroslav Holub",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Stewart Home",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Janet Homer",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Cathy Park Hong",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Garrett Kaoru Hongo",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Garrett Kaoru Hongo",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Ku-ualhoa Meyer Ho'omanawanui",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Paul Hoover",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Randall Horton",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Richard Howard",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Richard Howard",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Fanny Howe",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Fanny Howe",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Marie Howe",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Susan Howe",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Yunte Huang",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Jo\u00ebl Hubaut",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Vicki Hucker",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Andrew Hudgins",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Robert Hudzik",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Richard Huelsenbeck",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Richard Hugo",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Richard Hugo",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Christine Hume",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "T. R. Hummer",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Herbert Huncke",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Erica Hunt",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Rochelle Hurt",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Aldous Huxley",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Ivan Ignatiev",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "David Ignatow",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "David Ignatow",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Brenda Iijima",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Lawson Fusao Inada",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "P. Inman (Peter Inman)",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Eug\u00e8ne Ionesco",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Kenneth Irby",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "John T. Irwin",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Mark Irwin",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Isidore Isou",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Hiromi It\u014d",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Richard Jackson",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Lowell Jaeger",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Peter Jaeger",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Elizabeth James",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Scheherazade Jamshed",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Ernst Jandl",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Maja Jantar",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Laura Jaramillo",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Mark Jarman",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Lisa Jarnot",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Randall Jarrell",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Bruno Jasie\u0144ski",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Paolo Javier",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Lesley Jenike",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Philip Jenks",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Laura Jensen",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Carrie Jerrell",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Rex Lee Jim",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Bengt Emil Johnson",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Denis Johnson",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "James Weldon Johnson",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Ronald Johnson",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Raymond Edward \"Ray\" Johnson",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Thomas Johnson",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Patricia Spears Jones",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Rodney Jones",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Rodney Jones",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "A. Van Jordan",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "June Jordan",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Pierre Joris",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Andrew Joron",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Andrew Joron",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Allison Joseph",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Lawrence Joseph",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Fady Joudah",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "James Joyce",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Donald Justice",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Donald Justice",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Summi Kaipa",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Vasilij Kamenskij",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Ilya Kaminsky",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Wassily Kandinsky",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Bhanu Kapil",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Bhanu Kapil",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Adeena Karasick",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Ariana-Sophia M. Kartsonis",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Laura Kasischke",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Richard Katrovas",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Joy Katz",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Leandro Katz",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Vincent Katz",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "erica kaufman",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Douglas Kearney",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Douglas Kearney",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Claudia Keelan",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "George Keithley",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Brigit Pegeen Kelly",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Robert Kelly",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Dolores Kendrick",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "X. J. Kennedy",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "X. J. Kennedy",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Jack Kerouac",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Daniil Kharms",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Velimir Khlebnikov",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Velimir Khlebnikov",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Khin Aung Aye",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Faye Kicknosway",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Michael Kiefel",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Kevin Killian",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Sean Killian",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Anyssa Kim",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Myung Mi Kim",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Suji Kwock Kim",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Burt Kimmelman",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Amy King",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Basil King",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Galway Kinnell",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "John Kinsella",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "John Kinsella",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Thomas Kinsella",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "David Kirby",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Roy Kiyooka",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Carolyn Kizer",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Carolyn Kizer",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Becca Klaver",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Ish Klein",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "August Kleinzahler",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "William Kloefkorn",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Etheridge Knight",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Etheridge Knight",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Milan Kn\u00ed\u017e\u00e1k",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "John Knoepfle",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Bill Knott (Saint Geraud)",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Bill Knott (Saint Geraud)",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Alison Knowles",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Christopher Knowles",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Cybele Knowles",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Caroline Knox",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Jennifer L. Knox",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Kenneth Koch",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Kenneth Koch",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Kenneth Koch",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Rodney Koeneke",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "John Koethe",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Julia Koets",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Yusef Komunyakaa",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Yusef Komunyakaa",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Yusef Komunyakaa",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Ted Kooser",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Sarah Kortemeier",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Jim Krailler",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Aaron Kramer",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Maxine Kumin",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Maxine Kumin",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Alexei Kruchenykh",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Alexei Kruchenykh",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Damon Krukowski",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Damon Krukowski",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "George Kuchar",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Frank Kuenstler",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Aaron Kunin",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Tuli Kupferberg",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Tuli Kupferberg",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Bill Kushner",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Joel Kuszai",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Stephen Kuusisto",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Greg Kuzma",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Joanne Kyger",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Ilmar Laaban",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Larissa Lai",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Michael Lally",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Philip Lamantia",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Doug Lang",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Norbert Lange",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Gerrit Lansing",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Robert Lanzit",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Jos\u00e9e Lapeyr\u00e8re",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Katherine Larson",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Dorothea Lasky",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Dorothea Lasky",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "James Laughlin",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Ann Lauterbach",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Ann Lauterbach",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Dorianne Laux",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Gregory Laynor",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Hank Lazer",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "David Lazar",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Mary Leader",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Timothy Leary",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Sophia Le Fraga",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Joseph Lease",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Jean-Jacques Lebel",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "David Lee",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Kyoo Lee",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Li-Young Lee",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Sueyeun Juliette Lee",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "David Lehman",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Leevi Lehto",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Gary Leising",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Maurice Lema\u00eetre",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Amy Lemmon",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "John Lennon",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Genine Lentine",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Tom Leonard",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Ben Lerner",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Ben Lerner",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "S\u00e9bastien Lespinasse",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Rika Lesser",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Shara Lessley",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Denise Levertov",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Denise Levertov",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Dana Levin",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Dana Levin",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Philip Levine",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Philip Levine",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Larry Levis",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Rachel Levitsky",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Andrew Levy",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Marguerite Levy-Feibelman",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Zhimin Li",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Elizabeth Libbey",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Elizabeth Libbey",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "George Life",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Enrique Lihn",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Gary Copeland Lilley",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Kate Lilley",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Ada Lim\u00f3n",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Ada Lim\u00f3n",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Tan Lin",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Tan Lin",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Rebecca Lindenberg",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Vachel Lindsay",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Zack Linmark",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Timothy Liu",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "John Logan",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "William Logan",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Christopher Logue",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "James Longenbach",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "James Longenbach",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Alan Loney",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Layli Long Soldier",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "George Looney",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Phillip Lopate",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Tony Lopez",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Tedi L\u00f3pez Mills",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Daniel Lopez",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Pura L\u00f3pez-Colom\u00e9",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Arrigo Lora-Totino",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Robert Lowell",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Robert Lowell",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Walter Lowenfels",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Mina Loy",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Erik Loya-Tolano",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Gherasim Luca",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Lydia Lunch",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Dawn Lundy Martin",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Lynn Luria-Sukenick",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Thomas Lux",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Thomas Lux",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Kimberly Lyons",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Thomas Lynch",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Zeyar Lynn",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Willard Maas",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "George MacBeth",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Karen Mac Cormack",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Jackson Mac Low",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Jackson Mac Low",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Hugh MacDiarmid (C. M. Grieve)",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Cynthia Macdonald",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Cynthia Macdonald",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Dan Machlin",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Nathaniel Mackey",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Nathaniel Mackey",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Joanie Mackowski",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Angus MacLise",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Michael Magee",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Eric Magrane",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Ren\u00e9 Magritte",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Nancy Mairs",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Amit Majumdar",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Gerard Malanga",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Kazimir Malevich",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Pejk Malinovski",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "David Malouf",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Andr\u00e9 Malraux",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Donato Mancini",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Tom Mandel",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Osip Mandelstham",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Chris Mann",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Maurice Manning",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Lionel Marchetti",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Carl Marcum",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "F. T. Marinetti",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Daphne Marlatt",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Jake Marmer",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Camille Martin",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Dawn Lundy Martin",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Dawn Lundy Martin",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Demetria Martinez",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "J. Michael Martinez",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Valerie Mart\u00ednez",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Cate Marvin",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Carole Maso",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Chris Mason",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "David Mason",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Joseph Massey",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Edgar Lee Masters",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Adrian Matejka",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Harry Mathews",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Cleopatra Mathis",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Khaled Mattawa",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "William Matthews",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "John Matthias",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "John Matthias",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Farid Matuk",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Farid Matuk",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Kristi Maxwell",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Kristi Maxwell",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Jamaal May",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Vladimir Mayakovsky",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Vladimir Mayakovsky",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Bernadette Mayer",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Bernadette Mayer",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Hansj\u00f6rg Mayer",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Friederike Mayr\u00f6cker",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Matt McBride",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Steve McCaffery",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Steve McCaffery",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Pattie McCarthy",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Michael McClure",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Howard McCord",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Jenn McCreary",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Thomas McEvilley",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Michael McFee",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Jerome McGann",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Medbh McGuckian",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Heather McHugh",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Heather McHugh",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Stephen McLaughlin",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Brian McMann",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Mark McMorris",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Sandra McPherson",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Sandra McPherson",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Taylor Mead",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Joyelle McSweeney",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Deborah Meadows",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Semezdin Mehmedinovic",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Jonas Mekas",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Maria Melendez",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "David Meltzer",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Miguel M. M\u00e9ndez",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Philadelpho Menezes",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Kiril Merdzhanski",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "James Merrill",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "W. S. Merwin",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "W. S. Merwin",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Sharon Mesmer",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Douglas Messerli",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Bert Meyers",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Robert Mezey",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Robert Mezey",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Eugenio Miccini",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Henri Michaux",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Peter Middleton",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Edna St. Vincent Millay",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Jane Miller",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Jim Wayne Miller",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Katherrine Toy Miller",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Richard Miller",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Stephen Paul Miller",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Wayne Miller",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Neil Mills",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Drew Milne",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Joe Milutis",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Enzo Minarelli",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Carol Mirakove",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Susan Mitchell",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Gary Mitchner",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Czes\u0142aw Mi\u0142osz",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Czes\u0142aw Mi\u0142osz",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Ange Mlinko",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Stanis\u0142aw M\u0142odo\u017ceniec",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "K. Silem Mohammad",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Felipe S. Molina",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Grace Molisa",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "N. Scott Momaday",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Franz Mon",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Harriet Monroe",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Jonathan Beck Monroe",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Ander Monson",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Nick Montfort",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Richard O. Moore",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Pat Mora",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Cherr\u00ede Moraga",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Pete Morgan",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Christian Morgenstern",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Laura Moriarty",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Toma\u0301s Q. Mori\u0301n",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Debrah Morkun",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Hilda Morley",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Nelson Morpurgo",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Tracie Morris",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Tracie Morris",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Tracie Morris",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Rusty Morrison",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Sin\u00e9ad Morrissey",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Anna Moschovakis",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Myriam Moscona",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Howard Moss",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Fred Moten",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Fred Moten",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Stephen Motika",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Eric Mottram",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Erin Mour\u00e9",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Jennifer Moxley",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Jack Mueller",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Lisel Mueller",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Aryanil Mukherjee",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Paul Muldoon",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Harryette Mullen",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Laura Mullen",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Laura Mullen",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Jim Murphy",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Sheila E. Murphy",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Les Murray",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Carol Muske-Dukes",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Eileen Myles",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Kristin Naca",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Sawako Nakayasu",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Sawako Nakayasu",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Maurizio Nannucci",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Nora Naranjo Morse",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Ogden Nash",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Jerome Clifford Nathanson",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Tenney Nathanson",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Tenney Nathanson",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Otto Nebel",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Joseph Nechvatal",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Melanie Neilson",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Christopher Nelson",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Kent Nelson",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Kristen Nelson",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Maggie Nelson",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Maggie Nelson",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Marilyn Nelson",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Richard Nelson",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Murat Nemet-Nejat",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "John Newlove",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Aimee Nezhukumatathil",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Hieu Nguyen",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Hoa Nguyen",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "bpNichol (Barrie Phillip Nichol)",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "bpNichol (Barrie Phillip Nichol)",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Mel Nichols",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Lorine Niedecker",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "A. L. Nielsen",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "R. Henry Nigl",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Seiichi Niikuni",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "John Frederick Nims",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Paul Noble",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Urayo\u00e1n Noel",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Bernard No\u00ebl",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Noigandres",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Collier Nogues",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Eir\u00edkur \u00d6rn Nor\u00f0dahl",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Eir\u00edkur \u00d6rn Nor\u00f0dahl",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Charles North",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Nothingists (Nichevoki)",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Alice Notley",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Alice Notley",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Ladislav Nov\u00e1k",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Mark Nowak",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Victor Nubla",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Naomi Shihab Nye",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Naomi Shihab Nye",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Dylan Nyoukis",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Michael O'Brien",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Gabriel Ojeda-Sague",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "sean o'huigin",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Meghan O'Rourke",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Kevin Oberlin",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Sharon Olds",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Sharon Olds",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Jeni Olin",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Akilah Oliver",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Akilah Oliver",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Mary Oliver",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Redell Olsen",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Charles Olson",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "William Olsen",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Yoko Ono",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Onophon",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Bea Opengart",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "George Oppen",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Steve Orlen",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Steve Orlen",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Gregory Orr",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Gregory Orr",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Judith Ortiz Cofer",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Simon J. Ortiz",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Jena Osman",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Eugene Ostashevsky",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Maggie O'Sullivan",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Gil Ott",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Maureen Owen",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Owen Sound",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Owen Sound",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Rochelle Owens",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Robert Pack",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Ron Padgett",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Nam June Paik",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Julie Paegle",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Aldo Palazzeschi",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Grace Paley",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Michael Palmer",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Michael Palmer",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Michael Palmer",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Greg Pape",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Frank Parker",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Morgan Parker",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Alexi Parshchikov",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Pier Paolo Pasolini",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Luigi Pasotelli",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Linda Pastan",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Linda Pastan",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Boris Pasternak",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Oskar Pastior",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Kenneth Patchen",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Julie Ezelle Patton",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Julie Ezelle Patton",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Molly Peacock",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Ted Pearson",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "A.R. Penck (Ralf Winkler)",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Roland Penrose",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Georges Perec",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Jorge Perednik",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Bob Perelman",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Bob Perelman",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Craig Santos Perez",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Craig Santos Perez",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Omar P\u00e9rez",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "John Perrault",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Sarah Perrier",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Chuck Perrin",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Nathaniel Perry",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Robert Peters",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Trace Peterson",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Arthur P\u00e9tronio",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Kiki Petrosino",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Simon Pettet",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Gene Pfeffer",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "M. NourbeSe Philip",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Carl Phillips",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Carl Phillips",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Jayne Anne Phillips",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Logan Phillips",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Rodney Phillips",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Ergo Phizmiz",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Tommy Pico",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Anat Pick",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Marge Piercy",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Robert Pinsky",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Robert Pinsky",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Nick Piombino",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Harold Pinter",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Vanessa Place",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Vanessa Place",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "John Pluecker",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Edgar Allan Poe",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Julien Poirier",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "David Polk",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Harry Polkinhorn",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Katha Pollitt",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Genesis P-Orridge",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Bern Porter",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Bern Porter",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Lisa Porter",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Anne Portugal",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Ezra Pound",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Ezra Pound",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "D. A. Powell",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Ad\u00e9lia Prado",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "President of the United Hearts",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Kristin Prevallet",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "John Press",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Brett Price",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "John T. Price",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Larry Price",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Christian Prigent",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Dmitri Prigov",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Randy Prunty",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Wyatt Prunty",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Lia Purpura",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "George Quasha",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Khadijah Queen",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Raymond Queneau",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Leroy V. Quintana",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Valerina Quintana",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Sun Ra",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Lawrence Raab",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Carl Rakosi",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "A. K. Ramanujan",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Emma Ramey",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Camille Rankine",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Claudia Rankine",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Claudia Rankine",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "John Crowe Ransom",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Barbara Ras",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Jed Rasula",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Stephen Ratcliffe",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Michael Rattee",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "David Rattray",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Angela Rawlings",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Tom Raworth",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "David Ray",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Judy Ray",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Herbert Read",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Terri Reardon",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "George Reavey",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Selena Reder",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Srikanth Reddy",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Peter Redgrove",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Erik Reece",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Brian Reed",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Ishmael Reed",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Ishmael Reed",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Roger Reeves",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Alastair Reid",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Ariana Reines",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Ariana Reines",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Linda Reinfeld",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "James Reiss",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Naomi Replansky",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Michael Rerick",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Michael Rerick",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Ariel Resnikoff",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Lisa Ress",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Joan Retallack",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Charles Reznikoff",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Donald Revell",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Jewell Parker Rhodes",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Boyd Rice",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Adrienne Rich",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Adrienne Rich",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Adrienne Rich",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Frances Richard",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Deborah Richards",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Mary Caroline Richards",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Boyer Rickel",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Karen Rigby",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Cia Rinne",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Timothy M. Riordan",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Alberto \u00c1lvaro R\u00edos",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Soleida Rios",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "David Rivard",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Marina Rivera",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Ed Roberson",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Lisa Robertson",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Margie F. Robertson",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Mary Elsie Robertson",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Robin Robertson",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Elizabeth Robinson",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Kit Robinson",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Stephen Rodefer",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Aleida Rodr\u00edguez",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Reina Mar\u00eda Rodr\u00edguez",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Luis J. Rodriguez",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Bill Roecker",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Pattiann Rogers",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Matthew Rohrer",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Gonzalo Romero",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "William Pitt Root",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Sigur R\u00f3s",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Patrick Rosal",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Patrick Rosal",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Michael J. Rosen",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Liz Rosenberg",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Kim Rosenfield",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Polly Rosenwaike",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Norman Rosten",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Matthew Rotando",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Mimmo Rotella",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Dieter Roth",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Jerome Rothenberg",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Jerome Rothenberg",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Jerome Rothenberg",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Jacques Roubaud",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Claude Royet-Journoud",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Olga Rozanova",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Michael Ruby",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Mary Ruefle",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Mary Ruefle",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Gerhard R\u00fchm",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Muriel Rukeyser",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Linwood Rumney",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Arthur Russell",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Vern Rutsala",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Michael Ryan",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Michael Ryan",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Peter Sacks",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Ira Sadoff",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Benjamin Alire S\u00e1enz",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Nanao Sakaki",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Trish Salah",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Trish Salah",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Toma\u017e \u0160alamun",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Alejandra Salinas",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Frank Samperi",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Lisa Samuels",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Sonia Sanchez",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Kaia Sand",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "David Sanders",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Carl Sandburg",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Steve Sanfield",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Carles Santos",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Sherod Santos",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Aram Saroyan",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Leslie Scalapino",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Leslie Scalapino",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Jennifer Scappettone",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Susan Fromberg Schaeffer",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Paul Scheerbart",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Valeri Scherstjanoi",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Kyle Schlesinger",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Emily Schneider",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "David Schloss",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Michael Schmidt",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Gjertrud Schnackenberg",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Carolee Schneeman",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Zachary Schomburg",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Danniel Schoonebeek",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Kathy Lou Schultz",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Philip Schultz",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Susan M. Schultz",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Joshua Schuster",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "James Schuyler",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Leonard Schwartz",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Armand Schwerner",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Kurt Schwitters",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Kurt Schwitters",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Gail Scott",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Joanna Scott",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Peter Seaton",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Rebecca Seiferle",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Jesse Seldess",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Ramon Sender",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Igor Severyanin",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Lynne C. Shaffer",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Fatemeh Shams",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Natalie Shapero",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Alan Shapiro",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Alan Shapiro",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "David Shapiro",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Harvey Shapiro",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Karl Shapiro",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Solmaz Sharif",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Prageeta Sharma",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Brenda Shaughnessy",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Brenda Shaughnessy",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Anne Shaw",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Lytle Shaw",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Nancy Shaw",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Eve Shelnutt",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Richard Shelton",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Richard Shelton",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Frank Sherlock",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "James Sherry",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "David Shevin",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Mieko Shiomi",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Brandon Shimoda",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Aleda Shirley",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Evie Shockley",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Evie Shockley",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Jane Shore",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Peggy Shumaker",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Aaron Shurin",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Eleni Sikelianos",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Eleni Sikelianos",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Richard Siken",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Jon Silkin",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Jon Silkin",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Leslie Marmon Silko",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Ron Silliman",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Ron Silliman",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Wilmar Silva",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Charles Simic",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Charles Simic",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Charles Simic",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Jim Simmerman",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Jim Simmerman",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Maurya Simon",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Louis Simpson",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Caroline Sinavaiana",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Johanna Skibsrud",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Alexander Skidan",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Jonathan Skinner",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Jonathan Skinner",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Myra Sklarew",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Arthur Smith",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Dave Smith",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Dave Smith",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Hazel Smith",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Maggie Smith",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Patricia Smith",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Patti Smith",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Rod Smith",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Tracy K. Smith",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "W. D. Snodgrass",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "W. D. Snodgrass",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Gary Snyder",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Gary Snyder",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Gustaf Sobin",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Oki Sogumi",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Miriam Solan",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Arthur Solway",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Jason Sommer",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Piotr Sommer",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Joseph Somoza",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Gary Soto",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Gary Soto",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Carlos Soto-Rom\u00e1n",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Philippe Soupault",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Marcia Southwick",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Juliana Spahr",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Juliana Spahr",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Adriano Spatola",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Patricia Spears Jones",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Stephen Spender",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Stephen Spender",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Jack Spicer",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Jack Spicer",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Elizabeth Spires",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "sprechbohrer",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "David St. John",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Primus St. John",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Christopher Stackhouse",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "William Stafford",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "William Stafford",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Jonathan Stalling",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "George Stanley",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Rick Stansberger",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Maura Stanton",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Maura Stanton",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Brian Kim Stefans",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Gertrude Stein",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Varvara Stepanova",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Ruth Stephan",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Anatol Stern",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Gerald Stern",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "James Thomas Stevens",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "James Thomas Stevens",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Wallace Stevens",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Pamela Stewart",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Susan Stewart",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Anne Stevenson",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Margo Taft Stever",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "James Still",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Allison Stine",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Ruth Stone",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Terry Stokes",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Mark Strand",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Mark Strand",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Demetrio Strato",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Peter Straub",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "John Streamas",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Stephanie Strickland",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Chris Stroffolino",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Lucien Stryk",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Shawn Sturgeon",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Gary Sullivan",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Rod Summers",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Terese Svoboda",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Mary Swander",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Robert Sward",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Cole Swensen",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Cole Swensen",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "May Swenson",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Arthur Sze",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Sherri Szeman",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Mary Szybist",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Mary Szybist",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Stacy Szymaszek",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Genevieve Taggard",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "John Taggart",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Lehua Taitano",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Ross Talarico",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Luci Tapahonso",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Luci Tapahonso",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Michelle Taransky",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Anne Tardos",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Anne Tardos",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Nathaniel Tarn",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "James Tate",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "James Tate",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Yoko Tawada",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Cecil Taylor",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Henry Taylor",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Kymberly Taylor",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Ghedalia Tazartes",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Michelle Tea",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Teresia Teaiwa",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Brian Teare",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Brian Teare",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Dennis Tedlock",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Roberto Tejada",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Fiona Templeton",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Sh\u00fbji Terayama",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Igor Terentiev",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "D. M. Thomas",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Lorenzo Thomas",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "George Thompson",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Scott Thurston",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Orchid Tierney",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Richard Tillinghast",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Liz Tilton",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "John Timpane",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Will Toedtman",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Laura Tohe",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "TC Tolbert",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Melvin Tolson",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Charles Tomlinson",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Joseph Torchia",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "M\u00f3nica de la Torre",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "M\u00f3nica de la Torre",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Edwin Torres",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Edwin Torres",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Rodrigo Toscano",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Rodrigo Toscano",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Tony Towle",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Estela Portillo Trambley",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Tomas Transtr\u00f6mer",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "John Tranter",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Quincy Troupe",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Paul Trupin",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Marina Tsvetaeva",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Alberta Turner",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Brian Turner",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Frederick Turner",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Chase Twichell",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Chris Tysh",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Tristan Tzara",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Leslie Ullman",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Spring Ulmer",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Unamunos Quorum",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Lawrence Upton",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Luis Alberto Urrea",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Pamela Uschuk",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "David UU",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Jean Valentine",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Jean Valentine",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Paolo Valesio",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Alexandra Van de Kamp",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Mark Van Doren",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Mona Van Duyn",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Don Van Vliet (Captain Beefheart)",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Sarah Vap",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Edgard Var\u00e8se",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Nico Vassilakis",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Caetano Veloso",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Ken Venick",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Charles Verey",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Vickie V\u00e9rtiz",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Dziga Vertov",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Boris Vian",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Juliana Gray Vice",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Patrizia Vicinelli",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Paul Violi",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Divya Victor",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Cecilia Vicu\u00f1a",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Cecilia Vicu\u00f1a",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Gerald Vizenor",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Willy Vlautin",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Danielle Vogel",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Erkin Vohidov",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Ellen Bryant Voigt",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Ellen Bryant Voigt",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Paul de Vree",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Samuel Vriezen",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Ocean Vuong",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Dan Waber",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "David Wagner",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "James Wagner",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "David Wagoner",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "David Wagoner",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Fred Wah",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "F. Keith Wahle",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "John Wain",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Mar\u00eda Elena Wakamatsu",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Diane Wakoski",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Diane Wakoski",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Derek Walcott",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Anne Waldman",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Anne Waldman",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Anne Waldman",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "G.C. Waldrep",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Keith Waldrop",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Keith Waldrop",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Rosmarie Waldrop",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Rosmarie Waldrop",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Cody Walker",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Nicole Walker",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Joni Wallace",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Mark Wallace",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Robert Wallace",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Dana Ward",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Diane Ward",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Alli Warren",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Rosanna Warren",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Robert Penn Warren",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Lewis Warsh",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Lewis Warsh",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Michael Waters",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Ellen Dor\u00e9 Watson",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Aleksander Wat",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Mike Watt",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Barrett Watten",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Tom Weatherly",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Matthew Weaver",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Ramona Weeks",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Hannah Weiner",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Hannah Weiner",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Joshua Weiner",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Roger Weingarten",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Roger Weingarten",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Jillian Weise",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Mark Weiss",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "David Weissmann",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "James Welch",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Lew Welch",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Marjorie Welish",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Mac Wellman",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Albert Wendt",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Larry Wendt",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Darren Wershler-Henry",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "July Westhale",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Philip Whalen",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Orlando White",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Simone White",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Gregory Whitehead",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Ruth Whitman",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Reed Whittemore",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Marcus Wicker",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Dallas E. Wiebe",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "John Wieners",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Richard Wilbur",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Richard Wilbur",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Erin Wilcox",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Peter Wild",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Caki Wilkinson",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "John Wilkinson",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Joshua Marie Wilkinson",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Stephen Willey",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "C. K. Williams",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "C. K. Williams",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "C. K. Williams",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Emmett Williams",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "John A. Williams",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Jonathan Williams",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Lisa Williams",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Ruth Williams",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Terry Tempest Williams",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Tyrone Williams",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Tyrone Williams",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Tyrone Williams",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "William Carlos Williams",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "William Carlos Williams",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Elizabeth Willis",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Eleanor Wilner",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Eliot Khalil Wilson",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Keith Wilson",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Peter Lamborn Wilson",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Robert Anton Wilson",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Ronaldo V. Wilson",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Ronaldo V. Wilson",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Catherine Wing",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Enrique Winter",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Jonah Winter",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Sara Wintz",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Yolanda Wisher",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "David Wojahn",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Larry Woiwode",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "George Wolff",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "John Wolff",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Adolf W\u00f6lfli",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Gil J. Wolman",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "C. D. Wright",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "C. D. Wright",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "C. D. Wright",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Charles Wright",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Charles Wright",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Franz Wright",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "James Wright",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Jay Wright",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Robert Wrigley",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Gregorz Wroblewski",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Mark Wunderlich",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Lois-Ann Yamanaka",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Jeffrey Yang",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Matvei Yankelevich",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "John Yau",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "William Butler Yeats",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "William Butler Yeats",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Heriberto Y\u00e9pez",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Sergei Yesenin",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Monica Youn",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Al Young",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Al Young",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "David Young",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Dean Young",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Karl Young",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Kevin Young",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "La Monte Young",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Marguerite Young",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Stephanie Young",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Ray A. Young Bear",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Timothy Yu",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Adam Zagajewski",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Daisy Zamora",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Felicia Zamora",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Matthew Zapruder",
+    "target": "Elliston",
+    "weight": 1
+  },
+  {
+    "source": "Andrew Zawacki",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Andrew Zawacki",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Maged Zaher",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Il'Ja Zdanevic",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Lila Zemborain",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Ofelia Zepeda",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Mara Zibens",
+    "target": "UbuWeb",
+    "weight": 1
+  },
+  {
+    "source": "Paul Zimmer",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Rachel Zolf",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Rachel Zucker",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Rachel Zucker",
+    "target": "Voca",
+    "weight": 1
+  },
+  {
+    "source": "Louis Zukofsky",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Magdalena Zurawski",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Jason Zuzga",
+    "target": "PennSound",
+    "weight": 1
+  },
+  {
+    "source": "Arianne Zwartjes",
+    "target": "Voca",
+    "weight": 1
+  }
+]

@@ -33,6 +33,8 @@ const institutionFilter2 = [
     centerStrength={0.1}
     collisionRadius={5}
     collisionStrength={0.7}
+    forceXStrength={null}
+    forceYStrength={null}
     alphaDecay={0.04}
     maxIterations={1000}
     rotation={-60}
@@ -41,7 +43,8 @@ const institutionFilter2 = [
     institutionNodeRange={[3, 25]}
     memberFontRange={[2, 6]}
     institutionFontRange={[5, 12]}
-    clickedNodes={{nodes: ["PennSound", "Elliston"], color: "red"}}
+    filter={{institution: institutionFilter2}}
+    clickedNodes={{nodes: ["Nelson_Contemporary American Poetry_2015"], color: "red"}}
   />
 
   <!-- <BimodalNetwork3 
@@ -61,14 +64,26 @@ const institutionFilter2 = [
     networkType="institution"
     nodesData={nodesData}
     linksData={linksData}
+    linkDistance={60}
+    linkStrength={0.6}
+    chargeStrength={-50}
+    chargeTheta={0.8}
+    chargeDistanceMax={400}
+    centerStrength={0.1}
+    collisionRadius={5}
+    collisionStrength={0.7}
+    forceXStrength={null}
+    forceYStrength={null}
+    alphaDecay={0.04}
+    maxIterations={1000}
     height={85}
     rotation={-60}
-    uniNodeRange={[15, 80]}
-    uniFontRange={[20, 60]}
+    uniNodeRange={[20, 60]}
+    uniFontRange={[20, 40]}
     uniStrokeRange={[1, 10]}
-    uniZoomScale={0.3}
-    centralityMetric="degree"
-    filter={{member: [], institution: institutionFilter2}}
+    uniZoomScale={0.5}
+    centralityMetric="betweenness"
+    filter={{institution: institutionFilter2}}
     clickedNodes={{nodes: ["Nelson_Contemporary American Poetry_2015"], color: "blue"}}
   />
 </BaseLayout>

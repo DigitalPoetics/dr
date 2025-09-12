@@ -11,6 +11,8 @@ export interface Props {
   centerStrength?: number;
   collisionRadius?: number;
   collisionStrength?: number;
+  forceXStrength?: number | null;
+  forceYStrength?: number | null;
   alphaDecay?: number;
   maxIterations?: number;
   rotation?: number;
@@ -37,6 +39,8 @@ const {
   centerStrength = 0.1,
   collisionRadius = 8,
   collisionStrength = 0.8,
+  forceXStrength = null,
+  forceYStrength = null,
   alphaDecay = 0.02,
   maxIterations = 1000,
   rotation = 0,
@@ -116,6 +120,8 @@ const { nodes: filteredNodes, links: filteredLinks } = filterData(nodesData, lin
   centerStrength,
   collisionRadius,
   collisionStrength,
+  forceXStrength,
+  forceYStrength,
   alphaDecay,
   maxIterations,
   rotation, 
@@ -185,6 +191,12 @@ const { nodes: filteredNodes, links: filteredLinks } = filterData(nodesData, lin
     const center_force = d3.forceCenter(w / 2, h / 2)
       .strength(centerStrength);
 
+      // force x, y
+    const force_x = d3.forceX(w / 2)
+      .strength(forceXStrength);
+
+    const force_y = d3.forceY(h / 2)
+      .strength(forceYStrength);
 
     // Calculate linkCount on actual nodes
     nodesData.forEach(node => {
@@ -220,7 +232,20 @@ const { nodes: filteredNodes, links: filteredLinks } = filterData(nodesData, lin
       .force("link", link_force)
       .force("charge", charge_force)
       .force("center", center_force)
-      .force("collision", collision_force);
+
+    if (centerStrength !== null && centerStrength !== 0) {
+      simulation.force("center", center_force);
+    }
+
+    if (forceXStrength !== null && forceXStrength !== 0) {
+      simulation.force("x", force_x);
+    }
+
+    if (forceYStrength !== null && forceYStrength !== 0) {
+      simulation.force("y", force_y);
+    }
+
+    simulation.force("collision", collision_force);
 
     const linkedByIndex = {};
     nodesData.forEach((d, i) => linkedByIndex[i + "," + i] = 1);
