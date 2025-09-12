@@ -1,4 +1,6 @@
 ---
+import waveSurferUrl from '/assets/plugins/wavesurfer7.min.js?url'
+
 export interface Props {
   audioUrl: string;
   waveColor?: string;
@@ -36,12 +38,14 @@ const {
 
 <div class="button-container">
   <button class="btn" id="play-pause-btn" aria-label="Play or pause the audio">
-    <span id="play-icon">&#9654;</span>
-    <span id="pause-icon" style="display: none;">&#9208;</span>
+    <span id="play-icon">></span>
+    <span id="pause-icon" style="display: none;">| |</span>
   </button>
 </div>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/wavesurfer.js/7.8.11/wavesurfer.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/wavesurfer.js/7.8.11/wavesurfer.min.js" defer></script>
+<!-- <script src="/plugins/wavesurfer7.min.js"></script> -->
+<!-- <script src={waveSurferUrl}></script> -->
 
 <script define:vars={{ 
   audioUrl, 

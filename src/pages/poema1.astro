@@ -19,6 +19,8 @@ const praatData = await praatResponse.json();
 ---
 
 <BaseLayout pageTitle={pageTitle} description={description}>
+  <link rel="preload" href="/poema/WCW_The_Red_Wheelbarrow_1945_LoC.wav" as="fetch" crossorigin slot="head">
+
   <div class="poema-container">
     <div class="waveform-section">
       <!-- <WaveSurfer 
