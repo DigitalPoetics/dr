@@ -5,13 +5,15 @@ export interface Props {
   linksData: any[];
   networkType: "bimodal" | "member" | "institution";
   linkDistance?: number;
+  linkStrength?: number;
   chargeStrength?: number;
   centerStrength?: number;
   chargeTheta?: number;
   chargeDistanceMax?: number;
   collisionStrength?: number;
   collisionRadius?: number;
-  collisionIterations?: number;
+  alphaDecay?: number;
+  maxIterations?: number;
   rotation?: number;
   height?: number;
   filter?: { member?: string[], institution?: string[] };
@@ -28,6 +30,8 @@ export interface Props {
   uniZoomScale?: number;
   // Centrality metric for unimodal
   centralityMetric?: "degree" | "betweenness";
+  // Pre-clicked nodes
+  clickedNodes?: { nodes: string[], color?: string };
 }
 
 const { 
@@ -36,13 +40,15 @@ const {
   linksData, 
   networkType = "bimodal",
   linkDistance = 50,
+  linkStrength = 0.7,
   chargeStrength = -150,
   centerStrength = 1,
   chargeTheta = 0.5,
   chargeDistanceMax = 400,
   collisionStrength = 0.8,
   collisionRadius = 5,
-  collisionIterations = 10,
+  alphaDecay = 0.02,
+  maxIterations = 1000,
   rotation = 0,
   height = 85,
   filter,
@@ -57,7 +63,8 @@ const {
   uniFontRange = [8, 16],
   uniStrokeRange = [0.5, 3],
   uniZoomScale = 0.6,
-  centralityMetric = "degree"
+  centralityMetric = "degree",
+  clickedNodes
 } = Astro.props;
 
 function convertToUnimodal(nodes, links, type) {
@@ -129,7 +136,6 @@ function convertToUnimodal(nodes, links, type) {
   
   return { nodes: uniNodes, links: uniLinks };
 }
-
 
 function filterData(nodes, links, filter) {
   if (!filter) return { nodes, links };
@@ -205,13 +211,15 @@ const shouldDisplay = networkType === "bimodal" ? display : true;
   linksData: finalLinks, 
   networkType,
   linkDistance, 
+  linkStrength,
   chargeStrength, 
   centerStrength, 
   chargeTheta, 
   chargeDistanceMax, 
   collisionStrength, 
-  collisionRadius, 
-  collisionIterations, 
+  collisionRadius,
+  alphaDecay,
+  maxIterations, 
   rotation, 
   height,
   memberNodeRange,
@@ -222,7 +230,8 @@ const shouldDisplay = networkType === "bimodal" ? display : true;
   uniFontRange,
   uniStrokeRange,
   uniZoomScale,
-  centralityMetric
+  centralityMetric,
+  clickedNodes
 }}>
   function bfs(adj, start, end) {
     const queue = [[start]];
@@ -244,46 +253,45 @@ const shouldDisplay = networkType === "bimodal" ? display : true;
     return null;
   }
 
-    function dijkstra(adj, start, end) {
-        const distances = {};
-        const previous = {};
-        const unvisited = new Set();
-        
-        Object.keys(adj).forEach(node => {
-            distances[node] = Infinity;
-            unvisited.add(node);
-        });
-        distances[start] = 0;
-        
-        while (unvisited.size > 0) {
-            const current = Array.from(unvisited).reduce((min, node) => 
-            distances[node] < distances[min] ? node : min
-            );
-            
-            if (current === end) break;
-            unvisited.delete(current);
-            
-            adj[current].forEach(neighbor => {
-            if (unvisited.has(neighbor.node)) {
-                const alt = distances[current] + neighbor.weight;
-                if (alt < distances[neighbor.node]) {
-                distances[neighbor.node] = alt;
-                previous[neighbor.node] = current;
-                }
-            }
-            });
+  function dijkstra(adj, start, end) {
+    const distances = {};
+    const previous = {};
+    const unvisited = new Set();
+    
+    Object.keys(adj).forEach(node => {
+      distances[node] = Infinity;
+      unvisited.add(node);
+    });
+    distances[start] = 0;
+    
+    while (unvisited.size > 0) {
+      const current = Array.from(unvisited).reduce((min, node) => 
+        distances[node] < distances[min] ? node : min
+      );
+      
+      if (current === end) break;
+      unvisited.delete(current);
+      
+      adj[current].forEach(neighbor => {
+        if (unvisited.has(neighbor.node)) {
+          const alt = distances[current] + neighbor.weight;
+          if (alt < distances[neighbor.node]) {
+            distances[neighbor.node] = alt;
+            previous[neighbor.node] = current;
+          }
         }
-        
-        const path = [];
-        let current = end;
-        while (current) {
-            path.unshift(current);
-            current = previous[current];
-        }
-        
-        return path[0] === start ? path : [];
-        }
-
+      });
+    }
+    
+    const path = [];
+    let current = end;
+    while (current) {
+      path.unshift(current);
+      current = previous[current];
+    }
+    
+    return path[0] === start ? path : [];
+  }
 
   function calculateCentrality(nodes, links, metric) {
     if (metric === "degree") {
@@ -306,52 +314,47 @@ const shouldDisplay = networkType === "bimodal" ? display : true;
         }
       });
 
-        // Debug: Check for isolated nodes
-        const isolatedNodes = nodes.filter(n => n.weightedDegree === 0);
-        if (isolatedNodes.length > 0) {
-            console.log("Isolated nodes (0 degree):", isolatedNodes.map(n => n.name));
-        }
+      const isolatedNodes = nodes.filter(n => n.weightedDegree === 0);
+      if (isolatedNodes.length > 0) {
+        console.log("Isolated nodes (0 degree):", isolatedNodes.map(n => n.name));
+      }
 
       const result = nodes.map(n => ({ name: n.name, centrality: n.weightedDegree }));
       console.log("Degree centrality:", result.slice(0, 80));
       return result;
-        } else if (metric === "betweenness") {
-            const centrality = {};
-            nodes.forEach(n => centrality[n.name] = 0);
-            
-            const adj = {};
-            nodes.forEach(n => adj[n.name] = []);
-            links.forEach(link => {
-                const source = typeof link.source === 'string' ? link.source : link.source.name;
-                const target = typeof link.target === 'string' ? link.target : link.target.name;
-                const weight = 1 / (link.weight || 1);
-                adj[source].push({ node: target, weight });
-                adj[target].push({ node: source, weight });
-            });
-            
-            nodes.forEach(start => {
-                nodes.forEach(end => {
-                    if (start.name !== end.name) {
-                        const path = dijkstra(adj, start.name, end.name);
-                        if (path && path.length > 2) {
-                            path.slice(1, -1).forEach(node => centrality[node]++);
-                        }
-                    }
-                });
-            });
-            
-        // Square root transformation - gentler compression
-        const result = nodes.map(n => ({ 
-            name: n.name, 
-            centrality: Math.sqrt(centrality[n.name]) 
-        }));
-        console.log("Sqrt Betweenness centrality:", result.slice(0, 80));
-        return result;
-
-        }
-
+    } else if (metric === "betweenness") {
+      const centrality = {};
+      nodes.forEach(n => centrality[n.name] = 0);
+      
+      const adj = {};
+      nodes.forEach(n => adj[n.name] = []);
+      links.forEach(link => {
+        const source = typeof link.source === 'string' ? link.source : link.source.name;
+        const target = typeof link.target === 'string' ? link.target : link.target.name;
+        const weight = 1 / (link.weight || 1);
+        adj[source].push({ node: target, weight });
+        adj[target].push({ node: source, weight });
+      });
+      
+      nodes.forEach(start => {
+        nodes.forEach(end => {
+          if (start.name !== end.name) {
+            const path = dijkstra(adj, start.name, end.name);
+            if (path && path.length > 2) {
+              path.slice(1, -1).forEach(node => centrality[node]++);
+            }
+          }
+        });
+      });
+      
+      const result = nodes.map(n => ({ 
+        name: n.name, 
+        centrality: Math.sqrt(centrality[n.name]) 
+      }));
+      console.log("Sqrt Betweenness centrality:", result.slice(0, 80));
+      return result;
     }
-
+  }
 
   function initNetwork() {
     if (!window.d3) {
@@ -391,12 +394,16 @@ const shouldDisplay = networkType === "bimodal" ? display : true;
       d.y = centerY + relX * Math.sin(radians) + relY * Math.cos(radians);
     }
 
-    const simulation = d3.forceSimulation().alpha(1).nodes(nodesData);
+    const simulation = d3.forceSimulation()
+        .alpha(1)
+        .alphaDecay(alphaDecay)
+        .nodes(nodesData);
 
     if (networkType === "bimodal") {
       const link_force = d3.forceLink(linksData)
         .id(d => d.name)
-        .distance(linkDistance);
+        .distance(linkDistance)
+        .strength(linkStrength);
 
       const charge_force = d3.forceManyBody()
         .strength(chargeStrength)
@@ -406,65 +413,13 @@ const shouldDisplay = networkType === "bimodal" ? display : true;
       const center_force = d3.forceCenter(w / 2, h / 2)
         .strength(centerStrength);
 
-      const collision_force = d3.forceCollide()
-        .strength(collisionStrength)
-        .radius(collisionRadius)
-        .iterations(collisionIterations);
-
-      simulation
-        .force("charge", charge_force)
-        .force("center", center_force)
-        .force("collision", collision_force)
-        .force("link", link_force);
-
-      linksData.forEach(link => {
-        if (!link.source.linkCount) link.source.linkCount = 0;
-        if (!link.target.linkCount) link.target.linkCount = 0;
-        link.source.linkCount++;
-        link.target.linkCount++;
-      });
-    } else {
-      const bimodalNodes = originalNodes.map(d => ({...d}));
-      
-      const bimodalSim = d3.forceSimulation(bimodalNodes)
-        .force("link", d3.forceLink(originalLinks).id(d => d.name).distance(linkDistance))
-        .force("charge", d3.forceManyBody().strength(chargeStrength))
-        .force("center", d3.forceCenter(w/2, h/2).strength(centerStrength))
-        .force("collision", d3.forceCollide().radius(collisionRadius))
-        .stop();
-      
-      for (let i = 0; i < 300; ++i) bimodalSim.tick();
-      
+      // Calculate linkCount directly on nodesData before simulation
       nodesData.forEach(node => {
-        const bimodalNode = bimodalNodes.find(bn => bn.name === node.name);
-        if (bimodalNode) {
-          node.x = bimodalNode.x;
-          node.y = bimodalNode.y;
-          node.fx = bimodalNode.x;
-          node.fy = bimodalNode.y;
-        } else {
-          node.x = w/2 + (Math.random() - 0.5) * 100;
-          node.y = h/2 + (Math.random() - 0.5) * 100;
-          node.fx = node.x;
-          node.fy = node.y;
-        }
+        node.linkCount = linksData.filter(link => 
+          link.source === node.name || link.target === node.name
+        ).length;
       });
 
-      g.attr("transform", `translate(${w/2}, ${h/2}) scale(${uniZoomScale}) translate(${-w/2}, ${-h/2})`);
-
-      // Calculate centrality for unimodal networks
-      const centralityData = calculateCentrality(nodesData, linksData, centralityMetric);
-      
-      centralityData.forEach(c => {
-        const node = nodesData.find(n => n.name === c.name);
-        if (node) node.centrality = c.centrality;
-      });
-
-      simulation.stop();
-    }
-
-    if (networkType === "bimodal") {
-      // BIMODAL SCALING WITH PROPS
       const memberNodes = nodesData.filter(d => d.type === "member");
       const institutionNodes = nodesData.filter(d => d.type !== "member");
 
@@ -473,9 +428,22 @@ const shouldDisplay = networkType === "bimodal" ? display : true;
 
       const memberScale = d3.scaleLinear().domain(memberExtent).range(memberNodeRange);
       const institutionScale = d3.scaleLinear().domain(institutionExtent).range(institutionNodeRange);
-
       const memberFontScale = d3.scaleLinear().domain(memberExtent).range(memberFontRange);
       const institutionFontScale = d3.scaleLinear().domain(institutionExtent).range(institutionFontRange);
+
+      const collision_force = d3.forceCollide()
+        .radius(d => {
+          const nodeRadius = d.type === "member" ? memberScale(d.linkCount || 0) : institutionScale(d.linkCount || 0);
+          return nodeRadius + collisionRadius;
+        })
+        .strength(collisionStrength)
+        .iterations(3);
+
+      simulation
+        .force("link", link_force)
+        .force("charge", charge_force)
+        .force("center", center_force)
+        .force("collision", collision_force);
 
       const linkedByIndex = {};
       nodesData.forEach((d, i) => linkedByIndex[i + "," + i] = 1);
@@ -539,6 +507,43 @@ const shouldDisplay = networkType === "bimodal" ? display : true;
           });
         });
 
+      // Apply pre-clicked nodes (simulate actual clicks)
+      if (clickedNodes?.nodes?.length) {
+        clickedNodes.nodes.forEach(nodeName => {
+          const targetNode = nodesData.find(n => n.name === nodeName);
+          if (targetNode) {
+            const nodeIndex = `node-${targetNode.index}`;
+            
+            // Mark as clicked and add classes (same as manual click)
+            node.each(function(n) {
+              if (n === targetNode) {
+                d3.select(this).classed("clicked", true);
+              }
+              if (neighboring(targetNode, n) || n === targetNode) {
+                d3.select(this).classed(nodeIndex, true);
+              }
+            });
+            link.each(function(l) {
+              if (l.source === targetNode || l.target === targetNode) {
+                d3.select(this).classed(nodeIndex, true);
+              }
+            });
+          }
+        });
+        
+        // Apply colors with custom color
+        const preClickColor = clickedNodes.color || "#ff0000";
+        node.style("fill", function(n) {
+          const hasAnyClass = this.classList.length > 0;
+          return hasAnyClass ? preClickColor : (n.type === "member" ? "#ffbd80" : "#8aded8");
+        });
+        
+        link.style("stroke", function(l) {
+          const hasAnyClass = this.classList.length > 0;
+          return hasAnyClass ? preClickColor : "#a6a6a6";
+        });
+      }
+
       const text = g.append("g")
         .selectAll("text")
         .data(nodesData)
@@ -558,7 +563,45 @@ const shouldDisplay = networkType === "bimodal" ? display : true;
       });
 
     } else {
-      // UNIMODAL SCALING WITH CENTRALITY
+      const bimodalNodes = originalNodes.map(d => ({...d}));
+      
+      const bimodalSim = d3.forceSimulation(bimodalNodes)
+        .force("link", d3.forceLink(originalLinks).id(d => d.name).distance(linkDistance).strength(linkStrength))
+        .force("charge", d3.forceManyBody().strength(chargeStrength))
+        .force("center", d3.forceCenter(w/2, h/2).strength(centerStrength))
+        .force("collision", d3.forceCollide().radius(collisionRadius))
+        .alphaDecay(alphaDecay)
+        .stop();
+      
+      for (let i = 0; i < 300; ++i) bimodalSim.tick();
+      
+      nodesData.forEach(node => {
+        const bimodalNode = bimodalNodes.find(bn => bn.name === node.name);
+        if (bimodalNode) {
+          node.x = bimodalNode.x;
+          node.y = bimodalNode.y;
+        } else {
+          node.x = w/2 + (Math.random() - 0.5) * 100;
+          node.y = h/2 + (Math.random() - 0.5) * 100;
+        }
+      });
+
+      // Apply rotation immediately after positioning
+      if (rotation !== 0) {
+        nodesData.forEach(translate);
+      }
+
+      g.attr("transform", `translate(${w/2}, ${h/2}) scale(${uniZoomScale}) translate(${-w/2}, ${-h/2})`);
+
+      const centralityData = calculateCentrality(nodesData, linksData, centralityMetric);
+      
+      centralityData.forEach(c => {
+        const node = nodesData.find(n => n.name === c.name);
+        if (node) node.centrality = c.centrality;
+      });
+
+      simulation.stop();
+
       const linkedByIndex = {};
       nodesData.forEach((d, i) => linkedByIndex[i + "," + i] = 1);
       linksData.forEach(d => {
@@ -604,27 +647,6 @@ const shouldDisplay = networkType === "bimodal" ? display : true;
           return targetPos ? targetPos.y : 0;
         });
 
-      const linkLabels = g.append("g")
-        .selectAll("text")
-        .data(linksData)
-        .enter()
-        .append("text")
-        .attr("font-size", 8)
-        .attr("fill", "#666")
-        .attr("text-anchor", "middle")
-        .text(d => d.weight || 1)
-        .style("pointer-events", "none")
-        .attr("x", d => {
-          const sourcePos = nodePositions.get(typeof d.source === 'string' ? d.source : d.source.name);
-          const targetPos = nodePositions.get(typeof d.target === 'string' ? d.target : d.target.name);
-          return ((sourcePos?.x || 0) + (targetPos?.x || 0)) / 2;
-        })
-        .attr("y", d => {
-          const sourcePos = nodePositions.get(typeof d.source === 'string' ? d.source : d.source.name);
-          const targetPos = nodePositions.get(typeof d.target === 'string' ? d.target : d.target.name);
-          return ((sourcePos?.y || 0) + (targetPos?.y || 0)) / 2;
-        });
-
       const node = g.append("g")
         .selectAll("circle")
         .data(nodesData)
@@ -634,57 +656,37 @@ const shouldDisplay = networkType === "bimodal" ? display : true;
         .style("fill", networkType === "member" ? "#ffbd80" : "#8aded8")
         .attr("cx", d => d.x || 0)
         .attr("cy", d => d.y || 0)
-.call(d3.drag()
-  .on("start", (e, d) => {
-    // Don't set any fixed positions
-  })
-  .on("drag", (e, d) => { 
-    d.x = e.x;
-    d.y = e.y;
-    nodePositions.set(d.name, { x: e.x, y: e.y });
-    
-    // Update this node's position
-    d3.select(e.sourceEvent.target).attr("cx", e.x).attr("cy", e.y);
-    
-    // Update text for this node
-    text.filter(t => t.name === d.name).attr("x", e.x).attr("y", e.y);
-    
-    // Update all links
-    link.attr("x1", function(l) {
-      const sourcePos = nodePositions.get(typeof l.source === 'string' ? l.source : l.source.name);
-      return sourcePos ? sourcePos.x : 0;
-    })
-    .attr("y1", function(l) {
-      const sourcePos = nodePositions.get(typeof l.source === 'string' ? l.source : l.source.name);
-      return sourcePos ? sourcePos.y : 0;
-    })
-    .attr("x2", function(l) {
-      const targetPos = nodePositions.get(typeof l.target === 'string' ? l.target : l.target.name);
-      return targetPos ? targetPos.x : 0;
-    })
-    .attr("y2", function(l) {
-      const targetPos = nodePositions.get(typeof l.target === 'string' ? l.target : l.target.name);
-      return targetPos ? targetPos.y : 0;
-    });
-    
-    linkLabels.attr("x", function(l) {
-      const sourcePos = nodePositions.get(typeof l.source === 'string' ? l.source : l.source.name);
-      const targetPos = nodePositions.get(typeof l.target === 'string' ? l.target : l.target.name);
-      return ((sourcePos?.x || 0) + (targetPos?.x || 0)) / 2;
-    })
-    .attr("y", function(l) {
-      const sourcePos = nodePositions.get(typeof l.source === 'string' ? l.source : l.source.name);
-      const targetPos = nodePositions.get(typeof l.target === 'string' ? l.target : l.target.name);
-      return ((sourcePos?.y || 0) + (targetPos?.y || 0)) / 2;
-    });
-  })
-  .on("end", (e, d) => { 
-    // Don't set fixed positions - let nodes move freely
-  }))
-
-
-        
-          .on("click", (e, d) => {
+        .call(d3.drag()
+          .on("start", (e, d) => {})
+          .on("drag", (e, d) => { 
+            d.x = e.x;
+            d.y = e.y;
+            nodePositions.set(d.name, { x: e.x, y: e.y });
+            
+            d3.select(e.sourceEvent.target).attr("cx", e.x).attr("cy", e.y);
+            
+            text.filter(t => t.name === d.name).attr("x", e.x).attr("y", e.y);
+            
+            link.attr("x1", function(l) {
+              const sourcePos = nodePositions.get(typeof l.source === 'string' ? l.source : l.source.name);
+              return sourcePos ? sourcePos.x : 0;
+            })
+            .attr("y1", function(l) {
+              const sourcePos = nodePositions.get(typeof l.source === 'string' ? l.source : l.source.name);
+              return sourcePos ? sourcePos.y : 0;
+            })
+            .attr("x2", function(l) {
+              const targetPos = nodePositions.get(typeof l.target === 'string' ? l.target : l.target.name);
+              return targetPos ? targetPos.x : 0;
+            })
+            .attr("y2", function(l) {
+              const targetPos = nodePositions.get(typeof l.target === 'string' ? l.target : l.target.name);
+              return targetPos ? targetPos.y : 0;
+            });
+      
+          })
+          .on("end", (e, d) => {}))
+        .on("click", (e, d) => {
           const clickedNode = d3.select(e.target);
           const nodeIndex = `node-${d.index}`;
           const isActive = clickedNode.classed("clicked");
@@ -720,6 +722,45 @@ const shouldDisplay = networkType === "bimodal" ? display : true;
           });
         });
 
+      // Apply pre-clicked nodes for unimodal networks
+      if (clickedNodes?.nodes?.length) {
+        clickedNodes.nodes.forEach(nodeName => {
+          const targetNode = nodesData.find(n => n.name === nodeName);
+          if (targetNode) {
+            const nodeIndex = `node-${targetNode.index}`;
+            
+            // Mark as clicked and add classes (same as manual click)
+            node.each(function(n) {
+              if (n === targetNode) {
+                d3.select(this).classed("clicked", true);
+              }
+              if (neighboring(targetNode, n) || n === targetNode) {
+                d3.select(this).classed(nodeIndex, true);
+              }
+            });
+            link.each(function(l) {
+              const sourceName = typeof l.source === 'string' ? l.source : l.source.name;
+              const targetName = typeof l.target === 'string' ? l.target : l.target.name;
+              if (sourceName === targetNode.name || targetName === targetNode.name) {
+                d3.select(this).classed(nodeIndex, true);
+              }
+            });
+          }
+        });
+        
+        // Apply colors with custom color
+        const preClickColor = clickedNodes.color || "#ff0000";
+        node.style("fill", function(n) {
+          const hasAnyClass = this.classList.length > 0;
+          return hasAnyClass ? preClickColor : (networkType === "member" ? "#ffbd80" : "#8aded8");
+        });
+        
+        link.style("stroke", function(l) {
+          const hasAnyClass = this.classList.length > 0;
+          return hasAnyClass ? preClickColor : "#a6a6a6";
+        });
+      }
+
       const text = g.append("g")
         .selectAll("text")
         .data(nodesData)
@@ -752,55 +793,16 @@ const shouldDisplay = networkType === "bimodal" ? display : true;
     }
 
     setTimeout(() => {
-      if (rotation !== 0) {
+      if (rotation !== 0 && networkType === "bimodal") {
         nodesData.forEach(translate);
         const link = g.selectAll("line");
         const node = g.selectAll("circle");
         const text = g.selectAll("text");
         
-        if (networkType === "bimodal") {
-          link.attr("x1", d => d.source.x).attr("y1", d => d.source.y)
-              .attr("x2", d => d.target.x).attr("y2", d => d.target.y);
-          node.attr("cx", d => d.x).attr("cy", d => d.y);
-          text.attr("x", d => d.x).attr("y", d => d.y);
-        } else {
-          const nodePositions = new Map();
-          nodesData.forEach(n => nodePositions.set(n.name, { x: n.x, y: n.y }));
-          
-          link.attr("x1", function(l) {
-            const sourcePos = nodePositions.get(typeof l.source === 'string' ? l.source : l.source.name);
-            return sourcePos ? sourcePos.x : 0;
-          })
-          .attr("y1", function(l) {
-            const sourcePos = nodePositions.get(typeof l.source === 'string' ? l.source : l.source.name);
-            return sourcePos ? sourcePos.y : 0;
-          })
-          .attr("x2", function(l) {
-            const targetPos = nodePositions.get(typeof l.target === 'string' ? l.target : l.target.name);
-            return targetPos ? targetPos.x : 0;
-          })
-          .attr("y2", function(l) {
-            const targetPos = nodePositions.get(typeof l.target === 'string' ? l.target : l.target.name);
-            return targetPos ? targetPos.y : 0;
-          });
-          
-          const linkLabels = g.selectAll("text").filter(function() { 
-            return this.getAttribute("font-size") === "8"; 
-          });
-          linkLabels.attr("x", function(l) {
-            const sourcePos = nodePositions.get(typeof l.source === 'string' ? l.source : l.source.name);
-            const targetPos = nodePositions.get(typeof l.target === 'string' ? l.target : l.target.name);
-            return ((sourcePos?.x || 0) + (targetPos?.x || 0)) / 2;
-          })
-          .attr("y", function(l) {
-            const sourcePos = nodePositions.get(typeof l.source === 'string' ? l.source : l.source.name);
-            const targetPos = nodePositions.get(typeof l.target === 'string' ? l.target : l.target.name);
-            return ((sourcePos?.y || 0) + (targetPos?.y || 0)) / 2;
-          });
-          
-          node.attr("cx", d => d.x || 0).attr("cy", d => d.y || 0);
-          text.attr("x", d => d.x || 0).attr("y", d => d.y || 0);
-        }
+        link.attr("x1", d => d.source.x).attr("y1", d => d.source.y)
+            .attr("x2", d => d.target.x).attr("y2", d => d.target.y);
+        node.attr("cx", d => d.x).attr("cy", d => d.y);
+        text.attr("x", d => d.x).attr("y", d => d.y);
       }
     }, 100);
   }

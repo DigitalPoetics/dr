@@ -6,30 +6,42 @@ import linksData from '../data/bimodalNetwork/links.json';
 
 const pageTitle = "Network Visualization";
 const description = "Bimodal network visualization of members and institutions";
+
+const institutionFilter2 = [
+  "Hoover_Postmodern American Poetry_1994", 
+  "Hoover_Postmodern American Poetry_2013",
+  "Nelson_Contemporary American Poetry_2015",
+  "Ramazani_Contemporary Poetry_2003",
+  "Swensen_American Hybrid_2009", 
+  "Halpern_The New Poetry Anthology_1975", 
+  "Smith_The Morrow Anthology_1985", 
+]
 ---
 
 <BaseLayout pageTitle={pageTitle} description={description}>
-
+  <p>Creating an Inflection: Unimodal Networks for Centrality Measurements</p>
   <BimodalNetwork3 
     id="bimodal-network"
     networkType="bimodal"
-    display={true}
     nodesData={nodesData}
     linksData={linksData}
-    linkDistance={80}
-    chargeStrength={-200}
-    centerStrength={0.3}
-    chargeTheta={0.5}
-    chargeDistanceMax={250}
-    collisionStrength={0.5}
-    collisionRadius={1}
-    collisionIterations={1}
+    linkDistance={60}
+    linkStrength={0.6}
+    chargeStrength={-50}
+    chargeTheta={0.8}
+    chargeDistanceMax={400}
+    centerStrength={0.1}
+    collisionRadius={5}
+    collisionStrength={0.7}
+    alphaDecay={0.04}
+    maxIterations={1000}
     rotation={-60}
     height={85}
-    memberNodeRange={[3, 8]}
-    institutionNodeRange={[10, 30]}
-    memberFontRange={[5, 10]}
-    institutionFontRange={[10, 30]}
+    memberNodeRange={[1, 5]}
+    institutionNodeRange={[3, 25]}
+    memberFontRange={[2, 6]}
+    institutionFontRange={[5, 12]}
+    clickedNodes={{nodes: ["PennSound", "Elliston"], color: "red"}}
   />
 
   <!-- <BimodalNetwork3 
@@ -56,5 +68,7 @@ const description = "Bimodal network visualization of members and institutions";
     uniStrokeRange={[1, 10]}
     uniZoomScale={0.3}
     centralityMetric="degree"
+    filter={{member: [], institution: institutionFilter2}}
+    clickedNodes={{nodes: ["Nelson_Contemporary American Poetry_2015"], color: "blue"}}
   />
 </BaseLayout>

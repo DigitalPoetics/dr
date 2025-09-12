@@ -12,7 +12,6 @@ export interface Props {
   collisionRadius?: number;
   collisionStrength?: number;
   alphaDecay?: number;
-  velocityDecay?: number;
   maxIterations?: number;
   rotation?: number;
   height?: number;
@@ -23,6 +22,7 @@ export interface Props {
   // Font size ranges
   memberFontRange?: [number, number];
   institutionFontRange?: [number, number];
+  clickedNodes?: { nodes: string[], color?: string };
 }
 
 const { 
@@ -38,7 +38,6 @@ const {
   collisionRadius = 8,
   collisionStrength = 0.8,
   alphaDecay = 0.02,
-  velocityDecay = 0.6,
   maxIterations = 1000,
   rotation = 0,
   height = 85,
@@ -47,7 +46,8 @@ const {
   memberNodeRange = [3, 8],
   institutionNodeRange = [10, 30],
   memberFontRange = [5, 15],
-  institutionFontRange = [15, 30]
+  institutionFontRange = [15, 30],
+  clickedNodes
 } = Astro.props;
 
 function filterData(nodes, links, filter) {
@@ -117,14 +117,14 @@ const { nodes: filteredNodes, links: filteredLinks } = filterData(nodesData, lin
   collisionRadius,
   collisionStrength,
   alphaDecay,
-  velocityDecay,
   maxIterations,
   rotation, 
   height,
   memberNodeRange,
   institutionNodeRange,
   memberFontRange,
-  institutionFontRange 
+  institutionFontRange,
+  clickedNodes 
 }}>
   function initNetwork() {
     if (!window.d3) {
@@ -168,7 +168,6 @@ const { nodes: filteredNodes, links: filteredLinks } = filterData(nodesData, lin
     const simulation = d3.forceSimulation(nodesData)
       .alpha(1)
       .alphaDecay(alphaDecay)
-      .velocityDecay(velocityDecay);
 
     // Link force
     const link_force = d3.forceLink(linksData)
@@ -284,6 +283,46 @@ const { nodes: filteredNodes, links: filteredLinks } = filterData(nodesData, lin
           return hasAnyClass ? "#ff0000" : "#a6a6a6";
         });
       });
+
+    // preclicked / selected nodes
+    // Apply pre-clicked nodes (simulate actual clicks)
+    if (clickedNodes?.nodes?.length) {
+    clickedNodes.nodes.forEach(nodeName => {
+        const targetNode = nodesData.find(n => n.name === nodeName);
+        if (targetNode) {
+        const nodeIndex = `node-${targetNode.index}`;
+        
+        // Mark as clicked and add classes (same as manual click)
+        node.each(function(n) {
+            if (n === targetNode) {
+            d3.select(this).classed("clicked", true);
+            }
+            if (neighboring(targetNode, n) || n === targetNode) {
+            d3.select(this).classed(nodeIndex, true);
+            }
+        });
+        link.each(function(l) {
+            if (l.source === targetNode || l.target === targetNode) {
+            d3.select(this).classed(nodeIndex, true);
+            }
+        });
+        }
+    });
+    
+    // Apply colors with custom color
+    const preClickColor = clickedNodes.color || "#ff0000";
+    node.style("fill", function(n) {
+        const hasAnyClass = this.classList.length > 0;
+        return hasAnyClass ? preClickColor : (n.type === "member" ? "#ffbd80" : "#8aded8");
+    });
+    
+    link.style("stroke", function(l) {
+        const hasAnyClass = this.classList.length > 0;
+        return hasAnyClass ? preClickColor : "#a6a6a6";
+    });
+    }
+
+
 
     const text = g.append("g")
       .selectAll("text")

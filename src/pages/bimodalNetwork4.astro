@@ -4,7 +4,7 @@ import BimodalNetwork4 from '../components/bimodalNetwork/BimodalNetwork4.astro'
 import nodesData from '../data/bimodalNetwork/nodes.json';
 import linksData from '../data/bimodalNetwork/links.json';
 
-const pageTitle = "Yifan Hu Layout with d3-force";
+const pageTitle = "Network Visualization";
 const description = "D3.js force simulations appromixation of Yifan Hu Network Layout";
 
 const memberFilter = []
@@ -61,8 +61,7 @@ const institutionFilter2 = [
     centerStrength={0.1}
     collisionRadius={5}
     collisionStrength={0.7}
-    alphaDecay={0.0228}
-    velocityDecay={0.5}
+    alphaDecay={0.04}
     maxIterations={1000}
     rotation={-60}
     height={65}
@@ -70,5 +69,6 @@ const institutionFilter2 = [
     institutionNodeRange={[3, 25]}
     memberFontRange={[2, 6]}
     institutionFontRange={[5, 12]}
+    clickedNodes={{nodes: ["Rita Dove"], color: "blue"}}
   />
 </BaseLayout>
