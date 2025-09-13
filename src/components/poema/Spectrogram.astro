@@ -59,8 +59,10 @@ const {
   </button>
 </div>
 
+<!-- wavesurfer plugin -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/wavesurfer.js/7.8.11/wavesurfer.min.js"></script>
-
+<!-- colorMapData plugin -->
+<!-- <script type="module" src="/plugins/colormaps.js"></script> -->
 <script type="module" define:vars={{ 
   audioUrl, 
   waveColor, 
@@ -88,6 +90,16 @@ const {
   let wavesurfer;
   
   document.addEventListener('DOMContentLoaded', () => {
+    
+    // Generate colormap
+    
+    // const colorMapData = window.colormap({
+    //   colormap: colorMap, // 'hot', 'cool', 'jet', 'bone', 'gray'
+    //   nshades: 256,
+    //   format: 'float'
+    // });
+
+    // initialize wavesurfer
     wavesurfer = WaveSurfer.create({
       container: '#waveform',
       waveColor,

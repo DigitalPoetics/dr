@@ -28,33 +28,45 @@ import DropDown from "./DropDown.astro"
 
 <style>
 
-
 .nav-bar {
-  /* position: static; */
-  width: 100%;
-  /* left: 48px; */
-  left: 0;
-  /* background-color: #0d0950; */
   display: none;
-  /* position: fixed; */
-  /* z-index: 10; */
-  /* margin: 0 1rem 0 0; */
-  /* padding: 0 1rem 0 1rem; */
+  position: fixed;
+  top: 3.2rem; /* Adjust to your header height */
+  left: 0;
+  width: 100vw;
+  height: calc(100vh - 3.2rem); /* Subtract header height */
+  background-color: var(--light-background);
+  z-index: 1000;
+  padding: 2rem;
+  border: var(--image-border);
+  box-sizing: border-box;
+  overflow-y: auto;
+}
+
+html.dark .nav-bar {
+  background-color: var(--dark-background);
 }
 
 .expanded {
   display: block;
 }
 
-@media screen and (min-width: 636px) {
-  .nav-bar {
-    /* margin-left: 0.5rem; */
-    /* margin-left: 1rem; */
-    display: block;
-    position: static;
-    width: 17rem;
-    background: none;
+/* Hide body scroll when navigation is open - small screens only */
+@media screen and (max-width: 635px) {
+  body:has(.nav-bar.expanded) {
+    overflow: hidden;
   }
 }
+
+
+@media screen and (min-width: 636px) {
+  .nav-bar.expanded {
+    width: 17rem;
+    height: calc(100vh - 3.2rem); /* Subtract header + footer height */
+    left: 0;
+    right: auto;
+  }
+}
+
 
 </style>

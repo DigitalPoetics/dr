@@ -19,7 +19,18 @@ import ThemeIcons from "./ThemeIcons.astro";
 </header>
 
 <style>
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: var(--light-background);
+  z-index: 100;
+}
 
+html.dark header {
+    background-color: var(--dark-background);
+}
 .nav-top {
     display: flex;
     max-width: 100vw;
