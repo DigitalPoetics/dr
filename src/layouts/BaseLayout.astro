@@ -26,8 +26,8 @@ const { pageTitle, description } = Astro.props;
 	</head>
 	<body>
 		<Header />
+		<Navigation />
 		<div class="layout">
-			<Navigation />
 			<main>
 				<h1>{pageTitle}</h1>
 				<slot />
@@ -44,7 +44,7 @@ const { pageTitle, description } = Astro.props;
 .layout {
     display: block;
     /* min-height: 80vh; */
-	padding: 0 1rem 0 1rem;
+	padding: 3.2rem 1rem 0 1rem;
 }
 
 main {
@@ -55,11 +55,16 @@ main {
   .layout {
 		display: flex;
     	min-height: 80vh;
+		padding: 3.2rem 1rem 0 1rem;
+
   }
 
   main {
-	max-width: 55vw;
-	margin: 0 1rem 0 1rem;
+	/* max-width: 55vw; */
+	max-width: 70vw;
+	/* margin: 0 1rem 0 1rem; */
+	margin: 0 auto;
+	margin: 0 15vw 0 15vw;
   }
 }
 /* .layout > header, .layout > Header {
