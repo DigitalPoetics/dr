@@ -17,6 +17,7 @@ export interface Props {
   maxIterations?: number;
   rotation?: number;
   height?: number;
+  bimodalZoomScale?: number;
   filter?: { member?: string[], institution?: string[] };
   // Node size ranges
   memberNodeRange?: [number, number];
@@ -45,6 +46,7 @@ const {
   maxIterations = 1000,
   rotation = 0,
   height = 85,
+  bimodalZoomScale = 1.0,
   filter,
   // Node and font ranges
   memberNodeRange = [3, 8],
@@ -126,6 +128,7 @@ const { nodes: filteredNodes, links: filteredLinks } = filterData(nodesData, lin
   maxIterations,
   rotation, 
   height,
+  bimodalZoomScale,
   memberNodeRange,
   institutionNodeRange,
   memberFontRange,
@@ -360,7 +363,21 @@ const { nodes: filteredNodes, links: filteredLinks } = filterData(nodesData, lin
       .attr("dominant-baseline", "middle")
       .style("pointer-events", "none");
 
-    svg.call(d3.zoom().on("zoom", e => g.attr("transform", e.transform)));
+    // svg.call(d3.zoom().on("zoom", e => g.attr("transform", e.transform)));
+
+    // Initial scale
+    g.attr("transform", `translate(${w/2}, ${h/2}) scale(${bimodalZoomScale}) translate(${-w/2}, ${-h/2})`);
+    // Zoom behavior
+    svg.call(d3.zoom().on("zoom", e => {
+      const userZoom = e.transform;
+      const baseScale = bimodalZoomScale;
+      const combinedScale = userZoom.k * baseScale;
+      
+      g.attr("transform", 
+        `translate(${w/2 + userZoom.x}, ${h/2 + userZoom.y}) scale(${combinedScale}) translate(${-w/2}, ${-h/2})`
+      );
+    }));
+
 
     simulation.on("tick", () => {
       link.attr("x1", d => d.source.x).attr("y1", d => d.source.y)

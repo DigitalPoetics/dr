@@ -29,6 +29,7 @@ export interface Props {
   uniNodeRange?: [number, number];
   uniFontRange?: [number, number];
   uniStrokeRange?: [number, number];
+  bimodalZoomScale?: number;
   uniZoomScale?: number;
   // Centrality metric for unimodal
   centralityMetric?: "degree" | "betweenness";
@@ -66,6 +67,7 @@ const {
   uniNodeRange = [5, 20],
   uniFontRange = [8, 16],
   uniStrokeRange = [0.5, 3],
+  bimodalZoomScale = 1.0,
   uniZoomScale = 0.6,
   centralityMetric = "degree",
   clickedNodes
@@ -235,6 +237,7 @@ const shouldDisplay = networkType === "bimodal" ? display : true;
   uniNodeRange,
   uniFontRange,
   uniStrokeRange,
+  bimodalZoomScale,
   uniZoomScale,
   centralityMetric,
   clickedNodes
@@ -826,11 +829,19 @@ const shouldDisplay = networkType === "bimodal" ? display : true;
         .attr("y", d => d.y || 0);
     }
 
-    // ZOOM
-    if (networkType === "bimodal") {
-      svg.call(d3.zoom().on("zoom", e => {
-        g.attr("transform", e.transform);
-      }));
+      // ZOOM
+  if (networkType === "bimodal") {
+    g.attr("transform", `translate(${w/2}, ${h/2}) scale(${bimodalZoomScale}) translate(${-w/2}, ${-h/2})`);
+    
+    svg.call(d3.zoom().on("zoom", e => {
+      const userZoom = e.transform;
+      const baseScale = bimodalZoomScale;
+      const combinedScale = userZoom.k * baseScale;
+      
+      g.attr("transform", 
+        `translate(${w/2 + userZoom.x}, ${h/2 + userZoom.y}) scale(${combinedScale}) translate(${-w/2}, ${-h/2})`
+      );
+     }));
     } else {
       svg.call(d3.zoom().on("zoom", e => {
         const userZoom = e.transform;
