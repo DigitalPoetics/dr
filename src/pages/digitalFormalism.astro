@@ -1,11 +1,12 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import UiShowcase from '../components/UiShowcase.astro';
 const pageTitle = "Digital Formalism"
 const description = "Audio visualization"
 ---
 
 <BaseLayout pageTitle={pageTitle} description={description}>
-    <h3>Audio Viz</h3>
+    <!-- <h3>Audio Viz</h3>
     <ul>
         <li>
             <a href="/poema" target="_blank">Test</a>
@@ -16,6 +17,19 @@ const description = "Audio visualization"
         <li>
             <a href="/poema2" target="_blank">Praat display (w/ spectrogram) for &ldquo;The Red Wheelbarrow&rdquo;</a>
         </li>
-    </ul>
-
+    </ul> -->
+    <UiShowcase 
+        pageTitle="Poema 1"
+        description="Spectrogram Visualization"
+        imageUrl="/images/macro-rhythm.jpg"
+        imageAlt="The Astro logo on a dark background with a pink glow"
+        srcPath="/poema1"
+    />
+        <UiShowcase 
+        pageTitle="Poema 2"
+        description="Spectrogram Visualization"
+        imageUrl="/images/macro-rhythm.jpg"
+        imageAlt="The Astro logo on a dark background with a pink glow"
+        srcPath="/poema2"
+    />
 </BaseLayout>

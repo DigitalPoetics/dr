@@ -2,7 +2,9 @@
     --dark-background: #151515;
     --light-background: #f1f5f9;
     --dark-text: #f1f5f9;
+    --dark-text-opacity: #f1f5f9b3;
     --light-text: #333333;
+    --light-text-opacity: #333333b3;
     --hover-color: #fc7d0b;
     /* --border-color: 1px solid #ccc; */
     --border-color: 2px solid #1170aa;
