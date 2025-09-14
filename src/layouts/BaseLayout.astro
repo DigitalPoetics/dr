@@ -6,7 +6,7 @@ import "../styles/global.css";
 import faviconSrc from "../assets/images/favicon/DR.png";
 
 interface Props {
-	pageTitle: string;
+	pageTitle?: string;
 	description?: string;
 }
 const { pageTitle, description } = Astro.props;
@@ -29,7 +29,7 @@ const { pageTitle, description } = Astro.props;
 		<Navigation />
 		<div class="layout">
 			<main>
-				<h1>{pageTitle}</h1>
+				<p class="page-title">{pageTitle}</p>
 				<slot />
 			</main>
 		</div>
@@ -51,6 +51,14 @@ main {
 	max-width: 90vw;
 	margin: 0 auto;
 }
+
+.page-title {
+  text-align: left;
+  font-size: 2rem;
+  font-weight: normal;
+  max-width: 100%;
+  line-height: 1.1;
+}
 @media screen and (min-width: 636px) {
   .layout {
 		display: flex;
@@ -63,10 +71,20 @@ main {
 	/* max-width: 55vw; */
 	max-width: 70vw;
 	/* margin: 0 1rem 0 1rem; */
-	margin: 0 auto;
-	margin: 0 15vw 0 15vw;
+	/* margin: 0 auto; */
+	margin: 3rem 15vw 0 15vw;
+  }
+
+  .page-title {
+    font-size: 3rem;
+	font-weight: normal;
+	max-width: 90%;
+	line-height: 1.1;
+
   }
 }
+
+
 /* .layout > header, .layout > Header {
     flex-shrink: 0;
 } */

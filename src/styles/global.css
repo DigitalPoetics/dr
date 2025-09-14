@@ -74,6 +74,9 @@ sup a {
 }
 
 /* Remove underline from footnote return arrow */
+.footnotes h2 {
+  display: none;
+}
 .footnotes a {
   text-decoration: none;
 }
@@ -82,6 +85,13 @@ cite {
   font-style: normal;
 }
 
+blockquote {
+  /* font-style: italic; */
+  margin: 2rem 0 2rem 2rem;
+  padding-left: 1rem;
+  border-left: var(--border-color);
+  line-height: 1.2;
+}
 
 /* Image tag image */
 .responsive-image {
