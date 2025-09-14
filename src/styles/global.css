@@ -80,6 +80,9 @@ sup a {
 .footnotes a {
   text-decoration: none;
 }
+.footnotes p {
+  font-size: 1rem;
+}
 
 cite {
   font-style: normal;
@@ -97,6 +100,6 @@ blockquote {
   width: 100%;
   height: auto;
   border-radius: 0.5rem;
-  border: var(--image-borrder);
+  border: var(--image-border);
 }
 

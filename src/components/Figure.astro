@@ -33,6 +33,10 @@ const { src, alt, caption, width = "100%", height = "auto" } = Astro.props;
     color: var(--light-text);
   }
 
+  figcaption p {
+    margin: 0; /* Remove default paragraph margin */
+  }
+
   html.dark figcaption {
     color: var(--dark-text);
   }
