@@ -13,11 +13,11 @@ const { frontmatter } = Astro.props;
         <p>{new Date(frontmatter.pubDate).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}</p>
       </div>
       
-      <p class="description"><span>{frontmatter.author}</span> • {frontmatter.description}</p>
+      <p class="description"><strong>A B</strong> — {frontmatter.description}</p>
       
       <div class="tags">
         {frontmatter.tags.map((tag: string) => (
-          <p class="tag"><a href={`/tags/${tag}`}>#{tag}</a></p>
+          <p class="tag"><a href={`/tags/${tag}`}>~ {tag}</a></p>
         ))} 
       </div>
     </div>
@@ -77,6 +77,10 @@ img {
   gap: 0.5rem;
 }
 
+.tag {
+    margin: 1rem 0.5rem;
+}
+
 .tag a {
   text-decoration: none;
   color: var(--light-text);
@@ -115,6 +119,9 @@ html.dark .tag a {
         margin-bottom: 2rem;
     }
 
-    
+    .description {
+        font-size: 1.5rem;
+
+    }
 }
 </style>
