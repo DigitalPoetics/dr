@@ -47,15 +47,25 @@ const { pageTitle, description, imageUrl, imageAlt, srcPath } = Astro.props;
 
   .text-content {
     flex: 1;
-    display: flex;
     text-decoration: none;
     color: inherit;
+    /* display: block; */
+    min-height: 100%;
+    transition: color 0.2s ease;
   }
 
-  .text-content:hover .title,
-  .text-content:hover .description {
+  /* .title-container {
+    display: block;
+    height: 100%;
+  } */
+
+  .text-content:hover .title {
     color: var(--hover-color);
   }
+
+  /* .text-content:hover .description {
+    color: var(--hover-color);
+  } */
 
   .title {
     margin: 0 0 0.5rem 0;

@@ -2,8 +2,8 @@
 layout: ../../layouts/MarkdownPostLayout.astro
 title: 'Diagram'
 pubDate: 2025-06-19
-description: 'This is the first post'
-author: 'AB'
+description: 'This is the first post in the series. In this post I will write about the amazing world of digital humanities. Stay tuned for more information...'
+author: 'A B'
 image:
     url: 'https://docs.astro.build/assets/rose.webp'
     alt: 'The Astro logo on a dark background with a pink glow'

@@ -1,0 +1,103 @@
+---
+import BlogPost from './BlogPost.astro';
+import BlogPost1 from './BlogPost1.astro';
+const {frontmatter, index } = Astro.props;
+const isIndexActive = Astro.url.pathname === `/${index}/`;
+
+// selected posts
+const allPosts = Object.values(import.meta.glob('../pages/posts/*.md', { eager: true }));
+// const allPosts = Object.values(import.meta.glob('../pages/posts/*.md', { eager: true }));
+// const selectedPosts = allPosts.filter((post:any) =>
+//     post.frontmatter?.tags?.includes(frontmatter.tags[0])
+// )
+
+// const currentIndex = Astro.props.frontmatter.index;
+const selectedPosts = allPosts.filter((post:any) =>
+    post.frontmatter?.index === index
+)
+
+---
+ <!-- Blog posts -->
+<!-- <ul>
+    <li>
+        <a href={`/${index}/`} 
+            class={isIndexActive ? 'active' : ''}
+            >{frontmatter?.tags?.[0] ?? 'Index'}</a>
+    </li>
+</ul> -->
+
+<!-- <ul> -->
+    <p>
+        {frontmatter?.tags?.[0] ? (
+            <a href={`/${index}/`} 
+                class={isIndexActive ? 'active' : ''}
+                >~ {frontmatter.tags[0]}</a>
+        ) : (
+            'Blog Posts'
+        )}
+    </p>
+<!-- </ul> -->
+<hr>
+
+<ul>
+    {selectedPosts.map((post: any) => 
+    <BlogPost1 
+        url={post.url} 
+        title={post.frontmatter.title} 
+        description={post.frontmatter.description.slice(0, 70) + '...'}/>)}
+</ul>
+
+<style>
+    p {
+        margin: 1rem 0 0 0;
+    }
+
+    hr {
+        margin: 0 auto;
+    }
+    /* li {
+        list-style: none;
+        margin: 0;
+    } */
+
+    /* li::marker {
+        color: var(--button-background);
+    } */
+
+    /* li:has(> a.active)::marker {
+        color: var(--highlight-color);
+    } */
+
+    ul {
+        margin: 0.5rem 0 0 0;
+    }
+
+    a {
+        text-decoration: none;
+        /* padding: 0 0 0 2rem; */
+        /* margin-top: 2rem; */
+        color: var(--light-text);
+        transition: color 0.2s ease;
+    }
+
+    a:hover, a:focus {
+        color: var(--hover-color);
+    }
+
+    /* a.active {
+        font-weight: bold;
+        color: var(--highlight-color);
+    }
+
+    html.dark a.active {
+        color: var(--highlight-color);
+    } */
+
+    html.dark a {
+        color: var(--dark-text);
+    }
+
+    html.dark a:hover, html.dark a:focus {
+        color: var(--hover-color);
+    }
+</style>

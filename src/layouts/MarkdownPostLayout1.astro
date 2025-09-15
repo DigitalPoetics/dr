@@ -32,7 +32,7 @@ const { frontmatter } = Astro.props;
 <style>
 
 .post-title {
-  text-align: center;
+  /* text-align: center; */
   font-size: 2rem;
   font-weight: normal;
   max-width: 100%;
@@ -41,7 +41,7 @@ const { frontmatter } = Astro.props;
 }
 
 .post-header {
-  text-align: center;
+  /* text-align: center; */
   margin-bottom: 1.5rem;
 }
 
@@ -59,14 +59,19 @@ img {
 }
 
 .byline p {
-  margin: 0.5rem 0;
+  margin: 0 0 0.5rem 0;
 }
 
 .description {
   margin: 1rem 0 1rem 0;
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   line-height: 1.1;
   font-weight: normal;
+  color: var(--light-text-opacity);
+}
+
+html.dark .description {
+  color: var(--dark-text-opacity);
 }
 
 .description span {
@@ -75,7 +80,7 @@ img {
 
 .tags {
   display: flex;
-  justify-content: center;
+  /* justify-content: center; */
   flex-wrap: wrap;
   gap: 0.5rem;
 }
@@ -87,11 +92,20 @@ img {
 .tag a {
   text-decoration: none;
   color: var(--light-text);
+  transition: color 0.2s ease-in-out;
 }
 
 html.dark .tag a {
   text-decoration: none;
   color: var(--dark-text);
+}
+
+.tag a:hover {
+  color: var(--hover-color);
+}
+
+html.dark .tag a:hover {
+  color: var(--hover-color);
 }
 
 .post-content {
@@ -101,27 +115,29 @@ html.dark .tag a {
 
 
 @media screen and (min-width: 636px) {
+    .post-header {
+        margin-bottom: 2rem;
+        max-width: 90%;
+        margin: 0 auto 2rem auto;
+    }
+
     .post-title {
-        text-align: center;
-        font-size: 4rem;
+        /* text-align: center; */
+        font-size: 2rem;
         font-weight: normal;
         max-width: 100%;
-        line-height: 1.1;
-        margin-bottom: 3rem;
-    }
-
-    .post-content {
-        max-width: 90%;
-        margin: 0 auto;
-    }
-
-    .post-header {
+        line-height: 1.2;
         margin-bottom: 2rem;
     }
 
+    .post-content {
+        max-width: 80%;
+        margin: 0 auto;
+    }
+
+
     .description {
         font-size: 1.5rem;
-
     }
 }
 </style>

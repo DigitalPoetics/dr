@@ -2,7 +2,7 @@
 layout: ../../layouts/MarkdownPostLayout.astro
 title: 'Intro'
 pubDate: 2025-06-19
-description: 'This is the first post'
+description: 'This is the first post in the series. In this post I will write about the amazing world of digital humanities. Stay tuned for more information...'
 author: 'AB'
 image:
     url: 'https://docs.astro.build/assets/rose.webp'

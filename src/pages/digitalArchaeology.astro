@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import SelectedPosts from '../components/SelectedPosts.astro';
+import SelectedPosts1 from '../components/SelectedPosts1.astro';
 // const allPosts = Object.values(import.meta.glob('./posts/*.md', { eager: true }));
 import UiShowcase from '../components/UiShowcase.astro';
 const {frontmatter } = Astro.props;
@@ -10,6 +11,14 @@ const index = 'digitalArchaeology'
 ---
 <BaseLayout pageTitle={pageTitle} description={description}>
     <p>This is where I will post about my journey learning Astro.</p>
+
+    <div class="selected-posts">
+        <SelectedPosts1 
+            frontmatter={frontmatter} 
+            index={index} 
+        />
+    </div>
+
     <div class="selected-posts">
         <SelectedPosts 
             frontmatter={frontmatter} 

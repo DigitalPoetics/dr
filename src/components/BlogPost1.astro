@@ -13,23 +13,41 @@ const isActive = Astro.url.pathname === `${url}/`;
     }
 
     li::marker {
-        color: var(--hover-color);
+        color: var(--button-background);
+        transition: color 0.2s ease;
     }
 
     li p {
-        border-left: var(--image-border);
-        margin: 0 0 0.5rem -0.70rem;
-        padding-left: 0.70rem;
+        /* border-left: var(--image-border); */
+        color: var(--light-text-opacity);
+        /* margin: 0 0 1rem -0.70rem; */
+        /* padding-left: 0.70rem; */
+        font-size: 1rem;
+        line-height: 1.1;
+    }
+
+    html.dark li p {
+        color: var(--dark-text-opacity);
+    }
+
+    li:has(> a:hover)::marker,
+    li:has(> a:focus)::marker {
+        color: var(--hover-color);
     }
 
     a {
         text-decoration: none;
         display: block;
+        transition: color 0.2s ease;
     }
 
     a:hover, a:focus {
         color: var(--hover-color);
     }
+
+    /* li::marker:hover, li::marker:focus {
+        color: var(--hover-color);
+    } */
     
     /* same page url */
     a.active {
@@ -42,9 +60,10 @@ const isActive = Astro.url.pathname === `${url}/`;
         color: var(--highlight-color);
     }
 
-    li:has(> a.active) p {
+    /* li:has(> a.active) p {
         border-left: var(--border-color);
-    }
+    } */
+
     html.dark a.active {
         color: var(--highlight-color);
     }
@@ -55,7 +74,7 @@ const isActive = Astro.url.pathname === `${url}/`;
 
     @media screen and (min-width: 636px) {
         li p {
-        border-left: var(--image-border);
+        /* border-left: var(--image-border); */
         margin: 0 0 0.5rem -0.70rem;
         padding-left: 0.70rem;
     }

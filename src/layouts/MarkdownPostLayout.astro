@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "./BaseLayout.astro";
 import SelectedPosts from "../components/SelectedPosts.astro";
+import SelectedPosts1 from "../components/SelectedPosts1.astro";
 const { frontmatter } = Astro.props;
 ---
 <BaseLayout pageTitle={frontmatter.title} description=`${frontmatter.description} + ${frontmatter.tags}`>
@@ -17,14 +18,24 @@ const { frontmatter } = Astro.props;
                     <p class="tag"><a href={`/tags/${tag}`}>#{tag}</a></p>
                 ))} 
             </div>
+
+            <div class="selected-posts">
+                <SelectedPosts1 
+                    frontmatter={frontmatter} 
+                    index={frontmatter.index} 
+                />
+            </div>
         </div>
         <!-- Posts with the first tag -->
-        <div class="selected-posts">
+
+        <!-- <div class="selected-posts">
             <SelectedPosts 
                 frontmatter={frontmatter} 
                 index={frontmatter.index} 
             />
-        </div>
+        </div> -->
+
+
     </div>
     <slot />
 
@@ -82,9 +93,9 @@ const { frontmatter } = Astro.props;
 
 
     /* blog posts */
-    .selected-posts {
+    /* .selected-posts {
         margin-top: 1rem;
-    }
+    } */
 
     ul {
         list-style: none;
@@ -104,10 +115,10 @@ const { frontmatter } = Astro.props;
             justify-content: space-between;
             align-items: center;
         }
-        .selected-posts {
+        /* .selected-posts {
             min-width: 12rem;
-            /* padding: 0 2rem 0 2rem; */
-        }
+            padding: 0 2rem 0 2rem;
+        } */
         
     }
 
