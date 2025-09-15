@@ -1,0 +1,34 @@
+---
+---
+<div class="container">
+    <slot class="slot-content"></slot>
+</div>
+
+<style>
+  .container {
+    max-width: 100%;
+    margin: 2rem 0 0 0;
+    padding: 1rem 0 0 0;
+    /* padding: 0.5rem 0; */
+    color: var(--light-text-opacity);
+    /* border: 1px solid #ddd; */
+    /* margin: 1rem 0; */
+    font-size: 1.3rem;
+    line-height: 1.1;
+  }
+
+  html.dark .container {
+    color: var(--dark-text-opacity);
+  }
+
+
+  @media screen and (min-width: 636px) {
+    .container {
+      max-width: 80%;
+      margin: 3rem 0 0 0;
+      padding: 1rem 0 0 0;
+      font-size: 1.5rem;
+      line-height: 1.1;
+    }
+  }
+</style>

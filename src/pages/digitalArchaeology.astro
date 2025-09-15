@@ -12,19 +12,41 @@ const index = 'digitalArchaeology'
 <BaseLayout pageTitle={pageTitle} description={description}>
     <p>This is where I will post about my journey learning Astro.</p>
 
-    <div class="selected-posts">
+
         <SelectedPosts1 
             frontmatter={frontmatter} 
             index={index} 
         />
-    </div>
 
-    <div class="selected-posts">
+        <SelectedPosts1 
+            customPosts={[
+                { url: '/posts/digitalFormalism/DigitalFormalism-1-Intro', 
+                frontmatter: { 
+                    title: 'Post 1', 
+                    description: 'Description 1' 
+                }},
+            ]}
+            customTitle="~ digital formalism"
+            customHref="/digitalFormalism/"
+        />
+
+        <SelectedPosts1 
+            customPosts={[
+                { url: '/posts/digitalFormalism/DigitalFormalism-1-Intro', 
+                frontmatter: { 
+                    title: 'Intro: Verse and Speech', 
+                    description: 'Difference between verse and speech is a defining point of aesthetics' 
+                }},
+            ]}
+            customTitle="Featured Posts"
+        />
+
+
+
         <SelectedPosts 
             frontmatter={frontmatter} 
             index={index} 
         />
-    </div>
 
     <UiShowcase 
         pageTitle="Network"

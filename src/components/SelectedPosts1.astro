@@ -1,51 +1,56 @@
 ---
 import BlogPost from './BlogPost.astro';
 import BlogPost1 from './BlogPost1.astro';
-const {frontmatter, index } = Astro.props;
+
+export interface Props {
+  frontmatter?: any;
+  index?: string;
+  customPosts?: any[]; // Optional: manually provided posts
+  customTitle?: string; // Optional: custom title instead of tag-based
+  customHref?: string; // Optional: custom href for the title link
+}
+
+const { frontmatter, index, customPosts, customTitle, customHref } = Astro.props;
 const isIndexActive = Astro.url.pathname === `/${index}/`;
 
-// selected posts
-const allPosts = Object.values(import.meta.glob('../pages/posts/*.md', { eager: true }));
-// const allPosts = Object.values(import.meta.glob('../pages/posts/*.md', { eager: true }));
-// const selectedPosts = allPosts.filter((post:any) =>
-//     post.frontmatter?.tags?.includes(frontmatter.tags[0])
-// )
-
-// const currentIndex = Astro.props.frontmatter.index;
-const selectedPosts = allPosts.filter((post:any) =>
+// Use custom posts if provided, otherwise use the original filtering logic
+let selectedPosts;
+if (customPosts) {
+  selectedPosts = customPosts;
+} else {
+  const allPosts = Object.values(import.meta.glob('../pages/posts/*.md', { eager: true }));
+  selectedPosts = allPosts.filter((post: any) =>
     post.frontmatter?.index === index
-)
+  );
+}
 
+// Determine title and href
+const displayTitle = customTitle || (frontmatter?.tags?.[0] ? `~ ${frontmatter.tags[0]}` : 'Blog Posts');
+const titleHref = customHref || `/${index}/`;
+const showAsLink = customTitle ? !!customHref : !!frontmatter?.tags?.[0];
 ---
- <!-- Blog posts -->
-<!-- <ul>
-    <li>
-        <a href={`/${index}/`} 
-            class={isIndexActive ? 'active' : ''}
-            >{frontmatter?.tags?.[0] ?? 'Index'}</a>
-    </li>
-</ul> -->
 
-<!-- <ul> -->
-    <p>
-        {frontmatter?.tags?.[0] ? (
-            <a href={`/${index}/`} 
-                class={isIndexActive ? 'active' : ''}
-                >~ {frontmatter.tags[0]}</a>
-        ) : (
-            'Blog Posts'
-        )}
-    </p>
-<!-- </ul> -->
+<p>
+  {showAsLink ? (
+    <a href={titleHref} 
+       class={isIndexActive ? 'active' : ''}
+       >{displayTitle}</a>
+  ) : (
+    displayTitle
+  )}
+</p>
+
 <hr>
 
 <ul>
-    {selectedPosts.map((post: any) => 
+  {selectedPosts.map((post: any) => 
     <BlogPost1 
-        url={post.url} 
-        title={post.frontmatter.title} 
-        description={post.frontmatter.description.slice(0, 70) + '...'}/>)}
+      url={post.url} 
+      title={post.frontmatter.title} 
+      description={post.frontmatter.description.slice(0, 70) + '...'}/>
+  )}
 </ul>
+
 
 <style>
     p {
@@ -69,7 +74,8 @@ const selectedPosts = allPosts.filter((post:any) =>
     } */
 
     ul {
-        margin: 0.5rem 0 0 0;
+        margin: 0.5rem 0 3rem 0;
+        padding: 0 0 0 1rem;
     }
 
     a {

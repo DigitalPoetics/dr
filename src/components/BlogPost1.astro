@@ -9,12 +9,17 @@ const isActive = Astro.url.pathname === `${url}/`;
 
 <style>
     li {
-        list-style: square;
+        /* list-style: square; */
+        list-style-type: "~ ";
     }
 
     li::marker {
-        color: var(--button-background);
+        color: var(--light-text);
         transition: color 0.2s ease;
+    }
+
+    html.dark li::marker {
+        color: var(--dark-text);
     }
 
     li p {
