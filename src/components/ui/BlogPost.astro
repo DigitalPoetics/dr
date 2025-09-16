@@ -3,7 +3,7 @@ const {title, url, description } = Astro.props;
 const isActive = Astro.url.pathname === `${url}/`;
 ---
 <li>
-  <a href={`${url}/`} class={isActive ? 'active' : ''}>{title}</a>
+  <a href={`${url}/`} class={isActive ? 'active' : ''} target="_blank">{title}</a>
   <p>{description}</p>
 </li>
 
@@ -43,6 +43,7 @@ const isActive = Astro.url.pathname === `${url}/`;
     a {
         text-decoration: none;
         display: block;
+        line-height: 1.1;
         transition: color 0.2s ease;
     }
 

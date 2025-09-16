@@ -28,32 +28,39 @@ const displayTitle = customTitle || (frontmatter?.tags?.[0] ? `~ ${frontmatter.t
 const titleHref = customHref || `/${index}/`;
 const showAsLink = customTitle ? !!customHref : !!frontmatter?.tags?.[0];
 ---
+<div class="posts-container">
+  <p>
+    {showAsLink ? (
+      <a href={titleHref} 
+        class={isIndexActive ? 'active' : ''}
+        target="_blank"
+        >{displayTitle}</a>
+    ) : (
+      displayTitle
+    )}
+  </p>
 
-<p>
-  {showAsLink ? (
-    <a href={titleHref} 
-       class={isIndexActive ? 'active' : ''}
-       >{displayTitle}</a>
-  ) : (
-    displayTitle
-  )}
-</p>
+  <hr>
 
-<hr>
-
-<ul>
-  {selectedPosts.map((post: any) => 
-    <BlogPost 
-      url={post.url} 
-      title={post.frontmatter.title} 
-      description={post.frontmatter.description.slice(0, 70) + '...'}/>
-  )}
-</ul>
+  <ul>
+    {selectedPosts.map((post: any) => 
+      <BlogPost 
+        url={post.url} 
+        title={post.frontmatter.title} 
+        description={post.frontmatter.description.slice(0, 70) + '...'}/>
+    )}
+  </ul>
+</div>
 
 
 <style>
+    .posts-container {
+        margin: 0 0 0 0;
+        width: 100%;
+    }
+
     p {
-        margin: 1rem 0 0 0;
+        margin: -0.5rem 0 0 0;
     }
 
     hr {
