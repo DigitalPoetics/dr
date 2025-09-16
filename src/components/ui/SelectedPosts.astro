@@ -17,7 +17,7 @@ let selectedPosts;
 if (customPosts) {
   selectedPosts = customPosts;
 } else {
-  const allPosts = Object.values(import.meta.glob('../../pages/posts/*.md', { eager: true }));
+  const allPosts = Object.values(import.meta.glob('../../pages/posts/**/*.mdx', { eager: true }));
   selectedPosts = allPosts.filter((post: any) =>
     post.frontmatter?.index === index
   );

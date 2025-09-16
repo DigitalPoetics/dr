@@ -1,23 +1,18 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import SelectedPosts from '../components/ui/SelectedPosts.astro';
 import UiShowcase from '../components/ui/UiShowcase.astro';
 const pageTitle = "Digital Formalism"
 const description = "Audio visualization"
+const index = 'digitalFormalism'
+const {frontmatter } = Astro.props;
 ---
 
 <BaseLayout pageTitle={pageTitle} description={description}>
-    <!-- <h3>Audio Viz</h3>
-    <ul>
-        <li>
-            <a href="/poema" target="_blank">Test</a>
-        </li>
-        <li>
-            <a href="/poema1" target="_blank">Praat display for &ldquo;The Red Wheelbarrow&rdquo;</a>
-        </li>
-        <li>
-            <a href="/poema2" target="_blank">Praat display (w/ spectrogram) for &ldquo;The Red Wheelbarrow&rdquo;</a>
-        </li>
-    </ul> -->
+    <SelectedPosts 
+        frontmatter={frontmatter} 
+        index={index} 
+    />
 
     <UiShowcase 
         pageTitle="Poema"

@@ -1,126 +1,152 @@
 ---
 import BaseLayout from "./BaseLayout.astro";
-import SelectedPosts from "../components/SelectedPosts.astro";
-import SelectedPosts1 from "../components/SelectedPosts1.astro";
+import { Image } from "astro:assets";
+// import SelectedPosts from "../components/SelectedPosts.astro";
+import SelectedPosts from "../components/ui/SelectedPosts.astro";
 const { frontmatter } = Astro.props;
 ---
-<BaseLayout pageTitle={frontmatter.title} description=`${frontmatter.description} + ${frontmatter.tags}`>
-     <!-- front matter -->
-    <div class="front-matter">
-        <div class="front-matter-left">
-            <img src={frontmatter.image.url} alt={frontmatter.image.alt} />
-            <div class="byline">
-                <p>BY {frontmatter.author},</p>
-                <p>{new Date(frontmatter.pubDate).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}</p>
-            </div>
-            <div class="tags">
-                {frontmatter.tags.map((tag: string) => (
-                    <p class="tag"><a href={`/tags/${tag}`}>#{tag}</a></p>
-                ))} 
-            </div>
-
-            <div class="selected-posts">
-                <SelectedPosts1 
-                    frontmatter={frontmatter} 
-                    index={frontmatter.index} 
-                />
-            </div>
-        </div>
-        <!-- Posts with the first tag -->
-
-        <!-- <div class="selected-posts">
-            <SelectedPosts 
-                frontmatter={frontmatter} 
-                index={frontmatter.index} 
-            />
-        </div> -->
-
+<BaseLayout description=`${frontmatter.description} + ${frontmatter.tags}`>
+  <div class="post-header">
+    <p class="post-title">{frontmatter.title}</p>
+    
+    <div class="post-meta">
+      <Image src={frontmatter.image.url} alt={frontmatter.image.alt} />
+      <div class="byline">
+        <p>{new Date(frontmatter.pubDate).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}</p>
+      </div>
+      
+      <p class="description"><strong>A B</strong> — {frontmatter.description}</p>
+      
+      <div class="tags">
+        {frontmatter.tags.map((tag: string) => (
+          <p class="tag"><a href={`/tags/${tag}`}>~ {tag}</a></p>
+        ))} 
+      </div>
+      <div class="selected-posts">
+        <SelectedPosts 
+          frontmatter={frontmatter} 
+          index={frontmatter.index} 
+        />
+      </div>
 
     </div>
-    <slot />
 
+  </div>
+
+  <div class="post-content">
+    <slot />
+  </div>
 </BaseLayout>
 
 <style>
 
-    /* front matter */
-    img {
+.post-title {
+  /* text-align: center; */
+  font-size: 2rem;
+  font-weight: normal;
+  max-width: 100%;
+  line-height: 1.1;
+  margin-bottom: 1.5rem;
+}
+
+.post-header {
+  /* text-align: center; */
+  margin-bottom: 1.5rem;
+}
+
+
+img {
+  max-width: 100%;
+  height: auto;
+  margin-bottom: 1.5rem;
+  border-radius: 0.5rem;
+  border: var(--image-border);
+}
+
+.post-meta {
+  margin-bottom: 2rem;
+}
+
+.byline p {
+  margin: 0 0 0.5rem 0;
+}
+
+.description {
+  margin: 1rem 0 1rem 0;
+  font-size: 1.2rem;
+  line-height: 1.1;
+  font-weight: normal;
+  color: var(--light-text-opacity);
+}
+
+html.dark .description {
+  color: var(--dark-text-opacity);
+}
+
+.description span {
+  font-weight: bold;
+}
+
+.tags {
+  display: flex;
+  /* justify-content: center; */
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.tag {
+    margin: 0 1rem 0 0;
+}
+
+.tag a {
+  text-decoration: none;
+  color: var(--light-text);
+  transition: color 0.2s ease-in-out;
+}
+
+html.dark .tag a {
+  text-decoration: none;
+  color: var(--dark-text);
+}
+
+.tag a:hover {
+  color: var(--hover-color);
+}
+
+html.dark .tag a:hover {
+  color: var(--hover-color);
+}
+
+.post-content {
+  text-align: left;
+  max-width: 100%;
+}
+
+
+@media screen and (min-width: 636px) {
+    .post-header {
+        margin-bottom: 2rem;
+        max-width: 90%;
+        margin: 0 auto 2rem auto;
+    }
+
+    .post-title {
+        /* text-align: center; */
+        font-size: 2rem;
+        font-weight: normal;
         max-width: 100%;
-        height: auto;
-        /* padding: 0 0.5rem 0 0.5rem; */
+        line-height: 1.2;
+        margin-bottom: 2rem;
     }
 
-    .byline p{
-        display: inline-block;
-        /* padding: 1rem 0 0 0; */
-        margin: 1rem 0 0 0;
-    }
-    .tags {
-        display: flex;
-        flex-wrap: wrap;
-    }
-
-    .tag {
-        margin: 0 0 0 0;
-        /* border: dotted 1px #a1a1a1; */
-        /* border-radius: .5rem; */
-        padding: 0 0.5rem 0 0;
-        font-size: 1rem;
-        /* background-color: #F8FCFD; */
-    }
-
-    .tags a {
-        text-decoration: none;
-        color: var(--light-text);
-    }
-
-    .tags a:hover, .tags a:focus {
-        color: var(--hover-color);
-    }
-
-    html.dark .tags a{
-        color: var(--dark-text);
-    }
-
-    .tags a:hover, .tags a:focus {
-        color: var(--hover-color);
-    }
-
-    html.dark .tags a:hover,
-    html.dark .tags a:focus {
-        color: var(--hover-color);
+    .post-content {
+        max-width: 80%;
+        margin: 0 auto;
     }
 
 
-    /* blog posts */
-    /* .selected-posts {
-        margin-top: 1rem;
-    } */
-
-    ul {
-        list-style: none;
-        padding: 0;
-        border: 1px solid red;
+    .description {
+        font-size: 1.5rem;
     }
-
-    @media screen and (min-width: 636px) {
-        img {
-            width: 100%;
-            height: auto;
-            /* padding: 0 2rem 0 2rem; */
-        }
-        .front-matter {
-            display: flex;
-            flex-direction: row;
-            justify-content: space-between;
-            align-items: center;
-        }
-        /* .selected-posts {
-            min-width: 12rem;
-            padding: 0 2rem 0 2rem;
-        } */
-        
-    }
-
-
+}
 </style>

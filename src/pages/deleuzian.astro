@@ -1,10 +1,10 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import SearchWord2vec1 from '../components/SearchWord2vec1.astro';
-import Word2vecViz2 from '../components/Word2vecViz2.astro';
+import SearchWord2vecMulti from '../components/searchUi/SearchWord2vecMulti.astro';
+import Word2vecViz2 from '../components/searchUi/Word2vecViz2.astro';
 // import data from '../data/deleuze/theDeleuzeSeminars.json'
 
-import word2vecDataCoordinates from '../data/deleuze/deleuzeWord2vecCoordinates.json';
+import word2vecDataCoordinates from '../data/deleuzian/deleuzeWord2vecCoordinates.json';
 // import data from '../data/deleuze/theDeleuzeSeminars.json';
 
 export const prerender = false;
@@ -36,7 +36,7 @@ const fields = {
     <h3>Multi-Word Word2vec Visualization for
         <a href="https://deleuze.cla.purdue.edu/seminars/" target="_blank">the Deleuze Seminars</a>
     </h3>
-    <SearchWord2vec1 
+    <SearchWord2vecMulti 
     word2vecData={word2vecDataCoordinates} 
   />
   <Word2vecViz2/>

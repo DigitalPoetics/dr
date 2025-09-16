@@ -1,0 +1,34 @@
+---
+---
+<div class="hamburger">
+    <span class="line"></span>
+    <span class="line"></span>
+    <span class="line"></span>
+</div>
+
+<style>
+
+.hamburger {
+  /* padding-right: 20px; */
+  margin: 0 1rem 0 0;
+  cursor: pointer;
+}
+
+.hamburger .line {
+  display: block;
+  width: 2rem;
+  height: 3px;
+  margin-bottom: 5px;
+  background-color: var(--light-text);
+}
+
+html.dark .hamburger .line {
+  background-color: var(--dark-text);
+}
+
+@media screen and (min-width: 636px) {
+  :global(.hamburger) {
+    display: block;
+  }
+}
+</style>

@@ -1,11 +1,12 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import SearchWord2vec from '../components/SearchWord2vec.astro';
-import SimilaritySearchWord2vec from '../components/SimilaritySearchWord2vec.astro';
+import SearchWord2vec from '../components/searchUi/SearchWord2vec.astro';
+import SimilaritySearchWord2vec from '../components/searchUi/SimilaritySearchWord2vec.astro';
 
-import textData from '../data/deleuze/theDeleuzeSeminars.json';
-import word2vecData from '../data/deleuze/deleuzeWord2vec.json';
-import word2vecDataCoordinates from '../data/deleuze/deleuzeWord2vecCoordinates.json';
+// src data
+import textData from '../data/deleuzian/theDeleuzeSeminars.json';
+import word2vecData from '../data/deleuzian/deleuzeWord2vec.json';
+import word2vecDataCoordinates from '../data/deleuzian/deleuzeWord2vecCoordinates.json';
 
 export const prerender = false;
 

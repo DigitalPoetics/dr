@@ -1,0 +1,114 @@
+---
+const { word2vecData } = Astro.props;
+const searchTerm = Astro.url.searchParams.get('searchTerm')?.trim() || '';
+
+function tokenizeQuery(query) {
+  let cleaned = query.replace(/\W/g, ' ')
+                   .replace(/\s+[a-zA-Z]\s+/g, ' ')
+                   .replace(/\^[a-zA-Z]\s+/g, ' ')
+                   .replace(/\s+/g, ' ')
+                   .toLowerCase()
+                   .trim();
+  
+  const stopWords = new Set(['the', 'and', 'for', 'are', 'but', 'not', 'you', 'all', 'can', 'had', 'her', 'was', 'one', 'our', 'out', 'day', 'get', 'has', 'him', 'his', 'how', 'its', 'may', 'new', 'now', 'old', 'see', 'two', 'who', 'boy', 'did', 'she', 'use', 'way', 'many', 'oil', 'sit', 'set', 'run', 'eat', 'far', 'sea', 'eye', 'ask', 'own', 'say', 'too', 'any', 'try', 'an', 'as', 'at', 'be', 'he', 'if', 'in', 'is', 'it', 'my', 'of', 'on', 'or', 'to', 'up', 'we', 'go', 'no', 'so', 'am', 'by', 'do', 'me']);
+  
+  return cleaned.split(/\s+/).filter(word => word.length > 3 && !stopWords.has(word));
+}
+
+function getAllMatches(queryTokens) {
+  return queryTokens.map(token => {
+    const match = word2vecData.find(item => item.word === token);
+    return match ? 
+      { word: token, similar: match.similar } : 
+      { word: token, similar: null };
+  });
+}
+
+const queryTokens = searchTerm ? tokenizeQuery(searchTerm) : [];
+const allMatches = queryTokens.length > 0 ? getAllMatches(queryTokens) : [];
+---
+
+<div class="autocomplete">
+  <form method="GET" class="search-bar">
+    <input
+      type="text"
+      name="searchTerm"
+      placeholder="Enter search query..."
+      value={searchTerm}
+    />
+    <button type="submit" class="search-button">Search</button>
+  </form>
+</div>
+
+<div class="search-results">
+  {!searchTerm ? (
+    <div class="keyword-match">
+      <p><strong>Keyword:</strong> None</p>
+      <p><strong>Vectors:</strong> None</p>
+    </div>
+  ) : allMatches.length > 0 ? (
+    allMatches.map(match => (
+      <div class="keyword-match">
+        <p><strong>Keyword:</strong> {match.word}</p>
+        <p><strong>Vectors:</strong> {match.similar ? match.similar.join(', ') : 'None'}</p>
+      </div>
+    ))
+  ) : (
+    <div class="keyword-match">
+      <p><strong>Keyword:</strong> None</p>
+      <p><strong>Vectors:</strong> None</p>
+    </div>
+  )}
+</div>
+
+<script>
+  const form = document.querySelector('.search-bar');
+  form.addEventListener('submit', (e) => {
+    const input = document.querySelector('input[name="searchTerm"]');
+    input.value = input.value.trim().toLowerCase();
+  });
+</script>
+
+<style>
+  .autocomplete {
+    position: relative;
+    width: 100%;
+    margin-bottom: 1rem;
+  }
+  
+  .search-bar {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .search-bar input {
+    flex: 1;
+    padding: 0.5rem;
+    font-size: 1rem;
+    font-family: 'IM Fell English', serif;
+    box-sizing: border-box;
+  }
+
+  .search-button {
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    cursor: pointer;
+    font-family: 'IM Fell English', serif;
+    border: var(--image-border);
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+
+  .search-button:hover {
+    background-color: var(--hover-color);
+    color: white;
+  }
+
+  .search-results {
+    margin: 1rem 0;
+  }
+
+  .keyword-match {
+    margin-bottom: 0.5rem;
+  }
+</style>

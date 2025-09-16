@@ -10,9 +10,9 @@ export const prerender = false;
 const pageTitle = "Poema Test";
 const description = "Poema uses wavesurfer.js and d3.js to implement Praat display on the browser, somewhat extending the Tones and Breaks Indices (ToBI) framework by including beats and text to analyze rhythm and enjambments of verse."
 
-// Fetch data in frontmatter
-const pitchResponse = await fetch(new URL('/poema/WCW_The_Red_Wheelbarrow_1945_LoC.json', Astro.url));
-const praatResponse = await fetch(new URL('/poema/WCW_The_Red_Wheelbarrow_1945_LoCTextgrid.json', Astro.url));
+// public data
+const pitchResponse = await fetch(new URL('/data/poema/WCW_The_Red_Wheelbarrow_1945_LoC.json', Astro.url));
+const praatResponse = await fetch(new URL('/data/poema/WCW_The_Red_Wheelbarrow_1945_LoCTextgrid.json', Astro.url));
 
 const pitchData = await pitchResponse.json();
 const praatData = await praatResponse.json();
@@ -27,7 +27,7 @@ const praatData = await praatResponse.json();
         minPxPerSec={110}
       /> -->
       <Spectrogram 
-        audioUrl="/poema/WCW_The_Red_Wheelbarrow_1945_LoC.wav"
+        audioUrl="/data/poema/WCW_The_Red_Wheelbarrow_1945_LoC.wav"
         height={32}
         minPxPerSec={110}
       />
@@ -41,7 +41,7 @@ const praatData = await praatResponse.json();
 
     <div class="transcription-section">
       <Transcription 
-        transcriptionUrl="/poema/WCW_The_Red_Wheelbarrow_1945_LoCTextgrid.json"
+        transcriptionUrl="/data/poema/WCW_The_Red_Wheelbarrow_1945_LoCTextgrid.json"
         title="The Red Wheelbarrow"
       />
     </div>

@@ -1,10 +1,11 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import SearchWord2vec1 from '../components/SearchWord2vec1.astro';
-import SimilarityQueryWord2vec from '../components/SimilarityQueryWord2vec.astro';
-import textData from '../data/deleuze/deleuzeWord2vecDocuments.json';
-import word2vecData from '../data/deleuze/deleuzeWord2vec.json';
-import word2vecDataCoordinates from '../data/deleuze/deleuzeWord2vecCoordinates.json';  
+import SearchWord2vecMulti from '../components/searchUi/SearchWord2vecMulti.astro';
+import SimilarityQueryWord2vec from '../components/searchUi/SimilarityQueryWord2vec.astro';
+// src data
+import textData from '../data/deleuzian/deleuzeWord2vecDocuments.json';
+import word2vecData from '../data/deleuzian/deleuzeWord2vec.json';
+import word2vecDataCoordinates from '../data/deleuzian/deleuzeWord2vecCoordinates.json';  
 
 export const prerender = false;
 
@@ -25,7 +26,7 @@ const textFields = {
   <h3>Query Search UI for
     <a href="https://deleuze.cla.purdue.edu/seminars/" target="_blank">the Deleuze Seminars</a>
   </h3>
-  <SearchWord2vec1 
+  <SearchWord2vecMulti 
     word2vecData={word2vecDataCoordinates} 
   />
   <SimilarityQueryWord2vec 

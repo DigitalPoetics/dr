@@ -1,0 +1,105 @@
+---
+const { pages = [], label, links = [], pagesPosition = 'above' } = Astro.props;
+// const isActive = Astro.url.pathname;
+
+---
+{pagesPosition === 'above' && pages.map((page: { href: string, text: string }) => (
+  <a href={page.href} class={Astro.url.pathname === page.href ? 'active' : ''}>{page.text}</a>
+))}
+
+<details>
+    <summary>
+        {label}
+        <span class="arrow"></span>
+    </summary>
+    {links.map((link: {href: string, text: string}) => (
+        <a href={link.href} class={Astro.url.pathname === link.href ? 'active' : ''}>{link.text}</a>
+    ))}
+</details>
+
+{pagesPosition === 'below' && pages.map((page: { href: string, text: string }) => (
+  <a href={page.href} class={Astro.url.pathname === page.href ? 'active' : ''}>{page.text}</a>
+))}
+
+<style>
+a, details summary {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin: 0 0.5rem 0 0.5rem;
+  /* padding-left: 1.5rem; */
+  font-weight: bold;
+  font-size: 1.2rem;
+  padding-top: 0.5rem;
+  text-decoration: none;
+}
+
+summary::-webkit-details-marker {
+  display: none;
+}
+
+details {
+  color: var(--light-text);
+}
+
+html.dark details {
+  color: var(--dark-text);
+}
+
+
+.arrow {
+  display: inline-block;
+  transition: transform 0.2s;
+  border: solid var(--light-text);
+  border-width: 0 2px 2px 0;
+  padding: 3px;
+  margin-left: 4px;
+  transform: rotate(-45deg);
+}
+
+html.dark .arrow {
+  display: inline-block;
+  transition: transform 0.2s;
+  border: solid var(--dark-text);
+  border-width: 0 2px 2px 0;
+  padding: 3px;
+  margin-left: 4px;
+  transform: rotate(-45deg);
+}
+
+details[open] .arrow {
+  transform: rotate(45deg);
+}
+
+details > a {
+  display: block;
+  /* padding-left: 1rem; */
+  text-decoration: none;
+  text-align: left;
+  font-size: 1rem;
+  font-weight: normal;
+  padding:  0.2rem 0 0 0.5rem;
+}
+
+/* isActive */
+
+details > a.active {
+  color: var(--highlight-color);
+  font-weight: bold;
+}
+a.active {
+  color: var(--highlight-color);
+  font-weight: bold;
+}
+
+html.dark a.active {
+  color: var(--highlight-color);
+}
+
+html.dark details > a.active {
+  color: var(--highlight-color);
+  font-weight: bold;
+}
+
+</style>
