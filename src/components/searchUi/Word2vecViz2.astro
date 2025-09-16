@@ -55,7 +55,7 @@ const selectedWords = queryTokens.length > 0 ? queryTokens : (searchTerm ? [sear
     const d3 = globalThis.d3;
     
     const renderVisualization = debounce(() => {
-        d3.json('./data/deleuzeWord2vecCoordinates.json').then((data) => {
+        d3.json('./data/deleuzian/deleuzeWord2vecCoordinates.json').then((data) => {
           const wordsToRender = selectedWords.length > 0 ? selectedWords : [''];
           
           wordsToRender.forEach((selectedWord, index) => {

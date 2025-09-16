@@ -6,28 +6,23 @@ const pageTitle = "Digital Formalism"
 const description = "Audio visualization"
 const index = 'digitalFormalism'
 const {frontmatter } = Astro.props;
+//src image
+import poemaImage from "../assets/images/digitalFormalism/poema.png"
 ---
 
 <BaseLayout pageTitle={pageTitle} description={description}>
+    
+    <UiShowcase 
+        pageTitle="~ Poema ~"
+        description="Poema implements Praat display on the browser, and it extends the Tones and Breaks Indices (ToBI) framework by including beats and text to analyze rhythm and enjambments of verse."
+		imageUrl= {poemaImage}
+        imageAlt="Audio visualization and annotation of The Red Wheelbarrow"
+        srcPath="/poema2"
+    />
+    
     <SelectedPosts 
         frontmatter={frontmatter} 
         index={index} 
-    />
-
-    <UiShowcase 
-        pageTitle="Poema"
-        description="Spectrogram Visualization"
-        imageUrl="/images/Poema3.png"
-        imageAlt="The Astro logo on a dark background with a pink glow"
-        srcPath="/poema1"
-    />
-
-    <UiShowcase 
-        pageTitle="Poema"
-        description="Poema implements Praat display on the browser, and it extends the Tones and Breaks Indices (ToBI) framework by including beats and text to analyze rhythm and enjambments of verse."
-        imageUrl="/images/Poema4.png"
-        imageAlt="Audio visualization and annotation of The Red Wheelbarrow"
-        srcPath="/poema2"
     />
 
 </BaseLayout>

@@ -8,6 +8,27 @@ import linksData from '../data/bimodalNetwork/links.json';
 const pageTitle = "Network Visualization";
 const description = "Bimodal network visualization of members and institutions";
 
+const institutionFilter= ["Bernstein_43 Poets_1985", 
+  "Bernstein_Language Sampler_1982", 
+  "McGann_Postmodern Poetries_1990", 
+  'Messerli_"Language" Poetries_1994', 
+  "Silliman_In the American Tree_1986", 
+  "Silliman_The Dwelling Place_1975", 
+  "Silliman_Realism_1982", 
+  "Sloan_Moving Borders_1998",
+  "Hoover_Postmodern American Poetry_1994", 
+  "Hoover_Postmodern American Poetry_2013",
+  "Nelson_Contemporary American Poetry_2015",
+  "Ramazani_Contemporary Poetry_2003",
+  "Swensen_American Hybrid_2009", 
+  "Halpern_The New Poetry Anthology_1975", 
+  "Smith_The Morrow Anthology_1985", 
+  "Dacey_Strong Measures_1986", 
+  "Finch_A Formal Feeling Comes_1994", 
+  "Jarman_Rebel Angels_1996", 
+  "Richman_The Direction of Poetry_1988", 
+]
+
 const institutionFilter2 = [
   "Hoover_Postmodern American Poetry_1994", 
   "Hoover_Postmodern American Poetry_2013",
@@ -20,7 +41,9 @@ const institutionFilter2 = [
 ---
 
 <BaseLayout pageTitle={pageTitle} description={description}>
-  <p>Creating an Inflection: Unimodal Networks for Centrality Measurements</p>
+  <p>Creating an Inflection: Unimodal Networks for Centrality Measurements
+    first change the bimodal graph into unimodal graph, then apply centrality measurements
+  </p>
   <Centrality 
     id="bimodal-network"
     networkType="bimodal"
@@ -38,15 +61,15 @@ const institutionFilter2 = [
     forceYStrength={null}
     alphaDecay={0.04}
     maxIterations={1000}
-    rotation={-60}
+    rotation={90}
     height={85}
     memberNodeRange={[1, 5]}
     institutionNodeRange={[3, 25]}
     memberFontRange={[2, 6]}
     institutionFontRange={[5, 12]}
     bimodalZoomScale={0.7}
-    filter={{institution: institutionFilter2}}
-    clickedNodes={{nodes: ["Nelson_Contemporary American Poetry_2015"], color: "red"}}
+    filter={{institution: institutionFilter}}
+    clickedNodes={{nodes: ["Swensen_American Hybrid_2009"], color: "red"}}
   />
 
   <Centrality
@@ -54,26 +77,26 @@ const institutionFilter2 = [
     networkType="institution"
     nodesData={nodesData}
     linksData={linksData}
-    linkDistance={60}
+    linkDistance={80}
     linkStrength={0.6}
     chargeStrength={-50}
     chargeTheta={0.8}
     chargeDistanceMax={400}
     centerStrength={0.1}
-    collisionRadius={5}
+    collisionRadius={20}
     collisionStrength={0.7}
     forceXStrength={null}
     forceYStrength={null}
     alphaDecay={0.04}
     maxIterations={1000}
     height={85}
-    rotation={-60}
+    rotation={100}
     uniNodeRange={[20, 60]}
     uniFontRange={[20, 40]}
     uniStrokeRange={[1, 10]}
     uniZoomScale={0.5}
     centralityMetric="betweenness"
-    filter={{institution: institutionFilter2}}
-    clickedNodes={{nodes: ["Nelson_Contemporary American Poetry_2015"], color: "blue"}}
+    filter={{institution: institutionFilter}}
+    clickedNodes={{nodes: ["Swensen_American Hybrid_2009"], color: "red"}}
   />
 </BaseLayout>

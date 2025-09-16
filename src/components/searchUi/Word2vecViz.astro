@@ -41,7 +41,7 @@ const selectedWord = Astro.url.searchParams.get('searchTerm')?.trim() || '';
     const d3 = globalThis.d3;
     // const data = (window as any).word2vecData;
     const renderVisualization = debounce(() => {
-        d3.json('./data/deleuzeWord2vecCoordinates.json').then((data) => {
+        d3.json('./data/deleuzian/deleuzeWord2vecCoordinates.json').then((data) => {
 
       
         const container = d3.select("#word2vec");
