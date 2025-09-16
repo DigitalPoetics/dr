@@ -1,17 +1,18 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import Note from '../components/Note.astro';
-import SelectedPosts1 from '../components/SelectedPosts1.astro';
-import UiShowcase from '../components/UiShowcase.astro';
-import BlockquoteWithFootnote from '../components/BlockquoteWithFootnote.astro';
-import Superscript from '../components/Superscript.astro';
-import Footnote from '../components/Footnote.astro';
-import Figure from '../components/Figure.astro';
+import Note from '../components/ui/Note.astro';
+import SelectedPosts from '../components/ui/SelectedPosts.astro';
+import UiShowcase from '../components/ui/UiShowcase.astro';
+import BlockquoteWithFootnote from '../components/ui/BlockquoteWithFootnote.astro';
+import Superscript from '../components/ui/Superscript.astro';
+import Footnote from '../components/ui/Footnote.astro';
+import Figure from '../components/ui/Figure.astro';
 import {Image} from "astro:assets";
-import Table from '../components/Table.astro';
+import Table from '../components/ui/Table.astro';
 const pageTitle = "Diagrammatic Readings"
 const desription = "How to model the materials and forces of cultural and aesthetic forms";
 
+// src image
 import druckerImage from "../assets/images/home/drucker-inflection.jpg"
 ---
 <BaseLayout pageTitle={pageTitle} description={desription}>
@@ -32,7 +33,7 @@ import druckerImage from "../assets/images/home/drucker-inflection.jpg"
 			this page. And read about the philosophy.
 		</p>
 	</Note>
-	<SelectedPosts1 
+	<SelectedPosts 
 		customPosts={[
 			{ url: '/posts/digitalFormalism/DigitalFormalism-1-Intro', 
 			frontmatter: { 
@@ -72,12 +73,6 @@ import druckerImage from "../assets/images/home/drucker-inflection.jpg"
 		According to the top right figure, more than one centrality measurements could be rendered on each node, e.g.,
 		shading for degree centrality, brightness for eigenvector centrality, and glow for betweenness centrality.
 	</p>
-
-	<!-- <BlockquoteWithFootnote
-    text="the act of creating an inflection"
-    cite="Drucker"
-    footnoteId="2"
-  	/> -->
 
 	<Figure>
 		<Image slot="image"

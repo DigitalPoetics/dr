@@ -1,9 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import SelectedPosts from '../components/SelectedPosts.astro';
-import SelectedPosts1 from '../components/SelectedPosts1.astro';
-// const allPosts = Object.values(import.meta.glob('./posts/*.md', { eager: true }));
-import UiShowcase from '../components/UiShowcase.astro';
+import SelectedPosts from '../components/ui/SelectedPosts.astro';
+import UiShowcase from '../components/ui/UiShowcase.astro';
 const {frontmatter } = Astro.props;
 const pageTitle = "Digital Archaeology"
 const description = "Of Stratas and Historical Formations"
@@ -12,13 +10,12 @@ const index = 'digitalArchaeology'
 <BaseLayout pageTitle={pageTitle} description={description}>
     <p>This is where I will post about my journey learning Astro.</p>
 
-
-        <SelectedPosts1 
+        <SelectedPosts 
             frontmatter={frontmatter} 
             index={index} 
         />
 
-        <SelectedPosts1 
+        <SelectedPosts 
             customPosts={[
                 { url: '/posts/digitalFormalism/DigitalFormalism-1-Intro', 
                 frontmatter: { 
@@ -30,7 +27,7 @@ const index = 'digitalArchaeology'
             customHref="/digitalFormalism/"
         />
 
-        <SelectedPosts1 
+        <SelectedPosts 
             customPosts={[
                 { url: '/posts/digitalFormalism/DigitalFormalism-1-Intro', 
                 frontmatter: { 
@@ -40,8 +37,6 @@ const index = 'digitalArchaeology'
             ]}
             customTitle="Featured Posts"
         />
-
-
 
         <SelectedPosts 
             frontmatter={frontmatter} 
@@ -53,14 +48,14 @@ const index = 'digitalArchaeology'
         description="D3.js force simulations appromixation of Yifan Hu Network Layout"
         imageUrl="/images/yifanhu1.png"
         imageAlt="The Astro logo on a dark background with a pink glow"
-        srcPath="/bimodalNetwork4"
+        srcPath="/bimodalNetwork1"
     />
     <UiShowcase 
         pageTitle="Network"
         description="D3.js force simulations appromixation of Yifan Hu Network Layout"
         imageUrl="/images/yifanhu2.png"
         imageAlt="The Astro logo on a dark background with a pink glow"
-        srcPath="/bimodalNetwork4"
+        srcPath="/bimodalNetwork2"
     />
     <UiShowcase 
         pageTitle="Network"

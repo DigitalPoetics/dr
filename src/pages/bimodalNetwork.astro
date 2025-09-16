@@ -1,7 +1,8 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import BimodalNetwork3 from '../components/bimodalNetwork/BimodalNetwork3.astro';
-import BimodalNetwork4 from '../components/bimodalNetwork/BimodalNetwork4.astro';
+import Centrality from '../components/bimodalNetwork/Centrality.astro';
+import BimodalNetwork from '../components/bimodalNetwork/BimodalNetwork.astro';
+// src data
 import nodesData from '../data/bimodalNetwork/nodes.json';
 import linksData from '../data/bimodalNetwork/links.json';
 
@@ -50,7 +51,7 @@ const institutionFilter2 = [
     <a href="https://d3js.org/d3-force" target="_blank">D3.js force simulations</a>
     appromixation of Yifan Hu Network Layout
   </p>
-  <BimodalNetwork4 
+  <BimodalNetwork 
     id="yifan-hu-network"
     nodesData={nodesData}
     linksData={linksData}
@@ -75,7 +76,7 @@ const institutionFilter2 = [
   />
 
   <p>2. Making a change in the graph by filtering nodes</p>
-  <BimodalNetwork4 
+  <BimodalNetwork 
     id="filtered-network"
     nodesData={nodesData}
     linksData={linksData}
@@ -101,7 +102,7 @@ const institutionFilter2 = [
   />
 
   <p>3. Creating an Inflection: Unimodal Networks for Centrality Measurements</p>
-  <BimodalNetwork3 
+  <Centrality 
     id="bimodal-network"
     networkType="bimodal"
     display={false}
@@ -130,7 +131,7 @@ const institutionFilter2 = [
   />
 
   <p>Betweenness Centrality</p>
-  <BimodalNetwork3 
+  <Centrality 
     id="institution-network"
     networkType="institution"
     nodesData={nodesData}
@@ -158,7 +159,7 @@ const institutionFilter2 = [
   />
 
   <p>Degree Centrality</p>
-    <BimodalNetwork3 
+    <Centrality 
     id="institution-network2"
     networkType="institution"
     nodesData={nodesData}

@@ -1,27 +1,79 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import BimodalNetwork1 from '../components/bimodalNetwork/BimodalNetwork1.astro';
+import Centrality from '../components/bimodalNetwork/Centrality.astro';
+// src data
 import nodesData from '../data/bimodalNetwork/nodes.json';
 import linksData from '../data/bimodalNetwork/links.json';
 
 const pageTitle = "Network Visualization";
 const description = "Bimodal network visualization of members and institutions";
+
+const institutionFilter2 = [
+  "Hoover_Postmodern American Poetry_1994", 
+  "Hoover_Postmodern American Poetry_2013",
+  "Nelson_Contemporary American Poetry_2015",
+  "Ramazani_Contemporary Poetry_2003",
+  "Swensen_American Hybrid_2009", 
+  "Halpern_The New Poetry Anthology_1975", 
+  "Smith_The Morrow Anthology_1985", 
+]
 ---
 
 <BaseLayout pageTitle={pageTitle} description={description}>
-  <p>Network Analysis of Postwar U.S. Poetry in the Age of Digital Audio Archives</p>
-    <BimodalNetwork1 
+  <p>Creating an Inflection: Unimodal Networks for Centrality Measurements</p>
+  <Centrality 
+    id="bimodal-network"
+    networkType="bimodal"
     nodesData={nodesData}
     linksData={linksData}
-    linkDistance={50}
-    chargeStrength={-150}
-    centerStrength={1}
-    chargeTheta={0.5}
+    linkDistance={60}
+    linkStrength={0.6}
+    chargeStrength={-50}
+    chargeTheta={0.8}
     chargeDistanceMax={400}
-    collisionStrength={0.8}
+    centerStrength={0.1}
     collisionRadius={5}
-    collisionIterations={1}
-    rotation={-50}
-    height={65}
+    collisionStrength={0.7}
+    forceXStrength={null}
+    forceYStrength={null}
+    alphaDecay={0.04}
+    maxIterations={1000}
+    rotation={-60}
+    height={85}
+    memberNodeRange={[1, 5]}
+    institutionNodeRange={[3, 25]}
+    memberFontRange={[2, 6]}
+    institutionFontRange={[5, 12]}
+    bimodalZoomScale={0.7}
+    filter={{institution: institutionFilter2}}
+    clickedNodes={{nodes: ["Nelson_Contemporary American Poetry_2015"], color: "red"}}
+  />
+
+  <Centrality
+    id="institution-network"
+    networkType="institution"
+    nodesData={nodesData}
+    linksData={linksData}
+    linkDistance={60}
+    linkStrength={0.6}
+    chargeStrength={-50}
+    chargeTheta={0.8}
+    chargeDistanceMax={400}
+    centerStrength={0.1}
+    collisionRadius={5}
+    collisionStrength={0.7}
+    forceXStrength={null}
+    forceYStrength={null}
+    alphaDecay={0.04}
+    maxIterations={1000}
+    height={85}
+    rotation={-60}
+    uniNodeRange={[20, 60]}
+    uniFontRange={[20, 40]}
+    uniStrokeRange={[1, 10]}
+    uniZoomScale={0.5}
+    centralityMetric="betweenness"
+    filter={{institution: institutionFilter2}}
+    clickedNodes={{nodes: ["Nelson_Contemporary American Poetry_2015"], color: "blue"}}
   />
 </BaseLayout>

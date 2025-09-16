@@ -1,6 +1,5 @@
 ---
 import BlogPost from './BlogPost.astro';
-import BlogPost1 from './BlogPost1.astro';
 
 export interface Props {
   frontmatter?: any;
@@ -18,7 +17,7 @@ let selectedPosts;
 if (customPosts) {
   selectedPosts = customPosts;
 } else {
-  const allPosts = Object.values(import.meta.glob('../pages/posts/*.md', { eager: true }));
+  const allPosts = Object.values(import.meta.glob('../../pages/posts/*.md', { eager: true }));
   selectedPosts = allPosts.filter((post: any) =>
     post.frontmatter?.index === index
   );
@@ -44,7 +43,7 @@ const showAsLink = customTitle ? !!customHref : !!frontmatter?.tags?.[0];
 
 <ul>
   {selectedPosts.map((post: any) => 
-    <BlogPost1 
+    <BlogPost 
       url={post.url} 
       title={post.frontmatter.title} 
       description={post.frontmatter.description.slice(0, 70) + '...'}/>
