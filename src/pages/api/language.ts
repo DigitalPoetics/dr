@@ -1,4 +1,4 @@
-import language from '../../data/digitalTropology/language.json';
+import language from '../../data/language/language.json';
 
 export function GET() {
   return new Response(JSON.stringify(language), {
