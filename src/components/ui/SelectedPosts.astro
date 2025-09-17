@@ -24,7 +24,7 @@ if (customPosts) {
 }
 
 // Determine title and href
-const displayTitle = customTitle || (frontmatter?.tags?.[0] ? `~ ${frontmatter.tags[0]}` : 'Blog Posts');
+const displayTitle = customTitle || (frontmatter?.tags?.[0] ? `~ ${frontmatter.tags[0]} ~` : 'Blog Posts');
 const titleHref = customHref || `/${index}/`;
 const showAsLink = customTitle ? !!customHref : !!frontmatter?.tags?.[0];
 ---
@@ -55,7 +55,7 @@ const showAsLink = customTitle ? !!customHref : !!frontmatter?.tags?.[0];
 
 <style>
     .posts-container {
-        margin: 0 0 0 0;
+        margin: 1rem auto;
         width: 100%;
     }
 

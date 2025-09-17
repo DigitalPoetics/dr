@@ -42,7 +42,7 @@ const { posts } = Astro.props;
                 description: p.frontmatter.description,
                 },
             }))}
-            customTitle={`~ ${post.frontmatter.index}`}
+            customTitle={`~ ${post.frontmatter.tags[0]} ~`}
             customHref={`/${post.frontmatter.index}/`}
             />
         );
