@@ -18,8 +18,7 @@ import DropDown from "./DropDown.astro"
         links={[
             {href: "/tableau/", text: "Tableau"}
          ]},
-        pages={[{href: "/blog/", text: "Blog"},
-                {href: "/tags/", text: "Tags" },
+        pages={[{href: "/posts/", text: "Posts"},
                 {href: "/about/", text: "About"}
         ]}
         pagesPosition="below"
@@ -37,7 +36,7 @@ import DropDown from "./DropDown.astro"
   height: calc(100vh - 3.2rem); /* Subtract header height */
   background-color: var(--light-background);
   z-index: 1000;
-  padding: 2rem;
+  padding: 1rem;
   border: var(--image-border);
   box-sizing: border-box;
   overflow-y: auto;

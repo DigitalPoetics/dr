@@ -12,6 +12,7 @@ export interface Props {
 const { pageTitle, description, imageUrl, imageAlt, srcPath } = Astro.props;
 ---
 <figure class="figure-container">
+  <hr>
   <div class="content-wrapper">
     <a href={srcPath} class="text-content" target="_blank">
       <div class="title-container">
@@ -30,12 +31,16 @@ const { pageTitle, description, imageUrl, imageAlt, srcPath } = Astro.props;
 </figure>
 
 <style>
+  hr {
+    margin-bottom: 0.5rem;
+  }
+  
   .figure-container {
     margin: 1rem 0 3rem 0;
     /* padding: 0.5rem 0; */
     width: 100%;
-    border-top: var(--image-border);
-    border-top-width: 2px;
+    /* border-top: var(--image-border);
+    border-top-width: 1px; */
   }
 
   .content-wrapper {
@@ -107,6 +112,10 @@ const { pageTitle, description, imageUrl, imageAlt, srcPath } = Astro.props;
     object-fit: cover;
     aspect-ratio: 16 / 10;
     border-radius: 0;
+    border: none;
+    box-shadow: 0 0 0.65rem rgba(0, 0, 0, 0.3);
+    /* box-shadow: 0 0 10px var(--light-text-opacity); */
+    
   }
 
   /* Desktop layout - side by side */
