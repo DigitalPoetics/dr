@@ -2,6 +2,7 @@
 import { defineConfig } from 'astro/config';
 import netlify from '@astrojs/netlify';
 import mdx from '@astrojs/mdx';
+import sitemap from '@astrojs/sitemap'
 
 
 
@@ -9,7 +10,8 @@ import mdx from '@astrojs/mdx';
 export default defineConfig({
   output: "static",
   adapter: netlify(),
-  integrations: [mdx()],
+  site: 'https://diagrammaticreadings.com',
+  integrations: [mdx(), sitemap()],
   build: {
     inlineStylesheets: "always",
   }
