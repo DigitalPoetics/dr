@@ -10,7 +10,7 @@ import Figure from '../components/ui/Figure.astro';
 import {Image} from "astro:assets";
 import Table from '../components/ui/Table.astro';
 const pageTitle = "Diagrammatic Readings"
-const desription = "How to model the materials and forces of cultural and aesthetic forms";
+const desription = "The graphical expressions turn matter and form of content into materials and forces, and we propose a diagrammatic approach that renders these materials and forces visible.";
 
 // src image
 import druckerImage from "../assets/images/home/drucker-inflection.jpg"
@@ -18,21 +18,20 @@ import poemaImage from "../assets/images/digitalFormalism/poema.png"
 ---
 <BaseLayout pageTitle={pageTitle} description={desription}>
 	<Note>
-		<p><b><em>Philosophy - </em></b>Learn more about the digrams in this tutorial on 
-			this page. And read about the philosophy.
+		<p><b><em>Rhythm - </em></b>How does voice become rhythmic? 
+			While rhythm is often associated with repetition and regularity, it is, in fact, shaped by the alternation of tones and the variation of phrasing. 
+			This calls for an approach that moves between scientific precision and musical sensitivity.
 		</p>
 	</Note>
 	<UiShowcase 
         pageTitle="~Poema~"
-        description="Poema implements Praat display on the browser, and it extends the Tones and Breaks Indices (ToBI) framework by including beats and text to analyze rhythm and enjambments of verse."
+        description="Poema implements Praat display in the browser and extends the Tones and Breaks Indices (ToBI) framework by incorporating beats and text to analyze the rhythm and phrasing of verse."
 		imageUrl= {poemaImage}
         imageAlt="Audio visualization and annotation of The Red Wheelbarrow"
         srcPath="/poema2"
     />
 	<Note>
-		<p><b><em>Philosophy - </em></b>Learn more about the digrams in this tutorial on 
-			this page. And read about the philosophy.
-		</p>
+		<p><b><em>As is music, so is poetry - </em></b>not just as an analagy, but as a question worth pondering: namely, when does voice become musical? <em>Ut musica poesis!</em></p>
 	</Note>
 	<SelectedPosts 
 		customPosts={[
@@ -48,7 +47,7 @@ import poemaImage from "../assets/images/digitalFormalism/poema.png"
 	<p>
 	   Digital and computational tools we use for analytics of aesthetic content are typically not developed to model its matter and form.
 		When borrowing from technical and scientific domains,
-	   how might we adapt these tools to model cultural and artistic practices?
+	   how might we adapt these tools to model artistic practices?
 	</p>
 	<p>
 	   More specifically, as researchers across the humanities and arts are increasingly turning to these tools, 
@@ -61,7 +60,7 @@ import poemaImage from "../assets/images/digitalFormalism/poema.png"
 		or advancing critically informed analytical practices.<Superscript id="3" />
 	</p>
 	<p>
-		We take cue from Johanna Drucker, who suggests that these interventions should be made at the diagrammatic plance.
+		We take cue from Johanna Drucker, who suggests that these interventions should be made on the diagrammatic plane.
 	</p>
 	<BlockquoteWithFootnote
     text="An act of creating an inflection, adding an attribute, or making a change in a graph would feed back into the structured data. This would create data and could also intervene in the formal structures of the data, even changing its structure."
@@ -100,7 +99,7 @@ import poemaImage from "../assets/images/digitalFormalism/poema.png"
 
 	<p>
 		The graphical expressions turn matter and form of content into materials and forces,
-		and our proposal is a diagrammatic approach that renders these materials and forces visible.
+		and we propose a diagrammatic approach that renders these materials and forces visible.
 	</p>
 
 	<Table
