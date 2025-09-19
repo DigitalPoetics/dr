@@ -7,7 +7,7 @@ const pageTittle = "Tag Index";
 <BaseLayout pageTitle={pageTittle}>
     <div class="tags">
         {tags.map((tag) => (
-            <p class="tag"><a href={`/posts/${tag}`}>~ {tag}</a></p>
+            <p class="tag"><a href={`/posts/${tag}`} target="_blank">~ {tag}</a></p>
         ))} 
     </div>
 </BaseLayout>

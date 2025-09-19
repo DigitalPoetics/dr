@@ -19,7 +19,7 @@ const { frontmatter } = Astro.props;
       
       <div class="tags">
         {frontmatter.tags.map((tag: string) => (
-          <p class="tag"><a href={`/posts/${tag}`}>~ {tag}</a></p>
+          <a class="tag" href={`/posts/${tag}`} target="_blank">~ {tag}</a>
         ))} 
       </div>
       <div class="selected-posts">
@@ -95,26 +95,23 @@ html.dark .description {
   gap: 0.5rem;
 }
 
-.tag {
-    margin: 0 1rem 0 0;
-}
-
-.tag a {
+ .tag {
+  margin: 0 1rem 0 0;
   text-decoration: none;
   color: var(--light-text);
   transition: color 0.2s ease-in-out;
 }
 
-html.dark .tag a {
+html.dark .tag {
   text-decoration: none;
   color: var(--dark-text);
 }
 
-.tag a:hover {
+.tag:hover {
   color: var(--hover-color);
 }
 
-html.dark .tag a:hover {
+html.dark .tag:hover {
   color: var(--hover-color);
 }
 
