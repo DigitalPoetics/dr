@@ -1,0 +1,43 @@
+---
+layout: ../../../layouts/MarkdownPostLayout.astro
+title: 'Diagram:'
+pubDate: 2025-09-19
+description: 'Difference between verse and speech is a defining point of aesthetics'
+author: 'A B'
+image:
+    url: '/images/macro-rhythm.jpg'
+    alt: 'The Astro logo on a dark background with a pink glow'
+tags: ['digital formalism', 'aesthetics', 'verse and speech']
+index: 'digital-formalism'
+---
+import Figure from '../../../components/ui/Figure.astro';
+import {Image} from "astro:assets";
+import Superscript from '../../../components/ui/Superscript.astro';
+// import macroRhythm1 from '../../../assets/images/digital-formalism/macro-rhythm1.jpg'
+import macroRhythm2 from '../../../assets/images/digital-formalism/macro-rhythm2.jpg'
+
+How might we delimit the domain of poetics in the digital present? Taking the audio archives of poetry recordings as our primary object, we develop bi-modal approaches to poetics.
+
+---
+
+> The philosophers should be busy in general in drawing boundary lines and especially in defining accurate limits between poetry and ordinary eloquence. The difference is, to be sure, only a matter of degree; but in the relegation of things to one side or the other it requires, we think, no less capable a geometer than did the frontiers of the Phrygians and the Mysians.<br/>
+> <cite>~ Alexander Baumgarten [^1]</cite>
+[^1]: Alexander Gottlieb Baumgarten, _Reflections on Poetry_, trans. Karl Aschenbrenner and William B. Holther (Berkeley: University of California Press, 1954), 79, §117.
+
+
+<Figure>
+    <Image slot="image"
+        src={macroRhythm2}
+        alt="Drucker's sketch of inflection in network graphs"
+        class="responsive-image"
+        layout="constrained"
+    />
+    <span slot="caption">Figure 1: Drucker's sketch of inflection in network graphs. <cite>[^2]</cite></span>
+
+</Figure>
+[^2]: Sun-Ah Jun, “Prosodic Typology: By Prominence Type, Word Prosody, and Macro-Rhythm” in _Prosodic Typology II: The Phonology of Intonation and Phrasing_, ed. Sun-Ah Jun (Oxford: Oxford University Press 2014), 525.
+
+
+Welcome to my _new blog_ about learning Astro!
+
+---

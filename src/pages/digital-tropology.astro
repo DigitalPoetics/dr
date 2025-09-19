@@ -1,0 +1,28 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import UiShowcase from '../components/ui/UiShowcase.astro';
+const pageTitle = "Digital Tropology"
+const description = "Of Stratas and Historical Formations"
+// src image
+import word2vecImage from "../assets/images/digital-tropology/word2vec.png"
+import querysearchImage from "../assets/images/digital-tropology/query-search.png"
+---
+
+<BaseLayout pageTitle={pageTitle} description={description}>
+    <h3>Search UI</h3>
+  
+    <UiShowcase 
+        pageTitle="~Word2vec~"
+        description="Keyword-vectors search interface for the Deleuze Seminars."
+        imageUrl={word2vecImage}
+        imageAlt="Word2vec visualization"
+        srcPath="/deleuzian-word2vec?searchTerm=diagram"
+    />
+    <UiShowcase 
+        pageTitle="~Query Search~"
+        description="Vector-based in-text search interface for the Deleuze Seminars. Look up terms and their usage in Deleuze's lectures."
+        imageUrl={querysearchImage}
+        imageAlt="Screenshot of the Query Search interface"
+        srcPath="/deleuzian-query-search?searchTerm=diagram+archive"
+    />
+</BaseLayout>

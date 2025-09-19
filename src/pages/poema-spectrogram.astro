@@ -1,0 +1,88 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+// import WaveSurfer from '../components/poema/WaveSurfer.astro';
+import Transcription from '../components/poema/Transcription.astro';
+import Praat from '../components/poema/Praat.astro';
+import Spectrogram from '../components/poema/Spectrogram.astro';
+
+export const prerender = false;
+
+const pageTitle = "Poema";
+const description = "Poema uses wavesurfer.js and d3.js to implement Praat display on the browser, somewhat extending the Tones and Breaks Indices (ToBI) framework by including beats and text to analyze rhythm and enjambments of verse."
+
+// Fetch data in frontmatter
+const pitchResponse = await fetch(new URL('/data/poema/WCW-The-Red-Wheelbarrow-1945-LoC.json', Astro.url));
+const praatResponse = await fetch(new URL('/data/poema/WCW-The-Red-Wheelbarrow-1945-LoCTextgrid.json', Astro.url));
+
+const pitchData = await pitchResponse.json();
+const praatData = await praatResponse.json();
+---
+
+<BaseLayout pageTitle={pageTitle} description={description}>
+  <link rel="preload" href="/data/poema/WCW-The-Red-Wheelbarrow-1945-LoC.wav" as="fetch" crossorigin slot="head">
+
+  <div class="poema-container">
+    <div class="waveform-section">
+      <!-- <WaveSurfer 
+        audioUrl="/poema/WCW_The_Red_Wheelbarrow_1945_LoC.wav"
+        height={64}
+        minPxPerSec={110}
+      /> -->
+      <Spectrogram 
+        audioUrl="/data/poema/WCW-The-Red-Wheelbarrow-1945-LoC.wav"
+        height={32}
+        minPxPerSec={110}
+      />
+      <!-- height is waveform + spectrogram (32 + 128) -->
+      <Praat 
+        pitchData={pitchData}
+        praatData={praatData}
+        waveformHeight={160}
+      />
+    </div>
+
+    <div class="transcription-section">
+      <Transcription 
+        transcriptionUrl="/data/poema/WCW-The-Red-Wheelbarrow-1945-LoCTextgrid.json"
+        title="The Red Wheelbarrow"
+      />
+    </div>
+  </div>
+
+
+</BaseLayout>
+
+<style>
+  .poema-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    width: 100%;
+  }
+
+  .waveform-section {
+    width: 100%;
+  }
+
+  .transcription-section {
+    width: 100%;
+  }
+
+  @media (min-width: 636px) {
+    .poema-container {
+      flex-direction: row;
+      align-items: flex-start;
+    }
+
+    .waveform-section {
+      flex: 0 0 60%;
+      min-width: 0;
+    }
+
+    .transcription-section {
+      flex: 0 0 40%;
+      padding-left: 1rem;
+      min-width: 0;
+    }
+  }
+</style>

@@ -1,0 +1,189 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Centrality from '../components/bimodal-network/Centrality.astro';
+import BimodalNetwork from '../components/bimodal-network/BimodalNetwork.astro';
+// src data
+import nodesData from '../data/bimodal-network/nodes.json';
+import linksData from '../data/bimodal-network/links.json';
+
+const pageTitle = "Network Visualization with D3.js";
+const description = "Examples of network visualizations using D3.js: Yifan Hu network layout, filtering nodes, bimodal to unimodal network coonversion for centrality measurements";
+
+const memberFilter = []
+const institutionFilter= ["Bernstein_43 Poets_1985", 
+  "Bernstein_Language Sampler_1982", 
+  "McGann_Postmodern Poetries_1990", 
+  'Messerli_"Language" Poetries_1994', 
+  "Silliman_In the American Tree_1986", 
+  "Silliman_The Dwelling Place_1975", 
+  "Silliman_Realism_1982", 
+  "Sloan_Moving Borders_1998",
+  "Hoover_Postmodern American Poetry_1994", 
+  "Hoover_Postmodern American Poetry_2013",
+  "Nelson_Contemporary American Poetry_2015",
+  "Ramazani_Contemporary Poetry_2003",
+  "Swensen_American Hybrid_2009", 
+  "Halpern_The New Poetry Anthology_1975", 
+  "Smith_The Morrow Anthology_1985", 
+  "Dacey_Strong Measures_1986", 
+  "Finch_A Formal Feeling Comes_1994", 
+  "Jarman_Rebel Angels_1996", 
+  "Richman_The Direction of Poetry_1988", 
+  "Elliston", 
+  "PennSound", 
+  "Voca"
+]
+
+const institutionFilter2 = [
+  "Hoover_Postmodern American Poetry_1994", 
+  "Hoover_Postmodern American Poetry_2013",
+  "Nelson_Contemporary American Poetry_2015",
+  "Ramazani_Contemporary Poetry_2003",
+  "Swensen_American Hybrid_2009", 
+  "Halpern_The New Poetry Anthology_1975", 
+  "Smith_The Morrow Anthology_1985", 
+]
+
+---
+
+<BaseLayout pageTitle={pageTitle} description={description}>
+  <p>1. 
+    <a href="https://d3js.org/d3-force" target="_blank">D3.js force simulations</a>
+    appromixation of Yifan Hu Network Layout
+  </p>
+  <BimodalNetwork 
+    id="yifan-hu-network"
+    nodesData={nodesData}
+    linksData={linksData}
+    linkDistance={60}
+    linkStrength={0.6}
+    chargeStrength={-50}
+    chargeTheta={0.8}
+    chargeDistanceMax={400}
+    centerStrength={0.1}
+    collisionRadius={5}
+    collisionStrength={0.7}
+    alphaDecay={0.04}
+    maxIterations={1000}
+    rotation={-60}
+    height={65}
+    bimodalZoomScale={0.8}
+    memberNodeRange={[1, 5]}
+    institutionNodeRange={[3, 25]}
+    memberFontRange={[2, 6]}
+    institutionFontRange={[5, 12]}
+    clickedNodes={{nodes: ["Swensen_American Hybrid_2009"], color: "red"}}
+  />
+
+  <p>2. Making a change in the graph by filtering nodes</p>
+  <BimodalNetwork 
+    id="filtered-network"
+    nodesData={nodesData}
+    linksData={linksData}
+    linkDistance={60}
+    linkStrength={0.6}
+    chargeStrength={-50}
+    chargeTheta={0.8}
+    chargeDistanceMax={400}
+    centerStrength={0.1}
+    collisionRadius={5}
+    collisionStrength={0.7}
+    alphaDecay={0.04}
+    maxIterations={1000}
+    rotation={0}
+    height={65}
+    bimodalZoomScale={0.7}
+    memberNodeRange={[1, 5]}
+    institutionNodeRange={[10, 25]}
+    memberFontRange={[2, 6]}
+    institutionFontRange={[8, 15]}
+    filter={{member: [], institution: institutionFilter2}}
+    clickedNodes={{nodes: ["Swensen_American Hybrid_2009"], color: "red"}}
+  />
+
+  <p>3. Creating an Inflection: Unimodal Networks for Centrality Measurements</p>
+  <Centrality 
+    id="bimodal-network"
+    networkType="bimodal"
+    display={false}
+    nodesData={nodesData}
+    linksData={linksData}
+    linkDistance={60}
+    linkStrength={0.6}
+    chargeStrength={-50}
+    chargeTheta={0.8}
+    chargeDistanceMax={400}
+    centerStrength={0.1}
+    collisionRadius={5}
+    collisionStrength={0.7}
+    forceXStrength={null}
+    forceYStrength={null}
+    alphaDecay={0.0228}
+    maxIterations={1000}
+    rotation={-60}
+    height={85}
+    bimodalZoomScale={0.8}
+    memberNodeRange={[1, 5]}
+    institutionNodeRange={[3, 25]}
+    memberFontRange={[2, 6]}
+    institutionFontRange={[6, 12]}
+    clickedNodes={{nodes: ["Swensen_American Hybrid_2009"], color: "red"}}
+  />
+
+  <p>Betweenness Centrality</p>
+  <Centrality 
+    id="institution-network"
+    networkType="institution"
+    nodesData={nodesData}
+    linksData={linksData}
+    linkDistance={60}
+    linkStrength={0.6}
+    chargeStrength={-50}
+    chargeTheta={0.8}
+    chargeDistanceMax={400}
+    centerStrength={0.1}
+    collisionRadius={5}
+    collisionStrength={0.7}
+    forceXStrength={null}
+    forceYStrength={null}
+    alphaDecay={0.0228}
+    maxIterations={1000}
+    height={85}
+    rotation={-60}
+    uniZoomScale={0.6}
+    uniNodeRange={[8, 50]}
+    uniFontRange={[8, 30]}
+    uniStrokeRange={[1, 10]}
+    centralityMetric="betweenness"
+    clickedNodes={{nodes: ["Swensen_American Hybrid_2009"], color: "red"}}
+  />
+
+  <p>Degree Centrality</p>
+    <Centrality 
+    id="institution-network2"
+    networkType="institution"
+    nodesData={nodesData}
+    linksData={linksData}
+    linkDistance={60}
+    linkStrength={0.6}
+    chargeStrength={-50}
+    chargeTheta={0.8}
+    chargeDistanceMax={400}
+    centerStrength={0.1}
+    collisionRadius={5}
+    collisionStrength={0.7}
+    forceXStrength={null}
+    forceYStrength={null}
+    alphaDecay={0.0228}
+    maxIterations={1000}
+    height={85}
+    rotation={-60}
+    uniZoomScale={0.6}
+    uniNodeRange={[8, 50]}
+    uniFontRange={[8, 20]}
+    uniStrokeRange={[1, 10]}
+    centralityMetric="degree"
+    clickedNodes={{nodes: ["Swensen_American Hybrid_2009"], color: "red"}}
+  />
+
+</BaseLayout>

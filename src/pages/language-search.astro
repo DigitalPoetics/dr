@@ -1,0 +1,26 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SearchText from '../components/search-ui/SearchText.astro';
+import data from '../data/language/language.json';
+
+export const prerender = false;
+
+const pageTitle = "L=A=N=G=U=A=G=E";
+const description = "In-text search UI for the L=A=N=G=U=A=G=E magazine.";
+
+// You can customize these keys to match your data structure
+const fields = {
+  author: "author",
+  title: "shortTitle",
+  date: "date",
+  url: "url",
+  text: "text"
+};
+---
+
+<BaseLayout pageTitle={pageTitle} description={description}>
+  <h3>Search UI for
+    <a href="http://eclipsearchive.org/projects/LANGUAGE/" target="_blank">L=A=N=G=U=A=G=E</a></a>
+  </h3>
+  <SearchText data={data} fields={fields} />
+</BaseLayout>

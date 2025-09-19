@@ -1,0 +1,191 @@
+---
+export interface Props {
+  data: string;
+  fields: {
+    word: string;
+    x: string;
+    y: string;
+    similar: string;
+  };
+}
+
+const searchTerm = Astro.url.searchParams.get('searchTerm')?.trim() || '';
+
+function tokenizeQuery(query) {
+  let cleaned = query.replace(/\W/g, ' ')
+                   .replace(/\s+[a-zA-Z]\s+/g, ' ')
+                   .replace(/\^[a-zA-Z]\s+/g, ' ')
+                   .replace(/\s+/g, ' ')
+                   .toLowerCase()
+                   .trim();
+  
+  const stopWords = new Set(['the', 'and', 'for', 'are', 'but', 'not', 'you', 'all', 'can', 'had', 'her', 'was', 'one', 'our', 'out', 'day', 'get', 'has', 'him', 'his', 'how', 'its', 'may', 'new', 'now', 'old', 'see', 'two', 'who', 'boy', 'did', 'she', 'use', 'way', 'many', 'oil', 'sit', 'set', 'run', 'eat', 'far', 'sea', 'eye', 'ask', 'own', 'say', 'too', 'any', 'try', 'an', 'as', 'at', 'be', 'he', 'if', 'in', 'is', 'it', 'my', 'of', 'on', 'or', 'to', 'up', 'we', 'go', 'no', 'so', 'am', 'by', 'do', 'me']);
+  
+  return cleaned.split(/\s+/).filter(word => word.length > 3 && !stopWords.has(word));
+}
+
+const queryTokens = searchTerm ? tokenizeQuery(searchTerm) : [];
+const selectedWords = queryTokens.length > 0 ? queryTokens : (searchTerm ? [searchTerm] : []);
+---
+<div id="word2vec">
+  {selectedWords.map((word, index) => (
+    <div class="viz-container">
+      <h4>{word}</h4>
+      <svg width="100%" height="400" id={`viz-${index}`}></svg>
+    </div>
+  ))}
+  {selectedWords.length === 0 && <svg width="100%" height="400" id="viz-0"></svg>}
+</div>
+
+<script is:inline src="./plugins/d3.7.9.0.min.js" defer></script>
+
+<script type="module" define:vars={{ selectedWords }}>
+    const debounce = (func, delay = 1000) => {
+      let timeoutId;
+      return (...args) => {
+        if (timeoutId) {
+          clearTimeout(timeoutId);
+        }
+        timeoutId = setTimeout(() => {
+          func.apply(null, args);
+        }, delay);
+      };
+    };
+
+    const d3 = globalThis.d3;
+    
+    const renderVisualization = debounce(() => {
+        d3.json('./data/deleuzian/deleuze-word2vec-coordinates.json').then((data) => {
+          const wordsToRender = selectedWords.length > 0 ? selectedWords : [''];
+          
+          wordsToRender.forEach((selectedWord, index) => {
+            const containerWidth = document.querySelector(`#viz-${index}`).getBoundingClientRect().width;
+            const width = containerWidth;
+            const height = 400;
+
+            const svg = d3.select(`#viz-${index}`);
+            svg.selectAll("*").remove();
+            svg.attr("width", width).attr("height", height);
+
+            svg.insert("rect", ":first-child")
+              .attr("width", width)
+              .attr("height", height)
+              .attr("fill", "#f5f5f5");
+
+            const xScale = d3.scaleLinear()
+              .domain(d3.extent(data, d => d.x))
+              .range([50, width - 50]);
+
+            const yScale = d3.scaleLinear()
+              .domain(d3.extent(data, d => d.y))
+              .range([height - 50, 50]);
+
+            const xAxis = svg.append("g")
+              .attr("class", "x axis")
+              .attr("transform", `translate(0, ${height - 50})`)
+              .call(d3.axisBottom(xScale));
+
+            xAxis.selectAll("text").style("fill", "var(--light-text)");
+            xAxis.selectAll("path, line").style("stroke", "var(--light-text)").style("stroke-width", "0.5px");
+
+            const yAxis = svg.append("g")
+              .attr("class", "y axis")
+              .attr("transform", `translate(50, 0)`)
+              .call(d3.axisLeft(yScale));
+
+            yAxis.selectAll("text").style("fill", "var(--light-text)");
+            yAxis.selectAll("path, line").style("stroke", "var(--light-text)").style("stroke-width", "0.5px");
+
+            const match = selectedWord ? data.find(item => item.word === selectedWord) : null;
+            const filteredData = match ? 
+              data.filter(d => [match.word, ...match.similar].includes(d.word)) : 
+              data.sort(() => 0.5 - Math.random()).slice(0, 100);
+
+            const points = svg.append("g")
+              .attr("class", "word")
+              .selectAll("text")
+              .data(filteredData)
+              .enter()
+              .append("text")
+              .attr("x", d => xScale(d.x))
+              .attr("y", d => yScale(d.y))
+              .text(d => d.word)
+              .attr("font-size", "10px")
+              .attr("fill", "black")
+              .attr("class", "node-label")
+              .style("display", "block");
+
+            points.on("mouseover", function(event, d) {
+              points.style("opacity", 0.2);
+              d3.select(this).style("opacity", 1);
+            }).on("mouseout", () => {
+              points.style("opacity", 1);
+            });
+
+            if (selectedWord && match) {
+              const highlightWords = new Set([match.word, ...match.similar]);
+              
+              points
+                .style("display", d => highlightWords.has(d.word) ? "block" : "none")
+                .attr("fill", d => d.word === match.word ? "var(--hover-color)" : "var(--highlight-color)")
+                .attr("font-size", "12px")
+                .attr("font-weight", "bold");
+
+              const visibleData = data.filter(d => highlightWords.has(d.word));
+              visibleData.forEach(d => {
+                d.x = d.x;
+                d.y = d.y;
+              });
+
+              d3.forceSimulation(visibleData)
+                .force("x", d3.forceX(d => xScale(d.x)).strength(0.5))
+                .force("y", d3.forceY(d => yScale(d.y)).strength(1))
+                .force("collide", d3.forceCollide(12))
+                .on("tick", () => {
+                  points
+                    .filter(d => highlightWords.has(d.word))
+                    .attr("x", d => d.x)
+                    .attr("y", d => d.y);
+                });
+            } else {
+              filteredData.forEach(d => {
+                d.x = d.x;
+                d.y = d.y;
+              });
+
+              d3.forceSimulation(filteredData)
+                .force("x", d3.forceX(d => xScale(d.x)).strength(0.5))
+                .force("y", d3.forceY(d => yScale(d.y)).strength(1))
+                .force("collide", d3.forceCollide(12))
+                .on("tick", () => {
+                  points
+                    .attr("x", d => d.x)
+                    .attr("y", d => d.y);
+                });
+            }
+          });
+        });
+    }, 0);
+    renderVisualization();
+</script>
+
+<style>
+  #word2vec {
+    width: 100%;
+  }
+
+  .viz-container {
+    margin-bottom: 2rem;
+  }
+
+  .viz-container h4 {
+    margin: 0 0 0.5rem 0;
+    font-weight: bold;
+  }
+
+  #word2vec svg {
+    max-width: 100%;
+    height: auto;
+    border: var(--image-border);
+  }
+</style>
