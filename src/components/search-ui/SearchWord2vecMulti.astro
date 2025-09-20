@@ -3,7 +3,8 @@ const { word2vecData } = Astro.props;
 const searchTerm = Astro.url.searchParams.get('searchTerm')?.trim() || '';
 
 function tokenizeQuery(query) {
-  let cleaned = query.replace(/\W/g, ' ')
+  let cleaned = query.replace(/[^\w-]/g, ' ')
+                  //  .replace(/\W/g, ' ')  
                    .replace(/\s+[a-zA-Z]\s+/g, ' ')
                    .replace(/\^[a-zA-Z]\s+/g, ' ')
                    .replace(/\s+/g, ' ')
