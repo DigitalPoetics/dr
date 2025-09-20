@@ -23,9 +23,11 @@ const { pageTitle, description } = Astro.props;
 		<!-- sitemap -->
 		<link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap-index.xml" />
 		<!-- for preloading libraries and data files -->
-		<link rel="preload" href="/fonts/IMFellEnglish-Regular.woff2" as="font" type="font/woff2" crossorigin>
+		<link rel="preload" href="/fonts/im-fell-english-regular.woff2" as="font" type="font/woff2" crossorigin>
 		<slot name="head" />
 		<title>{pageTitle}</title>
+		<!-- Rybbit tracking script -->
+		 <script is:inline src="https://app.rybbit.io/api/script.js" data-site-id="18517072de74" defer></script>
 	</head>
 	<body>
 		<Header />
