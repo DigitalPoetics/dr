@@ -2,6 +2,7 @@
 const { textData, textFields, word2vecData } = Astro.props;
 const searchTerm = Astro.url.searchParams.get('searchTerm')?.trim() || '';
 
+// hyphenated words
 function tokenizeQuery(query) {
   let cleaned = query.replace(/[^\w-]/g, ' ')
                   //  .replace(/\W/g, ' ')
