@@ -3,7 +3,8 @@ const { textData, textFields, word2vecData } = Astro.props;
 const searchTerm = Astro.url.searchParams.get('searchTerm')?.trim() || '';
 
 function tokenizeQuery(query) {
-  let cleaned = query.replace(/\W/g, ' ')
+  let cleaned = query.replace(/[^\w-]/g, ' ')
+                  //  .replace(/\W/g, ' ')
                    .replace(/\s+[a-zA-Z]\s+/g, ' ')
                    .replace(/\^[a-zA-Z]\s+/g, ' ')
                    .replace(/\s+/g, ' ')
@@ -55,7 +56,7 @@ if (searchTerm) {
       const docMag = Math.sqrt(docVector.reduce((sum, val) => sum + val * val, 0));
       const queryMag = Math.sqrt(queryVector.reduce((sum, val) => sum + val * val, 0));
       const similarity = dotProduct / (docMag * queryMag);
-      
+
       // const text = doc[textFields.text];
       // const paragraphs = text.split(/\n{2,}/).map(p => p.replace(/\n/g, ' ').trim());
       // const hasMatches = paragraphs.some(p => {
@@ -66,10 +67,20 @@ if (searchTerm) {
       // Quick text check before expensive paragraph processing
       const text = doc[textFields.text].toLowerCase();
       const hasMatches = queryMatches.some(match => text.includes(match.word.toLowerCase()));
-
-      
       return hasMatches ? { ...doc, similarity: isNaN(similarity) ? 0 : similarity, queryMatches } : null;
+    
+      // return { ...doc, similarity: isNaN(similarity) ? 0 : similarity, queryMatches };
+
+    
     }).filter(Boolean).sort((a, b) => b.similarity - a.similarity);
+
+
+// 🔍 Log sorted similarity scores
+console.log('Sorted similarity scores:');
+allMatchingEntries.forEach(entry => {
+  console.log(`"${entry[textFields.title]}" → ${entry.similarity.toFixed(4)}`);
+});
+
   } else {
     // allMatchingEntries = textData.filter((entry) => {
     //   const text = entry[textFields.text];
