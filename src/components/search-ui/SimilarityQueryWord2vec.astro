@@ -254,7 +254,7 @@ function getMatchingParagraphs(text: string, matches: any[]): Array<{ index: num
             <span class="entry-label">
               <strong>${entry[textFields.author]},</strong>
               <a href="${entry[textFields.url]}" target="_blank">${entry[textFields.title]}</a> (${entry[textFields.date]})
-              ${entry.similarity > 0 ? `<span class="similarity-score">Similarity: ${entry.similarity.toFixed(4)}</span>` : ''}
+              ${entry.similarity > 0 ? `<span class="similarity-score">Similarity: ${entry.similarity.toFixed(4)}</span>` :`<span class="similarity-score">Similarity: 0</span>`}
             </span>
             <span class="arrow"></span>
           </summary>
