@@ -74,13 +74,12 @@ if (searchTerm) {
 
     
     }).filter(Boolean).sort((a, b) => b.similarity - a.similarity);
-
-
-// 🔍 Log sorted similarity scores
-console.log('Sorted similarity scores:');
-allMatchingEntries.forEach(entry => {
-  console.log(`"${entry[textFields.title]}" → ${entry.similarity.toFixed(4)}`);
-});
+    
+    // 🔍 Log sorted similarity scores
+    // console.log('Sorted similarity scores:');
+    // allMatchingEntries.forEach(entry => {
+    //   console.log(`"${entry[textFields.title]}" → ${entry.similarity.toFixed(4)}`);
+    // });
 
   } else {
     // allMatchingEntries = textData.filter((entry) => {
