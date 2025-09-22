@@ -1,6 +1,7 @@
 ---
 import Hamburger from "./Hamburger.astro";
 // import Navigation from "./Navigation.astro";
+import SearchWidget from "../fuse/SearchWidget.astro";
 import ThemeIcons from "./ThemeIcons.astro";
 ---
 <header>
@@ -11,6 +12,12 @@ import ThemeIcons from "./ThemeIcons.astro";
                 <a href="/">~ DR ~</a>
             </div>
             <div class="nav-right">
+                  <SearchWidget 
+                        label=""
+                        description=""
+                        placeholder="Search ~ DR ~"
+                        redirectUrl="/fuse"
+                    />
                 <ThemeIcons />
             </div>
         </div>
@@ -50,8 +57,13 @@ html.dark header {
 }
 
 .nav-right {
-    padding: 0 0 0 0;
-    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    /* align-items: center; */
+    gap: 0.5rem;
+    /* padding: 0 0 0 0; */
+    /* box-sizing: border-box; */
+    /* justify-content: flex-end; */
 }
 
 nav a {

@@ -1,0 +1,42 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import SearchPage from "../components/fuse/SearchPage.astro";
+// import { SITE_DESCRIPTION } from "../consts";
+import SearchWidget from "../components/fuse/SearchWidget.astro";
+import deleuzeLectures from "../data/deleuzian/the-deleuze-seminars.json";
+
+// const prerender = false;
+---
+
+<BaseLayout 
+  pageTitle="Search the Blog" 
+  description={"Enter a search term or phrase to search the blog."}
+>
+  <!-- <main> -->
+    <SearchPage 
+      searchData={deleuzeLectures}
+      label="Deleuzian: "
+      description="Search through Gilles Deleuze lectures by title, content, or author."
+      placeholder="Search the Deleuze Seminars"
+      searchTitle="Deleuze Lecture Search"
+      searchKeys={[
+        { name: "title", weight: 2 },
+        { name: "text", weight: 1.5 },
+        { name: "author", weight: 1 },
+        { name: "number", weight: 0.5 }
+      ]}
+      linkPrefix=""
+      authorField="author"
+      titleField="title" 
+      dateField="date"
+      slugField="url"
+    />
+  <!-- </main> -->
+
+  <!-- <SearchWidget 
+    label="Search the Blog"
+    description="Enter a search term or phrase to search the blog."
+    placeholder="Enter a search term…"
+    redirectUrl="/fuse"
+  /> -->
+</BaseLayout>
