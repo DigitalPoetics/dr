@@ -8,18 +8,6 @@
   </svg>
 </button>
 
-<style>
-  #themeToggle {
-    border: 0;
-    background: none;
-  }
-  /* .sun { fill: black; }
-  .moon { fill: transparent; } */
-
-  :global(.dark) .sun { fill: var(--light-text); }
-  :global(.dark) .moon { fill: var(--dark-text); }
-</style>
-
 <script is:inline>
   const theme = (() => {
     const localStorageTheme = localStorage?.getItem("theme") ?? '';
@@ -50,3 +38,31 @@
 
   document.getElementById("themeToggle")?.addEventListener("click", handleToggleClick);
 </script>
+
+
+<style>
+  #themeToggle {
+    border: 0;
+    background: none;
+  }
+
+  /* #themeToggle svg {
+    transition: fill 0.2s ease;
+  } */
+
+  #themeToggle:hover svg {
+    cursor: pointer;
+    /* fill: var(--hover-color); */
+  }
+
+  /* html.dark #themeToggle:hover svg {
+    fill: var(--hover-color);
+  } */
+
+
+  /* .sun { fill: black; }
+  .moon { fill: transparent; } */
+
+  :global(.dark) .sun { fill: var(--light-text); }
+  :global(.dark) .moon { fill: var(--dark-text); }
+</style>
