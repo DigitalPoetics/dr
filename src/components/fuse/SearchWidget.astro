@@ -1,14 +1,10 @@
 ---
 export interface Props {
-//   label?: string;
-//   description?: string;
   placeholder?: string;
   redirectUrl?: string;
 }
 
 const { 
-//   label = "Search the Blog",
-//   description = "Enter a search term or phrase to search the blog.",
   placeholder = "Enter a search term…",
   redirectUrl = "/fuse"
 } = Astro.props;
@@ -31,10 +27,6 @@ const {
 <!-- Search Form Container (initially hidden) -->
 <aside class="search-form-container" id="search-container" style="display: none;">
   <form class="search-form">
-    <!-- <div class="form-header">
-      <label for="search">{label}</label>
-      <span class="description">{description}</span>
-    </div> -->
     <input
       type="search"
       required
@@ -47,16 +39,12 @@ const {
   </form>
 </aside>
 
-<!-- Backdrop for clicking outside -->
-<!-- <div id="search-backdrop" class="search-backdrop" style="display: none;"></div> -->
-
 <script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/3.0.8/purify.min.js" is:inline></script>
 
 <script is:inline define:vars={{ redirectUrl }}>
   document.addEventListener("DOMContentLoaded", () => {
     const searchToggle = document.getElementById("search-toggle");
     const searchContainer = document.getElementById("search-container");
-    // const searchBackdrop = document.getElementById("search-backdrop");
     const searchInput = document.getElementById("search");
     const searchIcon = document.querySelector(".search-icon");
     const closeIcon = document.querySelector(".close-icon");
@@ -66,22 +54,18 @@ const {
 
     function openSearch() {
       searchContainer.style.display = "block";
-    //   searchBackdrop.style.display = "block";
       searchIcon.style.display = "none";
       closeIcon.style.display = "block";
       searchInput.focus();
       isSearchOpen = true;
-      document.body.style.overflow = ""; // Prevent body scroll
     }
 
     function closeSearch() {
       searchContainer.style.display = "none";
-    //   searchBackdrop.style.display = "none";
       searchIcon.style.display = "block";
       closeIcon.style.display = "none";
       searchInput.value = "";
       isSearchOpen = false;
-      document.body.style.overflow = ""; // Restore body scroll
     }
 
     // Toggle search on button click
@@ -94,16 +78,12 @@ const {
       }
     });
 
-    // Close on backdrop click
-    // searchBackdrop?.addEventListener("click", closeSearch);
-
-      // Close on click outside
+    // Close on click outside
     document.addEventListener("click", (e) => {
-        if (!searchContainer.contains(e.target) && !searchInput.contains(e.target)) {
+      if (!searchContainer.contains(e.target) && !searchInput.contains(e.target)) {
         closeSearch();
-        }
+      }
     });
-
 
     // Close on Escape key
     document.addEventListener("keydown", (e) => {
@@ -117,7 +97,7 @@ const {
       e.stopPropagation();
     });
 
-    // Handle form submission
+    // Handle form submission - REDIRECTS to search page
     form?.addEventListener("submit", (e) => {
       e.preventDefault();
       const formData = new FormData(form);
@@ -139,19 +119,16 @@ const {
     display: flex;
     align-items: center;
     justify-content: center;
-    /* border-radius: 4px; */
     transition: color 0.2s ease;
   }
 
-
   .search-toggle svg {
-    /* color: currentColor; */
     color: var(--light-text);
     transition: transform 0.2s ease;
   }
   
   html.dark .search-toggle svg {
-      color: var(--dark-text);
+    color: var(--dark-text);
   }
 
   .search-toggle:hover svg {
@@ -163,42 +140,18 @@ const {
     color: var(--hover-color);
   }
 
-  /* .search-backdrop {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(0, 0, 0, 0.5);
-    z-index: 998;
-    display: none;
-  } */
-
-  body {
-    overflow: auto;
-  }
   .search-form-container {
     top: 5rem;
     position: fixed;
     margin: 0 auto;
     width: 90%;
-    /* top: 2rem; Adjust based on your header height */
     left: 50%;
     transform: translateX(-50%);
-    /* width: 100%; */
-    /* max-width: 100%; */
     background: var(--button-background);
-    /* border-radius: 12px; */
-    /* box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3); */
     z-index: 999;
-    padding: 0 0 0 0;
+    padding: 0;
     animation: slideDown 0.3s ease;
     border-bottom: 3px solid var(--hover-color);
-    /* box-shadow: 0 0 0.65rem rgba(0, 0, 0, 0.3); */
-  }
-
-  .search-form {
-    height: 100%;
   }
 
   @keyframes slideDown {
@@ -212,33 +165,12 @@ const {
     }
   }
 
-  /* .form-header {
-    margin-bottom: 1rem;
-  } */
-
-  /* .form-header label {
-    display: block;
-    font-weight: bold;
-    font-size: 1.2rem;
-    color: #333;
-  } */
-
-  /* .description {
-    display: block;
-    color: #666;
-    font-size: 0.9rem;
-    margin-bottom: 1rem;
-  } */
-
   #search {
     width: 100%;
     height: 3rem;
     margin: 0;
     padding: 0 0.5rem;
-    /* padding: 0 1rem; */
-    /* border: var(--image-border); */
     border: var(--image-border);
-    /* border-radius: 8px; */
     font-family: "IM Fell English", serif;
     font-size: 1.2rem;
     transition: border-color 0.2s ease;
@@ -246,16 +178,11 @@ const {
 
   #search:focus {
     outline: none;
-    /* border-color: #3b82f6; */
-    /* box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1); */
   }
 
   @media screen and (min-width: 636px) {
     .search-form-container {
-      top: 5rem;
       width: 80%;
-      padding: 0 0 0 0;
-      margin: 0 auto;
     }
 
     #search {
@@ -263,5 +190,4 @@ const {
       font-size: 1.3rem;
     }
   }
-
 </style>
