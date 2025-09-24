@@ -33,7 +33,7 @@ const { pageTitle, description } = Astro.props;
 		<Header />
 		<Navigation />
 		<div class="layout">
-			<main>
+			<main data-pagefind-body>
 				<p class="page-title">{pageTitle}</p>
 				<slot />
 			</main>
