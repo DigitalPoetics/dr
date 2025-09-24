@@ -1,0 +1,18 @@
+# pagefind.yml
+site: "./dist"
+
+# Include patterns - only index these files
+process: 
+  - "**/*.html"                    # All HTML files
+  - "!posts/index.html"            # Exclude posts index page
+  - "!posts/[tag].html"            # Exclude auto-generated tag pages
+  - "!posts/*.html"            # Exclude auto-generated tag pages
+
+# Exclude certain elements from being indexed as separate fragments
+# exclude_selectors:
+#   - "nav"
+#   - "figure"
+
+
+# Only index the main content area
+# root_selector: "main"

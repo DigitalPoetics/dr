@@ -1,0 +1,152 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+import Search from "astro-pagefind/components/Search";
+
+export const prerender = false;
+
+const q = Astro.url.searchParams.get("q") ?? undefined;
+---
+
+<BaseLayout pageTitle="search ~DR~" description="Pagefind search ui for ~ DR ~">
+    <!-- <link href="/pagefind/pagefind-ui.css" rel="stylesheet" slot="head"> -->
+    <!-- <Search query={q} /> -->
+
+    <Search 
+    query={q}
+    id="search" 
+    className="pagefind-ui custom-search" 
+    uiOptions={{ 
+        showImages: false,
+        showFilters: true, 
+        excerptLength: 150,
+        mergeResults: true
+        }} 
+    />
+
+    <!-- <Search id="search2" className="pagefind-ui red" /> -->
+
+</BaseLayout>
+
+<style is:global>
+    .pagefind-ui.custom-search {
+        width: 100%;
+        min-height: 80vh;
+        margin: 0 auto;
+        padding: 1rem 0;
+    }
+
+    /* Search input styling */
+    .pagefind-ui.custom-search 
+    .pagefind-ui__search-input {
+        /* width: 100%; */
+        /* padding: 12px 16px; */
+        border-radius: 0;
+        outline: none;
+        border: var(--image-border);
+        font-family: "IM Fell English", serif;
+        font-size: 1.2rem;
+    }
+
+    .pagefind-ui.custom-search
+    .pagefind-ui__result {
+        border-top: var(--image-border);
+    }
+
+    .pagefind-ui.custom-search
+    .pagefind-ui__search-clear {
+        font-family: "IM Fell English", serif;
+        font-size: 1rem;
+        transition: color 0.2s ease;
+    }
+
+    .pagefind-ui.custom-search
+    .pagefind-ui__search-clear:hover {
+        color: var(--hover-color);
+    }
+
+    .pagefind-ui.custom-search
+    .pagefind-ui__message {
+        font-family: "IM Fell English", serif;
+        font-size: 1rem;
+        color: var(--light-text);
+    }
+
+    html.dark .pagefind-ui.custom-search
+    .pagefind-ui__message {
+        color: var(--dark-text);
+    }
+
+    .pagefind-ui.custom-search 
+    .pagefind-ui__result {
+        font-family: "IM Fell English", serif;
+    }
+
+    .pagefind-ui.custom-search 
+    .pagefind-ui__result-link {
+        font-size: 1.5rem;
+        color: var(--light-text);
+    }
+
+    html.dark .pagefind-ui.custom-search 
+    .pagefind-ui__result-link {
+        font-size: 1.5rem;
+        color: var(--dark-text);
+    }
+
+    .pagefind-ui.custom-search 
+    .pagefind-ui__result-excerpt {
+        font-size: 1rem;
+        color: var(--light-text);
+    }
+
+    .pagefind-ui.custom-search 
+    .pagefind-ui__result-excerpt mark {
+        /* font-size: 1rem; */
+        color: var(--hover-color);
+        background-color: transparent;
+    }
+
+    html.dark .pagefind-ui.custom-search 
+    .pagefind-ui__result-excerpt {
+        font-size: 1rem;
+        color: var(--dark-text);
+    }
+
+    .pagefind-ui.custom-search 
+    .pagefind-ui__button {
+        /* width: 100%; */
+        /* padding: 12px 16px; */
+        background-color: var(--button-background);
+        border-radius: 0;
+        outline: none;
+        border: var(--image-border);
+        font-family: "IM Fell English", serif;
+        font-size: 1rem;
+        margin: 1rem 0;
+        color: var(--light-text);
+        transition: background-color 0.2s ease, color 0.2s ease;
+    }
+
+    .pagefind-ui.custom-search 
+    .pagefind-ui__button:hover {
+        /* width: 100%; */
+        /* padding: 12px 16px; */
+        background-color: var(--hover-color);
+        border-radius: 0;
+        outline: none;
+        border: var(--image-border);
+        font-family: "IM Fell English", serif;
+        font-size: 1rem;
+        margin: 1rem 0;
+        color: var(--dark-text);
+    }
+
+    @media screen and (min-width: 636px) {
+        .pagefind-ui.custom-search {
+            width: 100%;
+            margin: 0 auto;
+            padding: 1rem 0;
+        }
+    }
+</style>
