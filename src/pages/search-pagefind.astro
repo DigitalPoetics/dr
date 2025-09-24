@@ -25,7 +25,6 @@ const q = Astro.url.searchParams.get("q") ?? undefined;
             showSubResults: true,
             mergeResults: true,
             openFilters: false,
-
             ranking: {
                 termFrequency: 0.75,
                 termSimilarity: 0.75,
@@ -33,7 +32,6 @@ const q = Astro.url.searchParams.get("q") ?? undefined;
                 termSaturation: 1.5,
             }
         }} 
-    
     />
 
     <!-- <Search id="search2" className="pagefind-ui red" /> -->
