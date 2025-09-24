@@ -13,15 +13,27 @@ const q = Astro.url.searchParams.get("q") ?? undefined;
     <!-- <Search query={q} /> -->
 
     <Search 
-    query={q}
-    id="search" 
-    className="pagefind-ui custom-search" 
-    uiOptions={{ 
-        showImages: false,
-        showFilters: true, 
-        excerptLength: 150,
-        mergeResults: true
+        query={q}
+        id="search-pagefind" 
+        className="pagefind-ui custom-search" 
+        baseUrl="https://diagrammaticreadings.com/"
+        uiOptions={{ 
+            showImages: true,
+            showFilters: true, 
+            showEmptyFilters: false,
+            excerptLength: 50,
+            showSubResults: true,
+            mergeResults: true,
+            openFilters: false,
+
+            ranking: {
+                termFrequency: 0.75,
+                termSimilarity: 0.75,
+                pageLength: 0.25,
+                termSaturation: 1.5,
+            }
         }} 
+    
     />
 
     <!-- <Search id="search2" className="pagefind-ui red" /> -->

@@ -7,9 +7,9 @@ const { frontmatter } = Astro.props;
 ---
 <BaseLayout description=`${frontmatter.description} + ${frontmatter.tags}`>
   <div class="post-header">
-    <p class="post-title">{frontmatter.title}</p>
+    <p class="post-title" data-pagefind-meta="title">{frontmatter.title}</p>
     
-    <div class="post-meta">
+    <div class="post-meta" data-pagefind-ignore="all">
       <Image src={frontmatter.image.url} alt={frontmatter.image.alt} />
       <div class="byline">
         <p>{new Date(frontmatter.pubDate).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}</p>

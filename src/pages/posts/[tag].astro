@@ -19,34 +19,36 @@ const { tag } = Astro.params;
 const { posts } = Astro.props;
 ---
 <BaseLayout pageTitle={tag}>
-    <p>Posts tagged with {tag}</p>
-    {[
-        ...new Map(
-            posts
-            .filter((post: any) => post.frontmatter.tags?.includes(tag)) // ✅ only posts with selected tag
-            .map((post: any) => [post.frontmatter.index, post])          // ✅ group by index
-        ).values()
-    ].map((post: any) => {
-        const groupedPosts = posts.filter(
-            (p: any) =>
-            p.frontmatter.index === post.frontmatter.index &&
-            p.frontmatter.tags?.includes(tag) // ✅ ensure tag matches
-        );
+    <main data-pagefind-ignore="all">
+        <p>Posts tagged with {tag}</p>
+        {[
+            ...new Map(
+                posts
+                .filter((post: any) => post.frontmatter.tags?.includes(tag)) // ✅ only posts with selected tag
+                .map((post: any) => [post.frontmatter.index, post])          // ✅ group by index
+            ).values()
+        ].map((post: any) => {
+            const groupedPosts = posts.filter(
+                (p: any) =>
+                p.frontmatter.index === post.frontmatter.index &&
+                p.frontmatter.tags?.includes(tag) // ✅ ensure tag matches
+            );
 
-        return (
-            <SelectedPosts
-            customPosts={groupedPosts.map((p: any) => ({
-                url: p.url,
-                frontmatter: {
-                title: p.frontmatter.title,
-                description: p.frontmatter.description,
-                },
-            }))}
-            customTitle={`~ ${post.frontmatter.tags[0]} ~`}
-            customHref={`/${post.frontmatter.index}/`}
-            />
-        );
-    })}
+            return (
+                <SelectedPosts
+                customPosts={groupedPosts.map((p: any) => ({
+                    url: p.url,
+                    frontmatter: {
+                    title: p.frontmatter.title,
+                    description: p.frontmatter.description,
+                    },
+                }))}
+                customTitle={`~ ${post.frontmatter.tags[0]} ~`}
+                customHref={`/${post.frontmatter.index}/`}
+                />
+            );
+        })}
+    </main>
 
 
 </BaseLayout>

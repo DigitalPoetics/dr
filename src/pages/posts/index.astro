@@ -5,11 +5,13 @@ const tags = [...new Set(allPosts.map((post: any) => post.frontmatter.tags).flat
 const pageTittle = "Tag Index";
 ---
 <BaseLayout pageTitle={pageTittle}>
-    <div class="tags">
-        {tags.map((tag) => (
-            <p class="tag"><a href={`/posts/${tag}`} target="_blank">~ {tag}</a></p>
-        ))} 
-    </div>
+    <main data-pagefind-ignore="all">
+        <div class="tags">
+            {tags.map((tag) => (
+                <p class="tag"><a href={`/posts/${tag}`} target="_blank">~ {tag}</a></p>
+            ))} 
+        </div>
+    </main>
 </BaseLayout>
 
 <style>

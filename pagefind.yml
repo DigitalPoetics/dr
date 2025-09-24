@@ -15,7 +15,6 @@ exclude_selectors:
   - "script"
   - ".nav-bar"
   - "figure"
-  - "blockquote"
 
 merge_selectors: true
 
