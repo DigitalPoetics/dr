@@ -1,4 +1,17 @@
 // hamburger menu toggle script
-document.querySelector('.hamburger').addEventListener('click', () => {
-  document.querySelector('.nav-bar').classList.toggle('expanded');
+document.addEventListener('DOMContentLoaded', () => {
+  const hamburger = document.querySelector('.hamburger');
+  const navBar = document.querySelector('.nav-bar');
+
+  // Toggle nav-bar on hamburger click
+  hamburger.addEventListener('click', () => {
+    navBar.classList.toggle('expanded');
+  });
+
+  // Close nav-bar when clicking outside
+  document.addEventListener('click', (event) => {
+    if (!navBar.contains(event.target) && !hamburger.contains(event.target) && navBar.classList.contains('expanded')) {
+      navBar.classList.remove('expanded');
+    }
+  });
 });
