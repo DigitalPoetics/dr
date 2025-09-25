@@ -11,10 +11,8 @@ process:
 # Exclude certain elements from being indexed as separate fragments
 exclude_selectors:
   - "nav"
-  - "figure"
   - "script"
   - ".nav-bar"
-  - "figure"
 
 merge_selectors: true
 

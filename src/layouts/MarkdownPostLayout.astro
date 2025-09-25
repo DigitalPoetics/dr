@@ -9,25 +9,28 @@ const { frontmatter } = Astro.props;
   <div class="post-header">
     <p class="post-title" data-pagefind-meta="title">{frontmatter.title}</p>
     
-    <div class="post-meta" data-pagefind-ignore="all">
+    <div class="post-meta">
       <Image src={frontmatter.image.url} alt={frontmatter.image.alt} />
-      <div class="byline">
-        <p>{new Date(frontmatter.pubDate).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}</p>
+      <div data-pagefind-ignore="all">
+        <div class="byline">
+          <p data-pagefind-meta="date">{new Date(frontmatter.pubDate).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}</p>
+        </div>
+        
+        <p class="description"><strong data-pagefind-meta="author">A B</strong> — {frontmatter.description}</p>
+        
+        <div class="tags">
+          {frontmatter.tags.map((tag: string) => (
+            <a class="tag" href={`/posts/${tag}`} target="_blank">~ {tag}</a>
+          ))} 
+        </div>
+        <div class="selected-posts">
+          <SelectedPosts 
+            frontmatter={frontmatter} 
+            index={frontmatter.index} 
+          />
+        </div>
       </div>
-      
-      <p class="description"><strong>A B</strong> — {frontmatter.description}</p>
-      
-      <div class="tags">
-        {frontmatter.tags.map((tag: string) => (
-          <a class="tag" href={`/posts/${tag}`} target="_blank">~ {tag}</a>
-        ))} 
-      </div>
-      <div class="selected-posts">
-        <SelectedPosts 
-          frontmatter={frontmatter} 
-          index={frontmatter.index} 
-        />
-      </div>
+
 
     </div>
 
