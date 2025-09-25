@@ -55,7 +55,7 @@ a, p, h1, h2, h3 {
 }
 
 a {
-  text-decoration: none;
+  /* text-decoration: none; */
   transition: color 0.2s ease;
 }
 
