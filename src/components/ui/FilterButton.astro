@@ -1,0 +1,97 @@
+---
+const { targetContainer, buttonText = "Filters", buttonClass = "toggle-button" } = Astro.props;
+---
+
+<button class={buttonClass} data-target={targetContainer}>
+    <!-- <span class="toggle-icon">⚙</span> -->
+    {buttonText}
+    <span class="toggle-icon">⚙</span>
+</button>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const toggleButtons = document.querySelectorAll('.toggle-button');
+    
+    toggleButtons.forEach(button => {
+      const targetContainer = button.getAttribute('data-target');
+      const targetElement = document.querySelector(targetContainer);
+      
+      if (!targetElement) return;
+      
+      // Initially hide the target container
+      targetElement.style.display = 'none';
+      
+      // Toggle target container on button click
+      button.addEventListener('click', () => {
+        const isExpanded = targetElement.classList.contains('expanded');
+        
+        if (isExpanded) {
+          targetElement.classList.remove('expanded');
+          targetElement.style.display = 'none';
+          button.setAttribute('aria-expanded', 'false');
+        } else {
+          targetElement.classList.add('expanded');
+          targetElement.style.display = 'block';
+          button.setAttribute('aria-expanded', 'true');
+        }
+      });
+      
+      // Close target container when clicking outside
+    //   document.addEventListener('click', (event) => {
+    //     if (!targetElement.contains(event.target) && 
+    //         !button.contains(event.target) && 
+    //         targetElement.classList.contains('expanded')) {
+    //       targetElement.classList.remove('expanded');
+    //       targetElement.style.display = 'none';
+    //       button.setAttribute('aria-expanded', 'false');
+    //     }
+    //   });
+      
+      // Set initial aria-expanded attribute
+      button.setAttribute('aria-expanded', 'false');
+    });
+  });
+</script>
+
+<style>
+  .toggle-button {
+    width: 100%;
+    /* position: fixed; */
+    /* top: 5rem; */
+    /* left: 0.5rem; */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    margin: 0 1rem 1rem 0;
+    cursor: pointer;
+    font-family: 'IM Fell English', serif;
+    font-size: 1rem;
+    border: var(--image-border);
+    background-color: var(--button-background);
+    color: var(--light-text);
+    transition: background-color 0.2s ease, color 0.2s ease;
+    border-radius: none;
+  }
+  
+  .toggle-button:hover {
+    background-color: var(--hover-color, #333);
+    color: white;
+  }
+  
+  .toggle-icon {
+    font-size: 1.2rem;
+    transition: transform 0.3s ease;
+  }
+  
+  .toggle-button[aria-expanded="true"] .toggle-icon {
+    transform: rotate(90deg);
+  }
+  
+
+  
+  html.dark .toggle-button:hover {
+    background-color: var(--hover-color, #666);
+  }
+</style>

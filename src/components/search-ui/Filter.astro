@@ -1,0 +1,735 @@
+---
+const { textData, textFields, word2vecData } = Astro.props;
+const searchTerm = Astro.url.searchParams.get('searchTerm')?.trim() || '';
+
+// hyphenated words
+function tokenizeQuery(query) {
+  let cleaned = query.replace(/[^\w-]/g, ' ')
+                  //  .replace(/\W/g, ' ')
+                   .replace(/\s+[a-zA-Z]\s+/g, ' ')
+                   .replace(/\^[a-zA-Z]\s+/g, ' ')
+                   .replace(/\s+/g, ' ')
+                   .toLowerCase()
+                   .trim();
+  
+  const stopWords = new Set(['the', 'and', 'for', 'are', 'but', 'not', 'you', 'all', 'can', 'had', 'her', 'was', 'one', 'our', 'out', 'day', 'get', 'has', 'him', 'his', 'how', 'its', 'may', 'new', 'now', 'old', 'see', 'two', 'who', 'boy', 'did', 'she', 'use', 'way', 'many', 'oil', 'sit', 'set', 'run', 'eat', 'far', 'sea', 'eye', 'ask', 'own', 'say', 'too', 'any', 'try', 'an', 'as', 'at', 'be', 'he', 'if', 'in', 'is', 'it', 'my', 'of', 'on', 'or', 'to', 'up', 'we', 'go', 'no', 'so', 'am', 'by', 'do', 'me']);
+  
+  return cleaned.split(/\s+/).filter(word => word.length > 3 && !stopWords.has(word));
+}
+
+function getQueryMatches(queryTokens) {
+  return queryTokens.map(token => {
+    const match = word2vecData.find(item => item.word === token);
+    return match ? { word: token, similar: match.similar, wordVector: match.wordVector } : null;
+  }).filter(Boolean);
+}
+
+function calculateQueryVector(matches) {
+  if (matches.length === 0) return null;
+  
+  const vectorLength = matches[0].wordVector.length;
+  const sumVector = new Array(vectorLength).fill(0);
+  
+  matches.forEach(match => {
+    match.wordVector.forEach((val, i) => {
+      sumVector[i] += val;
+    });
+  });
+  
+  return sumVector.map(sum => sum / matches.length);
+}
+
+// Process ALL matching entries but only render first 10
+let allMatchingEntries = [];
+
+if (searchTerm) {
+  const queryTokens = tokenizeQuery(searchTerm);
+  const queryMatches = getQueryMatches(queryTokens);
+  
+  if (queryMatches.length > 0) {
+    const queryVector = calculateQueryVector(queryMatches);
+    
+    allMatchingEntries = textData.map(doc => {
+      const docVector = doc.docVector;
+      if (!docVector) return null;
+      
+      const dotProduct = docVector.reduce((sum, val, i) => sum + val * queryVector[i], 0);
+      const docMag = Math.sqrt(docVector.reduce((sum, val) => sum + val * val, 0));
+      const queryMag = Math.sqrt(queryVector.reduce((sum, val) => sum + val * val, 0));
+      const similarity = dotProduct / (docMag * queryMag);
+
+      // Quick text check before expensive paragraph processing
+      const text = doc[textFields.text].toLowerCase();
+      const hasMatches = queryMatches.some(match => text.includes(match.word.toLowerCase()));
+      return hasMatches ? { ...doc, similarity: isNaN(similarity) ? 0 : similarity, queryMatches } : null;
+    
+    }).filter(Boolean).sort((a, b) => b.similarity - a.similarity);
+
+  } else {
+    allMatchingEntries = textData.filter((entry) => {
+      const text = entry[textFields.text].toLowerCase();
+      return queryTokens.some(token => text.includes(token.toLowerCase()));
+    }).map(entry => ({ ...entry, similarity: 0, queryTokens }));
+  }
+}
+
+function highlightTerms(paragraph: string, matches: any[]): string {
+    let result = paragraph;
+    
+    // First highlight similar words
+    matches.forEach(match => {
+        if (match.similar) {
+            match.similar.forEach(word => {
+                const escapedWord = word.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+                const wordRegex = new RegExp(`\\b(${escapedWord}\\w*)`, 'gi');
+                result = result.replace(wordRegex, '<mark style="background-color:transparent; color:var(--highlight-color);">$1</mark>');
+            });
+        }
+    });
+    
+    // Then highlight keywords
+    matches.forEach(match => {
+        const keyword = match.word || match;
+        const escapedKeyword = keyword.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+        const keywordRegex = new RegExp(`\\b(${escapedKeyword}\\w*)`, 'gi');
+        result = result.replace(keywordRegex, '<mark style="background-color:transparent; color:var(--hover-color);">$1</mark>');
+    });
+    
+    return result;
+}
+
+function getMatchingParagraphs(text: string, matches: any[]): Array<{ index: number, html: string }> {
+    if (matches.length === 0) return [];
+    
+    return text
+        .split(/\n{2,}/)
+        .map(p => p.replace(/\n/g, ' ').trim())
+        .filter(p => {
+            const lowerP = p.toLowerCase();
+            return matches.some(match => {
+                const keyword = match.word || match;
+                return lowerP.includes(keyword.toLowerCase());
+            });
+        })
+        .map((p, i) => ({ index: i, html: highlightTerms(p, matches) }));
+}
+---
+
+    <!-- Add filter container -->
+
+    <div id="filter-container"></div>
+
+      <ol id="results-list">
+        {allMatchingEntries.slice(0, 10).map((entry, index) => {
+          const matches = entry.queryMatches || entry.queryTokens || [];
+          const paragraphMatches = getMatchingParagraphs(entry[textFields.text], matches);
+          return (
+            <li>
+              <details>
+                <summary>
+                  <span class="entry-label">
+                    <strong>{entry[textFields.author]},</strong>
+                    <a href={entry[textFields.url]} target="_blank">{entry[textFields.title]}</a> ({entry[textFields.date]})
+                    {entry.similarity > 0 && (
+                      <span class="similarity-score">Similarity: {entry.similarity.toFixed(4)}</span>
+                    )}
+                  </span>
+                  <span class="arrow"></span>
+                </summary>
+                <ul>
+                  {paragraphMatches.map(match => (
+                    <li class="paragraph-match">
+                      <p><span set:html={match.html} /></p>
+                    </li>
+                  ))}
+                </ul>
+              </details>
+            </li>
+          );
+        })}
+      </ol>
+
+
+
+{allMatchingEntries.length > 10 && (
+  <div class="pagination">
+    <button id="prev-btn" disabled>⟨⟨</button>
+    <span id="page-info">Page 1 of {Math.ceil(allMatchingEntries.length / 10)}</span>
+    <button id="next-btn">⟩⟩</button>
+  </div>
+)}
+
+<script define:vars={{ allMatchingEntries, textFields }}>
+  let currentPage = 1;
+  const perPage = 10;
+  let totalPages = Math.ceil(allMatchingEntries.length / perPage);
+  let filteredEntries = [...allMatchingEntries]; // Keep track of filtered entries
+  
+  // Filter functionality inline
+  function createFilterUI(entries, textFields, targetElement) {
+    if (!entries || entries.length === 0 || !targetElement) return null;
+    
+    const filterState = {
+      authors: new Set(),
+      containers: new Set(),
+      dates: new Set()
+    };
+
+    function extractFilters(entries) {
+      const authors = [...new Set(entries.map(e => e[textFields.author]).filter(Boolean))];
+      const containers = [...new Set(entries.map(e => e[textFields.container]).filter(Boolean))];
+      const dates = extractDateRanges(entries.map(e => e[textFields.date]).filter(Boolean));
+      
+      return { authors: authors.sort(), containers: containers.sort(), dates };
+    }
+
+    function extractDateRanges(dates) {
+      const years = dates.map(date => {
+        const match = date.match(/\d{4}/);
+        return match ? parseInt(match[0]) : null;
+      }).filter(Boolean);
+      
+      if (years.length === 0) return [];
+      
+      const minYear = Math.min(...years);
+      const maxYear = Math.max(...years);
+      const ranges = [];
+      
+      for (let start = Math.floor(minYear / 10) * 10; start <= maxYear; start += 10) {
+        const end = start + 9;
+        const hasEntries = years.some(year => year >= start && year <= end);
+        if (hasEntries) {
+          ranges.push(`${start}-${end}`);
+        }
+      }
+      
+      return ranges;
+    }
+
+    function renderFilters() {
+      const filters = extractFilters(entries);
+      
+      const html = `
+        <div class="filter-panel">
+          <h4>Filter Results</h4>
+          
+          ${filters.authors.length > 0 ? `
+          <div class="filter-section">
+            <details class="filter-dropdown">
+              <summary class="filter-heading">
+                <h5>Authors</h5>
+                <span class="filter-arrow"></span>
+              </summary>
+              <div class="filter-content">
+                ${filters.authors.map(author => `
+                  <label class="filter-item">
+                    <input type="checkbox" data-filter="author" data-value="${author}">
+                    ${author}
+                  </label>
+                `).join('')}
+              </div>
+            </details>
+          </div>
+          ` : ''}
+          
+          ${filters.containers.length > 0 ? `
+          <div class="filter-section">
+            <details class="filter-dropdown">
+              <summary class="filter-heading">
+                <h5>Containers</h5>
+                <span class="filter-arrow"></span>
+              </summary>
+              <div class="filter-content">
+                ${filters.containers.map(container => `
+                  <label class="filter-item">
+                    <input type="checkbox" data-filter="container" data-value="${container}">
+                    ${container}
+                  </label>
+                `).join('')}
+              </div>
+            </details>
+          </div>
+          ` : ''}
+          
+          ${filters.dates.length > 0 ? `
+          <div class="filter-section">
+            <details class="filter-dropdown">
+              <summary class="filter-heading">
+                <h5>Date Ranges</h5>
+                <span class="filter-arrow"></span>
+              </summary>
+              <div class="filter-content">
+                ${filters.dates.map(range => `
+                  <label class="filter-item">
+                    <input type="checkbox" data-filter="date" data-value="${range}">
+                    ${range}
+                  </label>
+                `).join('')}
+              </div>
+            </details>
+          </div>
+          ` : ''}
+          
+          <button class="clear-filters">Clear All Filters</button>
+        </div>
+      `;
+      
+      targetElement.innerHTML = html;
+      attachEventListeners();
+    }
+
+    function attachEventListeners() {
+      const checkboxes = targetElement.querySelectorAll('input[type="checkbox"]');
+      const clearButton = targetElement.querySelector('.clear-filters');
+      
+      checkboxes.forEach(checkbox => {
+        checkbox.addEventListener('change', handleFilterChange);
+      });
+      
+      clearButton?.addEventListener('click', clearAllFilters);
+    }
+
+    function handleFilterChange(e) {
+      const filterType = e.target.dataset.filter;
+      const value = e.target.dataset.value;
+      
+      if (e.target.checked) {
+        filterState[filterType + 's'].add(value);
+      } else {
+        filterState[filterType + 's'].delete(value);
+      }
+      
+      applyFilters();
+    }
+
+    function clearAllFilters() {
+      filterState.authors.clear();
+      filterState.containers.clear();
+      filterState.dates.clear();
+      
+      const checkboxes = targetElement.querySelectorAll('input[type="checkbox"]');
+      checkboxes.forEach(cb => cb.checked = false);
+      
+      applyFilters();
+    }
+
+    function matchesDateRange(entryDate, range) {
+      const [start, end] = range.split('-').map(Number);
+      const match = entryDate.match(/\d{4}/);
+      if (!match) return false;
+      
+      const year = parseInt(match[0]);
+      return year >= start && year <= end;
+    }
+
+    function applyFilters() {
+      // Filter the original entries
+      filteredEntries = allMatchingEntries.filter(entry => {
+        let show = true;
+        
+        // Author filter
+        if (filterState.authors.size > 0) {
+          show = show && filterState.authors.has(entry[textFields.author]);
+        }
+        
+        // Container filter
+        if (filterState.containers.size > 0) {
+          show = show && filterState.containers.has(entry[textFields.container]);
+        }
+        
+        // Date filter
+        if (filterState.dates.size > 0) {
+          const entryDate = entry[textFields.date];
+          show = show && Array.from(filterState.dates).some(range => 
+            matchesDateRange(entryDate, range)
+          );
+        }
+        
+        return show;
+      });
+      
+      // Update pagination
+      totalPages = Math.ceil(filteredEntries.length / perPage);
+      currentPage = 1; // Reset to first page
+      
+      // Re-render current page
+      renderPage(currentPage);
+      updateResultsCount();
+    }
+
+    function updateResultsCount() {
+      const totalItems = allMatchingEntries.length;
+      const visibleItems = filteredEntries.length;
+      
+      let countElement = document.getElementById('results-count');
+      if (!countElement) {
+        countElement = document.createElement('p');
+        countElement.id = 'results-count';
+        countElement.style.fontWeight = 'bold';
+        countElement.style.marginBottom = '1rem';
+        const resultsList = document.getElementById('results-list');
+        resultsList.parentNode.insertBefore(countElement, resultsList);
+      }
+      
+      countElement.textContent = `Showing ${visibleItems} of ${totalItems} results`;
+    }
+
+    // Add CSS styles
+    function addStyles() {
+      if (document.getElementById('filter-styles')) return;
+      
+      const style = document.createElement('style');
+      style.id = 'filter-styles';
+      style.textContent = `
+        .filter-panel {
+          width: 80%;
+          margin: 1rem auto;
+          padding: 1rem;
+          background-color: var(--light-background);
+          box-shadow: 0 0 1rem rgba(0, 0, 0, 0.3);
+        }
+  
+        
+        .filter-panel h4 {
+          margin: 0 0 1rem 0;
+          font-size: 1.3rem;
+        }
+        
+        .filter-section {
+          margin-bottom: 1rem;
+        }
+        
+        .filter-dropdown {
+          border: none;
+        }
+        
+        .filter-dropdown summary {
+          cursor: pointer;
+          list-style: none;
+        }
+        
+        .filter-dropdown summary::-webkit-details-marker {
+          display: none;
+        }
+        
+        .filter-heading {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+        }
+        
+        .filter-heading h5 {
+          margin: 0;
+          font-size: 1.1rem;
+          color: var(--light-text, #333);
+        }
+        
+        .filter-arrow {
+          display: inline-block;
+          transition: transform 0.2s;
+          border: solid var(--light-text, #333);
+          border-width: 0 2px 2px 0;
+          padding: 3px;
+          transform: rotate(-45deg);
+        }
+        
+        .filter-dropdown[open] .filter-arrow {
+          transform: rotate(45deg);
+        }
+        
+        .filter-content {
+          margin-left: 1rem;
+          padding: 0.5rem 0;
+          max-height: 15rem;
+          overflow-y: auto;
+        }
+
+        
+        .filter-item {
+          display: block;
+          margin-bottom: 0.25rem;
+          cursor: pointer;
+          font-size: 1rem;
+          transition: color 0.2s ease;
+        }
+        
+        .filter-item:hover {
+          color: var(--hover-color, goldenrod);
+        }
+        
+        .filter-item input {
+          margin-right: 0.5rem;
+        }
+        
+        .clear-filters {
+          padding: 0.5rem 1rem;
+          font-size: 1rem;
+          cursor: pointer;
+          font-family: 'IM Fell English', serif;
+          border: var(--image-border, 1px solid #ccc);
+          background-color: ButtonFace;
+          transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        
+        .clear-filters:hover {
+          background-color: var(--hover-color, #333);
+          color: white;
+        }
+        
+        html.dark .filter-panel {
+          background-color: var(--dark-background, #333);
+        }
+
+        html.dark .filter-heading h5 {
+          color: var(--dark-text, #fff);
+        }
+        
+        html.dark .clear-filters {
+          color: var(--light-text, #fff);
+        }
+        
+        html.dark .filter-arrow {
+          border-color: var(--dark-text, #fff);
+        }
+      `;
+      
+      document.head.appendChild(style);
+    }
+
+    // Initialize
+    addStyles();
+    renderFilters();
+    updateResultsCount();
+    
+    return {
+      refresh: (newEntries) => {
+        entries = newEntries;
+        filteredEntries = [...newEntries];
+        renderFilters();
+        updateResultsCount();
+      }
+    };
+  }
+
+  function highlightTerms(paragraph, matches) {
+    let result = paragraph;
+    
+    matches.forEach(match => {
+      if (match.similar) {
+        match.similar.forEach(word => {
+          const escapedWord = word.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+          const wordRegex = new RegExp(`\\b(${escapedWord}\\w*)`, 'gi');
+          result = result.replace(wordRegex, '<mark style="background-color:transparent; color:var(--highlight-color);">$1</mark>');
+        });
+      }
+    });
+    
+    matches.forEach(match => {
+      const keyword = match.word || match;
+      const escapedKeyword = keyword.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+      const keywordRegex = new RegExp(`\\b(${escapedKeyword}\\w*)`, 'gi');
+      result = result.replace(keywordRegex, '<mark style="background-color:transparent; color:var(--hover-color);">$1</mark>');
+    });
+    
+    return result;
+  }
+  
+  function getMatchingParagraphs(text, matches) {
+    if (matches.length === 0) return [];
+    
+    return text
+      .split(/\n{2,}/)
+      .map(p => p.replace(/\n/g, ' ').trim())
+      .filter(p => {
+        const lowerP = p.toLowerCase();
+        return matches.some(match => {
+          const keyword = match.word || match;
+          return lowerP.includes(keyword.toLowerCase());
+        });
+      })
+      .map((p, i) => ({ index: i, html: highlightTerms(p, matches) }));
+  }
+  
+  function renderPage(page) {
+    // Use filteredEntries instead of allMatchingEntries
+    const startIndex = (page - 1) * perPage;
+    const endIndex = startIndex + perPage;
+    const pageEntries = filteredEntries.slice(startIndex, endIndex);
+    
+    const resultsList = document.getElementById('results-list');
+    resultsList.innerHTML = '';
+    resultsList.setAttribute('start', startIndex + 1);
+    
+    pageEntries.forEach(entry => {
+      const matches = entry.queryMatches || entry.queryTokens || [];
+      const paragraphMatches = getMatchingParagraphs(entry[textFields.text], matches);
+      
+      const li = document.createElement('li');
+      li.innerHTML = `
+      <style>
+      #results-list details summary { cursor: pointer; display: flex; align-items: center; justify-content: space-between; font-weight: bold; font-size: 1.2rem; padding: 0 0 0.5rem 0; }
+      #results-list summary::-webkit-details-marker { display: none; }
+      #results-list .arrow { display: inline-block; transition: transform 0.2s; border: solid var(--light-text); border-width: 0 2px 2px 0; padding: 3px; margin-left: 4px; transform: rotate(-45deg); }
+      #results-list details[open] .arrow { transform: rotate(45deg); }
+      html.dark #results-list .arrow { border-color: var(--dark-text); }
+      #results-list .paragraph-match { list-style: square;}
+      #results-list .paragraph-match p { margin: 0 0 0.5rem 0; font-size: 1.1rem;}
+      #results-list .paragraph-match::marker { color: var(--hover-color);}
+      #results-list .similarity-score { font-weight: bold; margin-left: 1rem; }
+      </style>
+        <details>
+          <summary>
+            <span class="entry-label">
+              <strong>${entry[textFields.author]},</strong>
+              <a href="${entry[textFields.url]}" target="_blank">${entry[textFields.title]}</a> (${entry[textFields.date]})
+              ${entry.similarity > 0 ? `<span class="similarity-score">Similarity: ${entry.similarity.toFixed(4)}</span>` :`<span class="similarity-score">Similarity: 0</span>`}
+            </span>
+            <span class="arrow"></span>
+          </summary>
+          <ul>
+            ${paragraphMatches.map(match => `
+              <li class="paragraph-match">
+                <p><span>${match.html}</span></p>
+              </li>
+            `).join('')}
+          </ul>
+        </details>
+      `;
+      resultsList.appendChild(li);
+    });
+    
+    // Update pagination controls
+    const prevBtn = document.getElementById('prev-btn');
+    const nextBtn = document.getElementById('next-btn');
+    const pageInfo = document.getElementById('page-info');
+    
+    if (prevBtn) prevBtn.disabled = page === 1;
+    if (nextBtn) nextBtn.disabled = page === totalPages;
+    if (pageInfo) pageInfo.textContent = `Page ${page} of ${totalPages}`;
+  }
+  
+  document.getElementById('prev-btn')?.addEventListener('click', () => {
+    if (currentPage > 1) {
+      currentPage--;
+      renderPage(currentPage);
+    }
+  });
+  
+  document.getElementById('next-btn')?.addEventListener('click', () => {
+    if (currentPage < totalPages) {
+      currentPage++;
+      renderPage(currentPage);
+    }
+  });
+
+  // Initialize filters when the page loads
+  window.addEventListener('DOMContentLoaded', () => {
+    if (allMatchingEntries.length > 0) {
+      const filterContainer = document.getElementById('filter-container');
+      if (filterContainer) {
+        window.filterUIInstance = createFilterUI(allMatchingEntries, textFields, filterContainer);
+      }
+    }
+  });
+</script>
+
+<style>
+
+  ol {
+    padding-left: 1rem;
+    margin: 0;
+  }
+  
+  details summary {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-weight: bold;
+    font-size: 1.2rem;
+    padding: 0 0 0.5rem 0;
+  }
+
+  summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .arrow {
+    display: inline-block;
+    transition: transform 0.2s;
+    border: solid var(--light-text);
+    border-width: 0 2px 2px 0;
+    padding: 3px;
+    margin-left: 4px;
+    transform: rotate(-45deg);
+  }
+
+  details[open] .arrow {
+    transform: rotate(45deg);
+  }
+
+  html.dark .arrow {
+    border-color: var(--dark-text);
+  }
+
+  ul {
+    margin: 0 0 1rem 0;
+    padding-left: 1.2rem;
+    list-style-type: disc;
+  }
+
+  .paragraph-match {
+    list-style: square;
+  }
+
+  .paragraph-match p {
+    margin: 0 0 0.5rem 0;
+    font-size: 1.1rem;
+  }
+
+  .paragraph-match::marker {
+    color: var(--hover-color);
+  }
+
+  mark {
+    background-color: transparent;
+    font-weight: bold;
+  }
+
+  .similarity-score {
+    font-weight: bold;
+    margin-left: 1rem;
+  }
+
+  .pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    margin: 1rem 0 2rem 0;
+  }
+  
+  .pagination button {
+    padding: 0.5rem 1rem;
+    font-size: 1.2rem;
+    cursor: pointer;
+    font-family: 'IM Fell English', serif;
+    border: var(--image-border);
+    transition: background-color 0.3s ease, color 0.3s ease;
+    background-color: ButtonFace;
+  }
+
+  .pagination button:hover:not(:disabled) {
+    background-color: var(--hover-color);
+    color: white;
+  }
+
+  .pagination button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  html.dark .pagination button {
+    color: var(--light-text);
+  }
+</style>
