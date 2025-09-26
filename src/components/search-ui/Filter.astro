@@ -382,8 +382,8 @@ function getMatchingParagraphs(text: string, matches: any[]): Array<{ index: num
       style.id = 'filter-styles';
       style.textContent = `
         .filter-panel {
-          width: 80%;
-          margin: 1rem auto;
+          width: 90%;
+          margin: 1rem auto 1rem 0;
           padding: 1rem;
           background-color: var(--light-background);
           box-shadow: 0 0 1rem rgba(0, 0, 0, 0.3);
@@ -439,7 +439,6 @@ function getMatchingParagraphs(text: string, matches: any[]): Array<{ index: num
         
         .filter-content {
           margin-left: 1rem;
-          padding: 0.5rem 0;
           max-height: 15rem;
           overflow-y: auto;
         }
