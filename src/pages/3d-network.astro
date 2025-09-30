@@ -1,7 +1,9 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+
 const pageTitle = "POETRY NETWORK"
 const description = "Interactive Three.js visualization of postwar U.S. poetry networks, made with Claude Sonnet 4.5 and based on the cosmos visualization on the welcome page";
+
 ---
 
 <BaseLayout pageTitle={pageTitle} description={description}>
@@ -36,9 +38,12 @@ const description = "Interactive Three.js visualization of postwar U.S. poetry n
     async function initNetwork() {
         // Load data
         const [nodesData, linksData] = await Promise.all([
-            fetch('/src/data/bimodal-network/nodes.json').then(r => r.json()),
-            fetch('/src/data/bimodal-network/links.json').then(r => r.json())
+            fetch('/data/bimodal-network/nodes.json').then(r => r.json()),
+            fetch('/data/bimodal-network/links.json').then(r => r.json())
         ]);
+
+
+
 
         // Scene setup
         const container = document.getElementById('viz-container');
@@ -412,7 +417,7 @@ const description = "Interactive Three.js visualization of postwar U.S. poetry n
     #network-canvas {
         /* width: auto !important; */
         max-width: 100% !important;
-        height: 70vh !important;
+        height: 65vh !important;
         display: block;
         cursor: grab;
     }
