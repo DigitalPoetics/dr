@@ -38,7 +38,8 @@ const selectedWords = queryTokens.length > 0 ? queryTokens : (searchTerm ? [sear
   {selectedWords.length === 0 && <svg width="100%" height="400" id="viz-0"></svg>}
 </div>
 
-<script is:inline src="./plugins/d3.7.9.0.min.js" defer></script>
+<!-- <script is:inline src="./plugins/d3.7.9.0.min.js" defer></script> -->
+<script is:inline src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
 
 <script type="module" define:vars={{ selectedWords }}>
     const debounce = (func, delay = 1000) => {

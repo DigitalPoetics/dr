@@ -1,0 +1,446 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+const pageTitle = "POETRY NETWORK"
+const description = "Interactive Three.js visualization of postwar U.S. poetry networks, made with Claude Sonnet 4.5 and based on the cosmos visualization on the welcome page";
+---
+
+<BaseLayout pageTitle={pageTitle} description={description}>
+    <p class="title-page">Interactive Three.js visualization of postwar U.S. poetry networks</p>
+    <div id="viz-container">
+        <canvas id="network-canvas"></canvas>
+        <div id="node-info">
+            <div id="info-content">Drag to rotate • Scroll to zoom</div>
+        </div>
+    </div>
+    <h3 class="title-page">MADE WITH</h3>
+    <h1 class="title-page"><a href="https://www.anthropic.com/news/claude-sonnet-4-5" target="_blank">Claude Sonnet 4.5</a></h1>
+    <p class="title-page">Based on the cosmos visualization on <a href="https://claude.com/product/claude-code" target="_blank">the welcome page</a></p>
+</BaseLayout>
+
+<script is:inline src="https://cdn.jsdelivr.net/npm/three@0.128.0/build/three.min.js"></script>
+<script is:inline src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+
+<script is:inline>
+    const SPHERE_RADIUS = 30;
+    const INITIAL_STEP_SIZE = 5.0;
+    const CENTERING_STRENGTH = 0.1;
+
+    const SPHERE_CENTER = { x: 0, y: 0, z: 0 };
+    
+    const container = document.getElementById('viz-container');
+    const containerWidth = container.clientWidth;
+    const WIDTH = containerWidth;
+    const containerHeight = container.clientHeight;
+    const HEIGHT = containerHeight;
+
+    async function initNetwork() {
+        // Load data
+        const [nodesData, linksData] = await Promise.all([
+            fetch('/src/data/bimodal-network/nodes.json').then(r => r.json()),
+            fetch('/src/data/bimodal-network/links.json').then(r => r.json())
+        ]);
+
+        // Scene setup
+        const container = document.getElementById('viz-container');
+        const canvas = document.getElementById('network-canvas');
+        const scene = new THREE.Scene();
+        scene.background = new THREE.Color('black');
+        scene.fog = new THREE.Fog(0x1E1E1E, 50, 150);
+
+        // Camera
+        const camera = new THREE.PerspectiveCamera(50, WIDTH / HEIGHT, 0.1, 300);
+        camera.position.set(0, 0, 80);
+
+        // Renderer
+        const renderer = new THREE.WebGLRenderer({
+            canvas: canvas,
+            antialias: true,
+            alpha: true
+        });
+        renderer.setSize(WIDTH, HEIGHT);
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+        // OrbitControls
+        const controls = new THREE.OrbitControls(camera, renderer.domElement);
+        controls.enableDamping = true;
+        controls.dampingFactor = 0.05;
+        controls.rotateSpeed = 0.5;
+        controls.enableZoom = true;
+        controls.minDistance = 40;
+        controls.maxDistance = 150;
+
+        // Color scheme
+        const colors = {
+            poet: 0xffbd80,
+            'New Formalism': 'red',
+            default: 0x8aded8
+        };
+
+        // Build node index
+        const nodeIndex = new Map();
+        nodesData.forEach(node => {
+            nodeIndex.set(node.name, node);
+        });
+
+        // Helper function: Generate random position within sphere
+        function randomPositionInSphere(radius) {
+            const theta = Math.random() * Math.PI * 2;  // Azimuthal angle
+            const phi = Math.acos(2 * Math.random() - 1);  // Polar angle (uniform distribution)
+            const r = Math.cbrt(Math.random()) * radius;  // Cube root for uniform volume distribution
+            
+            return {
+                x: r * Math.sin(phi) * Math.cos(theta),
+                y: r * Math.sin(phi) * Math.sin(theta),
+                z: r * Math.cos(phi)
+            };
+        }
+
+        // Initialize positions and velocities randomly
+        const nodePositions = new Map();
+        const nodeVelocities = new Map();
+        const nodeObjects = [];
+        const nodeMeshes = new Map();
+
+        nodesData.forEach((node) => {
+            // Random initial position within sphere
+            nodePositions.set(node.name, randomPositionInSphere(SPHERE_RADIUS));
+            nodeVelocities.set(node.name, { x: 0, y: 0, z: 0 });
+
+            // Create node sphere
+            const size = node.type === 'institution' ? 0.8 : 0.4;
+            const geometry = new THREE.SphereGeometry(size, 16, 16);
+
+            const color = colors[node.group] || colors.default;
+            const material = new THREE.MeshBasicMaterial({
+                color: color,
+                transparent: true,
+                opacity: node.type === 'institution' ? 0.9 : 0.7
+            });
+
+            const sphere = new THREE.Mesh(geometry, material);
+            const pos = nodePositions.get(node.name);
+            sphere.position.set(pos.x, pos.y, pos.z);
+            sphere.userData = { name: node.name, group: node.group, type: node.type };
+
+            scene.add(sphere);
+            nodeObjects.push(sphere);
+            nodeMeshes.set(node.name, sphere);
+
+            // Add glow effect for institutions
+            if (node.type === 'institution') {
+                const glowGeometry = new THREE.SphereGeometry(size * 1.5, 16, 16);
+                const glowMaterial = new THREE.MeshBasicMaterial({
+                    color: color,
+                    transparent: true,
+                    opacity: 0.2,
+                    blending: THREE.AdditiveBlending
+                });
+                const glow = new THREE.Mesh(glowGeometry, glowMaterial);
+                glow.position.set(pos.x, pos.y, pos.z);
+                scene.add(glow);
+                nodeMeshes.set(node.name + '_glow', glow);
+            }
+        });
+
+        // Create connections
+        const lineMaterial = new THREE.LineBasicMaterial({
+            color: 0x5E5D59,
+            transparent: true,
+            opacity: 0.15,
+            blending: THREE.AdditiveBlending
+        });
+
+        const edgeLines = [];
+        linksData.forEach(link => {
+            const sourcePos = nodePositions.get(link.source);
+            const targetPos = nodePositions.get(link.target);
+
+            if (sourcePos && targetPos) {
+                const points = [
+                    new THREE.Vector3(sourcePos.x, sourcePos.y, sourcePos.z),
+                    new THREE.Vector3(targetPos.x, targetPos.y, targetPos.z)
+                ];
+
+                const geometry = new THREE.BufferGeometry().setFromPoints(points);
+                const line = new THREE.Line(geometry, lineMaterial);
+                scene.add(line);
+                edgeLines.push({ line, source: link.source, target: link.target });
+            }
+        });
+
+        // Ambient particles for atmosphere
+        const particleCount = 100;
+        const particleGeometry = new THREE.BufferGeometry();
+        const positions = new Float32Array(particleCount * 3);
+
+        for (let i = 0; i < particleCount; i++) {
+            positions[i * 3] = (Math.random() - 0.5) * 120;
+            positions[i * 3 + 1] = (Math.random() - 0.5) * 120;
+            positions[i * 3 + 2] = (Math.random() - 0.5) * 120;
+        }
+
+        particleGeometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+        const particleMaterial = new THREE.PointsMaterial({
+            color: 0xD97757,
+            size: 0.3,
+            transparent: true,
+            opacity: 0.3,
+            blending: THREE.AdditiveBlending
+        });
+        const particles = new THREE.Points(particleGeometry, particleMaterial);
+        scene.add(particles);
+
+        // Yifan Hu Force-Directed Layout
+        const attractionStrength = 0.02;
+        const repulsionStrength = 100;
+        let stepSize = 5.0;
+        const coolingRate = 0.995;
+        const iterations = 10;
+        let currentIteration = 200;
+
+        function applyForces() {
+            if (currentIteration >= iterations) return;
+            currentIteration++;
+
+            // Reset velocities
+            nodesData.forEach(node => {
+                const vel = nodeVelocities.get(node.name);
+                vel.x = 0;
+                vel.y = 0;
+                vel.z = 0;
+            });
+
+            // Attractive forces (spring-like) between connected nodes
+            linksData.forEach(link => {
+                const pos1 = nodePositions.get(link.source);
+                const pos2 = nodePositions.get(link.target);
+
+                if (!pos1 || !pos2) return;
+
+                const dx = pos2.x - pos1.x;
+                const dy = pos2.y - pos1.y;
+                const dz = pos2.z - pos1.z;
+                const distance = Math.sqrt(dx*dx + dy*dy + dz*dz) || 0.01;
+
+                // Spring force: F = k * distance
+                const force = distance * attractionStrength;
+                const fx = (dx / distance) * force;
+                const fy = (dy / distance) * force;
+                const fz = (dz / distance) * force;
+
+                const vel1 = nodeVelocities.get(link.source);
+                const vel2 = nodeVelocities.get(link.target);
+
+                vel1.x += fx;
+                vel1.y += fy;
+                vel1.z += fz;
+                vel2.x -= fx;
+                vel2.y -= fy;
+                vel2.z -= fz;
+            });
+
+            // Repulsive forces (coulomb-like) between all nodes
+            const nodeNames = Array.from(nodePositions.keys());
+            for (let i = 0; i < nodeNames.length; i++) {
+                for (let j = i + 1; j < nodeNames.length; j++) {
+                    const name1 = nodeNames[i];
+                    const name2 = nodeNames[j];
+                    const pos1 = nodePositions.get(name1);
+                    const pos2 = nodePositions.get(name2);
+
+                    const dx = pos2.x - pos1.x;
+                    const dy = pos2.y - pos1.y;
+                    const dz = pos2.z - pos1.z;
+                    const distSq = dx*dx + dy*dy + dz*dz || 0.01;
+                    const dist = Math.sqrt(distSq);
+
+                    // Coulomb force: F = k / distance²
+                    const force = repulsionStrength / distSq;
+                    const fx = (dx / dist) * force;
+                    const fy = (dy / dist) * force;
+                    const fz = (dz / dist) * force;
+
+                    const vel1 = nodeVelocities.get(name1);
+                    const vel2 = nodeVelocities.get(name2);
+
+                    vel1.x -= fx;
+                    vel1.y -= fy;
+                    vel1.z -= fz;
+                    vel2.x += fx;
+                    vel2.y += fy;
+                    vel2.z += fz;
+                }
+            }
+
+
+            // 3. Centering force - pulls nodes toward sphere center
+            nodesData.forEach(node => {
+                const pos = nodePositions.get(node.name);
+                const vel = nodeVelocities.get(node.name);
+
+                if (!pos || !vel) return;
+
+                const dx = SPHERE_CENTER.x - pos.x;
+                const dy = SPHERE_CENTER.y - pos.y;
+                const dz = SPHERE_CENTER.z - pos.z;
+                const distance = Math.sqrt(dx*dx + dy*dy + dz*dz) || 0.01;
+
+                // Centering force: F = k * distance (toward center)
+                const force = distance * CENTERING_STRENGTH;
+                const fx = (dx / distance) * force;
+                const fy = (dy / distance) * force;
+                const fz = (dz / distance) * force;
+
+                vel.x += fx;
+                vel.y += fy;
+                vel.z += fz;
+            });
+
+            // Update positions with adaptive step size
+            nodesData.forEach(node => {
+                const pos = nodePositions.get(node.name);
+                const vel = nodeVelocities.get(node.name);
+
+                pos.x += vel.x * stepSize;
+                pos.y += vel.y * stepSize;
+                pos.z += vel.z * stepSize;
+
+                // Update mesh position
+                const mesh = nodeMeshes.get(node.name);
+                mesh.position.set(pos.x, pos.y, pos.z);
+
+                // Update glow position
+                const glow = nodeMeshes.get(node.name + '_glow');
+                if (glow) {
+                    glow.position.set(pos.x, pos.y, pos.z);
+                }
+            });
+
+            // Update edge positions
+            edgeLines.forEach(({ line, source, target }) => {
+                const sourcePos = nodePositions.get(source);
+                const targetPos = nodePositions.get(target);
+                const posArray = line.geometry.attributes.position.array;
+                posArray[0] = sourcePos.x;
+                posArray[1] = sourcePos.y;
+                posArray[2] = sourcePos.z;
+                posArray[3] = targetPos.x;
+                posArray[4] = targetPos.y;
+                posArray[5] = targetPos.z;
+                line.geometry.attributes.position.needsUpdate = true;
+            });
+
+            // Adaptive cooling
+            stepSize *= coolingRate;
+        }
+
+        // Raycaster for hover interaction
+        const raycaster = new THREE.Raycaster();
+        const mouse = new THREE.Vector2();
+        const infoDiv = document.getElementById('info-content');
+
+        function onMouseMove(event) {
+            const rect = canvas.getBoundingClientRect();
+            mouse.x = ((event.clientX - rect.left) / rect.width) * 2 - 1;
+            mouse.y = -((event.clientY - rect.top) / rect.height) * 2 + 1;
+
+            raycaster.setFromCamera(mouse, camera);
+            const intersects = raycaster.intersectObjects(nodeObjects);
+
+            if (intersects.length > 0) {
+                const obj = intersects[0].object;
+                const data = obj.userData;
+                infoDiv.textContent = `${data.name} • ${data.group}`;
+                canvas.style.cursor = 'pointer';
+            } else {
+                infoDiv.textContent = 'Drag to rotate • Scroll to zoom';
+                canvas.style.cursor = 'grab';
+            }
+        }
+
+        canvas.addEventListener('mousemove', onMouseMove);
+        canvas.addEventListener('mousedown', () => { canvas.style.cursor = 'grabbing'; });
+        canvas.addEventListener('mouseup', () => { canvas.style.cursor = 'grab'; });
+
+        // Animation loop
+        function animate() {
+            requestAnimationFrame(animate);
+
+            // Apply forces during simulation
+            applyForces();
+
+            // Gentle pulsing animation for nodes
+            const time = Date.now() * 0.001;
+            nodeObjects.forEach((obj, i) => {
+                const scale = 1 + Math.sin(time + i * 0.1) * 0.05;
+                obj.scale.setScalar(scale);
+            });
+
+            // Rotate particles slowly
+            particles.rotation.y += 0.0005;
+            particles.rotation.x += 0.0002;
+
+            controls.update();
+            renderer.render(scene, camera);
+        }
+
+        animate();
+    }
+
+    // Initialize when DOM is ready
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initNetwork);
+    } else {
+        initNetwork();
+    }
+</script>
+
+<style>
+    #viz-container {
+        /* width: fit-content; */
+        /* width: auto; */
+        margin: 2rem auto; 
+        position: relative;
+        background: #1E1E1E;
+        border-radius: 10px;
+        overflow: hidden;
+        /* box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5); */
+        box-shadow: 0 0.25rem 1.25rem rgba(255, 255, 255, 0.1);
+    }
+
+    #network-canvas {
+        /* width: auto !important; */
+        max-width: 100% !important;
+        height: 70vh !important;
+        display: block;
+        cursor: grab;
+    }
+
+ 
+
+
+    #network-canvas:active {
+        cursor: grabbing;
+    }
+
+    #node-info {
+        position: absolute;
+        bottom: 20px;
+        left: 20px;
+        right: 20px;
+        background: rgba(217, 119, 87, 0.1);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(217, 119, 87, 0.3);
+        border-radius: 8px;
+        padding: 12px 16px;
+        font-family: 'IM FELL English', serif;
+        pointer-events: none;
+    }
+
+    #info-content {
+        color: var(--dark-text);
+        font-size: 13px;
+        text-align: center;
+        letter-spacing: 0.5px;
+    }
+</style>
