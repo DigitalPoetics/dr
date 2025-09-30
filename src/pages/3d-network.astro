@@ -53,6 +53,7 @@ const description = "Interactive Three.js visualization of postwar U.S. poetry n
 
         // Renderer
         const renderer = new THREE.WebGLRenderer({
+            powerPreference: 'low-power',
             canvas: canvas,
             antialias: true,
             alpha: true
