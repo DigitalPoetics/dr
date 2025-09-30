@@ -39,6 +39,11 @@ const allMatches = queryTokens.length > 0 ? getAllMatches(queryTokens) : [];
     />
     <button type="submit" class="search-button">Search</button>
   </form>
+  <div class="dropdown">
+    <div class="dropdown-menu">
+      <div class="dropdown-content results"></div>
+    </div>
+  </div>
 </div>
 
 <div class="search-results">
@@ -62,11 +67,44 @@ const allMatches = queryTokens.length > 0 ? getAllMatches(queryTokens) : [];
   )}
 </div>
 
-<script>
+<script define:vars={{ word2vecData }}>
+  const input = document.querySelector('input[name="searchTerm"]');
+  const dropdown = document.querySelector('.dropdown');
+  const results = document.querySelector('.results');
   const form = document.querySelector('.search-bar');
+
   form.addEventListener('submit', (e) => {
-    const input = document.querySelector('input[name="searchTerm"]');
     input.value = input.value.trim().toLowerCase();
+  });
+
+  let timeout;
+  input.addEventListener('input', (e) => {
+    clearTimeout(timeout);
+    timeout = setTimeout(() => {
+      const term = e.target.value.trim().toLowerCase();
+      
+      if (!term) {
+        dropdown.classList.remove('is-active');
+        results.inerHTML = '';
+        return;
+      }
+
+      const matches = word2vecData.filter(d => d.word.toLowerCase().includes(term)).slice(0, 10);
+      
+      if (matches.length > 0) {
+        results.innerHTML = `
+          <style>
+            .dropdown-item { display: block; padding: 0 0 0 0.5rem; font-size: 1rem; text-decoration: none; color: var(--light-text); }
+            .dropdown-item:hover { color: var(--hover-color); }
+          </style>
+          ${matches.map(match => 
+            `<a href="?searchTerm=${match.word}" class="dropdown-item">${match.word}</a>`
+          ).join('')}`;
+        dropdown.classList.add('is-active');
+      } else {
+        dropdown.classList.remove('is-active');
+      }
+    }, 300);
   });
 </script>
 
@@ -103,6 +141,32 @@ const allMatches = queryTokens.length > 0 ? getAllMatches(queryTokens) : [];
   .search-button:hover {
     background-color: var(--hover-color);
     color: white;
+  }
+
+  .dropdown {
+    display: none;
+    position: absolute;
+    width: 100%;
+    top: 100%;
+    left: 0;
+    z-index: 10;
+  }
+
+  .dropdown.is-active {
+    display: block;
+  }
+
+  .dropdown-content {
+    display: flex;
+    flex-direction: column;
+    background-color: #f5f5f5;
+    border: var(--image-border);
+  }
+
+  .dropdown-menu {
+    width: 100%;
+    max-height: 20rem;
+    overflow-y: auto;
   }
 
   .search-results {

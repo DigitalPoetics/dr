@@ -7,7 +7,7 @@ const { frontmatter } = Astro.props;
 ---
 <BaseLayout description=`${frontmatter.description} + ${frontmatter.tags}`>
   <div class="post-header">
-    <p class="post-title" data-pagefind-meta="title">{frontmatter.title}</p>
+    <h1 class="title-page" style="letter-spacing: var(--title-letter-spacing)" data-pagefind-meta="title">{frontmatter.title}</h1>
     
     <div class="post-meta">
       <Image src={frontmatter.image.url} alt={frontmatter.image.alt} />
@@ -43,14 +43,14 @@ const { frontmatter } = Astro.props;
 
 <style>
 
-.post-title {
-  /* text-align: center; */
+/* .post-title {
+  text-align: center;
   font-size: 2rem;
   font-weight: normal;
   max-width: 100%;
   line-height: 1.1;
   margin-bottom: 1.5rem;
-}
+} */
 
 .post-header {
   /* text-align: center; */

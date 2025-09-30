@@ -47,6 +47,7 @@ const similarWords = wordMatch ? wordMatch.similar.slice(0,20) : [];
       
       if (!term) {
         dropdown.classList.remove('is-active');
+        results.inerHTML = '';
         return;
       }
 
@@ -107,6 +108,7 @@ const similarWords = wordMatch ? wordMatch.similar.slice(0,20) : [];
   }
 
   .dropdown {
+    display: none;
     position: absolute;
     width: 100%;
     top: 100%;

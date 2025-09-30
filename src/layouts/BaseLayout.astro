@@ -34,7 +34,10 @@ const { pageTitle, description } = Astro.props;
 		<Navigation />
 		<div class="layout">
 			<main id="content" data-pagefind-body>
-				<p class="page-title" data-pagefind-meta="title">{pageTitle}</p>
+				<h1 
+				class="title-page" 
+				style="letter-spacing: var(--title-letter-spacing); margin-top: 3rem;"
+				data-pagefind-meta="title">{pageTitle}</h1>
 				<slot />
 			</main>
 		</div>
@@ -57,13 +60,12 @@ main {
 	margin: 0 auto;
 }
 
-.page-title {
+/* .page-title {
   text-align: left;
   font-size: 2rem;
   font-weight: normal;
   max-width: 100%;
-  line-height: 1.1;
-}
+} */
 
 @media screen and (min-width: 636px) {
   .layout {
@@ -80,13 +82,12 @@ main {
 	margin: 1rem 15vw 0 15vw;
   }
 
-  .page-title {
+  /* .page-title {
     font-size: 3rem;
 	font-weight: normal;
 	max-width: 90%;
 	line-height: 1.1;
-
-  }
+  } */
 }
 
 
