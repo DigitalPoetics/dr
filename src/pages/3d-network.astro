@@ -27,20 +27,17 @@ const description = "Interactive Three.js visualization of postwar U.S. poetry n
     // CONFIGURATION PARAMETERS - Adjust these to customize the visualization
     // ============================================================================
     
-    // Canvas Dimensions
-    const CANVAS_HEIGHT_VH = 65;  // Canvas height in viewport height units
-    
     // Sphere & Layout
     const SPHERE_RADIUS = 30;
     const SPHERE_CENTER = { x: 0, y: 0, z: 0 };
     
     // Force-Directed Layout Parameters
-    const ATTRACTION_STRENGTH = 0.02;  // Spring force between connected nodes
-    const REPULSION_STRENGTH = 100;    // Coulomb-like repulsion between all nodes
-    const CENTERING_STRENGTH = 0.1;    // Force pulling nodes toward sphere center
-    const INITIAL_STEP_SIZE = 5.0;     // Initial movement step size
-    const COOLING_RATE = 0.995;        // Rate at which movement slows down
-    const SIMULATION_ITERATIONS = 200;  // Number of physics iterations to run
+    const ATTRACTION_STRENGTH = 0.8;
+    const REPULSION_STRENGTH = 100;
+    const CENTERING_STRENGTH = 0.01;
+    const INITIAL_STEP_SIZE = 0.5;
+    const COOLING_RATE = 0.997;
+    const SIMULATION_ITERATIONS = 0;
     
     // Camera Settings
     const CAMERA_FOV = 50;
@@ -51,27 +48,37 @@ const description = "Interactive Three.js visualization of postwar U.S. poetry n
     // Camera Controls
     const ORBIT_ROTATE_SPEED = 0.5;
     const ORBIT_DAMPING_FACTOR = 0.05;
-    const ORBIT_MIN_DISTANCE = 40;
-    const ORBIT_MAX_DISTANCE = 150;
+    const ORBIT_MIN_DISTANCE = 60;
+    const ORBIT_MAX_DISTANCE = 300;
     
-    // Node Appearance
-    const NODE_SIZE_POET = 0.4;
-    const NODE_SIZE_INSTITUTION = 0.8;
+    // Node Size Ranges - Based on degree (number of connections)
+    const NODE_SIZE_MEMBER_MIN = 0.1;
+    const NODE_SIZE_MEMBER_MAX = 1.0;
+    const NODE_SIZE_INSTITUTION_MIN = 0.8;
+    const NODE_SIZE_INSTITUTION_MAX = 2.5;
     const NODE_OPACITY_POET = 0.7;
     const NODE_OPACITY_INSTITUTION = 0.9;
-    const GLOW_SIZE_MULTIPLIER = 1.5;
-    const GLOW_OPACITY = 0.2;
+    const GLOW_SIZE_MULTIPLIER = 3;
+    const GLOW_OPACITY = 0.5;
     
-    // Node Colors (hex)
-    const COLOR_POET = 0xffbd80;
-    const COLOR_NEW_FORMALISM = 0xff0000;  // red
+    // Node Colors
+    const COLOR_POET = 0xCCCCCC;
+    // Balanced rainbow for dark backgrounds
+    const COLOR_RED = 0xFF3333;
+    const COLOR_ORANGE = 0xFF9933;
+    const COLOR_YELLOW = 0xFFFF33;
+    const COLOR_GREEN = 0x33FF33;
+    const COLOR_BLUE = 0x3399FF;
+    const COLOR_INDIGO = 0x6633FF;
+    const COLOR_VIOLET = 0xCC33FF;
+
     const COLOR_DEFAULT = 0x8aded8;
     
     // Edge Appearance
-    const EDGE_COLOR = 0x5E5D59;
+    const EDGE_COLOR = 0x5E6E7F;
     const EDGE_OPACITY = 0.15;
     
-    // Ambient Particles
+    // Particles
     const PARTICLE_COUNT = 100;
     const PARTICLE_SPREAD = 120;
     const PARTICLE_SIZE = 0.3;
@@ -85,12 +92,10 @@ const description = "Interactive Three.js visualization of postwar U.S. poetry n
     const NODE_PULSE_AMPLITUDE = 0.05;
     
     // Scene
-    const SCENE_BACKGROUND_COLOR = 0x000000;  // black
+    const SCENE_BACKGROUND_COLOR = 0x000000;
     const FOG_COLOR = 0x1E1E1E;
     const FOG_NEAR = 50;
     const FOG_FAR = 150;
-    
-    // Renderer
     const MAX_PIXEL_RATIO = 2;
     
     // ============================================================================
@@ -104,24 +109,20 @@ const description = "Interactive Three.js visualization of postwar U.S. poetry n
     const HEIGHT = containerHeight;
 
     async function initNetwork() {
-        // Load data
         const [nodesData, linksData] = await Promise.all([
             fetch('/data/bimodal-network/nodes.json').then(r => r.json()),
             fetch('/data/bimodal-network/links.json').then(r => r.json())
         ]);
 
-        // Scene setup
         const container = document.getElementById('viz-container');
         const canvas = document.getElementById('network-canvas');
         const scene = new THREE.Scene();
         scene.background = new THREE.Color(SCENE_BACKGROUND_COLOR);
         scene.fog = new THREE.Fog(FOG_COLOR, FOG_NEAR, FOG_FAR);
 
-        // Camera
         const camera = new THREE.PerspectiveCamera(CAMERA_FOV, WIDTH / HEIGHT, CAMERA_NEAR, CAMERA_FAR);
         camera.position.set(0, 0, CAMERA_INITIAL_Z);
 
-        // Renderer
         const renderer = new THREE.WebGLRenderer({
             powerPreference: 'low-power',
             canvas: canvas,
@@ -131,7 +132,6 @@ const description = "Interactive Three.js visualization of postwar U.S. poetry n
         renderer.setSize(WIDTH, HEIGHT);
         renderer.setPixelRatio(Math.min(window.devicePixelRatio, MAX_PIXEL_RATIO));
 
-        // OrbitControls
         const controls = new THREE.OrbitControls(camera, renderer.domElement);
         controls.enableDamping = true;
         controls.dampingFactor = ORBIT_DAMPING_FACTOR;
@@ -140,24 +140,71 @@ const description = "Interactive Three.js visualization of postwar U.S. poetry n
         controls.minDistance = ORBIT_MIN_DISTANCE;
         controls.maxDistance = ORBIT_MAX_DISTANCE;
 
-        // Color scheme
         const colors = {
             poet: COLOR_POET,
-            'New Formalism': COLOR_NEW_FORMALISM,
+            'Audio Archives': COLOR_RED,
+            'Avant-garde': COLOR_ORANGE,
+            'The Black Arts Movement': COLOR_YELLOW,
+            'Emergent Poets': COLOR_GREEN,
+            'The Feminist Poetry Movement': COLOR_BLUE,
+            'New Formalism': COLOR_INDIGO,
+            'Teaching/Survey': COLOR_VIOLET,
             default: COLOR_DEFAULT
         };
 
-        // Build node index
         const nodeIndex = new Map();
         nodesData.forEach(node => {
             nodeIndex.set(node.name, node);
         });
 
-        // Helper function: Generate random position within sphere
+        // Calculate degree for each node
+        const nodeDegree = new Map();
+        nodesData.forEach(node => {
+            nodeDegree.set(node.name, 0);
+        });
+
+        linksData.forEach(link => {
+            nodeDegree.set(link.source, (nodeDegree.get(link.source) || 0) + 1);
+            nodeDegree.set(link.target, (nodeDegree.get(link.target) || 0) + 1);
+        });
+
+        // Find min/max degrees per type
+        let minDegreeMember = Infinity, maxDegreeMember = -Infinity;
+        let minDegreeInstitution = Infinity, maxDegreeInstitution = -Infinity;
+
+        nodesData.forEach(node => {
+            const degree = nodeDegree.get(node.name);
+            if (node.type === 'member') {
+                minDegreeMember = Math.min(minDegreeMember, degree);
+                maxDegreeMember = Math.max(maxDegreeMember, degree);
+            } else if (node.type === 'institution') {
+                minDegreeInstitution = Math.min(minDegreeInstitution, degree);
+                maxDegreeInstitution = Math.max(maxDegreeInstitution, degree);
+            }
+        });
+
+        function getNodeSize(node) {
+            const degree = nodeDegree.get(node.name) || 0;
+            
+            if (node.type === 'institution') {
+                if (maxDegreeInstitution === minDegreeInstitution) {
+                    return (NODE_SIZE_INSTITUTION_MIN + NODE_SIZE_INSTITUTION_MAX) / 2;
+                }
+                const normalized = (degree - minDegreeInstitution) / (maxDegreeInstitution - minDegreeInstitution);
+                return NODE_SIZE_INSTITUTION_MIN + normalized * (NODE_SIZE_INSTITUTION_MAX - NODE_SIZE_INSTITUTION_MIN);
+            } else {
+                if (maxDegreeMember === minDegreeMember) {
+                    return (NODE_SIZE_MEMBER_MIN + NODE_SIZE_MEMBER_MAX) / 2;
+                }
+                const normalized = (degree - minDegreeMember) / (maxDegreeMember - minDegreeMember);
+                return NODE_SIZE_MEMBER_MIN + normalized * (NODE_SIZE_MEMBER_MAX - NODE_SIZE_MEMBER_MIN);
+            }
+        }
+
         function randomPositionInSphere(radius) {
-            const theta = Math.random() * Math.PI * 2;  // Azimuthal angle
-            const phi = Math.acos(2 * Math.random() - 1);  // Polar angle (uniform distribution)
-            const r = Math.cbrt(Math.random()) * radius;  // Cube root for uniform volume distribution
+            const theta = Math.random() * Math.PI * 2;
+            const phi = Math.acos(2 * Math.random() - 1);
+            const r = Math.cbrt(Math.random()) * radius;
             
             return {
                 x: r * Math.sin(phi) * Math.cos(theta),
@@ -166,19 +213,16 @@ const description = "Interactive Three.js visualization of postwar U.S. poetry n
             };
         }
 
-        // Initialize positions and velocities randomly
         const nodePositions = new Map();
         const nodeVelocities = new Map();
         const nodeObjects = [];
         const nodeMeshes = new Map();
 
         nodesData.forEach((node) => {
-            // Random initial position within sphere
             nodePositions.set(node.name, randomPositionInSphere(SPHERE_RADIUS));
             nodeVelocities.set(node.name, { x: 0, y: 0, z: 0 });
 
-            // Create node sphere
-            const size = node.type === 'institution' ? NODE_SIZE_INSTITUTION : NODE_SIZE_POET;
+            const size = getNodeSize(node);
             const geometry = new THREE.SphereGeometry(size, 16, 16);
 
             const color = colors[node.group] || colors.default;
@@ -198,8 +242,7 @@ const description = "Interactive Three.js visualization of postwar U.S. poetry n
             nodeObjects.push(sphere);
             nodeMeshes.set(node.name, sphere);
 
-            // Add glow effect for institutions
-            if (node.type === 'institution') {
+            if (node.name === 'Swensen_American Hybrid_2009') {
                 const glowGeometry = new THREE.SphereGeometry(size * GLOW_SIZE_MULTIPLIER, 16, 16);
                 const glowMaterial = new THREE.MeshBasicMaterial({
                     color: color,
@@ -214,7 +257,6 @@ const description = "Interactive Three.js visualization of postwar U.S. poetry n
             }
         });
 
-        // Create connections
         const lineMaterial = new THREE.LineBasicMaterial({
             color: EDGE_COLOR,
             transparent: true,
@@ -240,7 +282,6 @@ const description = "Interactive Three.js visualization of postwar U.S. poetry n
             }
         });
 
-        // Ambient particles for atmosphere
         const particleGeometry = new THREE.BufferGeometry();
         const positions = new Float32Array(PARTICLE_COUNT * 3);
 
@@ -261,15 +302,21 @@ const description = "Interactive Three.js visualization of postwar U.S. poetry n
         const particles = new THREE.Points(particleGeometry, particleMaterial);
         scene.add(particles);
 
-        // Yifan Hu Force-Directed Layout
         let stepSize = INITIAL_STEP_SIZE;
-        let currentIteration = 200;
+        let currentIteration = 0;
 
         function applyForces() {
+
+
+            const isSimulating = currentIteration < SIMULATION_ITERATIONS;
+
+            // if (isSimulating) {
+            //     currentIteration++;
+            
+
             if (currentIteration >= SIMULATION_ITERATIONS) return;
             currentIteration++;
 
-            // Reset velocities
             nodesData.forEach(node => {
                 const vel = nodeVelocities.get(node.name);
                 vel.x = 0;
@@ -277,7 +324,6 @@ const description = "Interactive Three.js visualization of postwar U.S. poetry n
                 vel.z = 0;
             });
 
-            // Attractive forces (spring-like) between connected nodes
             linksData.forEach(link => {
                 const pos1 = nodePositions.get(link.source);
                 const pos2 = nodePositions.get(link.target);
@@ -289,7 +335,6 @@ const description = "Interactive Three.js visualization of postwar U.S. poetry n
                 const dz = pos2.z - pos1.z;
                 const distance = Math.sqrt(dx*dx + dy*dy + dz*dz) || 0.01;
 
-                // Spring force: F = k * distance
                 const force = distance * ATTRACTION_STRENGTH;
                 const fx = (dx / distance) * force;
                 const fy = (dy / distance) * force;
@@ -306,7 +351,6 @@ const description = "Interactive Three.js visualization of postwar U.S. poetry n
                 vel2.z -= fz;
             });
 
-            // Repulsive forces (coulomb-like) between all nodes
             const nodeNames = Array.from(nodePositions.keys());
             for (let i = 0; i < nodeNames.length; i++) {
                 for (let j = i + 1; j < nodeNames.length; j++) {
@@ -321,7 +365,6 @@ const description = "Interactive Three.js visualization of postwar U.S. poetry n
                     const distSq = dx*dx + dy*dy + dz*dz || 0.01;
                     const dist = Math.sqrt(distSq);
 
-                    // Coulomb force: F = k / distance²
                     const force = REPULSION_STRENGTH / distSq;
                     const fx = (dx / dist) * force;
                     const fy = (dy / dist) * force;
@@ -339,7 +382,7 @@ const description = "Interactive Three.js visualization of postwar U.S. poetry n
                 }
             }
 
-            // Centering force - pulls nodes toward sphere center
+            // centering force to keep nodes within sphere
             nodesData.forEach(node => {
                 const pos = nodePositions.get(node.name);
                 const vel = nodeVelocities.get(node.name);
@@ -351,7 +394,6 @@ const description = "Interactive Three.js visualization of postwar U.S. poetry n
                 const dz = SPHERE_CENTER.z - pos.z;
                 const distance = Math.sqrt(dx*dx + dy*dy + dz*dz) || 0.01;
 
-                // Centering force: F = k * distance (toward center)
                 const force = distance * CENTERING_STRENGTH;
                 const fx = (dx / distance) * force;
                 const fy = (dy / distance) * force;
@@ -362,7 +404,6 @@ const description = "Interactive Three.js visualization of postwar U.S. poetry n
                 vel.z += fz;
             });
 
-            // Update positions with adaptive step size
             nodesData.forEach(node => {
                 const pos = nodePositions.get(node.name);
                 const vel = nodeVelocities.get(node.name);
@@ -371,18 +412,26 @@ const description = "Interactive Three.js visualization of postwar U.S. poetry n
                 pos.y += vel.y * stepSize;
                 pos.z += vel.z * stepSize;
 
-                // Update mesh position
+
+                // ADD THIS: Clamp positions to stay within bounds
+                const maxDist = SPHERE_RADIUS * 1.2;  // Maximum distance from center
+                const distFromCenter = Math.sqrt(pos.x*pos.x + pos.y*pos.y + pos.z*pos.z);
+                if (distFromCenter > maxDist) {
+                    const scale = maxDist / distFromCenter;
+                    pos.x *= scale;
+                    pos.y *= scale;
+                    pos.z *= scale;
+}
+
                 const mesh = nodeMeshes.get(node.name);
                 mesh.position.set(pos.x, pos.y, pos.z);
 
-                // Update glow position
                 const glow = nodeMeshes.get(node.name + '_glow');
                 if (glow) {
                     glow.position.set(pos.x, pos.y, pos.z);
                 }
             });
 
-            // Update edge positions
             edgeLines.forEach(({ line, source, target }) => {
                 const sourcePos = nodePositions.get(source);
                 const targetPos = nodePositions.get(target);
@@ -396,11 +445,9 @@ const description = "Interactive Three.js visualization of postwar U.S. poetry n
                 line.geometry.attributes.position.needsUpdate = true;
             });
 
-            // Adaptive cooling
             stepSize *= COOLING_RATE;
         }
 
-        // Raycaster for hover interaction
         const raycaster = new THREE.Raycaster();
         const mouse = new THREE.Vector2();
         const infoDiv = document.getElementById('info-content');
@@ -428,21 +475,17 @@ const description = "Interactive Three.js visualization of postwar U.S. poetry n
         canvas.addEventListener('mousedown', () => { canvas.style.cursor = 'grabbing'; });
         canvas.addEventListener('mouseup', () => { canvas.style.cursor = 'grab'; });
 
-        // Animation loop
         function animate() {
             requestAnimationFrame(animate);
 
-            // Apply forces during simulation
             applyForces();
 
-            // Gentle pulsing animation for nodes
             const time = Date.now() * NODE_PULSE_SPEED;
             nodeObjects.forEach((obj, i) => {
                 const scale = 1 + Math.sin(time + i * 0.1) * NODE_PULSE_AMPLITUDE;
                 obj.scale.setScalar(scale);
             });
 
-            // Rotate particles slowly
             particles.rotation.y += PARTICLE_ROTATION_SPEED_Y;
             particles.rotation.x += PARTICLE_ROTATION_SPEED_X;
 
@@ -453,7 +496,6 @@ const description = "Interactive Three.js visualization of postwar U.S. poetry n
         animate();
     }
 
-    // Initialize when DOM is ready
     if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', initNetwork);
     } else {
@@ -463,14 +505,9 @@ const description = "Interactive Three.js visualization of postwar U.S. poetry n
 
 <style>
     #viz-container {
-        /* width: fit-content;
-        max-width: 100%;
-        height: 50vh; */
-
         height: fit-content;
         max-height: 100%;
         width: 90vw;
-
         margin: 1rem auto; 
         position: relative;
         background: #1E1E1E;
@@ -480,16 +517,12 @@ const description = "Interactive Three.js visualization of postwar U.S. poetry n
     }
 
     #network-canvas {
-        /* width: auto !important; 
-        height: 50vh !important; */
         width: 90vw !important;
         height: auto !important;
-
         aspect-ratio: 5 / 5 !important;
         display: block;
         cursor: grab;
     }
-
 
     @media screen and (min-width: 636px) {
         #viz-container {
@@ -502,10 +535,8 @@ const description = "Interactive Three.js visualization of postwar U.S. poetry n
             width: auto !important;
             height: 70vh !important;
             aspect-ratio: 5 / 4 !important;
-
         }
     }
-
 
     #network-canvas:active {
         cursor: grabbing;
