@@ -13,7 +13,7 @@
     --button-background: #ccc;
     --viz-background: #f5f5f5;
     --title-letter-spacing: 0.2em;
-    --title-letter-spacing-small: 0.1em;
+    --title-letter-spacing-small: 0.05em;
 
 }
 
@@ -57,7 +57,7 @@ h1 {
   font-weight: normal;
   max-width: 100%;
   word-spacing: 0.3em;
-  margin: 1.5rem 1rem;
+  margin: 1.5rem auto;
   line-height: 1.2;
   text-wrap: pretty;
 }
@@ -65,7 +65,7 @@ h1 {
 p.title-page {
   word-spacing: normal;
   max-width: 80%;
-  margin: 0 auto;
+  /* margin: 0 auto; */
 }
 
 @media screen and (min-width: 636px) {
