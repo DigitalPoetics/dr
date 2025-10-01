@@ -64,7 +64,7 @@ h1 {
 
 p.title-page {
   word-spacing: normal;
-  max-width: 80%;
+  max-width: 100%;
   /* margin: 0 auto; */
 }
 
@@ -73,6 +73,10 @@ p.title-page {
     /* font-size: 3rem; */
     max-width: 100%;
     word-spacing: 0.3em;
+  }
+
+  p.title-page {
+    max-width: 80%;
   }
 }
 
