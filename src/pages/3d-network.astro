@@ -16,11 +16,12 @@ const description = "Interactive Three.js visualization of postwar U.S. poetry n
     </div>
     <h3 class="title-page">MADE WITH</h3>
     <h1 class="title-page"><a href="https://www.anthropic.com/news/claude-sonnet-4-5" target="_blank">Claude Sonnet 4.5</a></h1>
-    <p class="title-page">Based on the cosmos visualization on <a href="https://claude.com/product/claude-code" target="_blank">Claude Code</a></p>
+    <p class="title-page">Based on the cosmos visualization on <a href="https://claud<mark marker-index=6 reference-tracker>e.com/product/claude-code" target="_blank">Claude Code</a></p>
 </BaseLayout>
 
 <script is:inline src="https://cdn.jsdelivr.net/npm/three@0.128.0/build/three.min.js" defer></script>
 <script is:inline src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js" defer></script>
+
 
 <script is:inline>
     // ============================================================================
@@ -53,30 +54,36 @@ const description = "Interactive Three.js visualization of postwar U.S. poetry n
     
     // Node Size Ranges - Based on degree (number of connections)
     const NODE_SIZE_MEMBER_MIN = 0.1;
-    const NODE_SIZE_MEMBER_MAX = 1.0;
-    const NODE_SIZE_INSTITUTION_MIN = 0.8;
-    const NODE_SIZE_INSTITUTION_MAX = 2.5;
+    const NODE_SIZE_MEMBER_MAX = 0.5;
+    const NODE_SIZE_INSTITUTION_MIN = 0.2;
+    const NODE_SIZE_INSTITUTION_MAX = 1.0;
     const NODE_OPACITY_POET = 0.7;
     const NODE_OPACITY_INSTITUTION = 0.9;
-    const GLOW_SIZE_MULTIPLIER = 3;
-    const GLOW_OPACITY = 0.5;
     
     // Node Colors
-    const COLOR_POET = 0xCCCCCC;
-    // Balanced rainbow for dark backgrounds
-    const COLOR_RED = 0xFF3333;
-    const COLOR_ORANGE = 0xFF9933;
-    const COLOR_YELLOW = 0xFFFF33;
-    const COLOR_GREEN = 0x33FF33;
-    const COLOR_BLUE = 0x3399FF;
-    const COLOR_INDIGO = 0x6633FF;
-    const COLOR_VIOLET = 0xCC33FF;
-
+    const COLOR_POET = 0xC0C0C0;        // Silver
+    const COLOR_AUDIO = 0xFFD700;       // Gold
+    const COLOR_AVANT = 0xCD7F32;       // Bronze
+    const COLOR_BAM = 0xB87333;         // Copper
+    const COLOR_EMERGENT = 0xE5E4E2;    // Platinum
+    const COLOR_FEMINIST = 0xE8B4B8;    // Rose gold
+    const COLOR_NF = 0xF7E7CE;          // Champagne
+    const COLOR_TEACHING = 0xFFBF00;    // Amber
     const COLOR_DEFAULT = 0x8aded8;
     
+    // Selection & Highlighting
+    // const SELECTED_COLOR = 0xFF0000;        // Red for selected nodes
+    // const SELECTED_GLOW_COLOR = 0xFF0000;   // Red glow
+    const SELECTED_COLOR = 0xFFFFFF;        // White center
+    const SELECTED_GLOW_COLOR = 0xFF1493;   // Deep pink glow
+
+    const GLOW_SIZE_MULTIPLIER = 2;
+    const GLOW_OPACITY = 0.5;
+    const INITIAL_SELECTED_NODES = ['Swensen_American Hybrid_2009'];      // Array of node names to pre-select
+    
     // Edge Appearance
-    const EDGE_COLOR = 0x5E6E7F;
-    const EDGE_OPACITY = 0.15;
+    const EDGE_COLOR = 0x191970;  // Midnight blue
+    const EDGE_OPACITY = 0.1;
     
     // Particles
     const PARTICLE_COUNT = 100;
@@ -142,19 +149,33 @@ const description = "Interactive Three.js visualization of postwar U.S. poetry n
 
         const colors = {
             poet: COLOR_POET,
-            'Audio Archives': COLOR_RED,
-            'Avant-garde': COLOR_ORANGE,
-            'The Black Arts Movement': COLOR_YELLOW,
-            'Emergent Poets': COLOR_GREEN,
-            'The Feminist Poetry Movement': COLOR_BLUE,
-            'New Formalism': COLOR_INDIGO,
-            'Teaching/Survey': COLOR_VIOLET,
+            'Audio Archives': COLOR_AUDIO,
+            'Avant-garde': COLOR_AVANT,
+            'The Black Arts Movement': COLOR_BAM,
+            'Emergent Poets': COLOR_EMERGENT,
+            'The Feminist Poetry Movement': COLOR_FEMINIST,
+            'New Formalism': COLOR_NF,
+            'Teaching/Survey': COLOR_TEACHING,
             default: COLOR_DEFAULT
         };
 
         const nodeIndex = new Map();
         nodesData.forEach(node => {
             nodeIndex.set(node.name, node);
+        });
+
+        // Build neighbor and edge maps
+        const nodeNeighbors = new Map();
+        const nodeEdges = new Map();
+
+        nodesData.forEach(node => {
+            nodeNeighbors.set(node.name, []);
+            nodeEdges.set(node.name, []);
+        });
+
+        linksData.forEach(link => {
+            nodeNeighbors.get(link.source).push(link.target);
+            nodeNeighbors.get(link.target).push(link.source);
         });
 
         // Calculate degree for each node
@@ -213,6 +234,49 @@ const description = "Interactive Three.js visualization of postwar U.S. poetry n
             };
         }
 
+        // Class management functions
+        function addClass(object, className) {
+            if (!object.userData.classes) object.userData.classes = new Set();
+            object.userData.classes.add(className);
+        }
+
+        function removeClass(object, className) {
+            if (object.userData.classes) {
+                object.userData.classes.delete(className);
+            }
+        }
+
+        function hasClass(object, className) {
+            return object.userData.classes && object.userData.classes.has(className);
+        }
+
+        function createGlow(nodeName) {
+            const mesh = nodeMeshes.get(nodeName);
+            if (!mesh || nodeMeshes.get(nodeName + '_glow')) return; // Already has glow
+            
+            const size = mesh.geometry.parameters.radius;
+            const glowGeometry = new THREE.SphereGeometry(size * GLOW_SIZE_MULTIPLIER, 16, 16);
+            const glowMaterial = new THREE.MeshBasicMaterial({
+                color: SELECTED_GLOW_COLOR,
+                transparent: true,
+                opacity: GLOW_OPACITY,
+                blending: THREE.AdditiveBlending
+            });
+            const glow = new THREE.Mesh(glowGeometry, glowMaterial);
+            glow.position.copy(mesh.position);
+            glow.userData = { classes: new Set() };
+            scene.add(glow);
+            nodeMeshes.set(nodeName + '_glow', glow);
+        }
+
+        function removeGlow(nodeName) {
+            const glow = nodeMeshes.get(nodeName + '_glow');
+            if (glow) {
+                scene.remove(glow);
+                nodeMeshes.delete(nodeName + '_glow');
+            }
+        }
+
         const nodePositions = new Map();
         const nodeVelocities = new Map();
         const nodeObjects = [];
@@ -236,25 +300,32 @@ const description = "Interactive Three.js visualization of postwar U.S. poetry n
             const sphere = new THREE.Mesh(geometry, material);
             const pos = nodePositions.get(node.name);
             sphere.position.set(pos.x, pos.y, pos.z);
-            sphere.userData = { name: node.name, group: node.group, type: node.type };
+            sphere.userData = { 
+                name: node.name, 
+                group: node.group, 
+                type: node.type,
+                classes: new Set(),
+                originalColor: color
+            };
 
             scene.add(sphere);
             nodeObjects.push(sphere);
             nodeMeshes.set(node.name, sphere);
 
-            if (node.name === 'Swensen_American Hybrid_2009') {
-                const glowGeometry = new THREE.SphereGeometry(size * GLOW_SIZE_MULTIPLIER, 16, 16);
-                const glowMaterial = new THREE.MeshBasicMaterial({
-                    color: color,
-                    transparent: true,
-                    opacity: GLOW_OPACITY,
-                    blending: THREE.AdditiveBlending
-                });
-                const glow = new THREE.Mesh(glowGeometry, glowMaterial);
-                glow.position.set(pos.x, pos.y, pos.z);
-                scene.add(glow);
-                nodeMeshes.set(node.name + '_glow', glow);
-            }
+            // if (node.name === 'Swensen_American Hybrid_2009') {
+            //     const glowGeometry = new THREE.SphereGeometry(size * GLOW_SIZE_MULTIPLIER, 16, 16);
+            //     const glowMaterial = new THREE.MeshBasicMaterial({
+            //         color: color,
+            //         transparent: true,
+            //         opacity: GLOW_OPACITY,
+            //         blending: THREE.AdditiveBlending
+            //     });
+            //     const glow = new THREE.Mesh(glowGeometry, glowMaterial);
+            //     glow.position.set(pos.x, pos.y, pos.z);
+            //     glow.userData = { classes: new Set() };
+            //     scene.add(glow);
+            //     nodeMeshes.set(node.name + '_glow', glow);
+            // }
         });
 
         const lineMaterial = new THREE.LineBasicMaterial({
@@ -277,10 +348,131 @@ const description = "Interactive Three.js visualization of postwar U.S. poetry n
 
                 const geometry = new THREE.BufferGeometry().setFromPoints(points);
                 const line = new THREE.Line(geometry, lineMaterial);
+                line.userData = { 
+                    classes: new Set(),
+                    originalColor: EDGE_COLOR
+                };
                 scene.add(line);
                 edgeLines.push({ line, source: link.source, target: link.target });
+                
+                // Add edge to node edge maps
+                nodeEdges.get(link.source).push(line);
+                nodeEdges.get(link.target).push(line);
             }
         });
+
+        // Selection functions
+        function selectNode(nodeName) {
+            const mesh = nodeMeshes.get(nodeName);
+            if (!mesh) return;
+            
+            // Add class to node
+            addClass(mesh, nodeName);
+            
+            // Add class to glow if exists
+            const glow = nodeMeshes.get(nodeName + '_glow');
+            if (glow) addClass(glow, nodeName);
+            
+            // Add class to neighbors
+            const neighbors = nodeNeighbors.get(nodeName) || [];
+            neighbors.forEach(neighborName => {
+                const neighborMesh = nodeMeshes.get(neighborName);
+                if (neighborMesh) addClass(neighborMesh, nodeName);
+                
+                const neighborGlow = nodeMeshes.get(neighborName + '_glow');
+                if (neighborGlow) addClass(neighborGlow, nodeName);
+            });
+            
+            // Add class to connected edges
+            const connectedEdges = nodeEdges.get(nodeName) || [];
+            connectedEdges.forEach(edge => {
+                addClass(edge, nodeName);
+            });
+        }
+
+        function deselectNode(nodeName) {
+            const mesh = nodeMeshes.get(nodeName);
+            if (!mesh) return;
+            
+            // Remove class from node
+            removeClass(mesh, nodeName);
+            
+            // Remove class from glow if exists
+            const glow = nodeMeshes.get(nodeName + '_glow');
+            if (glow) removeClass(glow, nodeName);
+            
+            // Remove class from neighbors
+            const neighbors = nodeNeighbors.get(nodeName) || [];
+            neighbors.forEach(neighborName => {
+                const neighborMesh = nodeMeshes.get(neighborName);
+                if (neighborMesh) removeClass(neighborMesh, nodeName);
+                
+                const neighborGlow = nodeMeshes.get(neighborName + '_glow');
+                if (neighborGlow) removeClass(neighborGlow, nodeName);
+            });
+            
+            // Remove class from connected edges
+            const connectedEdges = nodeEdges.get(nodeName) || [];
+            connectedEdges.forEach(edge => {
+                removeClass(edge, nodeName);
+            });
+        }
+
+        function toggleNodeSelection(nodeName) {
+            const mesh = nodeMeshes.get(nodeName);
+            if (!mesh) return;
+            
+            if (hasClass(mesh, nodeName)) {
+                deselectNode(nodeName);
+            } else {
+                selectNode(nodeName);
+            }
+        }
+
+        // update colors based on selection state
+        // Update colors based on selection state
+        function updateColors() {
+            nodeObjects.forEach(mesh => {
+                const hasClasses = mesh.userData.classes && mesh.userData.classes.size > 0;
+                const nodeName = mesh.userData.name;
+                
+                if (hasClasses) {
+                    mesh.material.color.setHex(SELECTED_COLOR);
+                    createGlow(nodeName); // Create glow if selected
+                } else {
+                    mesh.material.color.setHex(mesh.userData.originalColor);
+                    removeGlow(nodeName); // Remove glow if not selected
+                }
+            });
+            
+            // Update existing glow colors and properties
+            nodeMeshes.forEach((mesh, key) => {
+                if (key.includes('_glow')) {
+                    const hasClasses = mesh.userData.classes && mesh.userData.classes.size > 0;
+                    if (hasClasses) {
+                        mesh.material.color.setHex(SELECTED_GLOW_COLOR);
+                        mesh.material.transparent = true;
+                        mesh.material.opacity = GLOW_OPACITY;
+                        mesh.material.blending = THREE.AdditiveBlending;
+                    }
+                }
+            });
+            
+            // Update edges
+            edgeLines.forEach(({ line }) => {
+                const hasClasses = line.userData.classes && line.userData.classes.size > 0;
+                if (hasClasses) {
+                    line.material.color.setHex(SELECTED_COLOR);
+                    line.material.transparent = true;
+                    line.material.opacity = EDGE_OPACITY;
+                    line.material.blending = THREE.AdditiveBlending;
+                } else {
+                    line.material.color.setHex(line.userData.originalColor);
+                }
+            });
+        }
+
+
 
         const particleGeometry = new THREE.BufferGeometry();
         const positions = new Float32Array(PARTICLE_COUNT * 3);
@@ -306,14 +498,6 @@ const description = "Interactive Three.js visualization of postwar U.S. poetry n
         let currentIteration = 0;
 
         function applyForces() {
-
-
-            const isSimulating = currentIteration < SIMULATION_ITERATIONS;
-
-            // if (isSimulating) {
-            //     currentIteration++;
-            
-
             if (currentIteration >= SIMULATION_ITERATIONS) return;
             currentIteration++;
 
@@ -382,7 +566,6 @@ const description = "Interactive Three.js visualization of postwar U.S. poetry n
                 }
             }
 
-            // centering force to keep nodes within sphere
             nodesData.forEach(node => {
                 const pos = nodePositions.get(node.name);
                 const vel = nodeVelocities.get(node.name);
@@ -412,16 +595,14 @@ const description = "Interactive Three.js visualization of postwar U.S. poetry n
                 pos.y += vel.y * stepSize;
                 pos.z += vel.z * stepSize;
 
-
-                // ADD THIS: Clamp positions to stay within bounds
-                const maxDist = SPHERE_RADIUS * 1.2;  // Maximum distance from center
+                const maxDist = SPHERE_RADIUS * 1.2;
                 const distFromCenter = Math.sqrt(pos.x*pos.x + pos.y*pos.y + pos.z*pos.z);
                 if (distFromCenter > maxDist) {
                     const scale = maxDist / distFromCenter;
                     pos.x *= scale;
                     pos.y *= scale;
                     pos.z *= scale;
-}
+                }
 
                 const mesh = nodeMeshes.get(node.name);
                 mesh.position.set(pos.x, pos.y, pos.z);
@@ -471,7 +652,22 @@ const description = "Interactive Three.js visualization of postwar U.S. poetry n
             }
         }
 
+        function onClick(event) {
+            const rect = canvas.getBoundingClientRect();
+            mouse.x = ((event.clientX - rect.left) / rect.width) * 2 - 1;
+            mouse.y = -((event.clientY - rect.top) / rect.height) * 2 + 1;
+
+            raycaster.setFromCamera(mouse, camera);
+            const intersects = raycaster.intersectObjects(nodeObjects);
+
+            if (intersects.length > 0) {
+                const nodeName = intersects[0].object.userData.name;
+                toggleNodeSelection(nodeName);
+            }
+        }
+
         canvas.addEventListener('mousemove', onMouseMove);
+        canvas.addEventListener('click', onClick);
         canvas.addEventListener('mousedown', () => { canvas.style.cursor = 'grabbing'; });
         canvas.addEventListener('mouseup', () => { canvas.style.cursor = 'grab'; });
 
@@ -479,6 +675,7 @@ const description = "Interactive Three.js visualization of postwar U.S. poetry n
             requestAnimationFrame(animate);
 
             applyForces();
+            updateColors();
 
             const time = Date.now() * NODE_PULSE_SPEED;
             nodeObjects.forEach((obj, i) => {
@@ -492,6 +689,11 @@ const description = "Interactive Three.js visualization of postwar U.S. poetry n
             controls.update();
             renderer.render(scene, camera);
         }
+
+        // Initialize pre-selected nodes
+        INITIAL_SELECTED_NODES.forEach(nodeName => {
+            selectNode(nodeName);
+        });
 
         animate();
     }
