@@ -1,14 +1,16 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import BimodalNetwork from '../components/bimodal-network/BimodalNetwork.astro';
+import { Code } from 'astro:components';
+
 // src data
 import nodesData from '../data/bimodal-network/nodes.json';
 import linksData from '../data/bimodal-network/links.json';
 import audioNodesData from '../data/bimodal-network/audio-nodes.json';
 import audioLinksData from '../data/bimodal-network/audio-links.json';
 
-const pageTitle = "Network Visualization";
-const description = "D3.js force simulations appromixation of Yifan Hu Network Layout";
+const pageTitle = "Network Layouts";
+const description = "D3.js force simulations appromixation of Yifan Hu and Fruchterman-Reingold network layouts.";
 
 const memberFilter = []
 const institutionFilter= ["Bernstein_43 Poets_1985", 
@@ -45,13 +47,31 @@ const institutionFilter2 = [
   "Smith_The Morrow Anthology_1985", 
 ]
 
+const institutionFilter3 = [
+  "Chester_Rising Tides_1973",
+  "Howe_No More Masks!_1973",
+  "Iverson_We Become New_1975",
+  "Piercy_Early Ripening_1987",
+  "Segnitz_Psyche_1973",
+]
+
 ---
 
 <BaseLayout pageTitle={pageTitle} description={description}>
-  <p>
-    <a href="https://d3js.org/d3-force" target="_blank">D3.js force simulations</a>
-    appromixation of Yifan Hu Network Layout. Made using the manybody force and other forces
+
+  <p class="title-page">Bimodal force-directed graphs delineated with D3.js force simulations</p>
+  <h4 class="title-page">WITH DIAGRAMS FOR</h4>
+  <h3 class="title-page">YIFAN HU & Fruchterman-Reingold</h3>
+  
+  <p><a href="https://d3js.org/d3-force" target="_blank">D3-force</a> simulates physical forces to arrange the nodes and edges on the SVG canvas.
+  For example, it may add spring-like force that pulls and pushes connected nodes while keeping them together, or charge-like forces that simulate attraction or repulsion between nodes.
+  The nodes and edges reach an optimal position once these forces stabilize.
   </p>
+
+  <h3 class="title-page">Yifan Hu Layout</h3>
+
+  <p>These forces can be used for a number of things. Below is an appromixation of the <a href="http://yifanhu.net/PUB/graph_draw_small.pdf" target="_blank">Yifan Hu Multilevel</a> layout for clustering.</p>
+  
   <BimodalNetwork 
     id="yifan-hu-network"
     nodesData={nodesData}
@@ -67,7 +87,7 @@ const institutionFilter2 = [
     forceXStrength={null}
     forceYStrength={null}
     alphaDecay={0.04}
-    maxIterations={1000}
+    maxIterations={500}
     rotation={-60}
     height={65}
     bimodalZoomScale={1}
@@ -75,12 +95,24 @@ const institutionFilter2 = [
     institutionNodeRange={[3, 25]}
     memberFontRange={[2, 6]}
     institutionFontRange={[5, 12]}
-    clickedNodes={{nodes: ["Swensen_American Hybrid_2009"], color: "red"}}
+    clickedNodes={{nodes: institutionFilter3, color: "red"}}
   />
 
-  <p>
-    Fruchterman Reingold Layout
+  <p>Yifan HU recommends applying repulsive forces on nodes that are not connected to each other, which helps keep clustered communities spatially distinct.
+    This can be achived by increasing the strength of repulsion on the nodes, using the negative charge strength in d3.js <a href="https://d3js.org/d3-force/many-body">many-body force</a>:
   </p>
+  <Code 
+  code={`
+    const manyBody = d3.forceManyBody()
+      .strength(-40);
+  `}
+  lang="js"
+  theme="vitesse-light"
+/>
+  <pre><code></code></pre>
+  <p>The Yifan Hu layout is great for community detection as clusters—or close-knit communities—become more distinct.</p>
+  <h3 class="title-page">Fruchterman-Reingold Layout</h3>
+  <p>These forces can also be useful from a design perspective. In the Yifan Hu layout, nodes spread more naturally based on their connections; however, in Fruchterman-Reingold layout, nodes are actively pulled toward an (x, y) center point, which creates a compact, centered appearance.</p>
   <BimodalNetwork 
     id="fruchterman-reingold"
     nodesData={audioNodesData}
@@ -106,4 +138,16 @@ const institutionFilter2 = [
     institutionFontRange={[10, 18]}
     clickedNodes={{nodes: ["UbuWeb"], color: "red"}}
   />
+  <p>In my experience, the set of forces applied in Yifan Hu and Fruchterman-Reingold are not significantly different, except for the <a href="https://d3js.org/d3-force/position" target="_blank">position forces</a> in Fruchterman-Reingold, which are used to push nodes to a specific center point—such as the middle of the SVG canvas.</p>
+<Code 
+  code={`
+    const x = d3.forceX(width / 2)
+      .strength(0.4);
+
+    const y = d3.forceY(height / 2)
+      .strength(0.4);
+  `}
+  lang="js"
+  theme="vitesse-light"
+/>
 </BaseLayout>

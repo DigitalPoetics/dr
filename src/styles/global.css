@@ -138,3 +138,12 @@ blockquote {
   border: var(--image-border);
 }
 
+/* shiki theme */
+.astro-code,
+.astro-code span {
+  background-color: var(--viz-background) !important;
+}
+
+.astro-code {
+    border: var(--image-border) !important;
+}
