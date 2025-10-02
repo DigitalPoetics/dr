@@ -1,59 +1,29 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import Note from '../components/ui/Note.astro';
 import SelectedPosts from '../components/ui/SelectedPosts.astro';
 import UiShowcase from '../components/ui/UiShowcase.astro';
 const {frontmatter } = Astro.props;
 const pageTitle = "Digital Archaeology"
-const description = "Of Stratas and Historical Formations"
+const description = "A networked approach to literary formations, with diagrams for layouts, partitioins, and centralities."
 const index = 'digital-archaeology'
 
 import yifanhuImage from "../assets/images/digital-archaeology/yifanhu.png"
 import betweennessImage from "../assets/images/digital-archaeology/betweenness.png"
 ---
 <BaseLayout pageTitle={pageTitle} description={description}>
-    <p class="title-page">Networked approaches to stratas and historical formations</p>
+    <p class="title-page">A networked approach to literary formations</p>
     <h4 class="title-page">WITH DIAGRAMS FOR</h4>
-
     <h3 class="title-page">LAYOUTS, PARTITIONS, AND CETNRALITIES</h3>
 
-    <p>This is where I will post about my journey learning Astro.</p>
-
-    <SelectedPosts 
-        frontmatter={frontmatter} 
-        index={index} 
-    />
-
-    <SelectedPosts 
-        customPosts={[
-            { url: '/posts/digital-formalism/digital-formalism-1-intro', 
-            frontmatter: { 
-                title: 'Post 1', 
-                description: 'Description 1' 
-            }},
-        ]}
-        customTitle="~digital formalism~"
-        customHref="/digital-formalism/"
-    />
-
-    <SelectedPosts 
-        customPosts={[
-            { url: '/posts/digital-formalism/digital-formalism-1-intro', 
-            frontmatter: { 
-                title: 'Intro: Verse and Speech', 
-                description: 'Difference between verse and speech is a defining point of aesthetics' 
-            }},
-        ]}
-        customTitle="Featured Posts"
-    />
-
-    <SelectedPosts 
-        frontmatter={frontmatter} 
-        index={index} 
-    />
-
+    <Note>
+    	<p><b>Archive - </b>An archive is a collection of statements and actions—what actors say and do.
+            A networked approach to literary formations maps the forces of attraction and repulsion that are organized around these statements and actions.
+		</p>
+    </Note>
     <UiShowcase 
-        pageTitle="~Yifan Hu Layout~"
-        description="D3.js force simulations appromixation of Yifan Hu Network Layout"
+        pageTitle="~Layouts~"
+        description="D3.js force simulations appromixation of Yifan Hu and Fruchterman-Reingold network layouts."
         imageUrl={yifanhuImage}
         imageAlt="The Astro logo on a dark background with a pink glow"
         srcPath="/bimodal-network-yifanhu"
@@ -67,7 +37,10 @@ import betweennessImage from "../assets/images/digital-archaeology/betweenness.p
         srcPath="/bimodal-network-centrality"
     />
 
-
+    <SelectedPosts 
+        frontmatter={frontmatter} 
+        index={index} 
+    />
 
 </BaseLayout> 
 

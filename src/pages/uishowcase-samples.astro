@@ -1,0 +1,48 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SelectedPosts from '../components/ui/SelectedPosts.astro';
+import UiShowcase from '../components/ui/UiShowcase.astro';
+const {frontmatter } = Astro.props;
+const pageTitle = "Blog Posts UI"
+const description = "Blog posts UI samples"
+const index = 'digital-archaeology'
+
+
+---
+<BaseLayout pageTitle={pageTitle} description={description}>
+
+    <SelectedPosts 
+        frontmatter={frontmatter} 
+        index={index} 
+    />
+
+    <SelectedPosts 
+        customPosts={[
+            { url: '/posts/digital-formalism/digital-formalism-1-intro', 
+            frontmatter: { 
+                title: 'Post 1', 
+                description: 'Description 1' 
+            }},
+        ]}
+        customTitle="~digital formalism~"
+        customHref="/digital-formalism/"
+    />
+
+    <SelectedPosts 
+        customPosts={[
+            { url: '/posts/digital-formalism/digital-formalism-1-intro', 
+            frontmatter: { 
+                title: 'Intro: Verse and Speech', 
+                description: 'Difference between verse and speech is a defining point of aesthetics' 
+            }},
+        ]}
+        customTitle="Featured Posts"
+    />
+
+    <SelectedPosts 
+        frontmatter={frontmatter} 
+        index={index} 
+    />
+
+</BaseLayout> 
+
