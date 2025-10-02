@@ -134,7 +134,7 @@ blockquote {
 .responsive-image {
   width: 100%;
   height: auto;
-  border-radius: 0.5rem;
+  /* border-radius: 0.5rem; */
   border: var(--image-border);
 }
 
@@ -142,6 +142,7 @@ blockquote {
 .astro-code,
 .astro-code span {
   background-color: var(--viz-background) !important;
+  margin: 0 !important;
 }
 
 .astro-code {
@@ -149,8 +150,10 @@ blockquote {
 }
 
 .astro-code span {
-    font-size: 1.0rem !important;;
+    font-size: 1.0rem !important;
 }
+
+
 
 /* @media screen and (min-width: 636px) {
   .astro-code,              
