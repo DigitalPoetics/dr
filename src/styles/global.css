@@ -147,3 +147,14 @@ blockquote {
 .astro-code {
     border: var(--image-border) !important;
 }
+
+.astro-code span {
+    font-size: 1.0rem !important;;
+}
+
+/* @media screen and (min-width: 636px) {
+  .astro-code,              
+  .astro-code span {
+    font-size: 1.0rem !important;
+  }
+} */

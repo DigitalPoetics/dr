@@ -59,12 +59,12 @@ const institutionFilter3 = [
 
 <BaseLayout pageTitle={pageTitle} description={description}>
 
-  <p class="title-page">Bimodal force-directed graphs delineated with D3.js force simulations</p>
+  <p class="title-page">Force-directed graphs delineated with d3.js force simulations</p>
   <h4 class="title-page">WITH DIAGRAMS FOR</h4>
-  <h3 class="title-page">YIFAN HU & Fruchterman-Reingold</h3>
+  <h3 class="title-page">YIFAN HU & FRUCHTERMAN-REINGOLD</h3>
   
   <p><a href="https://d3js.org/d3-force" target="_blank">D3-force</a> simulates physical forces to arrange the nodes and edges on the SVG canvas.
-  For example, it may add spring-like force that pulls and pushes connected nodes while keeping them together, or charge-like forces that simulate attraction or repulsion between nodes.
+  For example, it may add spring-like force that pulls and pushes connected nodes while keeping them together, or charge-like force that simulates attraction or repulsion between nodes.
   The nodes and edges reach an optimal position once these forces stabilize.
   </p>
 
@@ -98,7 +98,7 @@ const institutionFilter3 = [
     clickedNodes={{nodes: institutionFilter3, color: "red"}}
   />
 
-  <p>Yifan HU recommends applying repulsive forces on nodes that are not connected to each other, which helps keep clustered communities spatially distinct.
+  <p>Yifan Hu recommends applying repulsive forces on nodes that are not connected to each other, which helps keep clustered communities spatially distinct.
     This can be achived by increasing the strength of repulsion on the nodes, using the negative charge strength in d3.js <a href="https://d3js.org/d3-force/many-body">many-body force</a>:
   </p>
   <Code 
