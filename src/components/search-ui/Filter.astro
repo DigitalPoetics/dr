@@ -185,6 +185,7 @@ function getMatchingParagraphs(text: string, matches: any[]): Array<{ index: num
 
     function extractDateRanges(dates) {
       const years = dates.map(date => {
+        if (typeof date === 'number') return date;
         const match = date.match(/\d{4}/);
         return match ? parseInt(match[0]) : null;
       }).filter(Boolean);
@@ -313,14 +314,20 @@ function getMatchingParagraphs(text: string, matches: any[]): Array<{ index: num
       applyFilters();
     }
 
-    function matchesDateRange(entryDate, range) {
-      const [start, end] = range.split('-').map(Number);
-      const match = entryDate.match(/\d{4}/);
-      if (!match) return false;
-      
-      const year = parseInt(match[0]);
-      return year >= start && year <= end;
-    }
+   function matchesDateRange(entryDate, range) {
+  const [start, end] = range.split('-').map(Number);
+  
+  let year;
+  if (typeof entryDate === 'number') {
+    year = entryDate;
+  } else {
+    const match = entryDate.match(/\d{4}/);
+    if (!match) return false;
+    year = parseInt(match[0]);
+  }
+  
+  return year >= start && year <= end;
+}
 
     function applyFilters() {
       // Filter the original entries

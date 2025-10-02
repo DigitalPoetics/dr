@@ -1,0 +1,44 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SearchWord2vecMulti from '../components/search-ui/SearchWord2vecMulti.astro';
+import SimilarityQueryWord2vec from '../components/search-ui/SimilarityQueryWord2vec.astro';
+import Filter from '../components/search-ui/Filter.astro';
+import FilterButton from '../components/ui/FilterButton.astro';
+// src data
+import textData from '../data/language/language-word2vec-documents.json';
+import word2vecData from '../data/language/language-word2vec.json';
+import word2vecDataCoordinates from '../data/language/language-word2vec-coordinates.json';
+
+export const prerender = false;
+
+const pageTitle = "L=A=N=G=U=A=G=E";
+const description = "In-text vector-based query search UI for the L=A=N=G=U=A=G=E magazine. Look up terms and their usage in the the Language Writing school.";
+
+// Customize these keys to match your data structure
+const textFields = {
+  author: "author",
+  title: "shortTitle", 
+  date: "date",
+  url: "url",
+  text: "text",
+  container: "isPartOf" // Add this field for journal/container filtering
+};
+---
+
+<BaseLayout pageTitle={pageTitle} description={description}>
+  <h3>Query Search UI for
+    <a href="https://deleuze.cla.purdue.edu/seminars/" target="_blank">L=A=N=G=U=A=G=E</a>
+  </h3>
+  <SearchWord2vecMulti 
+    word2vecData={word2vecDataCoordinates}
+  />
+  <FilterButton 
+    targetContainer="#filter-container"
+  />
+  <Filter 
+    textData={textData}
+    word2vecData={word2vecData}
+    textFields={textFields}
+  />
+
+</BaseLayout>
