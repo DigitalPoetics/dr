@@ -3,15 +3,21 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import BimodalNetwork from '../components/bimodal-network/BimodalNetwork.astro';
 import { Code } from 'astro:components';
 import Figure from '../components/ui/Figure.astro';
+import { Image } from 'astro:assets';
 
 // src data
 import nodesData from '../data/bimodal-network/nodes.json';
 import linksData from '../data/bimodal-network/links.json';
 import audioNodesData from '../data/bimodal-network/audio-nodes.json';
 import audioLinksData from '../data/bimodal-network/audio-links.json';
+// src pics
+import disjointImage from '../assets/images/digital-archaeology/d3js-disjoint-graph.png';
+
 
 const pageTitle = "Network Layouts";
 const description = "D3.js force simulations appromixation of Yifan Hu and Fruchterman-Reingold network layouts.";
+
+
 
 const memberFilter = []
 const institutionFilter= ["Bernstein_43 Poets_1985", 
@@ -64,6 +70,17 @@ const institutionFilter3 = [
   <h4 class="title-page">WITH DIAGRAMS FOR</h4>
   <h3 class="title-page">YIFAN HU & FRUCHTERMAN-REINGOLD</h3>
   <h1 class="title-page">~~~</h1>
+  <Figure>
+    <Image slot="image"
+      src={disjointImage}
+      alt="D3.js disjoint graph"
+      class="responsive-image"
+      layout="constrained"
+    />
+    <span slot="caption">
+      Figure 1: Disjoint force-directed graph made with positioning forces (d3.forceX and d3.forceY), which prevents the disconnected nodes from drifting outside the viewport. Figure Source: <a href="https://observablehq.com/@d3/disjoint-force-directed-graph/2" target="_blank">Observable @D3</a>.
+    </span>
+  </Figure>
   <p><a href="https://d3js.org/d3-force" target="_blank">D3-force</a> simulates physical forces to arrange the nodes and edges on the SVG canvas.
   For example, it may add spring-like force that pushes and pulls connected nodes while keeping them together, or charge-like force that simulates attraction or repulsion between nodes.
   The nodes and edges reach an optimal position once these forces stabilize.
@@ -99,7 +116,7 @@ const institutionFilter3 = [
       clickedNodes={{nodes: institutionFilter3, color: "red"}}
     />
     <span slot="caption">
-      Figure 1: Yifan Hu layout made with repulsive forces (d3.forceManyBody).
+      Figure 2: Yifan Hu layout made with repulsive forces (d3.forceManyBody).
     </span>
   </Figure>
 
@@ -149,7 +166,7 @@ const institutionFilter3 = [
       clickedNodes={{nodes: ["UbuWeb"], color: "red"}}
     />
     <span slot="caption">
-			Figure 2: Fruchterman-Reingold layout made with positioning forces (d3.forceX and d3.forceY).
+			Figure 3: Fruchterman-Reingold layout made with positioning forces (d3.forceX and d3.forceY).
 		</span>
   </Figure>
   <p>In my experience, there is not much difference between the set of forces used in Yifan Hu and Fruchterman-Reingold layouts, except for the <a href="https://d3js.org/d3-force/position" target="_blank">position forces</a> in Fruchterman-Reingold, which are used to push nodes to a specific center point—such as the middle of the SVG canvas.</p>
@@ -166,10 +183,11 @@ const institutionFilter3 = [
   theme="vitesse-light"
 />
 
-<p>The difference between Yifan Hu and Fruchterman-Reingold layouts is that the former creates negative space to give shape to the communities while the latter closes this space to distribute the nodes evenly across the SVG canvas, which helps reduce overalapping labels.</p>
-<p>According to the following figure from the creators of d3.js, a disjoint force-directed graph requires the same position forces to prevent disconnected nodes from drifting outside the viewport.</p>
+<p>The difference between Yifan Hu and Fruchterman-Reingold layouts is that the former creates negative space to give shape to the communities while the latter closes this space to distribute the nodes evenly across the SVG canvas, which helps reduce overlapping labels.</p>
 
-	<Figure>
+<!-- <p>According to the following figure from the creators of d3.js, a disjoint force-directed graph requires the same position forces to prevent disconnected nodes from drifting outside the viewport.</p> -->
+
+	<!-- <Figure>
       <iframe slot="image"
         style="width: 100%; aspect-ratio: 1/1; max-height: 65vh; background-color: var(--viz-background); border: var(--image-border);"
         src="https://observablehq.com/embed/@d3/disjoint-force-directed-graph/2?cells=chart&banner=false">
@@ -177,7 +195,7 @@ const institutionFilter3 = [
       <span slot="caption">
         Figure 3: Disjoint force-directed graph made with positioning forces (d3.forceX and d3.forceY). Figure Source: <a href="https://observablehq.com/@d3/disjoint-force-directed-graph/2" target="_blank">Observable @D3</a>.
       </span>
-  </Figure>
+  </Figure> -->
   
   <h3 class="title-page">~~~</h3>
 </BaseLayout>

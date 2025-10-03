@@ -134,6 +134,7 @@ blockquote {
 .responsive-image {
   width: 100%;
   height: auto;
+  /* max-height: 60vh; */
   /* border-radius: 0.5rem; */
   border: var(--image-border);
 }
