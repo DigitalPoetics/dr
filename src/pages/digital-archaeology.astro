@@ -3,6 +3,13 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import Note from '../components/ui/Note.astro';
 import SelectedPosts from '../components/ui/SelectedPosts.astro';
 import UiShowcase from '../components/ui/UiShowcase.astro';
+import Figure from '../components/ui/Figure.astro';
+import {Image} from "astro:assets";
+
+
+// src image
+
+
 const {frontmatter } = Astro.props;
 const pageTitle = "Digital Archaeology"
 const description = "A networked approach to literary formations, with diagrams for layouts, partitioins, and centralities."
@@ -15,9 +22,10 @@ import betweennessImage from "../assets/images/digital-archaeology/betweenness.p
     <p class="title-page">A networked approach to literary formations</p>
     <h4 class="title-page">WITH DIAGRAMS FOR</h4>
     <h3 class="title-page">LAYOUTS, PARTITIONS, AND CETNRALITIES</h3>
+    <h1 class="title-page">~~~</h1>
 
     <Note>
-    	<p><b>Archive - </b>An archive is a collection of statements and actions—what actors say and do.
+    	<p><b>Network - </b>An archive is a collection of statements and actions—what actors say and do.
             A networked approach to literary formations maps the forces of attraction and repulsion that are organized around these statements and actions.
 		</p>
     </Note>
@@ -37,6 +45,11 @@ import betweennessImage from "../assets/images/digital-archaeology/betweenness.p
         srcPath="/bimodal-network-centrality"
     />
 
+    <Note>
+    	<p><b>Archive - </b>An archive is a collection of statements and actions—what actors say and do.
+            A networked approach to literary formations maps the forces of attraction and repulsion that are organized around these statements and actions.
+		</p>
+    </Note>
     <SelectedPosts 
         frontmatter={frontmatter} 
         index={index} 

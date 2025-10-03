@@ -1,16 +1,23 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import Centrality from '../components/bimodal-network/Centrality.astro';
 import BimodalNetwork from '../components/bimodal-network/BimodalNetwork.astro';
+import Figure from '../components/ui/Figure.astro';
+import { Image } from 'astro:assets';
 // src data
 import nodesData from '../data/bimodal-network/nodes.json';
 import linksData from '../data/bimodal-network/links.json';
 
-const pageTitle = "Network Visualization with D3.js";
-const description = "Examples of network visualizations using D3.js: Yifan Hu network layout, filtering nodes, bimodal to unimodal network coonversion for centrality measurements";
+// src image
+import languageImage from '../assets/images/digital-archaeology/post45-language-writing.jpg'  
+
+const pageTitle = "Network Partitions";
+const description = "Partitioning a network graph to ascertain the degree of coherence in sub-networks.";
 
 const memberFilter = []
-const institutionFilter= ["Bernstein_43 Poets_1985", 
+const institutionFilter= [
+  "Allen_The New American Poetry_1960",
+  "Padgett_An Anthology of New York Poets_1970",
+  "Bernstein_43 Poets_1985", 
   "Bernstein_Language Sampler_1982", 
   "McGann_Postmodern Poetries_1990", 
   'Messerli_"Language" Poetries_1994', 
@@ -29,6 +36,7 @@ const institutionFilter= ["Bernstein_43 Poets_1985",
   "Finch_A Formal Feeling Comes_1994", 
   "Jarman_Rebel Angels_1996", 
   "Richman_The Direction of Poetry_1988", 
+  "Hall_New Poets of England and America_1957",
   "Elliston", 
   "PennSound", 
   "Voca"
@@ -44,27 +52,66 @@ const institutionFilter2 = [
   "Smith_The Morrow Anthology_1985", 
 ]
 
+const institutionFilter3 = [
+  "Bernstein_43 Poets_1985", 
+  "Bernstein_Language Sampler_1982", 
+  "McGann_Postmodern Poetries_1990", 
+  'Messerli_"Language" Poetries_1994', 
+  "Silliman_In the American Tree_1986", 
+  "Silliman_The Dwelling Place_1975", 
+  "Silliman_Realism_1982", 
+]
+
+const institutionFilter4 = [
+  "Halpern_The New Poetry Anthology_1975", 
+  "Smith_The Morrow Anthology_1985", 
+  "Finch_A Formal Feeling Comes_1994", 
+  "Jarman_Rebel Angels_1996", 
+  "Richman_The Direction of Poetry_1988", 
+]
+
 ---
 
 <BaseLayout pageTitle={pageTitle} description={description}>
+
+  <p class="title-page">Partitioning a network graph to ascertain the degree of coherence in sub-networks</p>
+  <h4 class="title-page">WITH DIAGRAMS FOR</h4>
+  <h3 class="title-page">PARTITIONS</h3>
+  <h1 class="title-page">~~~</h1>
+
+  <Figure>
+      <Image slot="image"
+      src={languageImage}
+      alt="Close-knit community of Language Writing anthologies"
+      class="responsive-image"
+      layout="constrained"
+      />
+      <span slot="caption">
+        Figure 1: Cluster of Language Writing anthologies, forming a close-knit community. Source: <a href="https://post45.org/2021/04/a-network-analysis-of-postwar-american-poetry-in-the-age-of-digital-audio-archives/" target="_blank">the Post45 Journal</a>.
+      </span>
+  </Figure>
+
   <p>1. 
     <a href="https://d3js.org/d3-force" target="_blank">D3.js force simulations</a>
     appromixation of Yifan Hu Network Layout
   </p>
-  <BimodalNetwork 
-    id="yifan-hu-network"
+
+
+
+  <!-- <BimodalNetwork 
+    id="late-twentieth-century"
     nodesData={nodesData}
     linksData={linksData}
-    linkDistance={60}
+    linkDistance={100}
     linkStrength={0.6}
-    chargeStrength={-50}
+    chargeStrength={-100}
     chargeTheta={0.8}
     chargeDistanceMax={400}
     centerStrength={0.1}
     collisionRadius={5}
     collisionStrength={0.7}
     alphaDecay={0.04}
-    maxIterations={1000}
+    maxIterations={500}
     rotation={-60}
     height={65}
     bimodalZoomScale={0.8}
@@ -72,65 +119,70 @@ const institutionFilter2 = [
     institutionNodeRange={[3, 25]}
     memberFontRange={[2, 6]}
     institutionFontRange={[5, 12]}
+    filter={{member: [], institution: institutionFilter}}
     clickedNodes={{nodes: ["Swensen_American Hybrid_2009"], color: "red"}}
-  />
+  /> -->
 
   <p>2. Making a change in the graph by filtering nodes</p>
   <BimodalNetwork 
-    id="filtered-network"
+    id="language-writing"
     nodesData={nodesData}
     linksData={linksData}
-    linkDistance={60}
-    linkStrength={0.6}
-    chargeStrength={-50}
+    linkDistance={35}
+    linkStrength={0.9}
+    chargeStrength={-350}
     chargeTheta={0.8}
     chargeDistanceMax={400}
-    centerStrength={0.1}
+    centerStrength={0.25}
     collisionRadius={5}
-    collisionStrength={0.7}
-    alphaDecay={0.04}
-    maxIterations={1000}
-    rotation={0}
+    collisionStrength={0.5}
+    alphaDecay={0.05}
+    maxIterations={600}
+    forceXStrength={null}
+    forceYStrength={null}
+    rotation={-60}
     height={65}
-    bimodalZoomScale={0.7}
-    memberNodeRange={[1, 5]}
-    institutionNodeRange={[10, 25]}
-    memberFontRange={[2, 6]}
-    institutionFontRange={[8, 15]}
-    filter={{member: [], institution: institutionFilter2}}
+    bimodalZoomScale={1.3}
+    memberNodeRange={[2, 5]}
+    institutionNodeRange={[8, 16]}
+    memberFontRange={[3, 6]}
+    institutionFontRange={[6, 12]}
+    filter={{member: [], institution: institutionFilter3}}
     clickedNodes={{nodes: ["Swensen_American Hybrid_2009"], color: "red"}}
   />
 
   <p>3. Creating an Inflection: Unimodal Networks for Centrality Measurements</p>
-  <Centrality 
-    id="bimodal-network"
-    networkType="bimodal"
-    display={false}
+  <BimodalNetwork 
+    id="new-formalism"
     nodesData={nodesData}
     linksData={linksData}
     linkDistance={60}
-    linkStrength={0.6}
-    chargeStrength={-50}
-    chargeTheta={0.8}
+    linkStrength={0.5}
+    chargeStrength={-120}
+    chargeTheta={0.08}
     chargeDistanceMax={400}
-    centerStrength={0.1}
-    collisionRadius={5}
-    collisionStrength={0.7}
+    centerStrength={0.05}
+    collisionRadius={10}
+    collisionStrength={0.8}
     forceXStrength={null}
     forceYStrength={null}
-    alphaDecay={0.0228}
-    maxIterations={1000}
-    rotation={-60}
-    height={85}
-    bimodalZoomScale={0.8}
-    memberNodeRange={[1, 5]}
-    institutionNodeRange={[3, 25]}
-    memberFontRange={[2, 6]}
-    institutionFontRange={[6, 12]}
-    clickedNodes={{nodes: ["Swensen_American Hybrid_2009"], color: "red"}}
+    alphaDecay={0.05}
+    maxIterations={500}
+    rotation={40}
+    height={65}
+    bimodalZoomScale={0.7}
+    memberNodeRange={[3, 10]}
+    institutionNodeRange={[15, 30]}
+    memberFontRange={[4, 8]}
+    institutionFontRange={[10, 20]}
+    filter={{member: [], institution: institutionFilter4}}
+    clickedNodes={{nodes: ["Dacey_Strong Measures_1986"], color: "red"}}
   />
 
-  <p>Betweenness Centrality</p>
+
+
+
+  <!-- <p>Betweenness Centrality</p>
   <Centrality 
     id="institution-network"
     networkType="institution"
@@ -156,9 +208,9 @@ const institutionFilter2 = [
     uniStrokeRange={[1, 10]}
     centralityMetric="betweenness"
     clickedNodes={{nodes: ["Swensen_American Hybrid_2009"], color: "red"}}
-  />
+  /> -->
 
-  <p>Degree Centrality</p>
+  <!-- <p>Degree Centrality</p>
     <Centrality 
     id="institution-network2"
     networkType="institution"
@@ -184,6 +236,6 @@ const institutionFilter2 = [
     uniStrokeRange={[1, 10]}
     centralityMetric="degree"
     clickedNodes={{nodes: ["Swensen_American Hybrid_2009"], color: "red"}}
-  />
+  /> -->
 
 </BaseLayout>
