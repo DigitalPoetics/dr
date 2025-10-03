@@ -39,8 +39,8 @@ const {
   </form>
 </aside>
 
-<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/3.0.8/purify.min.js" is:inline></script> -->
-<script src="/plugins/purify.3.0.8.min.js" is:inline></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/3.0.8/purify.min.js" is:inline></script>
+<!-- <script src="/plugins/purify.3.0.8.min.js" is:inline></script> -->
 
 <script is:inline define:vars={{ redirectUrl }}>
   document.addEventListener("DOMContentLoaded", () => {
@@ -52,6 +52,19 @@ const {
     const form = document.querySelector(".search-form");
     
     let isSearchOpen = false;
+    let DOMPurify = null;
+
+    // Lazy load DOMPurify only when needed
+    async function loadDOMPurify() {
+      if (!DOMPurify) {
+        const script = document.createElement('script');
+        script.src = 'https://cdnjs.cloudflare.com/ajax/libs/dompurify/3.0.8/purify.min.js';
+        document.head.appendChild(script);
+        await new Promise(resolve => script.onload = resolve);
+        DOMPurify = window.DOMPurify;
+      }
+      return DOMPurify;
+    }
 
     function openSearch() {
       searchContainer.style.display = "block";
@@ -69,7 +82,6 @@ const {
       isSearchOpen = false;
     }
 
-    // Toggle search on button click
     searchToggle?.addEventListener("click", (e) => {
       e.stopPropagation();
       if (isSearchOpen) {
@@ -79,30 +91,28 @@ const {
       }
     });
 
-    // Close on click outside
     document.addEventListener("click", (e) => {
       if (!searchContainer.contains(e.target) && !searchInput.contains(e.target)) {
         closeSearch();
       }
     });
 
-    // Close on Escape key
     document.addEventListener("keydown", (e) => {
       if (e.key === "Escape" && isSearchOpen) {
         closeSearch();
       }
     });
 
-    // Prevent closing when clicking inside the search container
     searchContainer?.addEventListener("click", (e) => {
       e.stopPropagation();
     });
 
-    // Handle form submission - REDIRECTS to search page
-    form?.addEventListener("submit", (e) => {
+    // Handle form submission with lazy-loaded DOMPurify
+    form?.addEventListener("submit", async (e) => {
       e.preventDefault();
       const formData = new FormData(form);
-      const searchTerm = DOMPurify.sanitize(formData.get("search")?.toString());
+      const purify = await loadDOMPurify();
+      const searchTerm = purify.sanitize(formData.get("search")?.toString());
       if (!searchTerm || searchTerm.length === 0) return;
       const url = new URL(redirectUrl, window.location.origin);
       url.searchParams.set("q", searchTerm);
@@ -110,6 +120,7 @@ const {
     });
   });
 </script>
+
 
 <style>
   .search-toggle {
