@@ -15,7 +15,9 @@ const pageTitle = "Digital Archaeology"
 const description = "A networked approach to literary formations, with diagrams for layouts, partitioins, and centralities."
 const index = 'digital-archaeology'
 
+// src image
 import yifanhuImage from "../assets/images/digital-archaeology/yifanhu.png"
+import languageImage from "../assets/images/digital-archaeology/post45-language-writing.jpg"
 import betweennessImage from "../assets/images/digital-archaeology/betweenness.png"
 ---
 <BaseLayout pageTitle={pageTitle} description={description}>
@@ -33,12 +35,19 @@ import betweennessImage from "../assets/images/digital-archaeology/betweenness.p
         pageTitle="~Layouts~"
         description="D3.js force simulations appromixation of Yifan Hu and Fruchterman-Reingold network layouts."
         imageUrl={yifanhuImage}
-        imageAlt="The Astro logo on a dark background with a pink glow"
+        imageAlt="Network layout"
         srcPath="/bimodal-network-yifanhu"
+    />
+    <UiShowcase 
+        pageTitle="~Partitions~"
+        description="Partitioning a network graph to ascertain the degree of coherence in sub-networks."
+        imageUrl={languageImage}
+        imageAlt="Network partition"
+        srcPath="/bimodal-network-partitions"
     />
 
     <UiShowcase 
-        pageTitle="~Betweenness~"
+        pageTitle="~Centralities~"
         description="Convert bimodal networks to unimodal networks for depicting centrality measurements"
         imageUrl={betweennessImage}
         imageAlt="The Astro logo on a dark background with a pink glow"
