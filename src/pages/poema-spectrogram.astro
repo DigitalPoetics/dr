@@ -4,11 +4,14 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import Transcription from '../components/poema/Transcription.astro';
 import Praat from '../components/poema/Praat.astro';
 import Spectrogram from '../components/poema/Spectrogram.astro';
+import Dinkus from '../components/ui/Dinkus.astro';
+import Figure from '../components/ui/Figure.astro';
+import SelectedPosts from '../components/ui/SelectedPosts.astro';
 
 export const prerender = false;
 
 const pageTitle = "Poema";
-const description = "Poema uses wavesurfer.js and d3.js to implement Praat display on the browser, somewhat extending the Tones and Breaks Indices (ToBI) framework by including beats and text to analyze rhythm and enjambments of verse."
+const description = "Poema implements Praat display on the browser, and it extends the Tones and Breaks Indices (ToBI) framework by including beats and text to analyze rhythm and phrasing of spoken verse."
 
 // Fetch data in frontmatter
 const pitchResponse = await fetch(new URL('/data/poema/WCW-The-Red-Wheelbarrow-1945-LoC.json', Astro.url));
@@ -21,35 +24,59 @@ const praatData = await praatResponse.json();
 <BaseLayout pageTitle={pageTitle} description={description}>
   <link rel="preload" href="/data/poema/WCW-The-Red-Wheelbarrow-1945-LoC.wav" as="fetch" crossorigin slot="head">
 
-  <div class="poema-container">
-    <div class="waveform-section">
-      <!-- <WaveSurfer 
-        audioUrl="/poema/WCW_The_Red_Wheelbarrow_1945_LoC.wav"
-        height={64}
-        minPxPerSec={110}
-      /> -->
-      <Spectrogram 
-        audioUrl="/data/poema/WCW-The-Red-Wheelbarrow-1945-LoC.wav"
-        height={32}
-        minPxPerSec={110}
-      />
-      <!-- height is waveform + spectrogram (32 + 128) -->
-      <Praat 
-        pitchData={pitchData}
-        praatData={praatData}
-        waveformHeight={160}
-      />
-    </div>
+    <p class="title-page">A rhizomatic approach to prosody</p>
+    <h4 class="title-page">WITH A TRIPARTITE DIAGRAM FOR</h4>
+    <h3 class="title-page">AUDIO VISUALIZATION, <br>ANNOTATION, <br>& TRANSCRIPTION</h3>
+    <Dinkus count={3}></Dinkus>
+    <p>Poema implements Praat display on the browser, and it extends the Tones and Breaks Indices (ToBI) framework by including beats and text to analyze rhythm and phrasing of spoken verse.</p>
+    
+    <Figure>
+      <div class="poema-container" slot="image">
+        <div class="waveform-section">
+          <!-- <WaveSurfer 
+            audioUrl="/poema/WCW_The_Red_Wheelbarrow_1945_LoC.wav"
+            height={64}
+            minPxPerSec={110}
+          /> -->
+          <Spectrogram 
+            audioUrl="/data/poema/WCW-The-Red-Wheelbarrow-1945-LoC.wav"
+            height={32}
+            minPxPerSec={110}
+          />
+          <!-- height is waveform + spectrogram (32 + 128) -->
+          <Praat 
+            pitchData={pitchData}
+            praatData={praatData}
+            waveformHeight={160}
+          />
+        </div>
 
-    <div class="transcription-section">
-      <Transcription 
-        transcriptionUrl="/data/poema/WCW-The-Red-Wheelbarrow-1945-LoCTextgrid.json"
-        title="The Red Wheelbarrow"
-      />
-    </div>
-  </div>
+        <div class="transcription-section">
+          <Transcription 
+            transcriptionUrl="/data/poema/WCW-The-Red-Wheelbarrow-1945-LoCTextgrid.json"
+            title="The Red Wheelbarrow"
+          />
+        </div>
+      </div>
+      <span slot="caption">
+        Figure 1. Sonification of William Carlos Williams’s “The Red Wheelbarrow,” first two stanzas, Library of Congress recording (1945). Data Source: <a href="https://writing.upenn.edu/pennsound/x/Williams- WC.php" target="_blank">PennSound</a>.      
+      </span>
+    </Figure>
 
+    <Dinkus count={1}></Dinkus>
+    <p>Learn more about the making of Poema in this blog post.</p>
+    <SelectedPosts 
+        customPosts={[
+            { url: '/posts/digital-formalism/digital-formalism-2-diagram', 
+            frontmatter: { 
+                title: 'Diagram: ', 
+                description: 'Difference between verse and speech is a defining point of aesthetics' 
+            }},
+        ]}
+        customTitle="Featured Posts"
+    />
 
+    <Dinkus count={3}></Dinkus>
 </BaseLayout>
 
 <style>

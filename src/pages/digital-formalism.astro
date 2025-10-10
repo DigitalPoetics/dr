@@ -5,6 +5,7 @@ import Note from '../components/ui/Note.astro';
 import UiShowcase from '../components/ui/UiShowcase.astro';
 import BlockquoteWithFootnote from '../components/ui/BlockquoteWithFootnote.astro';
 import Footnote from '../components/ui/Footnote.astro';
+import Dinkus from '../components/ui/Dinkus.astro';
 
 const pageTitle = "Digital Formalism"
 const description = "Audio visualization"
@@ -15,7 +16,10 @@ import poemaImage from "../assets/images/digital-formalism/poema.png"
 ---
 
 <BaseLayout pageTitle={pageTitle} description={description}>
-
+    <p class="title-page">A rhizomatic approach to sound analytics and visualization</p>
+    <h4 class="title-page">WITH DIAGRAMS FOR</h4>
+    <h3 class="title-page">AUDIO VISUALIZATION, <br>ANNOTATION, <br>& TRANSCRIPTION</h3>
+    <Dinkus count={3}></Dinkus>
     <Note>
 		<p><b>Rhythm - </b>Though verse rhythm is often associated with repetition and regularity, it is shaped more deeply by the alternation of tones and the variation of phrasing. 
 			This calls for a prosodic model that combines empirical precision and musical sensitivity.
@@ -38,6 +42,7 @@ import poemaImage from "../assets/images/digital-formalism/poema.png"
         frontmatter={frontmatter} 
         index={index} 
     />
+    <Dinkus count={1}></Dinkus>
 
     <h3>Why Rhythm?</h3>
     <p>When we ask how to read poetry, we rarely mean, how to recite it. Aristotle famously said that spoken verse or recitation does not differentiate poetry from philosophy because both could be presented in metrical forms. In Aristotle's time, spoken verse was not used exclusively for poetic performance.</p>
@@ -55,12 +60,13 @@ import poemaImage from "../assets/images/digital-formalism/poema.png"
 
     	<!-- FOOTNOTES SECTION -->
 	<footer class="footnotes">
-		<hr />
+        <hr/>
 		<ol>
 			<Footnote id="1" content='Gilles Deleuze and Félix Guattari, <i>A Thousand Plateaus: Capitalism and Schizophrenia</i>, trans. Brian Massumi (Minneapolis: University of Minnesota Press), 314.' />
 
 		</ol>
-		<hr />
 	</footer>
+    <Dinkus count={3}></Dinkus>
+
 
 </BaseLayout>

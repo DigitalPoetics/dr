@@ -4,7 +4,7 @@ const { count = 1 } = Astro.props;
 
 <h3 class="title-page">
   {Array.from({ length: count }, () => (
-    <span class="section-break">&#10022;</span>
+    <span class="section-break">&#10043;</span>
   ))}
 </h3>
 
@@ -20,11 +20,16 @@ const { count = 1 } = Astro.props;
 
     .section-break {
         display: inline-block;
+        rotate: 0deg;
         animation: rotate-on-scroll linear;
         animation-timeline: view();
         animation-range: contain 0% contain 100%;
+        /* animation-range: entry 0% exit 100%; */
     }
 
+    .section-break + .section-break {
+      margin-left: 0.3em;
+    }
 
     @keyframes rotate-on-scroll {
         from {
