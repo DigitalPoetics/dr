@@ -162,3 +162,21 @@ blockquote {
     font-size: 1.0rem !important;
   }
 } */
+
+
+/* section break animation */
+/* .section-break {
+  display: inline-block;
+  animation: rotate-on-scroll linear;
+  animation-timeline: view();
+  animation-range: entry 0% exit 100%;
+}
+
+@keyframes rotate-on-scroll {
+  from {
+    rotate: 0deg;
+  }
+  to {
+    rotate: 360deg;
+  }
+} */

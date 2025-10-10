@@ -1,0 +1,37 @@
+---
+const { count = 1 } = Astro.props;
+---
+
+<h3 class="title-page">
+  {Array.from({ length: count }, () => (
+    <span class="section-break">&#10022;</span>
+  ))}
+</h3>
+
+<style>
+
+    /* section break animation */
+/* .section-break {
+  display: inline-block;
+  animation: rotate-in-view 0.6s ease-in-out both;
+  animation-timeline: view();
+  animation-range: entry 0% entry 25%;
+} */
+
+    .section-break {
+        display: inline-block;
+        animation: rotate-on-scroll linear;
+        animation-timeline: view();
+        animation-range: contain 0% contain 100%;
+    }
+
+
+    @keyframes rotate-on-scroll {
+        from {
+            rotate: 0deg;
+        }
+        to {
+            rotate: 360deg;
+        }
+    }
+</style>

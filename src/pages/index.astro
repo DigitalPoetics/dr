@@ -9,6 +9,7 @@ import Footnote from '../components/ui/Footnote.astro';
 import Figure from '../components/ui/Figure.astro';
 import {Image} from "astro:assets";
 import Table from '../components/ui/Table.astro';
+import Dinkus from '../components/ui/Dinkus.astro';
 const pageTitle = "Diagrammatic Readings"
 const desription = "The graphical expressions turn matter and form of content into materials and forces, and we propose a diagrammatic approach that renders these materials and forces visible.";
 
@@ -20,8 +21,7 @@ import poemaImage from "../assets/images/digital-formalism/poema.png"
 	<p class="title-page">Computational and materialist approaches to literary analytics and visualization</p>
 	<h4 class="title-page">WITH DIAGRAMS FOR</h4>
 	<h3 class="title-page">NETWORK,<br>TEXT,<br>SOUND,<br>AND MORE...</h3>
-    <h1 class="title-page">~~~</h1>
-	
+	<Dinkus count={3}></Dinkus>
 	<Note>
 		<p><b>Rhythm - </b>Though verse rhythm is often associated with repetition and regularity, it is shaped more deeply by the alternation of tones and the variation of phrasing. 
 			This calls for a prosodic model that combines empirical precision and musical sensitivity.
@@ -47,7 +47,8 @@ import poemaImage from "../assets/images/digital-formalism/poema.png"
 		]}
 		customTitle="Featured Post"
 	/>
-	<h1 class="title-page">~</h1>
+	<Dinkus count={1}></Dinkus>
+
 	<h3>Why Diagrams?</h3>
 	<p>
 	   Digital and computational tools we use for analytics of aesthetic content are typically not developed to model its matter and form.
@@ -98,7 +99,8 @@ import poemaImage from "../assets/images/digital-formalism/poema.png"
 		but more about this later––it still illustrates the virtuality of graphical expressions.
 	</p>
 
-	<h1 class="title-page">~</h1>
+	<Dinkus count={1}></Dinkus>
+
 	<h3>
 		Materials and forces of graphical expressions
 	</h3>
@@ -128,10 +130,10 @@ import poemaImage from "../assets/images/digital-formalism/poema.png"
 		what are the affordances of &ldquo;creating an inflection, adding an attribute, or making a cange in a graph&rdquo; for modeling aesthetic content?
 	</p>
 
+	<Dinkus count={1}></Dinkus>
 
 	<!-- FOOTNOTES SECTION -->
 	<footer class="footnotes">
-		<h1 class="title-page">~</h1>
 		<ol>
 			<Footnote id="1" content='Franco Moretti, ed., <i>Canon/Archive: Studies in Quantative Formalism from the Stanford Literary Lab</i> (New York: n+1 Books, 2017).' />
 			<Footnote id="2" content='Richard Jean So, <i>Redlining Culture: A Data History of Racial Inequality and Postwar Fiction</i> (New York: Columbia University Press, 2021).' />
@@ -139,6 +141,7 @@ import poemaImage from "../assets/images/digital-formalism/poema.png"
 			<Footnote id="4" content='Johanna Drucker, <i>Visualization and Interpretation: Humanistic Approaches to Display</i> (Cambridge, MA: MIT Press, 2020), 2-3' />	
 			<Footnote id="5" content='Ibid., 148.' />	
 		</ol>
-		<h1 class="title-page">~~~</h1>
 	</footer>
+	<Dinkus count={3}></Dinkus>
+
 	</BaseLayout>

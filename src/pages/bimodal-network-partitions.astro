@@ -76,7 +76,7 @@ const institutionFilter4 = [
 
   <p class="title-page">Partitioning a network graph to ascertain the degree of coherence in sub-networks</p>
   <h4 class="title-page">WITH DIAGRAMS FOR</h4>
-  <h3 class="title-page">PARTITIONS</h3>
+  <h3 class="title-page">NODE FILTRATION</h3>
   <h1 class="title-page">~~~</h1>
 
   <Figure>
@@ -90,12 +90,6 @@ const institutionFilter4 = [
         Figure 1: Cluster of Language Writing anthologies, forming a close-knit community. Source: <a href="https://post45.org/2021/04/a-network-analysis-of-postwar-american-poetry-in-the-age-of-digital-audio-archives/" target="_blank">the Post45 Journal</a>.
       </span>
   </Figure>
-
-  <p>1. 
-    <a href="https://d3js.org/d3-force" target="_blank">D3.js force simulations</a>
-    appromixation of Yifan Hu Network Layout
-  </p>
-
 
 
   <!-- <BimodalNetwork 
@@ -124,60 +118,72 @@ const institutionFilter4 = [
   /> -->
 
   <p>2. Making a change in the graph by filtering nodes</p>
-  <BimodalNetwork 
-    id="language-writing"
-    nodesData={nodesData}
-    linksData={linksData}
-    linkDistance={35}
-    linkStrength={0.9}
-    chargeStrength={-350}
-    chargeTheta={0.8}
-    chargeDistanceMax={400}
-    centerStrength={0.25}
-    collisionRadius={5}
-    collisionStrength={0.5}
-    alphaDecay={0.05}
-    maxIterations={600}
-    forceXStrength={null}
-    forceYStrength={null}
-    rotation={-130}
-    height={65}
-    bimodalZoomScale={1.3}
-    memberNodeRange={[2, 5]}
-    institutionNodeRange={[8, 16]}
-    memberFontRange={[3, 6]}
-    institutionFontRange={[6, 12]}
-    filter={{member: [], institution: institutionFilter3}}
-    clickedNodes={{nodes: ["Swensen_American Hybrid_2009"], color: "red"}}
-  />
+  
+  <Figure>
+    <BimodalNetwork slot="image"
+      id="language-writing"
+      nodesData={nodesData}
+      linksData={linksData}
+      linkDistance={35}
+      linkStrength={0.9}
+      chargeStrength={-350}
+      chargeTheta={0.8}
+      chargeDistanceMax={400}
+      centerStrength={0.25}
+      collisionRadius={5}
+      collisionStrength={0.5}
+      alphaDecay={0.05}
+      maxIterations={600}
+      forceXStrength={null}
+      forceYStrength={null}
+      rotation={-130}
+      height={65}
+      bimodalZoomScale={1.3}
+      memberNodeRange={[2, 5]}
+      institutionNodeRange={[8, 16]}
+      memberFontRange={[3, 6]}
+      institutionFontRange={[6, 12]}
+      filter={{member: [], institution: institutionFilter3}}
+      clickedNodes={{nodes: ["Swensen_American Hybrid_2009"], color: "red"}}
+    />
+    <span slot="caption">
+      Figure 2: A densely clustered network of Language Writing anthologies.
+    </span>
+  </Figure>
+  
+  <Figure>
+    <BimodalNetwork slot="image"
+      id="new-formalism"
+      nodesData={nodesData}
+      linksData={linksData}
+      linkDistance={60}
+      linkStrength={0.5}
+      chargeStrength={-120}
+      chargeTheta={0.08}
+      chargeDistanceMax={400}
+      centerStrength={0.05}
+      collisionRadius={10}
+      collisionStrength={0.8}
+      forceXStrength={null}
+      forceYStrength={null}
+      alphaDecay={0.05}
+      maxIterations={500}
+      rotation={40}
+      height={65}
+      bimodalZoomScale={0.7}
+      memberNodeRange={[3, 10]}
+      institutionNodeRange={[15, 30]}
+      memberFontRange={[4, 8]}
+      institutionFontRange={[10, 20]}
+      filter={{member: [], institution: institutionFilter4}}
+      clickedNodes={{nodes: ["Dacey_Strong Measures_1986"], color: "red"}}
+    />
+    <span slot="caption">
+      Figure 3: A sparsely clustered network of New Formalist anthologies.
+   </Figure>
 
   <p>3. Creating an Inflection: Unimodal Networks for Centrality Measurements</p>
-  <BimodalNetwork 
-    id="new-formalism"
-    nodesData={nodesData}
-    linksData={linksData}
-    linkDistance={60}
-    linkStrength={0.5}
-    chargeStrength={-120}
-    chargeTheta={0.08}
-    chargeDistanceMax={400}
-    centerStrength={0.05}
-    collisionRadius={10}
-    collisionStrength={0.8}
-    forceXStrength={null}
-    forceYStrength={null}
-    alphaDecay={0.05}
-    maxIterations={500}
-    rotation={40}
-    height={65}
-    bimodalZoomScale={0.7}
-    memberNodeRange={[3, 10]}
-    institutionNodeRange={[15, 30]}
-    memberFontRange={[4, 8]}
-    institutionFontRange={[10, 20]}
-    filter={{member: [], institution: institutionFilter4}}
-    clickedNodes={{nodes: ["Dacey_Strong Measures_1986"], color: "red"}}
-  />
+
 
 
 
