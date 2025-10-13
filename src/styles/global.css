@@ -80,6 +80,7 @@ p.title-page {
   }
 }
 
+/* global text color */
 a, p, h1, h2, h3 {
   color: inherit;
   /* color: #333333E6; */

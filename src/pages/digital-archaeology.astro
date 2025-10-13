@@ -5,6 +5,7 @@ import SelectedPosts from '../components/ui/SelectedPosts.astro';
 import UiShowcase from '../components/ui/UiShowcase.astro';
 import Figure from '../components/ui/Figure.astro';
 import {Image} from "astro:assets";
+import Dinkus from '../components/ui/Dinkus.astro';
 
 
 // src image
@@ -23,11 +24,11 @@ import betweennessImage from "../assets/images/digital-archaeology/betweenness.p
 <BaseLayout pageTitle={pageTitle} description={description}>
     <p class="title-page">A networked approach to literary formations</p>
     <h4 class="title-page">WITH DIAGRAMS FOR</h4>
-    <h3 class="title-page">LAYOUTS, PARTITIONS, AND CETNRALITIES</h3>
-    <h1 class="title-page">~~~</h1>
+    <h3 class="title-page">LAYOUTS, PARTITIONS, AND CENTRALITIES</h3>
+    <Dinkus count={3}></Dinkus>
 
     <Note>
-    	<p><b>Network - </b>An archive is a collection of statements and actions—what actors say and do.
+    	<p><b>Network</b>An archive is a collection of statements and actions—what actors say and do.
             A networked approach to literary formations maps the forces of attraction and repulsion that are organized around these statements and actions.
 		</p>
     </Note>
@@ -54,8 +55,9 @@ import betweennessImage from "../assets/images/digital-archaeology/betweenness.p
         srcPath="/bimodal-network-centrality"
     />
 
+    <Dinkus count={1}></Dinkus>
     <Note>
-    	<p><b>Archive - </b>An archive is a collection of statements and actions—what actors say and do.
+    	<p><b>Archive</b>An archive is a collection of statements and actions—what actors say and do.
             A networked approach to literary formations maps the forces of attraction and repulsion that are organized around these statements and actions.
 		</p>
     </Note>
@@ -64,5 +66,6 @@ import betweennessImage from "../assets/images/digital-archaeology/betweenness.p
         index={index} 
     />
 
+    <Dinkus count={3}></Dinkus>
 </BaseLayout> 
 

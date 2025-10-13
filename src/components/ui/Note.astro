@@ -10,15 +10,31 @@
     margin: 1rem 0 0 0;
     padding: 1rem 0 0 0;
     /* padding: 0.5rem 0; */
-    color: var(--light-text-opacity);
+    color: var(--light-text);
     /* border: 1px solid #ddd; */
     /* margin: 1rem 0; */
-    font-size: 1.3rem;
-    line-height: 1.1;
+    font-size: 1.2rem;
+    line-height: 1.4;
   }
 
   html.dark .container {
-    color: var(--dark-text-opacity);
+    color: var(--dark-text);
+  }
+
+  .container :global(b) {
+    /* color: var(--viz-background); */
+    font-weight: 600;
+    text-transform: uppercase;
+    /* font-size: 0.9em; */
+    letter-spacing: var(--title-letter-spacing);
+  }
+
+  .container :global(b)::after {
+    content: ' •';
+    /* margin-left: 0.3em; */
+    margin-right: 0.3em;
+    color: inherit;
+    /* opacity: 0.6; */
   }
 
 
@@ -27,8 +43,8 @@
       max-width: 80%;
       margin: 2rem 0 0 0;
       padding: 1rem 0 0 0;
-      font-size: 1.5rem;
-      line-height: 1.1;
+      /* font-size: 1.3rem; */
+      line-height: 1.4;
     }
   }
 </style>
