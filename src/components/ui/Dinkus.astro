@@ -21,9 +21,10 @@ const { count = 1 } = Astro.props;
     .section-break {
         display: inline-block;
         rotate: 0deg;
-        animation: rotate-on-scroll linear;
+        animation: rotate-on-scroll ease-in-out;
         animation-timeline: view();
         animation-range: contain 0% contain 100%;
+        animation-range: entry -20% exit 20%;
         /* animation-range: entry 0% exit 100%; */
     }
 
