@@ -5,7 +5,7 @@ import { Image } from "astro:assets";
 // import SelectedPosts from "../components/SelectedPosts.astro";
 import SelectedPosts from "../components/ui/SelectedPosts.astro";
 import Dinkus from "../components/ui/Dinkus.astro";
-import Note from "../components/ui/Note.astro";
+// import Note from "../components/ui/Note.astro";
 const { frontmatter } = Astro.props;
 ---
 <BaseLayout description=`${frontmatter.description} + ${frontmatter.tags}`>
@@ -24,7 +24,11 @@ const { frontmatter } = Astro.props;
       </Figure>
       <div data-pagefind-ignore="all">
         <div class="byline">
-          <p data-pagefind-meta="date">{new Date(frontmatter.pubDate).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}</p>
+          <p data-pagefind-meta="date">
+            <span data-pagefind-meta="author">{frontmatter.author} ·</span>
+            <span>{new Date(frontmatter.pubDate).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}</span>
+            
+            </p>
         </div>
 
         <div class="tags">
@@ -34,9 +38,9 @@ const { frontmatter } = Astro.props;
         </div>
         <Dinkus count={1}></Dinkus>
 
-        <Note>
+        <!-- <Note>
           <p class="description"><b data-pagefind-meta="author">A B</b>{frontmatter.description}</p>
-        </Note>
+        </Note> -->
 
         <div class="selected-posts">
           <SelectedPosts 
@@ -52,6 +56,7 @@ const { frontmatter } = Astro.props;
   <div class="post-content">
     <slot />
   </div>
+  <Dinkus count={3}></Dinkus>
 </BaseLayout>
 <style>
 
@@ -157,8 +162,8 @@ html.dark .tag:hover {
     }
 
 
-    .description {
+    /* .description {
         font-size: 1.5rem;
-    }
+    } */
 }
 </style>

@@ -30,10 +30,10 @@ import DropDown from "./DropDown.astro"
 .nav-bar {
   display: none;
   position: fixed;
-  top: 3.2rem; /* Adjust to your header height */
+  top: var(--header-height);
   left: 0;
   width: 100vw;
-  height: calc(100vh - 3.2rem); /* Subtract header height */
+  height: calc(100vh - var(--header-height)); /* Subtract header height */
   background-color: var(--light-background);
   z-index: 1000;
   padding: 1rem;
@@ -60,7 +60,7 @@ html.dark .nav-bar {
 @media screen and (min-width: 636px) {
   .nav-bar.expanded {
     width: 17rem;
-    height: calc(100vh - 3.2rem); /* Subtract header + footer height */
+    height: calc(100vh - var(--header-height)); /* Subtract header + footer height */
     left: 0;
     right: auto;
   }

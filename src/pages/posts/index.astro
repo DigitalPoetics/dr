@@ -1,5 +1,7 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import Dinkus from "../../components/ui/Dinkus.astro";
+
 const allPosts = Object.values(import.meta.glob('/**/*.mdx', { eager: true }));
 const tags = [...new Set(allPosts
                             .map((post: any) => post.frontmatter.tags)
@@ -9,6 +11,7 @@ const tags = [...new Set(allPosts
 const pageTittle = "Tag Index";
 ---
 <BaseLayout pageTitle={pageTittle}>
+    <Dinkus count={3}></Dinkus>
     <main data-pagefind-ignore="all">
         <div class="tags">
             {tags.map((tag) => (
@@ -16,6 +19,7 @@ const pageTittle = "Tag Index";
             ))} 
         </div>
     </main>
+    <Dinkus count={3}></Dinkus>
 </BaseLayout>
 
 <style>
@@ -33,18 +37,42 @@ const pageTittle = "Tag Index";
         color: var(--dark-text);
     }
 
+    html.dark a:hover, html.dark a:focus {
+        color: var(--hover-color);
+    }
+
     .tags {
         display: flex;
         flex-wrap: wrap;
-        line-height: 1.2;
+        line-height: var(--line-height-sm);
     }
 
     .tag {
         margin: 0 1rem 0.5rem 0;
         /* border: dotted 1px #a1a1a1; */
-        border-radius: .5em;
+        border-radius: .2rem;
         /* padding: .5em 1em; */
-        font-size: 1.1em;
+        font-size: 1.1rem;
         /* background-color: #F8FCFD; */
+        border: 1px solid var(--light-text-opacity);
+        padding: 0.5rem 1rem;
+        transition: border-color 0.2s ease;
     }
+
+
+    .tag:has(a:hover) {
+        border-color: var(--hover-color);
+    }
+
+    html.dark .tag {
+        border: 1px solid var(--dark-text-opacity);
+        /* transition: border-color 0.2s ease; */
+    }
+    
+    html.dark .tag:has(a:hover) {
+        border-color: var(--hover-color);
+    }
+
+
+
 </style>

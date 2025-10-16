@@ -2,6 +2,9 @@
 import BaseLayout from "../../layouts/BaseLayout.astro";
 // import BlogPost from "../../components/ui/BlogPost.astro";
 import SelectedPosts from "../../components/ui/SelectedPosts.astro";
+import Dinkus from "../../components/ui/Dinkus.astro";
+
+
 export async function getStaticPaths() {
     const allPosts = Object.values(import.meta.glob('/**/*.mdx', { eager: true }));
     const uniqueTags = [...new Set(
@@ -23,8 +26,9 @@ const { tag } = Astro.params;
 const { posts } = Astro.props;
 ---
 <BaseLayout pageTitle={tag}>
-    <main data-pagefind-ignore="all">
-        <p>Posts tagged with {tag}</p>
+    <div data-pagefind-ignore="all">
+        <p class="title-page">Posts tagged with &ldquo;{tag}&rdquo;</p>
+        <Dinkus count={3}></Dinkus>
         {[
             ...new Map(
                 posts
@@ -52,7 +56,9 @@ const { posts } = Astro.props;
                 />
             );
         })}
-    </main>
+        <Dinkus count={3}></Dinkus>
+    </div>
 
 
 </BaseLayout>
+
