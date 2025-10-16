@@ -1,23 +1,39 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Figure from '../components/ui/Figure.astro';
+import Dinkus from '../components/ui/Dinkus.astro';
 
-const pageTitle = "POETRY NETWORK"
+const pageTitle = "3d Network"
 const description = "Interactive Three.js visualization of postwar U.S. poetry networks, made with Claude Sonnet 4.5 and based on the cosmos visualization on the welcome page";
 
 ---
 
 <BaseLayout pageTitle={pageTitle} description={description}>
-    <p class="title-page">Interactive Three.js visualization of postwar U.S. poetry networks</p>
-    <div id="viz-container">
-        <canvas id="network-canvas"></canvas>
-        <div id="node-info">
-            <div id="info-content">Drag to rotate • Scroll to zoom</div>
+    <p class="title-page">Interactive three.js visualization of postwar U.S. poetry networks</p>
+
+    <h4 class="title-page">MADE WITH</h4>
+    <h3 class="title-page"><a href="https://www.anthropic.com/news/claude-sonnet-4-5" target="_blank">CLAUDE SONNET 4.5</a></h3>
+    <h4 class="title-page">BASED ON THE COSMOS VISUALIZATION ON <a href="https://www.claude.com/product/claude-code" target="_blank">CLAUDE CODE</a></h4>
+    <Dinkus count={3}></Dinkus>
+    <Figure>
+        <div id="viz-container" slot="image">
+            <canvas id="network-canvas"></canvas>
+            <div id="node-info">
+                <div id="info-content">Drag to rotate • Scroll to zoom</div>
+            </div>
         </div>
-    </div>
-    <h3 class="title-page">MADE WITH</h3>
-    <h1 class="title-page"><a href="https://www.anthropic.com/news/claude-sonnet-4-5" target="_blank">Claude Sonnet 4.5</a></h1>
-    <p class="title-page">Based on the cosmos visualization on <a href="https://claud<mark marker-index=6 reference-tracker>e.com/product/claude-code" target="_blank">Claude Code</a></p>
+        <span slot="caption">
+            Figure 1. 3D visualization of postwar U.S. poetry networks, made with Claude Sonnet 4.5.
+        </span>
+    </Figure>
+    <Dinkus count={1}></Dinkus>
+    <h3>All That Glitters Is Not Gold</h3>
+    <p>For a long time, I have wanted to create a 3D visualization of literary networks. Unlike a flat image where the network is laid out on the ground, the idea was that a 3D visualization would allow us to view the network from the side of the plane—that is, its cross-section. We could then zoom in on specific sections of the graph to examine the structure of sub-networks more closely.</p>
+    <p>When I saw the cosmos visualization on Claude's page during Sonnet 4.5's release, I wanted to take a stab at it. Although I did not get the results I was hoping for, with the help of Sonnet 4.5 on Claude Code, I quickly created a three.js visualization using my nodes and links json files.</p>
+    <p>I could not implement the layout I had envisioned for the graph. In fact, I soon realized I needed to &ldquo;freeze&rdquo; the graph to maintain the spherical shape—just like the example on Claude's page.</p>
+    <p>All in all, the result was pleasant to look at, but not particularly instructive. This might have been the motivation behind the cosmos visualization on Claude's page: to show something that's flashy and functional, though not necessarily insightful.</p>
+    <Dinkus count={3}></Dinkus>
+
 </BaseLayout>
 
 <script is:inline src="https://cdn.jsdelivr.net/npm/three@0.128.0/build/three.min.js" defer></script>

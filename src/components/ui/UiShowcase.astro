@@ -79,7 +79,7 @@ const { pageTitle, description, imageUrl, imageAlt, srcPath } = Astro.props;
     font-size: 1.3rem;
     font-weight: normal;
     /* text-decoration: underline; */
-    line-height: 1.2;
+    line-height: var(--line-height-md);
     transition: color 0.2s ease;
     color: var(--light-text);
   }
@@ -88,7 +88,7 @@ const { pageTitle, description, imageUrl, imageAlt, srcPath } = Astro.props;
     margin: 0;
     font-size: 1.2rem;
     font-weight: normal;
-    line-height: 1.2;
+    line-height: var(--line-height-sm);
     transition: color 0.2s ease;
     color: var(--light-text-opacity);
   }

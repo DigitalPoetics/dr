@@ -7,6 +7,8 @@ import Spectrogram from '../components/poema/Spectrogram.astro';
 import Dinkus from '../components/ui/Dinkus.astro';
 import Figure from '../components/ui/Figure.astro';
 import SelectedPosts from '../components/ui/SelectedPosts.astro';
+import Superscript from '../components/ui/Superscript.astro';
+import Footnote from '../components/ui/Footnote.astro';
 
 export const prerender = false;
 
@@ -28,7 +30,9 @@ const praatData = await praatResponse.json();
     <h4 class="title-page">WITH A TRIPARTITE DIAGRAM FOR</h4>
     <h3 class="title-page">AUDIO VISUALIZATION, <br>ANNOTATION, <br>& TRANSCRIPTION</h3>
     <Dinkus count={3}></Dinkus>
-    <p>Poema implements Praat display on the browser, and it extends the Tones and Breaks Indices (ToBI) framework by including beats and text to analyze rhythm and phrasing of spoken verse.</p>
+    <p>Poema implements <a href="https://www.fon.hum.uva.nl/praat/" target="_blank">Praat</a> display on the browser, and it extends the Tones and Breaks Indices (ToBI) framework by including beats and text to analyze rhythm and phrasing of spoken verse.</p>
+    <Dinkus count={1}></Dinkus>
+
     
     <Figure>
       <div class="poema-container" slot="image">
@@ -64,7 +68,8 @@ const praatData = await praatResponse.json();
     </Figure>
 
     <Dinkus count={1}></Dinkus>
-    <p>Learn more about the making of Poema in this blog post.</p>
+    <p>The Poema display is made with <a href="https://wavesurfer.xyz/examples/?spectrogram.js" target="_blank">wavesurjer.js</a href=""> and <a href="https://d3js.org/" target="_blank">d3.js</a>.</p>
+    <!-- <p>Learn more about the making of Poema in this blog post.</p>
     <SelectedPosts 
         customPosts={[
             { url: '/posts/digital-formalism/digital-formalism-2-diagram', 
@@ -74,7 +79,7 @@ const praatData = await praatResponse.json();
             }},
         ]}
         customTitle="Featured Posts"
-    />
+    /> -->
 
     <Dinkus count={3}></Dinkus>
 </BaseLayout>

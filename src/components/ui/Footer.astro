@@ -2,6 +2,10 @@
 import Social from "./Social.astro";
 import { Image } from "astro:assets";
 import githubIcon from "../../assets/images/favicon/github.svg";
+
+// src image
+import drLogo from "../../assets/images/favicon/DR.png"
+
 ---
 <!-- <footer>
   <Social platform="twitter" username="astrodotbuild" />
@@ -23,6 +27,23 @@ import githubIcon from "../../assets/images/favicon/github.svg";
     <div class="column">
         <p>&copy; {new Date().getFullYear()} All Rights Reserved</p>
         <p>Made with Astro</p>
+        <!-- <a href="/">
+            <Image 
+              src={drLogo} 
+              alt="Diagrammatic Readings" 
+              width={30} 
+              height={30} 
+            />
+        </a> -->
+        <Social platform="diagrammaticreadings" username="/">
+            <Image 
+              src={drLogo} 
+              alt="Diagrammatic Readings" 
+              width={30} 
+              height={30}
+              class="dr-logo" 
+            />
+        </Social>
     </div>
   </div>
 </footer>
@@ -65,12 +86,22 @@ html.dark .column {
   }
 }
 
+/* github icon */
 img:hover {
     background-color: var(--hover-color);
 }
 
 html.dark img {
     filter: invert(1);
+}
+
+/* dr-logo */
+.dr-logo {
+    filter: invert(1);
+}
+
+html.dark .dr-logo {
+    filter: invert(0);
 }
 
 html.dark img:hover {

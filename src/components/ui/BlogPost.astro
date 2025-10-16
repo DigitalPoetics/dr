@@ -28,7 +28,7 @@ const isActive = Astro.url.pathname === `${url}/`;
         /* margin: 0 0 1rem -0.70rem; */
         /* padding-left: 0.70rem; */
         font-size: 1rem;
-        line-height: 1.1;
+        line-height: var(--line-height-sm);
     }
 
     html.dark li p {
@@ -43,7 +43,7 @@ const isActive = Astro.url.pathname === `${url}/`;
     a {
         text-decoration: none;
         display: block;
-        line-height: 1.1;
+        line-height: var(--line-height-sm);
         transition: color 0.2s ease;
     }
 
@@ -81,7 +81,7 @@ const isActive = Astro.url.pathname === `${url}/`;
     @media screen and (min-width: 636px) {
         li p {
         /* border-left: var(--image-border); */
-        margin: 0 0 0.5rem -0.70rem;
+        margin: 0 0 0 -0.70rem;
         padding-left: 0.70rem;
     }
 

@@ -54,8 +54,8 @@ const {
 
 <div class="button-container">
   <button class="btn" id="play-pause-btn" aria-label="Play or pause the audio">
-    <span id="play-icon">&#9205;</span>
-    <span id="pause-icon" style="display: none;">&#9208;</span>
+    <span id="play-icon">▶</span>
+    <span id="pause-icon" style="display: none;">⏸</span>
   </button>
 </div>
 
@@ -140,6 +140,14 @@ const {
       window.dispatchEvent(new CustomEvent('wavesurfer-ready', { 
         detail: { duration: wavesurfer.getDuration() }
       }));
+    });
+
+    // Reset icons when audio finishes playing
+    wavesurfer.on('finish', () => {
+      const playIcon = document.getElementById('play-icon');
+      const pauseIcon = document.getElementById('pause-icon');
+      playIcon.style.display = 'inline';
+      pauseIcon.style.display = 'none';
     });
 
     document.getElementById('play-pause-btn').onclick = () => {
