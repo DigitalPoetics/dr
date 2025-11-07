@@ -2,7 +2,7 @@
 import Social from "./Social.astro";
 import { Image } from "astro:assets";
 import githubIcon from "../../assets/images/favicon/github.svg";
-
+import linkedinIcon from "../../assets/images/favicon/linkedin.svg";
 // src image
 import drLogo from "../../assets/images/favicon/DR.png"
 
@@ -15,16 +15,26 @@ import drLogo from "../../assets/images/favicon/DR.png"
 <footer>
   <div class="columns">
     <div class="column">
-        <p>Made with Astro</p>
+        <!-- <p>Made with Astro</p> -->
 
         <Social platform="github" username="digitalpoetics/dr">
-        <Image 
-          src={githubIcon}
-          alt="Github logo"
-          width={30}
-          height={30}
-        />
+          <Image 
+            src={githubIcon}
+            alt="Github logo"
+            width={30}
+            height={30}
+          />
         <Social />
+
+        <Social platform="linkedin" username="in/ankit-basnet-46603b73/" >
+          <Image 
+            src={linkedinIcon}
+            alt="Github logo"
+            width={30}
+            height={30}
+          />
+        <Social/>
+
     </div>
     <div class="column">
         <p>&copy; {new Date().getFullYear()} All Rights Reserved</p>
@@ -36,7 +46,7 @@ import drLogo from "../../assets/images/favicon/DR.png"
               height={30} 
             />
         </a> -->
-        <Social platform="diagrammaticreadings" username="/">
+        <Social platform="diagrammaticreadings" username="">
             <Image 
               src={drLogo} 
               alt="Diagrammatic Readings" 
@@ -66,14 +76,15 @@ import drLogo from "../../assets/images/favicon/DR.png"
   border-top: var(--border-color);
 }
 
-.column {
+/* .column {
   flex: 1;
-}
+} */
 
 .column {
   text-align: center;
   margin-bottom: 0;
   color: var(--light-text);
+  flex: 1;
 }
 
 html.dark .column {
