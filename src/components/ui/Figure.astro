@@ -1,20 +1,24 @@
 ---
 // Props: src, alt, caption (HTML string), width, height
-const { src, alt, caption, width = "100%", height = "auto" } = Astro.props;
+// const { src, alt, caption, width = "100%", height = "auto" } = Astro.props;
 ---
-<figure>
-  <!-- <img src={src} alt={alt} style={`width: ${width}; height: ${height};`} loading="lazy" /> -->
-  <slot name="image" />
-  <figcaption>
-    <!-- <span set:html={caption} /> -->
-    <slot name="caption" />
-        <!-- {caption ? <span set:html={caption} /> : <slot name="caption" />} -->
-  </figcaption>
-</figure>
+  <figure>
+    <!-- <img src={src} alt={alt} style={`width: ${width}; height: ${height};`} loading="lazy" /> -->
+    <slot name="image" />
+    <figcaption>
+      <!-- <span set:html={caption} /> -->
+      <slot name="caption" />
+          <!-- {caption ? <span set:html={caption} /> : <slot name="caption" />} -->
+    </figcaption>
+  </figure>
+
 
 <style>
   figure {
-    margin: 1rem 0 1rem 0;
+    margin: 1rem 0;
+    /* margin-left: auto; */
+    /* margin-right: auto; */
+    /* max-width: 400px; */
     /* text-align: center; */
   }
 /* 
@@ -31,6 +35,7 @@ const { src, alt, caption, width = "100%", height = "auto" } = Astro.props;
     margin-top: 0.2rem;
     font-size: 1rem;
     color: var(--light-text);
+    text-align: center;
   }
 
   figcaption p {
@@ -44,6 +49,7 @@ const { src, alt, caption, width = "100%", height = "auto" } = Astro.props;
   @media screen and (min-width: 636px) {
     figure {
       margin: 1rem 1rem 1rem 1rem;
+      /* max-width: 100%; */
     }
   }
 </style>

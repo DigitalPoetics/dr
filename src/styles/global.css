@@ -147,6 +147,22 @@ blockquote {
   border: var(--image-border);
 }
 
+.portrait-image {
+  width: 100%;
+  max-width: 400px;
+  height: auto;
+  border: var(--image-border);
+  margin: 0 auto;
+  display: block;
+}
+
+@media screen and (min-width: 636px) {
+  .portrait-image {
+    max-width: 100%;
+    /* height: auto; */
+  }
+}
+
 /* shiki theme */
 .astro-code,
 .astro-code span {

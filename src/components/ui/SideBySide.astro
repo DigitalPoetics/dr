@@ -1,0 +1,30 @@
+---
+---
+<div class="side-by-side">
+  <slot name="figure" />
+  <div class="text-content">
+    <slot />
+  </div>
+</div>
+
+<style>
+  .side-by-side {
+    margin: 1rem 0;
+  }
+
+  @media screen and (min-width: 636px) {
+    .side-by-side {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      align-items: start;
+    }
+
+    /* .side-by-side :global(.portrait-image) {
+      max-width: 400px;
+      margin-left: auto;
+      margin-right: auto;
+    } */
+
+  }
+</style>
