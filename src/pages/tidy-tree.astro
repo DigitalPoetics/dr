@@ -1,0 +1,61 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import TidyTree from '../components/tree/TidyTree.astro';
+import Figure from '../components/ui/Figure.astro';
+
+import treeData from '../data/program-era/iowa-tree.json';
+
+const pageTitle = "Iowa Writers' Workshop";
+const description = "A radial tree visualization of advisor-student relationships in the Iowa Writers' Workshop poetry program.";
+---
+
+<BaseLayout pageTitle={pageTitle} description={description}>
+
+  <!-- <p class="title-page">Radial Tree Diagram with D3.js</p>
+  <h4 class="title-page">VISUALIZING</h4>
+  <h3 class="title-page">IOWA WRITERS' WORKSHOP</h3>
+  <h1 class="title-page">~~~</h1>
+
+  <p>This radial tree diagram visualizes the mentor-mentee relationships in the <a href="https://writersworkshop.uiowa.edu/" target="_blank">Iowa Writers' Workshop</a> poetry program.</p>
+
+  <h3 class="title-page">Advisor-Student Lineage (Poetry)</h3> -->
+
+  <Figure>
+    <TidyTree slot="image"
+    id="iowa-radial-tree"
+    treeData={treeData}
+    width={900}
+    height={500}
+    radius={450}
+    separation={1.2}
+    translateX={50}
+    rootNodeRadius={15}
+    rootFontSize={15}
+    rootFontColor="#4338ca"
+    rootNodeColor="#6366f1"
+    advisorNodeRange={[3, 15]}
+    advisorFontRange={[6, 12]}
+    advisorFontColor="#1e40af"
+    advisorNodeColor="#8aded8"
+    advisorLabelDistance={25}
+    studentNodeRadius={1.5}
+    studentFontSize={3}
+    studentFontColor="#047857"
+    studentNodeColor="#ffbd80"
+    studentLabelDistance={15}
+    linkColor="#d1d5db"
+    linkStrokeWidth={0.4}
+    hoverColor="#ef4444"
+    hoverRadiusMultiplier={1.05}
+    hoverArcMultiplier={1.5}
+    />
+    <!-- <span slot="caption">
+      Figure 1: Radial tree showing multi-generational advisor-student lineages in the Iowa Writers' Workshop poetry program. Blue labels = advisors (always visible), green labels = students (shown on hover). Hover over an advisor to reveal their students.
+    </span> -->
+  </Figure>
+
+  <!-- <p>Notable lineages include <strong>Paul Engle → Donald Justice → Jorie Graham → Mark Levine</strong> spanning four generations.</p> -->
+
+  <!-- <h3 class="title-page">~~~</h3> -->
+
+</BaseLayout>

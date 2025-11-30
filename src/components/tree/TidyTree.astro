@@ -1,0 +1,550 @@
+---
+export interface Props {
+  id?: string;
+  treeData: any;
+  width?: number;
+  height?: number;
+  radius?: number;
+  separation?: number;
+  translateX?: number;
+  rootNodeRadius?: number;
+  rootFontSize?: number;
+  rootFontColor?: string;
+  rootNodeColor?: string;
+  advisorNodeRange?: [number, number];
+  advisorFontRange?: [number, number];
+  advisorFontColor?: string;
+  advisorNodeColor?: string;
+  advisorLabelDistance?: number;
+  studentNodeRadius?: number;
+  studentFontSize?: number;
+  studentFontColor?: string;
+  studentNodeColor?: string;
+  studentLabelDistance?: number;
+  linkColor?: string;
+  linkStrokeWidth?: number;
+  hoverColor?: string;
+  hoverRadiusMultiplier?: number;
+  hoverArcMultiplier?: number;
+}
+
+const { 
+  id = "tree",
+  treeData,
+  width = 900,
+  height = 900,
+  radius = 380,
+  separation = 1,
+  translateX = 0,
+  rootNodeRadius = 8,
+  rootFontSize = 10,
+  rootFontColor = "#333333",
+  rootNodeColor = "#6366f1",
+  advisorNodeRange = [2, 6],
+  advisorFontRange = [6, 11],
+  advisorFontColor = "#1e40af",
+  advisorNodeColor = "#8aded8",
+  advisorLabelDistance = 6,
+  studentNodeRadius = 2,
+  studentFontSize = 6,
+  studentFontColor = "#047857",
+  studentNodeColor = "#ffbd80",
+  studentLabelDistance = 4,
+  linkColor = "#a6a6a6",
+  linkStrokeWidth = 0.5,
+  hoverColor = "#ff6b6b",
+  hoverRadiusMultiplier = 1.0,
+  hoverArcMultiplier = 1.0,
+} = Astro.props;
+
+function sortChildrenAlphabetically(node: any) {
+  if (node.children && node.children.length > 0) {
+    node.children.sort((a: any, b: any) => a.name.localeCompare(b.name));
+    node.children.forEach(sortChildrenAlphabetically);
+  }
+}
+const sortedTreeData = JSON.parse(JSON.stringify(treeData));
+sortChildrenAlphabetically(sortedTreeData);
+---
+
+<div id={id} class="tree-container"></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js" defer></script>
+
+<script define:vars={{
+  id,
+  sortedTreeData,
+  width,
+  height,
+  radius,
+  separation,
+  translateX,
+  rootNodeRadius,
+  rootFontSize,
+  rootFontColor,
+  rootNodeColor,
+  advisorNodeRange,
+  advisorFontRange,
+  advisorFontColor,
+  advisorNodeColor,
+  advisorLabelDistance,
+  studentNodeRadius,
+  studentFontSize,
+  studentFontColor,
+  studentNodeColor,
+  studentLabelDistance,
+  linkColor,
+  linkStrokeWidth,
+  hoverColor,
+  hoverRadiusMultiplier,
+  hoverArcMultiplier,
+}}>
+  function initTree() {
+    if (!window.d3) {
+      setTimeout(initTree, 100);
+      return;
+    }
+
+    const d3 = window.d3;
+    const container = d3.select(`#${id}`);
+    container.selectAll("*").remove();
+
+    const svg = container
+      .append("svg")
+      .attr("width", width)
+      .attr("height", height)
+      .attr("viewBox", [(-width / 2) + translateX, -height / 2, width, height])
+      .style("background-color", "var(--viz-background)")
+      .style("border", "var(--image-border)");
+
+    const g = svg.append("g");
+
+    let selectedNode = null;
+
+    const root = d3.hierarchy(sortedTreeData);
+    
+    root.each(d => {
+      d.childrenCount = d.children ? d.children.length : 0;
+    });
+
+    const advisors = root.descendants().filter(d => d.depth > 0 && d.children);
+    const childrenExtent = d3.extent(advisors, d => d.childrenCount);
+    
+    const advisorNodeScale = d3.scaleLinear()
+      .domain(childrenExtent[0] === childrenExtent[1] ? [0, childrenExtent[1]] : childrenExtent)
+      .range(advisorNodeRange);
+    
+    const advisorFontScale = d3.scaleLinear()
+      .domain(childrenExtent[0] === childrenExtent[1] ? [0, childrenExtent[1]] : childrenExtent)
+      .range(advisorFontRange);
+
+    const tree = d3.tree()
+      .size([2 * Math.PI, radius])
+      .separation((a, b) => (a.parent === b.parent ? separation : separation * 2) / a.depth || separation);
+
+    tree(root);
+
+    root.descendants().forEach(d => {
+      d.originalX = d.x;
+      d.originalY = d.y;
+    });
+
+    const linkGenerator = d3.linkRadial()
+      .angle(d => d.x)
+      .radius(d => d.y);
+
+    const links = g.append("g")
+      .attr("fill", "none")
+      .attr("stroke", linkColor)
+      .attr("stroke-width", linkStrokeWidth)
+      .selectAll("path")
+      .data(root.links())
+      .join("path")
+      .attr("d", linkGenerator)
+      .attr("data-source", d => d.source.data.name)
+      .attr("data-target", d => d.target.data.name);
+
+    function getNodeRadius(d) {
+      if (d.depth === 0) return rootNodeRadius;
+      if (d.children) return advisorNodeScale(d.childrenCount);
+      return studentNodeRadius;
+    }
+
+    function getNodeColor(d) {
+      if (d.depth === 0) return rootNodeColor;
+      if (d.children) return advisorNodeColor;
+      return studentNodeColor;
+    }
+
+    function getFontSize(d) {
+      if (d.depth === 0) return rootFontSize;
+      if (d.children) return advisorFontScale(d.childrenCount);
+      return studentFontSize;
+    }
+
+    function getFontColor(d) {
+      if (d.depth === 0) return rootFontColor;
+      if (d.children) return advisorFontColor;
+      return studentFontColor;
+    }
+
+    function getLabelDistance(d) {
+      if (d.depth === 0) return rootNodeRadius + 6;
+      if (d.children) return getNodeRadius(d) + advisorLabelDistance;
+      return getNodeRadius(d) + studentLabelDistance;
+    }
+
+    function getNodeTransform(d, expandedY = null) {
+      const y = expandedY !== null ? expandedY : d.y;
+      return `rotate(${d.x * 180 / Math.PI - 90}) translate(${y},0)`;
+    }
+
+    const nodes = g.append("g")
+      .selectAll("g")
+      .data(root.descendants())
+      .join("g")
+      .attr("class", d => {
+        if (d.depth === 0) return "node-root";
+        if (d.children) return "node-advisor";
+        return "node-student";
+      })
+      .attr("transform", d => getNodeTransform(d))
+      .attr("data-name", d => d.data.name)
+      .attr("data-parent", d => d.parent ? d.parent.data.name : null);
+
+    nodes.append("circle")
+      .attr("r", d => getNodeRadius(d))
+      .attr("fill", d => getNodeColor(d))
+      .style("cursor", d => d.depth === 0 ? "default" : "pointer");
+
+    nodes.each(function(d) {
+      const node = d3.select(this);
+      const text = node.append("text")
+        .attr("class", "node-label")
+        .attr("font-family", "sans-serif")
+        .attr("font-size", getFontSize(d))
+        .attr("fill", getFontColor(d))
+        .text(d.data.name)
+        .style("pointer-events", d.depth === 0 ? "none" : "auto")
+        .style("cursor", d.depth === 0 ? "default" : "pointer");
+
+      if (d.depth === 0) {
+        text
+          .attr("text-anchor", "middle")
+          .attr("dy", -(getNodeRadius(d) + 6))
+          .attr("transform", `rotate(${90 - d.x * 180 / Math.PI})`);
+      } else {
+        const labelDist = getLabelDistance(d);
+        const isLeftSide = d.x < Math.PI;
+        text
+          .attr("dy", "0.31em")
+          .attr("data-original-x", isLeftSide ? labelDist : -labelDist)
+          .attr("x", isLeftSide ? labelDist : -labelDist)
+          .attr("text-anchor", isLeftSide ? "start" : "end")
+          .attr("transform", d.x >= Math.PI ? "rotate(180)" : null);
+      }
+
+      if (!d.children && d.depth > 0) {
+        text.style("visibility", "hidden");
+      }
+    });
+
+    function expandChildren(parentNode) {
+      if (!parentNode.children || parentNode.children.length === 0) return;
+
+      const children = parentNode.children;
+      const childAngles = children.map(c => c.originalX);
+      const minAngle = Math.min(...childAngles);
+      const maxAngle = Math.max(...childAngles);
+      const centerAngle = (minAngle + maxAngle) / 2;
+      
+      children.forEach(child => {
+        const offset = child.originalX - centerAngle;
+        child.x = centerAngle + (offset * hoverArcMultiplier);
+        child.y = child.originalY * hoverRadiusMultiplier;
+      });
+
+      nodes.filter(n => children.includes(n))
+        .transition()
+        .duration(200)
+        .attr("transform", d => getNodeTransform(d, d.y));
+
+      nodes.filter(n => children.includes(n)).each(function(d) {
+        const isLeftSide = d.x < Math.PI;
+        const labelDist = getLabelDistance(d);
+        d3.select(this).select("text")
+          .transition()
+          .duration(200)
+          .attr("x", isLeftSide ? labelDist : -labelDist)
+          .attr("text-anchor", isLeftSide ? "start" : "end")
+          .attr("transform", d.x >= Math.PI ? "rotate(180)" : null);
+      });
+
+      links.filter(l => l.source === parentNode)
+        .transition()
+        .duration(200)
+        .attr("d", linkGenerator);
+    }
+
+    function resetChildrenPositions(parentNode) {
+      if (!parentNode || !parentNode.children) return;
+
+      parentNode.children.forEach(child => {
+        child.x = child.originalX;
+        child.y = child.originalY;
+      });
+
+      nodes.filter(n => parentNode.children.includes(n))
+        .transition()
+        .duration(200)
+        .attr("transform", d => getNodeTransform(d));
+
+      nodes.filter(n => parentNode.children.includes(n)).each(function(d) {
+        const isLeftSide = d.originalX < Math.PI;
+        const labelDist = getLabelDistance(d);
+        d3.select(this).select("text")
+          .transition()
+          .duration(200)
+          .attr("x", isLeftSide ? labelDist : -labelDist)
+          .attr("text-anchor", isLeftSide ? "start" : "end")
+          .attr("transform", d.originalX >= Math.PI ? "rotate(180)" : null);
+      });
+
+      links.filter(l => l.source === parentNode)
+        .transition()
+        .duration(200)
+        .attr("d", d => {
+          const tempSource = { x: d.source.originalX, y: d.source.originalY };
+          const tempTarget = { x: d.target.originalX, y: d.target.originalY };
+          return d3.linkRadial().angle(n => n.x).radius(n => n.y)({ source: tempSource, target: tempTarget });
+        });
+    }
+
+    function applyNodeStyling(d, isAdvisor) {
+      const nodeName = d.data.name;
+      const parentName = d.parent ? d.parent.data.name : null;
+
+      if (isAdvisor) {
+        expandChildren(d);
+
+        nodes.filter(n => n.data.name === nodeName).each(function() {
+          d3.select(this).select("circle").attr("fill", hoverColor);
+          
+          const textEl = d3.select(this).select("text");
+          const originalX = parseFloat(textEl.attr("data-original-x"));
+          const flippedX = -originalX;
+          const isFlippedToLeft = flippedX < 0;
+          
+          textEl
+            .attr("fill", hoverColor)
+            .attr("x", flippedX)
+            .attr("text-anchor", isFlippedToLeft ? "end" : "start");
+        });
+
+        links.each(function() {
+          const link = d3.select(this);
+          if (link.attr("data-source") === nodeName) {
+            link.attr("stroke", hoverColor).attr("stroke-width", linkStrokeWidth * 2);
+          }
+        });
+
+        nodes.each(function(n) {
+          if (n.parent && n.parent.data.name === nodeName) {
+            d3.select(this).select("circle").attr("fill", hoverColor);
+            d3.select(this).select("text")
+              .attr("fill", hoverColor)
+              .style("visibility", "visible");
+          }
+        });
+
+        if (parentName && parentName !== sortedTreeData.name) {
+          links.each(function() {
+            const link = d3.select(this);
+            if (link.attr("data-target") === nodeName && link.attr("data-source") === parentName) {
+              link.attr("stroke", hoverColor).attr("stroke-width", linkStrokeWidth * 2);
+            }
+          });
+
+          nodes.filter(n => n.data.name === parentName).each(function() {
+            d3.select(this).select("circle").attr("fill", hoverColor);
+            d3.select(this).select("text").attr("fill", hoverColor);
+          });
+        }
+      } else {
+        nodes.filter(n => n.data.name === nodeName).each(function() {
+          d3.select(this).select("circle").attr("fill", hoverColor);
+          d3.select(this).select("text")
+            .attr("fill", hoverColor)
+            .style("visibility", "visible");
+        });
+
+        links.each(function() {
+          const link = d3.select(this);
+          if (link.attr("data-target") === nodeName) {
+            link.attr("stroke", hoverColor).attr("stroke-width", linkStrokeWidth * 2);
+          }
+        });
+
+        if (parentName) {
+          nodes.filter(n => n.data.name === parentName).each(function() {
+            d3.select(this).select("circle").attr("fill", hoverColor);
+            d3.select(this).select("text")
+              .attr("fill", hoverColor)
+              .style("visibility", "visible");
+          });
+        }
+      }
+    }
+
+    // FIXED: Reset ALL visual styles completely
+    function resetAllVisualStyles() {
+      nodes.each(function(n) {
+        const nodeEl = d3.select(this);
+        nodeEl.select("circle").attr("fill", getNodeColor(n));
+        
+        const textEl = nodeEl.select("text");
+        textEl.attr("fill", getFontColor(n));
+        
+        // Reset label position for advisors
+        if (n.children && n.depth > 0) {
+          const originalX = parseFloat(textEl.attr("data-original-x"));
+          const isLeftSide = originalX > 0;
+          textEl
+            .attr("x", originalX)
+            .attr("text-anchor", isLeftSide ? "start" : "end");
+        }
+        
+        // Hide student labels
+        if (!n.children && n.depth > 0) {
+          textEl.style("visibility", "hidden");
+        } else {
+          textEl.style("visibility", "visible");
+        }
+      });
+
+      links.attr("stroke", linkColor).attr("stroke-width", linkStrokeWidth);
+    }
+
+    function handleAdvisorHover(event, d) {
+      if (selectedNode === d) return;
+      
+      // Reset all visual styles first
+      resetAllVisualStyles();
+      
+      // Reset any previously expanded children (from hover, not from selection)
+      // Only if the node being left is different from selected node
+      
+      // Apply hover styling
+      applyNodeStyling(d, true);
+      
+      // Re-apply selected node styling if exists and different from hovered
+      if (selectedNode && selectedNode !== d) {
+        const isSelectedAdvisor = selectedNode.children && selectedNode.depth > 0;
+        applyNodeStyling(selectedNode, isSelectedAdvisor);
+      }
+    }
+
+    function handleStudentHover(event, d) {
+      if (selectedNode === d) return;
+      
+      resetAllVisualStyles();
+      applyNodeStyling(d, false);
+      
+      if (selectedNode && selectedNode !== d) {
+        const isSelectedAdvisor = selectedNode.children && selectedNode.depth > 0;
+        applyNodeStyling(selectedNode, isSelectedAdvisor);
+      }
+    }
+
+    // FIXED: Clean mouseout handler
+    function handleMouseLeave(event, d) {
+      // Reset children positions for the node we're leaving (if it's an advisor and not selected)
+      if (d && d.children && d !== selectedNode) {
+        resetChildrenPositions(d);
+      }
+      
+      // Reset ALL visual styling
+      resetAllVisualStyles();
+      
+      // If there's a selected node, re-apply its styling fresh
+      if (selectedNode) {
+        const isSelectedAdvisor = selectedNode.children && selectedNode.depth > 0;
+        applyNodeStyling(selectedNode, isSelectedAdvisor);
+      }
+    }
+
+    function handleNodeClick(event, d) {
+      event.stopPropagation();
+      
+      if (selectedNode === d) {
+        // Deselect (toggle off)
+        if (d.children) {
+          resetChildrenPositions(d);
+        }
+        selectedNode = null;
+        resetAllVisualStyles();
+      } else {
+        // Deselect previous
+        if (selectedNode && selectedNode.children) {
+          resetChildrenPositions(selectedNode);
+        }
+        resetAllVisualStyles();
+        
+        // Select new node
+        selectedNode = d;
+        const isAdvisor = d.children && d.depth > 0;
+        applyNodeStyling(d, isAdvisor);
+      }
+    }
+
+    const advisorNodes = nodes.filter(d => d.children && d.depth > 0);
+    advisorNodes.select("circle")
+      .on("mouseenter", handleAdvisorHover)
+      .on("click", handleNodeClick);
+    advisorNodes.select("text")
+      .on("mouseenter", handleAdvisorHover)
+      .on("click", handleNodeClick);
+    advisorNodes.on("mouseleave", handleMouseLeave);
+
+    const studentNodes = nodes.filter(d => !d.children && d.depth > 0);
+    studentNodes
+      .on("mouseenter", handleStudentHover)
+      .on("mouseleave", handleMouseLeave)
+      .on("click", handleNodeClick);
+
+    svg.on("click", function(event) {
+      if (event.target === this || event.target === g.node()) {
+        if (selectedNode && selectedNode.children) {
+          resetChildrenPositions(selectedNode);
+        }
+        selectedNode = null;
+        resetAllVisualStyles();
+      }
+    });
+
+    const zoom = d3.zoom()
+      .scaleExtent([0.3, 8])
+      .on("zoom", (event) => g.attr("transform", event.transform));
+
+    svg.call(zoom);
+    svg.on("dblclick.zoom", () => {
+      svg.transition().duration(500).call(zoom.transform, d3.zoomIdentity);
+    });
+  }
+
+  initTree();
+</script>
+
+<style>
+  .tree-container { 
+    width: 100%; 
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    position: relative;
+  }
+  .tree-container svg {
+    max-width: 100%;
+    height: auto;
+  }
+</style>
