@@ -1,0 +1,320 @@
+---
+export interface Props {
+  targetId: string;
+  filename?: string;
+  format?: 'svg' | 'png' | 'pdf' | 'all';
+  buttonText?: string;
+  buttonClass?: string;
+  pngScale?: number;
+}
+
+const { 
+  targetId,
+  filename = 'download',
+  format = 'svg',
+  buttonText = 'Download',
+  buttonClass = '',
+  pngScale = 2
+} = Astro.props;
+---
+
+<div class="download-button-wrapper">
+  {format === 'all' ? (
+    <div class="button-group">
+      <button 
+        class={`download-btn ${buttonClass}`}
+        data-target={targetId}
+        data-filename={filename}
+        data-format="svg"
+        data-scale={pngScale}
+      >
+        {buttonText} SVG
+      </button>
+      <button 
+        class={`download-btn ${buttonClass}`}
+        data-target={targetId}
+        data-filename={filename}
+        data-format="png"
+        data-scale={pngScale}
+      >
+        {buttonText} PNG
+      </button>
+      <button 
+        class={`download-btn ${buttonClass}`}
+        data-target={targetId}
+        data-filename={filename}
+        data-format="pdf"
+        data-scale={pngScale}
+      >
+        {buttonText} PDF
+      </button>
+    </div>
+  ) : (
+    <button 
+      class={`download-btn ${buttonClass}`}
+      data-target={targetId}
+      data-filename={filename}
+      data-format={format}
+      data-scale={pngScale}
+    >
+      {buttonText} {format.toUpperCase()}
+    </button>
+  )}
+</div>
+
+<script>
+  function initDownloadButtons() {
+    const buttons = document.querySelectorAll('.download-btn');
+    
+    buttons.forEach(button => {
+      button.addEventListener('click', function() {
+        const targetId = this.getAttribute('data-target');
+        const filename = this.getAttribute('data-filename');
+        const format = this.getAttribute('data-format');
+        const scale = parseFloat(this.getAttribute('data-scale') || '2');
+        
+        const container = document.getElementById(targetId);
+        if (!container) {
+          console.error(`Target element #${targetId} not found`);
+          return;
+        }
+        
+        const svg = container.querySelector('svg');
+        if (!svg) {
+          console.error(`No SVG found in #${targetId}`);
+          return;
+        }
+        
+        if (format === 'svg') {
+          downloadSVG(svg, filename);
+        } else if (format === 'png') {
+          downloadPNG(svg, filename, scale);
+        } else if (format === 'pdf') {
+          downloadPDF(svg, filename);
+        }
+      });
+    });
+    
+    function downloadSVG(svgElement, filename) {
+      // Clone the SVG to avoid modifying the original
+      const clonedSvg = svgElement.cloneNode(true);
+      
+      // Clean up: remove event listeners and data attributes
+      const allElements = clonedSvg.querySelectorAll('*');
+      allElements.forEach(el => {
+        // Remove data attributes
+        Array.from(el.attributes).forEach(attr => {
+          if (attr.name.startsWith('data-')) {
+            el.removeAttribute(attr.name);
+          }
+        });
+        
+        // Remove inline event handlers
+        ['onclick', 'onmouseenter', 'onmouseleave', 'onmouseover', 'onmouseout'].forEach(event => {
+          if (el.hasAttribute(event)) {
+            el.removeAttribute(event);
+          }
+        });
+        
+        // Remove cursor styles if you want
+        if (el.style && el.style.cursor) {
+          el.style.cursor = 'default';
+        }
+      });
+      
+      // Get the SVG markup
+      const serializer = new XMLSerializer();
+      let svgString = serializer.serializeToString(clonedSvg);
+      
+      // Add XML declaration and namespace if not present
+      if (!svgString.includes('xmlns')) {
+        svgString = svgString.replace('<svg', '<svg xmlns="http://www.w3.org/2000/svg"');
+      }
+      svgString = '<?xml version="1.0" encoding="UTF-8"?>\n' + svgString;
+      
+      // Create blob and download
+      const blob = new Blob([svgString], { type: 'image/svg+xml;charset=utf-8' });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = `${filename}.svg`;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      URL.revokeObjectURL(url);
+    }
+    
+    function downloadPNG(svgElement, filename, scale) {
+      // Get SVG dimensions
+      const bbox = svgElement.getBoundingClientRect();
+      const width = bbox.width * scale;
+      const height = bbox.height * scale;
+      
+      // Clone and serialize SVG
+      const clonedSvg = svgElement.cloneNode(true);
+      clonedSvg.setAttribute('width', width);
+      clonedSvg.setAttribute('height', height);
+      
+      const serializer = new XMLSerializer();
+      let svgString = serializer.serializeToString(clonedSvg);
+      
+      // Add namespace if needed
+      if (!svgString.includes('xmlns')) {
+        svgString = svgString.replace('<svg', '<svg xmlns="http://www.w3.org/2000/svg"');
+      }
+      
+      // Create canvas
+      const canvas = document.createElement('canvas');
+      canvas.width = width;
+      canvas.height = height;
+      const ctx = canvas.getContext('2d');
+      
+      // Create image from SVG
+      const img = new Image();
+      const svgBlob = new Blob([svgString], { type: 'image/svg+xml;charset=utf-8' });
+      const url = URL.createObjectURL(svgBlob);
+      
+      img.onload = function() {
+        // Fill white background (optional, remove if you want transparent)
+        ctx.fillStyle = 'white';
+        ctx.fillRect(0, 0, width, height);
+        
+        // Draw SVG
+        ctx.drawImage(img, 0, 0, width, height);
+        URL.revokeObjectURL(url);
+        
+        // Download
+        canvas.toBlob(function(blob) {
+          const pngUrl = URL.createObjectURL(blob);
+          const link = document.createElement('a');
+          link.href = pngUrl;
+          link.download = `${filename}.png`;
+          document.body.appendChild(link);
+          link.click();
+          document.body.removeChild(link);
+          URL.revokeObjectURL(pngUrl);
+        }, 'image/png');
+      };
+      
+      img.onerror = function(e) {
+        console.error('Error loading SVG for PNG conversion:', e);
+        URL.revokeObjectURL(url);
+      };
+      
+      img.src = url;
+    }
+    
+    function downloadPDF(svgElement, filename) {
+      // Create a new window for PDF generation
+      const printWindow = window.open('', '_blank');
+      
+      if (!printWindow) {
+        alert('Please allow pop-ups to download PDF');
+        return;
+      }
+      
+      // Get SVG dimensions
+      const bbox = svgElement.getBoundingClientRect();
+      const width = bbox.width;
+      const height = bbox.height;
+      
+      // Clone and serialize SVG
+      const clonedSvg = svgElement.cloneNode(true);
+      const serializer = new XMLSerializer();
+      let svgString = serializer.serializeToString(clonedSvg);
+      
+      // Add namespace if needed
+      if (!svgString.includes('xmlns')) {
+        svgString = svgString.replace('<svg', '<svg xmlns="http://www.w3.org/2000/svg"');
+      }
+      
+      // Create HTML for print window
+      printWindow.document.write(`
+        <!DOCTYPE html>
+        <html>
+        <head>
+          <title>${filename}</title>
+          <style>
+            @page {
+              size: ${width}px ${height}px;
+              margin: 0;
+            }
+            body {
+              margin: 0;
+              padding: 0;
+              width: ${width}px;
+              height: ${height}px;
+            }
+            svg {
+              display: block;
+              width: 100%;
+              height: 100%;
+            }
+          </style>
+        </head>
+        <body>
+          ${svgString}
+        </body>
+        </html>
+      `);
+      
+      printWindow.document.close();
+      
+      // Wait for content to load, then trigger print dialog
+      printWindow.onload = function() {
+        setTimeout(() => {
+          printWindow.print();
+          // Close window after printing (user can cancel)
+          setTimeout(() => {
+            printWindow.close();
+          }, 100);
+        }, 250);
+      };
+    }
+  }
+  
+  // Initialize when DOM is ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initDownloadButtons);
+  } else {
+    initDownloadButtons();
+  }
+</script>
+
+<style>
+  .download-button-wrapper {
+    margin: 1rem 0;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .button-group {
+    display: flex;
+    gap: 0.5rem;
+  }
+  
+  .download-btn {
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    cursor: pointer;
+    font-family: 'IM Fell English', serif;
+    border: var(--image-border);
+    background-color: var(--viz-background);
+    /* color: inherit; */
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  
+  .download-btn:hover {
+    background-color: var(--hover-color);
+    color: white;
+  }
+  
+  .download-btn:active {
+    background-color: var(--hover-color);
+  }
+  
+  .download-btn:focus {
+    outline: var(--hover-color);
+    /* outline-offset: 2px; */
+  }
+</style>

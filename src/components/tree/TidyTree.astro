@@ -23,6 +23,7 @@ export interface Props {
   studentLabelDistance?: number;
   linkColor?: string;
   linkStrokeWidth?: number;
+  hoverLinkStrokeWidth?: number;
   hoverColor?: string;
   hoverRadiusMultiplier?: number;
   hoverArcMultiplier?: number;
@@ -52,6 +53,7 @@ const {
   studentLabelDistance = 4,
   linkColor = "#a6a6a6",
   linkStrokeWidth = 0.5,
+  hoverLinkStrokeWidth = 2,
   hoverColor = "#ff6b6b",
   hoverRadiusMultiplier = 1.0,
   hoverArcMultiplier = 1.0,
@@ -95,6 +97,7 @@ sortChildrenAlphabetically(sortedTreeData);
   studentLabelDistance,
   linkColor,
   linkStrokeWidth,
+  hoverLinkStrokeWidth,
   hoverColor,
   hoverRadiusMultiplier,
   hoverArcMultiplier,
@@ -274,7 +277,7 @@ sortChildrenAlphabetically(sortedTreeData);
         const labelDist = getLabelDistance(d);
         d3.select(this).select("text")
           .transition()
-          .duration(200)
+          .duration(0)
           .attr("x", isLeftSide ? labelDist : -labelDist)
           .attr("text-anchor", isLeftSide ? "start" : "end")
           .attr("transform", d.x >= Math.PI ? "rotate(180)" : null);
@@ -296,7 +299,7 @@ sortChildrenAlphabetically(sortedTreeData);
 
       nodes.filter(n => parentNode.children.includes(n))
         .transition()
-        .duration(200)
+        .duration(300)
         .attr("transform", d => getNodeTransform(d));
 
       nodes.filter(n => parentNode.children.includes(n)).each(function(d) {
@@ -329,22 +332,13 @@ sortChildrenAlphabetically(sortedTreeData);
 
         nodes.filter(n => n.data.name === nodeName).each(function() {
           d3.select(this).select("circle").attr("fill", hoverColor);
-          
-          const textEl = d3.select(this).select("text");
-          const originalX = parseFloat(textEl.attr("data-original-x"));
-          const flippedX = -originalX;
-          const isFlippedToLeft = flippedX < 0;
-          
-          textEl
-            .attr("fill", hoverColor)
-            .attr("x", flippedX)
-            .attr("text-anchor", isFlippedToLeft ? "end" : "start");
+          d3.select(this).select("text").attr("fill", hoverColor);
         });
 
         links.each(function() {
           const link = d3.select(this);
           if (link.attr("data-source") === nodeName) {
-            link.attr("stroke", hoverColor).attr("stroke-width", linkStrokeWidth * 2);
+            link.attr("stroke", linkColor).attr("stroke-width", hoverLinkStrokeWidth * 2);
           }
         });
 
@@ -361,7 +355,7 @@ sortChildrenAlphabetically(sortedTreeData);
           links.each(function() {
             const link = d3.select(this);
             if (link.attr("data-target") === nodeName && link.attr("data-source") === parentName) {
-              link.attr("stroke", hoverColor).attr("stroke-width", linkStrokeWidth * 2);
+              link.attr("stroke", linkColor).attr("stroke-width", hoverLinkStrokeWidth * 2);
             }
           });
 
@@ -404,15 +398,6 @@ sortChildrenAlphabetically(sortedTreeData);
         
         const textEl = nodeEl.select("text");
         textEl.attr("fill", getFontColor(n));
-        
-        // Reset label position for advisors
-        if (n.children && n.depth > 0) {
-          const originalX = parseFloat(textEl.attr("data-original-x"));
-          const isLeftSide = originalX > 0;
-          textEl
-            .attr("x", originalX)
-            .attr("text-anchor", isLeftSide ? "start" : "end");
-        }
         
         // Hide student labels
         if (!n.children && n.depth > 0) {
