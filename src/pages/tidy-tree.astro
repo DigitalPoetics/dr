@@ -25,29 +25,29 @@ const description = "A radial tidy tree visualization of advisor-student relatio
     <TidyTree slot="image"
     id="iowa-radial-tree"
     treeData={treeData}
-    width={900}
-    height={500}
+    width={842}
+    height={595}
     radius={450}
     separation={1.2}
     translateX={90}
-    rootNodeRadius={20}
-    rootFontSize={13}
-    rootFontColor="#4338ca"
-    rootNodeColor="#6366f1"
-    advisorNodeRange={[3, 15]}
-    advisorFontRange={[5, 12]}
-    advisorFontColor="#1e40af"
-    advisorNodeColor="#8aded8"
-    advisorLabelDistance={25}
+    rootNodeRadius={10}
+    rootFontSize={15}
+    rootFontColor="#5B21B6"
+    rootNodeColor="#7C3AED"
+    advisorNodeRange={[3, 10]}
+    advisorFontRange={[3, 13]}
+    advirosFontColor="#6D28D9"
+    advisorNodeColor="#8B5CF6"
+    advisorLabelDistance={10}
     studentNodeRadius={1.5}
     studentFontSize={3}
-    studentFontColor="#047857"
-    studentNodeColor="#ffbd80"
-    studentLabelDistance={15}
-    linkColor="#d1d5db"
+    studentFontColor="#EA580C"
+    studentNodeColor="#FDBA74"
+    studentLabelDistance={10}
+    linkColor="#D1D5DB"
     linkStrokeWidth={0.3}
     hoverLinkStrokeWidth={1}
-    hoverColor="#ef4444"
+    hoverColor="#EC4899"
     hoverRadiusMultiplier={1.05}
     hoverArcMultiplier={1.5}
     />
@@ -67,9 +67,9 @@ const description = "A radial tidy tree visualization of advisor-student relatio
   <p>Dec. 1, 2025</p>
   <!-- <p>Notable lineages include <strong>Paul Engle → Donald Justice → Jorie Graham → Mark Levine</strong> spanning four generations.</p> -->
   <p>I was creating infographics on poetry cultures using Tableau when I remembered why I don’t rely on it much for my research. It’s excellent for statistical visualizations, and you can use it to build some of the prettiest dashboards. When it comes to designing visualizations outside Tableau’s templates or dealing with hundreds or thousands of rows, however, it just feels wonky.</p>
-  <p>I enjoy working with the messiness of datasets, and I want my audience to share that experience, since the field of analytics and visualization is still new to most of us. A visualization that lays out all the data points helps illustrate the process that led to the insights. In other words, visualizing a dataset isn’t just about showing your work—it’s also a fun way to teach others how to read these visualizations.</p>
-  <p>As I was working on <i>the Program Era</i> dataset, housed in the wonderful <i>Post45 Data Collective</i>, I couldn’t get the results I wanted using Tableau’s extensions, and Tableau couldn’t display all the rows either. After a couple of hours of hair-pulling, I gave up on Tableau and went back to making custom visualizations using good old D3.</p>
-  <p>Thanks to Claude’s Opus 4.5, creating the tree diagram above was effortless. It not only generated the python script to restructure the dataset into a nested JSON—the format needed for tree diagrams—but also produced impeccable D3 code. After six hours of vibe coding and burning through $15 worth of bonus credits from <a href="https://kilo.ai/docs/getting-started/setting-up" target="_blank">Kilo Code</a>, I finally had the diagram I wanted. The next day, I used Sonnet 4.5 to refine the D3 interactions and finalized the visualization shown above. My time with Opus 4.5 was short-lived, but I was quite impressed with its coding capabilities.</p>
+  <p>I enjoy working with the messiness of datasets, and I want my audience to share that experience. Since the field of analytics and visualization is still new to most of us, a visualization that lays out all the data points helps illustrate the process that led to the insights. In other words, visualizing a dataset isn’t just about showing your work—it’s also a fun way to teach others how to read these visualizations.</p>
+  <p>As I was working on <i>the Program Era</i> dataset, housed in the wonderful <i>Post45 Data Collective</i>, I couldn’t get the layout I wanted using Tableau’s extensions, and Tableau couldn’t display all the rows either. After a couple of hours of hair-pulling, I gave up on Tableau and went back to making custom visualizations using good old D3.</p>
+  <p>Thanks to Claude’s Opus 4.5, creating the tree diagram above was effortless. It not only generated the python script to restructure the dataset into a nested JSON—the format needed for tree diagrams—but also produced impeccable D3 code. After six hours of vibe coding and burning through my bonus credits on <a href="https://kilo.ai/docs/getting-started/setting-up" target="_blank">Kilo Code</a>, I finally had the diagram I wanted. The next day, I used Sonnet 4.5 to refine the D3 interactions and finalized the visualization shown above. My time with Opus 4.5 was short-lived, but I was quite impressed with its coding capabilities.</p>
   <Dinkus count={3}></Dinkus>
 
 </BaseLayout>
