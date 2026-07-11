@@ -1,8 +1,9 @@
 :root {
-    --dark-background: #1c1c1c;
+    --dark-background: #1b1e21;
     --light-background: #fbfbf6;
-    --dark-text: #e5e5e0;
-    --dark-text-opacity: #e5e5e0b3;
+    --dark-text: #c0c2c7;
+    --dark-text-opacity: #a1a1aab3;
+    --dark-heading: #eeeeee;
     --light-text: #292524;
     --light-text-opacity: #292524b3;
     --hover-color: #fc7d0b;
@@ -12,6 +13,7 @@
     --image-border: 1px solid #e3ddd0;
     --button-background: #e3ddd0;
     --viz-background: #f8f6ef;
+    --dark-viz-background: #242424;
     --title-letter-spacing: 0.05em;
     --title-letter-spacing-small: 0.05em;
     /* font */
@@ -86,7 +88,7 @@
 body {
     margin: 0 auto;
     font-family: var(--font-primary);
-    font-size: 1rem;
+    font-size: var(--font-size-lg);
     /* margin: 0 1rem 0 1rem; */
     /* padding: 0 1rem 0 1rem; */
     /* font-family: 'IMFellEnglish', serif; */
@@ -96,6 +98,14 @@ body {
     color: var(--light-text);
 }
 
+@media screen and (min-width: 636px) {
+  body {
+    font-size: var(--font-size-base);
+    line-height: var(--line-height-md);
+  }
+}
+
+
 h1, h2 {
 letter-spacing: -0.02em;
 }
@@ -103,6 +113,10 @@ letter-spacing: -0.02em;
 h1 { font-size: var(--font-size-3xl); font-weight: 700; line-height: var(--line-height-sm); }
 h2 { font-size: var(--font-size-2xl); font-weight: 700; line-height: var(--line-height-sm); margin-top: 2.5rem; }
 h3 { font-size: var(--font-size-xl); font-weight: 700; line-height: var(--line-height-sm); margin-top: 2rem; }
+
+html.dark h1, html.dark h2, html.dark h3 {
+  color: var(--dark-heading);
+}
 
 /* title page */
 .title-page {
@@ -229,19 +243,26 @@ blockquote {
 .astro-code span {
   background-color: var(--viz-background) !important;
   margin: 0 !important;
+  
 }
 
 .astro-code {
     border-radius: 0.5rem;
     padding: 0.5rem;
     overflow-x: auto;
-    border: var(--image-border) !important;
+    /* border: var(--image-border) !important; */
 }
 
 .astro-code span {
     font-size: 0.9rem !important;
     line-height: var(--line-height-md);
 }
+
+html.dark .astro-code,
+html.dark .astro-code span {
+    background-color: var(--dark-viz-background) !important;
+}
+
 
 /* inline code */
 code:not(.astro-code code) {

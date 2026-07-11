@@ -15,5 +15,5 @@ export default defineConfig({
   integrations: [mdx(), sitemap(), pagefind()],
   build: {
     inlineStylesheets: "always",
-  }
+  },
 });
