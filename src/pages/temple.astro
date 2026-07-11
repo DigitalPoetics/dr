@@ -1,0 +1,75 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Figure from "../components/ui/Figure.astro";
+
+const pageTitle = "Temple";
+const description = "Sketch of a temple in the Bauhaus style";
+---
+
+<BaseLayout pageTitle={pageTitle} description={description}>
+  <h1>Sketch of a temple in the Bauhaus style using svg shapes only.</h1>
+
+
+    <div>
+        <svg xmlns="http://www.w3.org/2000/svg">
+
+            <defs>
+                <filter id="s1">
+                    <feDropShadow dx="5" dy="-2" stdDeviation="1" flood-color="red" flood-opacity="0.8"/>
+                </filter>
+            </defs>
+            <rect x="0" y="0" width="100%" height="100%" fill="teal" stroke="blue" stroke-width="1"/>
+            <!-- <line x1="20%" y1="0" x2="20%" y2="100%" style="stroke:blue;stroke-width:1" />
+            <line x1="40%" y1="0" x2="40%" y2="100%" style="stroke:blue;stroke-width:1" />
+            <line x1="60%" y1="0" x2="60%" y2="100%" style="stroke:blue;stroke-width:1" />
+            <line x1="80%" y1="0" x2="80%" y2="100%" style="stroke:blue;stroke-width:1" />
+            <line x1="0%" y1="10%" x2="100%" y2="10%" style="stroke:blue;stroke-width:1" />
+            <line x1="0%" y1="20%" x2="100%" y2="20%" style="stroke:blue;stroke-width:1" />
+            <line x1="0%" y1="30%" x2="100%" y2="30%" style="stroke:blue;stroke-width:1" />
+            <line x1="0%" y1="40%" x2="100%" y2="40%" style="stroke:blue;stroke-width:1" />
+            <line x1="0%" y1="50%" x2="100%" y2="50%" style="stroke:blue;stroke-width:1" />
+            <line x1="0%" y1="60%" x2="100%" y2="60%" style="stroke:blue;stroke-width:1" />
+            <line x1="0%" y1="70%" x2="100%" y2="70%" style="stroke:blue;stroke-width:1" />
+            <line x1="0%" y1="80%" x2="100%" y2="80%" style="stroke:blue;stroke-width:1" />
+            <line x1="0%" y1="90%" x2="100%" y2="90%" style="stroke:blue;stroke-width:1" /> -->
+
+            <line x1="10%" y1="0" x2="20%" y2="10%" style="stroke:goldenrod;stroke-width:10" />
+            <line x1="10%" y1="0" x2="0%" y2="10%" style="stroke:goldenrod;stroke-width:10" />
+
+
+            <line x1="20%" y1="10%" x2="80%" y2="25%" style="stroke:black;stroke-width:10" filter="url(#s1)"/>
+            <line x1="0%" y1="25%" x2="80%" y2="25%" style="stroke:black;stroke-width:10" />
+            <line x1="50%" y1="25%" x2="50%" y2="40%" style="stroke:black;stroke-width:10" />
+
+
+            <line x1="60%" y1="40%" x2="100%" y2="60%" style="stroke:black;stroke-width:10" />
+            <line x1="0%" y1="60%" x2="100%" y2="60%" style="stroke:black;stroke-width:10" />
+            <line x1="50%" y1="60%" x2="50%" y2="90%" style="stroke:black;stroke-width:10" />
+
+
+            <rect x="0" y="90%" width="100%" height="100%" fill="black" stroke="black" stroke-width="2"/>
+
+
+
+
+        </svg>
+    </div>
+</BaseLayout>
+
+<style>
+    div {
+        background-color: white;
+        width: 100%;
+        height: 80vh;
+        position: relative;
+    }
+
+    svg {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 40%;
+        height: 80%;
+    }
+
+</style>
