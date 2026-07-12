@@ -8,7 +8,9 @@ import Dinkus from "../components/ui/Dinkus.astro";
 // import Note from "../components/ui/Note.astro";
 const { frontmatter } = Astro.props;
 ---
-<BaseLayout description=`${frontmatter.description} + ${frontmatter.tags}`>
+<BaseLayout 
+description={`${frontmatter.description} + ${frontmatter.tags}`}
+pageTitle={frontmatter.title}>
   <div class="post-header">
     <h1 class="title-page" data-pagefind-meta="title">{frontmatter.title}</h1>
     <Dinkus count={3}></Dinkus>
