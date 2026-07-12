@@ -399,7 +399,7 @@ function getMatchingParagraphs(text: string, matches: any[]): Array<{ index: num
         
         .filter-panel h4 {
           margin: 0 0 1rem 0;
-          font-size: 1.3rem;
+          font-size: var(--font-size-lg);
         }
         
         .filter-section {
@@ -427,7 +427,7 @@ function getMatchingParagraphs(text: string, matches: any[]): Array<{ index: num
         
         .filter-heading h5 {
           margin: 0;
-          font-size: 1.1rem;
+          font-size: var(--font-size-lg);
           color: var(--light-text, #333);
         }
         
@@ -455,7 +455,7 @@ function getMatchingParagraphs(text: string, matches: any[]): Array<{ index: num
           display: block;
           margin-bottom: 0.25rem;
           cursor: pointer;
-          font-size: 1rem;
+          font-size: var(font-size-base);
           transition: color 0.2s ease;
         }
         
@@ -470,9 +470,9 @@ function getMatchingParagraphs(text: string, matches: any[]): Array<{ index: num
         .clear-filters {
           margin: 1rem 0 0 0;
           padding: 0.5rem 1rem;
-          font-size: 1rem;
+          font-size: var(--font-size-sm);
           cursor: pointer;
-          font-family: 'IM Fell English', serif;
+          font-family: var(--font-secondary);
           border: var(--image-border, 1px solid #ccc);
           background-color: ButtonFace;
           transition: background-color 0.3s ease, color 0.3s ease;
@@ -488,7 +488,7 @@ function getMatchingParagraphs(text: string, matches: any[]): Array<{ index: num
         }
 
         html.dark .filter-heading h5 {
-          color: var(--dark-text, #fff);
+          color: var(--dark-heading, #fff);
         }
         
         html.dark .clear-filters {
@@ -496,7 +496,7 @@ function getMatchingParagraphs(text: string, matches: any[]): Array<{ index: num
         }
         
         html.dark .filter-arrow {
-          border-color: var(--dark-text, #fff);
+          border-color: var(--dark-heading, #fff);
         }
       `;
       
@@ -574,7 +574,7 @@ function getMatchingParagraphs(text: string, matches: any[]): Array<{ index: num
       const li = document.createElement('li');
       li.innerHTML = `
       <style>
-      #results-list details summary { cursor: pointer; display: flex; align-items: center; justify-content: space-between; font-weight: bold; font-size: 1.2rem; padding: 0 0 0.5rem 0; }
+      #results-list details summary { cursor: pointer; display: flex; align-items: center; justify-content: space-between; font-weight: bold; font-size: var(--font-size-base); padding: 0 0 0.5rem 0; }
       #results-list summary::-webkit-details-marker { display: none; }
       #results-list .arrow { display: inline-block; transition: transform 0.2s; border: solid var(--light-text); border-width: 0 2px 2px 0; padding: 3px; margin-left: 4px; transform: rotate(-45deg); }
       #results-list details[open] .arrow { transform: rotate(45deg); }
@@ -653,7 +653,7 @@ function getMatchingParagraphs(text: string, matches: any[]): Array<{ index: num
     align-items: center;
     justify-content: space-between;
     font-weight: bold;
-    font-size: 1.2rem;
+    font-size: var(--font-size-base);
     padding: 0 0 0.5rem 0;
   }
 
@@ -676,7 +676,7 @@ function getMatchingParagraphs(text: string, matches: any[]): Array<{ index: num
   }
 
   html.dark .arrow {
-    border-color: var(--dark-text);
+    border-color: var(--dark-header);
   }
 
   ul {
@@ -691,7 +691,7 @@ function getMatchingParagraphs(text: string, matches: any[]): Array<{ index: num
 
   .paragraph-match p {
     margin: 0 0 0.5rem 0;
-    font-size: 1.1rem;
+    font-size: var(--font-size-base);
   }
 
   .paragraph-match::marker {
@@ -718,9 +718,9 @@ function getMatchingParagraphs(text: string, matches: any[]): Array<{ index: num
   
   .pagination button {
     padding: 0.5rem 1rem;
-    font-size: 1.2rem;
+    font-size: var(--font-size-lg);
     cursor: pointer;
-    font-family: 'IM Fell English', serif;
+    font-family: var(--font-primary);
     border: var(--image-border);
     transition: background-color 0.3s ease, color 0.3s ease;
     background-color: ButtonFace;

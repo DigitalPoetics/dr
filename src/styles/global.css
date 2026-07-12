@@ -18,6 +18,7 @@
     --title-letter-spacing-small: 0.05em;
     /* font */
     --font-primary: 'Inter', sans-serif;
+    --font-secondary: 'IM Fell English', serif;
     --font-size-sm: 0.875rem;
     --font-size-base: 1rem;
     --font-size-lg: 1.125rem;
@@ -45,13 +46,13 @@
 
 /* https://gwfh.mranftl.com/fonts */
 
-/* @font-face {
+@font-face {
     font-family: 'IM Fell English';
     src: url('/fonts/im-fell-english/im-fell-english-regular.woff2') format('woff2');
     font-weight: normal;
     font-style: normal;
     font-display: swap;
-} */
+}
 
 @font-face {
   font-family: 'Inter';
@@ -71,16 +72,16 @@
 
 @font-face {
   font-family: 'Inter';
-  src: url('/fonts/inter/inter-v20-latin-700.woff2') format('woff2');
-  font-weight: 700;
+  src: url('/fonts/inter/inter-v20-latin-600.woff2') format('woff2');
+  font-weight: 600;
   font-style: normal;
   font-display: swap;
 }
 
 @font-face {
   font-family: 'Inter';
-  src: url('/fonts/inter/inter-v20-latin-700italic.woff2') format('woff2');
-  font-weight: 700;
+  src: url('/fonts/inter/inter-v20-latin-600italic.woff2') format('woff2');
+  font-weight: 600;
   font-style: italic;
   font-display: swap;
 }
@@ -88,7 +89,7 @@
 body {
     margin: 0 auto;
     font-family: var(--font-primary);
-    font-size: var(--font-size-lg);
+    font-size: var(--font-size-base);
     /* margin: 0 1rem 0 1rem; */
     /* padding: 0 1rem 0 1rem; */
     /* font-family: 'IMFellEnglish', serif; */
@@ -106,39 +107,38 @@ body {
 }
 
 
-h1, h2 {
+/* h1, h2 {
 letter-spacing: -0.02em;
-}
+} */
 
-h1 { font-size: var(--font-size-3xl); font-weight: 700; line-height: var(--line-height-sm); }
-h2 { font-size: var(--font-size-2xl); font-weight: 700; line-height: var(--line-height-sm); margin-top: 2.5rem; }
-h3 { font-size: var(--font-size-xl); font-weight: 700; line-height: var(--line-height-sm); margin-top: 2rem; }
+h1 { font-size: var(--font-size-3xl); font-weight: 600; line-height: var(--line-height-sm); margin-bottom: 0rem;}
+h2 { font-size: var(--font-size-2xl); font-weight: 600; line-height: var(--line-height-sm); margin-top: 2.5rem; }
+h3 { font-size: var(--font-size-xl); font-weight: 600; line-height: var(--line-height-sm); margin-top: 2rem; }
 
 html.dark h1, html.dark h2, html.dark h3 {
   color: var(--dark-heading);
 }
 
 /* title page */
-.title-page {
+/* .title-page {
   text-align: center;
-  /* font-size: 2rem; */
   font-weight: normal;
   max-width: 100%;
   word-spacing: 0em;
   margin: 1.5rem auto;
   line-height: var(--line-height-md);
   text-wrap: pretty;
-}
+} */
 
-p.title-page {
+/* p.title-page {
   word-spacing: normal;
   max-width: 100%;
-  /* margin: 0 auto; */
-}
+  margin: 0 auto;
+} */
 
-@media screen and (min-width: 636px) {
+/* @media screen and (min-width: 636px) {
   .title-page {
-    /* font-size: 3rem; */
+    font-size: 3rem;
     max-width: 100%;
     word-spacing: 0.3em;
   }
@@ -146,7 +146,7 @@ p.title-page {
   p.title-page {
     max-width: 70%;
   }
-}
+} */
 
 /* global text color */
 a, p, h1, h2, h3 {
@@ -196,9 +196,9 @@ sup a {
 .footnotes a {
   text-decoration: none;
 }
-.footnotes p {
-  font-size: 1rem;
-}
+/* .footnotes p {
+  font-size: var(--font-size-base);
+} */
 
 cite {
   font-style: normal;
@@ -226,6 +226,8 @@ blockquote {
   width: 100%;
   max-width: 400px;
   height: auto;
+  /* max-height: 60vh; */
+  border-radius: var(--radius-md);
   border: var(--image-border);
   margin: 0 auto;
   display: block;

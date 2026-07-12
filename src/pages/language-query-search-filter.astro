@@ -9,10 +9,12 @@ import textData from '../data/language/language-word2vec-documents.json';
 import word2vecData from '../data/language/language-word2vec.json';
 import word2vecDataCoordinates from '../data/language/language-word2vec-coordinates.json';
 
+import Dinkus from '../components/ui/Dinkus.astro';
+
 export const prerender = false;
 
 const pageTitle = "L=A=N=G=U=A=G=E";
-const description = "In-text vector-based query search UI for the L=A=N=G=U=A=G=E magazine. Look up terms and their usage in the Language Writing school.";
+const description = "Look up terms and their usage in the L=A=N=G=U=A=G=E magazine";
 
 // Customize these keys to match your data structure
 const textFields = {
@@ -26,9 +28,10 @@ const textFields = {
 ---
 
 <BaseLayout pageTitle={pageTitle} description={description}>
-  <h3>Query Search UI for
+  <Dinkus count={3}></Dinkus>
+  <!-- <h3>Query Search UI for
     <a href="https://eclipsearchive.org/projects/LANGUAGE/language.html" target="_blank">L=A=N=G=U=A=G=E</a>
-  </h3>
+  </h3> -->
   <SearchWord2vecMulti 
     word2vecData={word2vecDataCoordinates}
   />

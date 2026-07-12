@@ -4,6 +4,7 @@ import Centrality from '../components/bimodal-network/Centrality.astro';
 // src data
 import nodesData from '../data/bimodal-network/nodes.json';
 import linksData from '../data/bimodal-network/links.json';
+import Dinkus from '../components/ui/Dinkus.astro';
 
 const pageTitle = "Network Visualization";
 const description = "Bimodal network visualization of members and institutions";
@@ -41,6 +42,7 @@ const institutionFilter2 = [
 ---
 
 <BaseLayout pageTitle={pageTitle} description={description}>
+  <Dinkus count={3}></Dinkus>
   <p>Creating an Inflection: Unimodal Networks for Centrality Measurements
     first change the bimodal graph into unimodal graph, then apply centrality measurements
   </p>

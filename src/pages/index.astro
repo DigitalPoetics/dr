@@ -11,16 +11,19 @@ import {Image} from "astro:assets";
 import Table from '../components/ui/Table.astro';
 import Dinkus from '../components/ui/Dinkus.astro';
 const pageTitle = "Diagrammatic Readings"
-const desription = "The graphical expressions turn matter and form of content into materials and forces, and we propose a diagrammatic approach that renders these materials and forces visible.";
+// const desription = "The graphical expressions turn matter and form of content into materials and forces, and we propose a diagrammatic approach that renders these materials and forces visible.";
+const description = "Computational and materialist approaches to literary analytics and visualization"
 
 // src image
 import druckerImage from "../assets/images/home/drucker-inflection.jpg"
 import poemaImage from "../assets/images/digital-formalism/poema.png"
 ---
-<BaseLayout pageTitle={pageTitle} description={desription}>
-	<p class="title-page">Computational and materialist approaches to literary analytics and visualization</p>
+<BaseLayout pageTitle={pageTitle} description={description}>
+	
+	
+	<!-- <p class="title-page">Computational and materialist approaches to literary analytics and visualization</p>
 	<h4 class="title-page">WITH DIAGRAMS FOR</h4>
-	<h3 class="title-page">NETWORK,<br>TEXT,<br>SOUND,<br>AND MORE...</h3>
+	<h3 class="title-page">NETWORK,<br>TEXT,<br>SOUND,<br>AND MORE...</h3> -->
 	<Dinkus count={3}></Dinkus>
 	<Note>
 		<p><b>Rhythm</b>Though verse rhythm is often associated with repetition and regularity, it is shaped more deeply by the alternation of tones and the variation of phrasing. 

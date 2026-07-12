@@ -2,7 +2,7 @@
 const { count = 1 } = Astro.props;
 ---
 
-<h3 class="title-page">
+<h3 class="dinkus">
   {Array.from({ length: count }, () => (
     <span class="section-break">&#10043;</span>
   ))}
@@ -17,6 +17,10 @@ const { count = 1 } = Astro.props;
   animation-timeline: view();
   animation-range: entry 0% entry 25%;
 } */
+
+    .dinkus {
+      text-align: center;
+    }
 
     .section-break {
         display: inline-block;

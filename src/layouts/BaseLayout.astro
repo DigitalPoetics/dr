@@ -34,9 +34,15 @@ const { pageTitle, description } = Astro.props;
 		<Navigation />
 		<div class="layout">
 			<main id="content" data-pagefind-body>
-				<h1 
+				<!-- <h1 
 				class="title-page" 
-				data-pagefind-meta="title">{pageTitle}</h1>
+				data-pagefind-meta="title">{pageTitle}</h1> -->
+				<h1 
+				data-pagefind-meta="title"
+				class="page-title">{pageTitle.toUpperCase()}</h1>
+				<p class="description">{description}</p>
+
+
 				<slot />
 			</main>
 		</div>
@@ -59,18 +65,25 @@ main {
 	margin: 0 auto;
 }
 
+.description {
+	max-width: 30ch;
+	margin-bottom: 2rem;
+	font-style: italic;
+}
+
 /* .page-title {
   text-align: left;
   font-size: 2rem;
   font-weight: normal;
   max-width: 100%;
 } */
-.title-page {
+
+/* .title-page {
 	letter-spacing: var(--title-letter-spacing-small); 
 	margin: 3rem 0 0 0;
 	font-size: 2rem;
 	text-transform: uppercase;
-}
+} */
 
 @media screen and (min-width: 636px) {
   .layout {
@@ -87,10 +100,18 @@ main {
 	margin: 1rem auto 0 auto;
   }
 
-  .title-page {
+  .page-title {
+	word-spacing: 0.5rem;
+  }
+
+  .description {
+	max-width: 40ch;
+  }
+
+  /* .title-page {
 	letter-spacing: var(--title-letter-spacing); 
 	font-size: 2.5rem;
-  }
+  } */
 
   /* .page-title {
     font-size: 3rem;

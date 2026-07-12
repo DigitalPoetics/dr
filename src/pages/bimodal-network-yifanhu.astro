@@ -13,6 +13,7 @@ import audioLinksData from '../data/bimodal-network/audio-links.json';
 // src pics
 import disjointImage from '../assets/images/digital-archaeology/d3js-disjoint-graph.png';
 
+import Dinkus from '../components/ui/Dinkus.astro';
 
 const pageTitle = "Network Layouts";
 const description = "D3.js force simulations appromixation of Yifan Hu and Fruchterman-Reingold network layouts.";
@@ -66,10 +67,11 @@ const institutionFilter3 = [
 
 <BaseLayout pageTitle={pageTitle} description={description}>
 
-  <p class="title-page">Force-directed graphs delineated with d3.js force simulations</p>
+  <!-- <p class="title-page">Force-directed graphs delineated with d3.js force simulations</p>
   <h4 class="title-page">WITH DIAGRAMS FOR</h4>
   <h3 class="title-page">YIFAN HU & FRUCHTERMAN-REINGOLD</h3>
-  <h1 class="title-page">~~~</h1>
+  <h1 class="title-page">~~~</h1> -->
+  <Dinkus count={3}></Dinkus>
   <Figure>
     <Image slot="image"
       src={disjointImage}

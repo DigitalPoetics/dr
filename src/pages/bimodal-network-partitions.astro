@@ -10,6 +10,8 @@ import linksData from '../data/bimodal-network/links.json';
 // src image
 import languageImage from '../assets/images/digital-archaeology/post45-language-writing.jpg'  
 
+import Dinkus from '../components/ui/Dinkus.astro';
+
 const pageTitle = "Network Partitions";
 const description = "Partitioning a network graph to ascertain the degree of coherence in sub-networks.";
 
@@ -74,10 +76,11 @@ const institutionFilter4 = [
 
 <BaseLayout pageTitle={pageTitle} description={description}>
 
-  <p class="title-page">Partitioning a network graph to ascertain the degree of coherence in sub-networks</p>
+  <!-- <p class="title-page">Partitioning a network graph to ascertain the degree of coherence in sub-networks</p>
   <h4 class="title-page">WITH DIAGRAMS FOR</h4>
   <h3 class="title-page">NODE FILTRATION</h3>
-  <h1 class="title-page">~~~</h1>
+  <h1 class="title-page">~~~</h1> -->
+  <Dinkus count={3}></Dinkus>
 
   <Figure>
       <Image slot="image"

@@ -9,7 +9,7 @@ import ThemeIcons from "./ThemeIcons.astro";
         <div class="nav-top">
             <div class="nav-left">
                 <Hamburger />
-                <a href="/">~ DR ~</a>
+                <a href="/">DR</a>
             </div>
             <div class="nav-right">
                   <SearchWidget 
@@ -67,8 +67,8 @@ html.dark header {
 }
 
 nav a {
-    font-size: 1.75rem;
-    font-weight: bold;
+    font-size: var(--font-size-2xl);
+    font-weight: 600;
     text-decoration: none;
     color: var(--light-text);
 }
@@ -79,7 +79,8 @@ a:focus {
 }
 
 html.dark nav a {
-    color: var(--dark-text);
+    color: var(--dark-heading);
+    font-weight: 600;
 }
 
 html.dark nav a:hover,

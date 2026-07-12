@@ -94,7 +94,7 @@ const allMatches = queryTokens.length > 0 ? getAllMatches(queryTokens) : [];
       if (matches.length > 0) {
         results.innerHTML = `
           <style>
-            .dropdown-item { display: block; padding: 0 0 0 0.5rem; font-size: 1rem; text-decoration: none; color: var(--light-text); }
+            .dropdown-item { display: block; padding: 0 0 0 0.5rem; font-size: var(--font-size-lg); font-family: var(--font-secondary); text-decoration: none; color: var(--light-text); }
             .dropdown-item:hover { color: var(--hover-color); }
           </style>
           ${matches.map(match => 
@@ -124,16 +124,16 @@ const allMatches = queryTokens.length > 0 ? getAllMatches(queryTokens) : [];
   .search-bar input {
     flex: 1;
     padding: 0.5rem;
-    font-size: 1rem;
-    font-family: 'IM Fell English', serif;
+    font-size: var(--font-size-base);
+    font-family: var(--font-secondary);
     box-sizing: border-box;
   }
 
   .search-button {
     padding: 0.5rem 1rem;
-    font-size: 1rem;
+    font-size: var(--font-size-base);
     cursor: pointer;
-    font-family: 'IM Fell English', serif;
+    font-family: var(--font-secondary);
     border: var(--image-border);
     transition: background-color 0.3s ease, color 0.3s ease;
   }
@@ -173,7 +173,15 @@ const allMatches = queryTokens.length > 0 ? getAllMatches(queryTokens) : [];
     margin: 1rem 0;
   }
 
+  /* .dropdown-item {
+    font-size: var(--font-size-3xl);
+  } */
+
   .keyword-match {
     margin-bottom: 0.5rem;
+  }
+
+  html.dark strong {
+    color: var(--dark-heading);
   }
 </style>
