@@ -1,0 +1,3 @@
+[build.processing.css]
+  bundle = true
+  minify = false
