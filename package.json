@@ -9,12 +9,17 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/mdx": "^4.3.5",
-    "@astrojs/netlify": "^6.5.8",
-    "@astrojs/node": "^9.4.3",
-    "@astrojs/sitemap": "^3.6.0",
-    "astro": "^5.9.4",
-    "astro-pagefind": "^1.8.5",
-    "fuse.js": "^7.1.0"
+    "@astrojs/mdx": "^7.0.7",
+    "@astrojs/netlify": "^8.2.3",
+    "@astrojs/node": "^11.1.4",
+    "@astrojs/sitemap": "^3.7.3",
+    "astro": "^7.2.4",
+    "astro-pagefind": "^2.0.1",
+    "fuse.js": "^7.1.0",
+    "sharp": "^0.35.3"
+  },
+  "optionalDependencies": {
+    "@bruits/satteri-darwin-arm64": "^0.10.3",
+    "lightningcss-darwin-arm64": "^1.33.0"
   }
 }

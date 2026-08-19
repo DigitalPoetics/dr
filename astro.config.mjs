@@ -16,4 +16,7 @@ export default defineConfig({
   build: {
     inlineStylesheets: "always",
   },
+  image: {
+    domains: ["docs.astro.build"],
+  },
 });

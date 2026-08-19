@@ -1,7 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 
-import Search from "astro-pagefind/components/Search";
+import Search from "astro-pagefind/components/Search.astro";
 
 export const prerender = false;
 
@@ -9,8 +9,40 @@ const q = Astro.url.searchParams.get("q") ?? undefined;
 ---
 
 <BaseLayout pageTitle="Search" description="Search Diagrammatic Readings">
-    <!-- <link href="/pagefind/pagefind-ui.css" rel="stylesheet" slot="head"> -->
-    <!-- <Search query={q} /> -->
+  <link slot="head" href="/pagefind/pagefind-ui.css" rel="stylesheet" />
+  <script slot="head" src="/pagefind/pagefind-ui.js" is:inline></script>
+
+  <div id="search-pagefind" class="pagefind-ui custom-search"></div>
+</BaseLayout>
+
+<script define:vars={{ q }}>
+  window.addEventListener("DOMContentLoaded", () => {
+    new PagefindUI({
+      element: "#search-pagefind",
+      showImages: true,
+      showFilters: true,
+      showEmptyFilters: false,
+      excerptLength: 50,
+      showSubResults: true,
+      mergeResults: true,
+      openFilters: false,
+      ranking: {
+        termFrequency: 0.75,
+        termSimilarity: 0.75,
+        pageLength: 0.25,
+        termSaturation: 1.5,
+      }
+    });
+    if (q) {
+      const input = document.querySelector(".pagefind-ui__search-input");
+      input.value = q;
+      input.dispatchEvent(new Event("input"));
+    }
+  });
+</script>
+
+
+<!-- <BaseLayout pageTitle="Search" description="Search Diagrammatic Readings">
 
     <Search 
         query={q}
@@ -34,9 +66,7 @@ const q = Astro.url.searchParams.get("q") ?? undefined;
         }} 
     />
 
-    <!-- <Search id="search2" className="pagefind-ui red" /> -->
-
-</BaseLayout>
+</BaseLayout> -->
 
 <style is:global>
     .pagefind-ui.custom-search {
