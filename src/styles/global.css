@@ -131,6 +131,10 @@ h1 { font-size: var(--font-size-3xl); font-weight: 600; line-height: var(--line-
 h2 { font-size: var(--font-size-2xl); font-weight: 600; line-height: var(--line-height-sm); margin-top: 2.5rem; }
 h3 { font-size: var(--font-size-xl); font-weight: 600; line-height: var(--line-height-sm); margin-top: 2rem; }
 
+h1, h2, h3 {
+  letter-spacing: -0.01em;
+}
+
 html.dark h1, html.dark h2, html.dark h3 {
   color: var(--dark-heading);
 }
