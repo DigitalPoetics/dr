@@ -1,10 +1,10 @@
 :root {
-    --dark-background: #1b1e21;
+    --dark-background: #1c1c1d;
     --light-background: #fbfbf6;
     --dark-text: #c0c2c7;
     --dark-text-opacity: #a1a1aab3;
     --dark-heading: #eeeeee;
-    --light-text: #292524;
+    --light-text: #1c1c1d;
     --light-text-opacity: #292524b3;
     --hover-color: #fc7d0b;
     /* --border-color: 1px solid #ccc; */
@@ -54,7 +54,7 @@
     font-display: swap;
 }
 
-@font-face {
+/* @font-face {
   font-family: 'Inter';
   src: url('/fonts/inter/inter-v20-latin-regular.woff2') format('woff2');
   font-weight: 400;
@@ -68,8 +68,23 @@
   font-weight: 400;
   font-style: italic;
   font-display: swap;
+} */
+
+@font-face {
+  font-family: 'Inter';
+  src: url('/fonts/inter/inter-v20-latin-300.woff2') format('woff2');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
 }
 
+@font-face {
+  font-family: 'Inter';
+  src: url('/fonts/inter/inter-v20-latin-300italic.woff2') format('woff2');
+  font-weight: 300;
+  font-style: italic;
+  font-display: swap;
+}
 @font-face {
   font-family: 'Inter';
   src: url('/fonts/inter/inter-v20-latin-600.woff2') format('woff2');
