@@ -302,12 +302,12 @@ code:not(.astro-code code) {
 } */
 
 
-/* section break animation */
-/* .section-break {
+/* dinkus animation */
+.section-break {
   display: inline-block;
   animation: rotate-on-scroll linear;
   animation-timeline: view();
-  animation-range: entry 0% exit 100%;
+  animation-range: entry -20% exit 20%;
 }
 
 @keyframes rotate-on-scroll {
@@ -317,4 +317,4 @@ code:not(.astro-code code) {
   to {
     rotate: 360deg;
   }
-} */
+}

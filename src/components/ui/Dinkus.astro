@@ -22,26 +22,25 @@ const { count = 1 } = Astro.props;
       text-align: center;
     }
 
-    .section-break {
+    /* .section-break {
         display: inline-block;
         rotate: 0deg;
         animation: rotate-on-scroll ease-in-out;
         animation-timeline: view();
         animation-range: contain 0% contain 100%;
         animation-range: entry -20% exit 20%;
-        /* animation-range: entry 0% exit 100%; */
-    }
+    } */
 
     .section-break + .section-break {
       margin-left: 0.3em;
     }
 
-    @keyframes rotate-on-scroll {
+    /* @keyframes rotate-on-scroll {
         from {
             rotate: 0deg;
         }
         to {
             rotate: 360deg;
         }
-    }
+    } */
 </style>
