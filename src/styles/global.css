@@ -303,7 +303,7 @@ code:not(.astro-code code) {
 
 
 /* dinkus animation */
-.section-break {
+/* .section-break {
   display: inline-block;
   animation: rotate-on-scroll linear;
   animation-timeline: view();
@@ -317,4 +317,4 @@ code:not(.astro-code code) {
   to {
     rotate: 360deg;
   }
-}
+} */

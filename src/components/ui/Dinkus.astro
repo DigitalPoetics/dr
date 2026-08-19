@@ -8,6 +8,16 @@ const { count = 1 } = Astro.props;
   ))}
 </h3>
 
+<script>
+  document.querySelectorAll(".section-break").forEach(el => {
+    (el as HTMLElement).style.display = "inline-block";
+    (el as HTMLElement).style.animation = "rotate-on-scroll linear";
+    (el as HTMLElement).style.animationTimeline = "view()";
+    (el as HTMLElement).style.animationRange = "entry 0% exit 20%";
+  });
+</script>
+
+
 <style is:global>
 
     /* section break animation */
@@ -35,12 +45,8 @@ const { count = 1 } = Astro.props;
       margin-left: 0.3em;
     }
 
-    /* @keyframes rotate-on-scroll {
-        from {
-            rotate: 0deg;
-        }
-        to {
-            rotate: 360deg;
-        }
-    } */
+    @keyframes rotate-on-scroll {
+        from { rotate: 0deg; }
+        to { rotate: 360deg; }
+    }
 </style>
