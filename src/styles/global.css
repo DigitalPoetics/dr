@@ -1,10 +1,10 @@
 :root {
     --dark-background: #1c1c1d;
     --light-background: #fbfbf6;
-    --dark-text: #c0c2c7;
+    --dark-text: #d4d4d8;
     --dark-text-opacity: #a1a1aab3;
     --dark-heading: #eeeeee;
-    --light-text: #1c1c1d;
+    --light-text: #292524;
     --light-text-opacity: #292524b3;
     --hover-color: #fc7d0b;
     /* --border-color: 1px solid #ccc; */
@@ -85,6 +85,7 @@
   font-style: italic;
   font-display: swap;
 }
+
 @font-face {
   font-family: 'Inter';
   src: url('/fonts/inter/inter-v20-latin-600.woff2') format('woff2');
