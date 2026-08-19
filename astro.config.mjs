@@ -14,7 +14,7 @@ export default defineConfig({
   site: 'https://diagrammaticreadings.com',
   integrations: [mdx(), sitemap(), pagefind()],
   build: {
-    inlineStylesheets: "always",
+    inlineStylesheets: "never",
   },
   image: {
     domains: ["docs.astro.build"],
