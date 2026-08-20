@@ -12,31 +12,34 @@ export interface Props {
 const { pageTitle, description, imageUrl, imageAlt, srcPath } = Astro.props;
 ---
 <figure class="figure-container">
-  <hr>
+  <!-- <hr> -->
   <div class="content-wrapper">
     <a href={srcPath} class="text-content" target="_blank">
       <div class="title-container">
-        <h1 class="title">{pageTitle}</h1>
+        <p class="title">{pageTitle}</p>
         <p class="description">{description}</p>
+        <div class="image-wrapper">
+          <img src={typeof imageUrl === 'string' ? imageUrl : imageUrl.src} alt={imageAlt} class="responsive-image"/>
+        </div>
+
       </div>
     </a>
     <!-- <div class="text-content">
 
     </div> -->
-    <div class="image-wrapper">
-      <!-- <img src={Astro.props.imageUrl} alt={imageAlt} class="responsive-image" /> -->
-    <img src={typeof imageUrl === 'string' ? imageUrl : imageUrl.src} alt={imageAlt} class="responsive-image"/>
-    </div>
+    <!-- <div class="image-wrapper">
+      <img src={typeof imageUrl === 'string' ? imageUrl : imageUrl.src} alt={imageAlt} class="responsive-image"/>
+    </div> -->
   </div>
 </figure>
 
 <style>
-  hr {
+  /* hr {
     margin-bottom: 0.5rem;
-  }
+  } */
   
   .figure-container {
-    margin: 1rem 0 5rem 0;
+    margin: 1rem 0 2rem 0;
     /* padding: 0.5rem 0; */
     width: 100%;
     /* border-top: var(--image-border);
@@ -46,19 +49,19 @@ const { pageTitle, description, imageUrl, imageAlt, srcPath } = Astro.props;
   .content-wrapper {
     display: flex;
     flex-direction: column;
-    gap: 1.5rem;
+    /* gap: 1.5rem; */
     max-width: 100%;
-    padding-top: 0.5rem;
+    /* padding-top: 0.5rem; */
     position: relative;
   }
 
   .text-content {
     flex: 1;
     text-decoration: none;
-    color: inherit;
+    /* color: inherit; */
     /* display: block; */
     min-height: 100%;
-    transition: color 0.2s ease;
+    /* transition: color 0.2s ease; */
   }
 
   /* .title-container {
@@ -68,6 +71,7 @@ const { pageTitle, description, imageUrl, imageAlt, srcPath } = Astro.props;
 
   .text-content:hover .title {
     color: var(--hover-color);
+    text-decoration-color: currentColor;
   }
 
   /* .text-content:hover .description {
@@ -75,45 +79,59 @@ const { pageTitle, description, imageUrl, imageAlt, srcPath } = Astro.props;
   } */
 
   .title {
-    margin: 0 0 0.5rem 0;
-    font-size: 1.3rem;
-    font-weight: normal;
+    margin: 0 0 .2rem 0;
+    /* font-size: 1.3rem; */
+    font-weight: 600;
+    font-size: var(--font-size-base);
+    color: var(--highlight-color);
     /* text-decoration: underline; */
-    line-height: var(--line-height-md);
-    transition: color 0.2s ease;
-    color: var(--light-text);
+    /* line-height: var(--line-height-md); */
+    /* color: var(--light-text); */
+    text-decoration: underline;
+    text-decoration-color: transparent;
+    transition: color 0.2s ease, text-decoration-color 0.2s ease;
+
   }
 
   .description {
-    margin: 0;
-    font-size: 1.2rem;
+    margin: 0 0 0 0;
+    font-size: var(--font-size-sm);
     font-weight: normal;
+    font-style: italic;
     line-height: var(--line-height-sm);
-    transition: color 0.2s ease;
-    color: var(--light-text-opacity);
+    /* transition: color 0.5s ease; */
+    color: var(--light-text);
   }
 
 
   html.dark .title {
-    color: var(--dark-text);
+    /* color: var(--dark-text-color); */
+    color: var(--highlight-color);
   }
 
+  /* .text-content:hover .title {
+    color: var(--highlight-color);
+    text-decoration-color: currentColor;
+  } */
+
   html.dark .description {
-    color: var(--dark-text-opacity);
+    color: var(--dark-text);
   }
 
   .image-wrapper {
     flex: 1;
+    margin: 0.4rem 0 0 0;
   }
 
   .responsive-image {
     width: 100%;
-    height: 15rem;
+    height: 7rem;
     object-fit: cover;
     aspect-ratio: 16 / 10;
     border-radius: 0;
-    border: none;
-    box-shadow: 0 0 0.65rem rgba(0, 0, 0, 0.3);
+    /* border: none; */
+    border: var(--image-border);
+    /* box-shadow: 0 0 0.65rem rgba(0, 0, 0, 0.3); */
     /* box-shadow: 0 0 10px var(--light-text-opacity); */
     
   }
@@ -121,31 +139,34 @@ const { pageTitle, description, imageUrl, imageAlt, srcPath } = Astro.props;
   /* Desktop layout - side by side */
   @media (min-width: 636px) {
     .content-wrapper {
+      /* display: flex; */
       flex-direction: row;
       align-items: flex-start;
       gap: 2rem;
+      width: 100%;
     }
 
-    .text-content {
+    /* .text-content {
       flex: 0 0 40%;
-      max-width: 30%;
-    }
+      max-width: 40%;
+    } */
 
-    .title {
+    /* .title {
       font-size: 1.5rem;
-    }
+    } */
 
     .description {
-      font-size: 1.2rem;
+      font-size: var(--font-size-sm);
     }
 
     .image-wrapper {
       flex: 1;
+      /* min-width: 0; */
     }
 
     .responsive-image {
       width: 100%;
-      height: 18rem;
+      height: 7rem;
       object-fit: cover;
       aspect-ratio: 16 / 10;
     }

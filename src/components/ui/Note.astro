@@ -2,19 +2,28 @@
 ---
 <div class="container">
     <slot class="slot-content"></slot>
+    <hr>
 </div>
 
 <style>
   .container {
     max-width: 100%;
-    margin: 1rem 0 0 0;
-    padding: 1rem 0 0 0;
+    margin: 0 0 0 0;
+    padding: 0 0 0 0;
     /* padding: 0.5rem 0; */
     color: var(--light-text);
     /* border: 1px solid #ddd; */
     /* margin: 1rem 0; */
-    font-size: 1.2rem;
+    font-size: var(--font-size-base);
     line-height: var(--line-height-md);
+  }
+
+  hr {
+    /* width: 70%; */
+    border: none;
+    border-top: var(--image-border);
+    /* bordern: none; */
+    margin: 0 0 0 0;
   }
 
   html.dark .container {
@@ -23,16 +32,18 @@
 
   .container :global(b) {
     /* color: var(--viz-background); */
-    font-weight: 600;
-    text-transform: uppercase;
+    font-weight: 700;
+    /* text-transform: uppercase; */
     /* font-size: 0.9em; */
-    letter-spacing: var(--title-letter-spacing);
+    /* letter-spacing: var(--title-letter-spacing); */
   }
 
   .container :global(b)::after {
-    content: ' •';
+    content: ' • ';
+    /* content: ' '; */
+
     /* margin-left: 0.3em; */
-    margin-right: 0.3em;
+    /* margin-right: 0.3em; */
     color: inherit;
     /* opacity: 0.6; */
   }
@@ -40,9 +51,9 @@
 
   @media screen and (min-width: 636px) {
     .container {
-      max-width: 80%;
+      max-width: 100%;
       margin: 2rem 0 0 0;
-      padding: 1rem 0 0 0;
+      padding: 0 0 0 0;
       /* font-size: 1.3rem; */
       line-height: var(--line-height-md);
     }
