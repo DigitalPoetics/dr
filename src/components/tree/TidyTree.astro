@@ -4,7 +4,7 @@ export interface Props {
   treeData: any;
   width?: number;
   height?: number;
-  radius?: number;
+  radiusMultiplier?: number;
   separation?: number;
   translateX?: number;
   rootNodeRadius?: number;
@@ -34,7 +34,7 @@ const {
   treeData,
   width = 900,
   height = 900,
-  radius = 380,
+  radiusMultiplier = 1.5,
   separation = 1,
   translateX = 0,
   rootNodeRadius = 8,
@@ -78,7 +78,7 @@ sortChildrenAlphabetically(sortedTreeData);
   sortedTreeData,
   width,
   height,
-  radius,
+  radiusMultiplier,
   separation,
   translateX,
   rootNodeRadius,
@@ -112,10 +112,19 @@ sortChildrenAlphabetically(sortedTreeData);
     const container = d3.select(`#${id}`);
     container.selectAll("*").remove();
 
+    // get width and height
+    const containerEl = document.getElementById(id);
+    const w = containerEl.clientWidth;
+    const h = window.innerHeight * (window.innerWidth < 636 ? 0.6 : 0.8);
+    // change radius based on screen size
+    const r = Math.min(w, h) * radiusMultiplier;
+    // get primary font
+    const fontFamily = getComputedStyle(document.documentElement).getPropertyValue('--diagram-font-primary').trim();
+
     const svg = container
       .append("svg")
-      .attr("width", width)
-      .attr("height", height)
+      .attr("width", w)
+      .attr("height", h)
       .attr("viewBox", [(-width / 2) + translateX, -height / 2, width, height])
       .style("background-color", "var(--viz-background)")
       .style("border", "var(--image-border)");
@@ -142,7 +151,7 @@ sortChildrenAlphabetically(sortedTreeData);
       .range(advisorFontRange);
 
     const tree = d3.tree()
-      .size([2 * Math.PI, radius])
+      .size([2 * Math.PI, r])
       .separation((a, b) => (a.parent === b.parent ? separation : separation * 2) / a.depth || separation);
 
     tree(root);
@@ -224,7 +233,7 @@ sortChildrenAlphabetically(sortedTreeData);
       const node = d3.select(this);
       const text = node.append("text")
         .attr("class", "node-label")
-        .attr("font-family", "sans-serif")
+        .attr("font-family", fontFamily)
         .attr("font-size", getFontSize(d))
         .attr("fill", getFontColor(d))
         .text(d.data.name)
@@ -521,15 +530,28 @@ sortChildrenAlphabetically(sortedTreeData);
 </script>
 
 <style>
-  .tree-container { 
+
+  .tree-container {
+    margin: 0;
+  }
+
+  /* .tree-container { 
     width: 100%; 
+    height: 60vh;
     margin: 0;
     display: flex;
     justify-content: center;
     position: relative;
-  }
-  .tree-container svg {
+  } */
+
+  /* .tree-container svg {
     max-width: 100%;
-    height: auto;
-  }
+    height: 100%;
+  } */
+
+  /* @media screen and (min-width: 636px) {
+    .tree-container {
+      height: 80vh;
+    }
+  } */
 </style>

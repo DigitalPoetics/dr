@@ -33,39 +33,40 @@ const praatData = await praatResponse.json();
     <p>Poema implements <a href="https://www.fon.hum.uva.nl/praat/" target="_blank">Praat</a> display on the browser, and it extends the Tones and Breaks Indices (ToBI) framework by including beats and text to analyze rhythm and phrasing of spoken verse.</p>
     <Dinkus count={1}></Dinkus>
 
-    
-    <Figure>
-      <div class="poema-container" slot="image">
-        <div class="waveform-section">
-          <!-- <WaveSurfer 
-            audioUrl="/poema/WCW_The_Red_Wheelbarrow_1945_LoC.wav"
-            height={64}
-            minPxPerSec={110}
-          /> -->
-          <Spectrogram 
-            audioUrl="/data/poema/WCW-The-Red-Wheelbarrow-1945-LoC.wav"
-            height={32}
-            minPxPerSec={110}
-          />
-          <!-- height is waveform + spectrogram (32 + 128) -->
-          <Praat 
-            pitchData={pitchData}
-            praatData={praatData}
-            waveformHeight={160}
-          />
-        </div>
+    <div class="figure-wrapper">
+      <Figure>
+        <div class="poema-container" slot="image">
+          <div class="waveform-section">
+            <!-- <WaveSurfer 
+              audioUrl="/poema/WCW_The_Red_Wheelbarrow_1945_LoC.wav"
+              height={64}
+              minPxPerSec={110}
+            /> -->
+            <Spectrogram 
+              audioUrl="/data/poema/WCW-The-Red-Wheelbarrow-1945-LoC.wav"
+              height={32}
+              minPxPerSec={110}
+            />
+            <!-- height is waveform + spectrogram (32 + 128) -->
+            <Praat 
+              pitchData={pitchData}
+              praatData={praatData}
+              waveformHeight={160}
+            />
+          </div>
 
-        <div class="transcription-section">
-          <Transcription 
-            transcriptionUrl="/data/poema/WCW-The-Red-Wheelbarrow-1945-LoCTextgrid.json"
-            title="The Red Wheelbarrow"
-          />
+          <div class="transcription-section">
+            <Transcription 
+              transcriptionUrl="/data/poema/WCW-The-Red-Wheelbarrow-1945-LoCTextgrid.json"
+              title="The Red Wheelbarrow"
+            />
+          </div>
         </div>
-      </div>
-      <span slot="caption">
-        Figure 1. Sonification of William Carlos Williams’s “The Red Wheelbarrow,” first two stanzas, Library of Congress recording (1945). Data Source: <a href="https://writing.upenn.edu/pennsound/x/Williams- WC.php" target="_blank">PennSound</a>.      
-      </span>
-    </Figure>
+        <span slot="caption">
+          Figure 1. Sonification of William Carlos Williams’s “The Red Wheelbarrow,” first two stanzas, Library of Congress recording (1945). Data Source: <a href="https://writing.upenn.edu/pennsound/x/Williams- WC.php" target="_blank">PennSound</a>.      
+        </span>
+      </Figure>
+    </div>
 
     <Dinkus count={1}></Dinkus>
     <p>The Poema display is made with <a href="https://wavesurfer.xyz/examples/?spectrogram.js" target="_blank">wavesurjer.js</a> and <a href="https://d3js.org/" target="_blank">d3.js</a>.</p>
@@ -85,11 +86,24 @@ const praatData = await praatResponse.json();
 </BaseLayout>
 
 <style>
+
+  /* .figure-wrapper {
+    box-shadow: var(--box-shadow-dark-full);
+    padding: 1rem;
+  } */
+
   .poema-container {
     display: flex;
     flex-direction: column;
     gap: 1rem;
     width: 100%;
+    box-shadow: var(--box-shadow-light-full);
+    padding: 0.5rem;
+    box-sizing: border-box;
+  }
+
+  html.dark .poema-container {
+    box-shadow: var(--box-shadow-dark-full);
   }
 
   .waveform-section {
@@ -104,6 +118,7 @@ const praatData = await praatResponse.json();
     .poema-container {
       flex-direction: row;
       align-items: flex-start;
+      padding: 1rem;
     }
 
     .waveform-section {
@@ -113,7 +128,7 @@ const praatData = await praatResponse.json();
 
     .transcription-section {
       flex: 0 0 40%;
-      padding-left: 1rem;
+      padding-left: 0.5rem;
       min-width: 0;
     }
   }

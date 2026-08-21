@@ -29,8 +29,9 @@ a, details summary {
   gap: 1rem;
   margin: 0 0.5rem 0 0.5rem;
   /* padding-left: 1.5rem; */
-  font-weight: bold;
-  font-size: var(--font-size-base);
+  font-weight: 600;
+  font-size: var(--font-size-lg);
+  line-height: var(--line-height-lg);
   padding-top: 0.5rem;
   text-decoration: none;
 }
@@ -77,7 +78,8 @@ details > a {
   /* padding-left: 1rem; */
   text-decoration: none;
   text-align: left;
-  font-size: 1rem;
+  font-size: var(--font-size-base);
+  line-height: var(--line-height-md);
   font-weight: normal;
   padding:  0.2rem 0 0 0.5rem;
 }
@@ -88,14 +90,14 @@ details > a.active {
   color: var(--highlight-color);
   font-weight: bold;
 }
-a.active {
+/* a.active {
   color: var(--highlight-color);
-  font-weight: bold;
+  font-weight: normal;
 }
 
 html.dark a.active {
   color: var(--highlight-color);
-}
+} */
 
 html.dark details > a.active {
   color: var(--highlight-color);

@@ -36,7 +36,9 @@ const {
       poemSpan.innerHTML += `
         <style>
           .poem-text { 
-            font-size: 1.1rem;
+            font-family: var(--diagram-font-primary);
+            font-size: var(--font-size-base);
+            line-height: var(--line-height-md);
             cursor: pointer; 
             transition: all 0.1s; 
           }
@@ -106,7 +108,8 @@ const {
   }
   
   .title {
-    font-size: 1.2rem;
+    /* font-size: var(--font-size-base); */
+    font-family: var(--diagram-font-primary);
     margin-bottom: 1rem;
   }
 </style>

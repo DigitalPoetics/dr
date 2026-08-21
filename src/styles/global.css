@@ -16,8 +16,11 @@
     --dark-viz-background: #242424;
     /* box-shadow */
     --box-shadow-light: -4px 4px 8px rgba(0, 0, 0, 0.2);
+    --box-shadow-light-full: 0px 0px 8px rgba(0, 0, 0, 0.2);
     /* --box-shadow-light: 4px 4px 8px var(--light-text-opacity); */
     --box-shadow-dark: -4px 4px 8px var(--dark-text-opacity);
+    --box-shadow-dark-full: 0 0 8px var(--dark-text-opacity);
+
     /* spacing */
     --title-letter-spacing: 0.05em;
     --title-letter-spacing-small: 0.05em;
@@ -25,6 +28,9 @@
     /* font */
     --font-primary: 'Inter', sans-serif;
     --font-secondary: 'IM Fell English', serif;
+    --diagram-font-primary: 'Inter', serif;
+    --diagram-font-secondary: 'IM Fell English', serif;
+    --font-size-xs: 0.75rem;
     --font-size-sm: 0.875rem;
     --font-size-base: 1rem;
     --font-size-lg: 1.125rem;
@@ -219,9 +225,13 @@ sup a {
 .footnotes h2 {
   display: none;
 }
-.footnotes a {
-  text-decoration: none;
+
+.footnotes ol {
+  padding-left: 1.5rem;
 }
+/* .footnotes a {
+  text-decoration: none;
+} */
 /* .footnotes p {
   font-size: var(--font-size-base);
 } */
@@ -244,7 +254,7 @@ blockquote {
   width: 100%;
   height: auto;
   /* max-height: 60vh; */
-  border-radius: var(--radius-md);
+  /* border-radius: var(--radius-md); */
   border: var(--image-border);
 }
 

@@ -57,6 +57,13 @@ const { pitchData, praatData, waveformHeight = 32 } = Astro.props;
       .domain([50, 250])
       .range([height, 0]);
 
+    // font
+    const styles = getComputedStyle(document.documentElement);
+    const fontFamily = styles.getPropertyValue('--diagram-font-primary').trim();
+    const fontSize = styles.getPropertyValue('--font-size-xs').trim();
+    const textColor = styles.getPropertyValue('--light-text').trim();
+
+
     // Clear existing
     // d3.select(shadow).selectAll('svg.praat-pitch, svg.praat-tier').remove();
     // Clear only Praat-specific elements
@@ -89,8 +96,8 @@ const { pitchData, praatData, waveformHeight = 32 } = Astro.props;
     const xAxis = pitchBox.append('g')
       .attr('transform', `translate(0, ${height})`)
       .call(d3.axisBottom(xAxisScale).ticks(Math.floor(audioDuration)))
-      .style('font-size', '0.8rem')
-      .style('font-family', 'IM Fell English, serif')
+      .style('font-size', fontSize)
+      .style('font-family', fontFamily)
 
       // fix color
     xAxis.selectAll('text').style('fill', `var(--light-text)`);
@@ -158,13 +165,13 @@ const { pitchData, praatData, waveformHeight = 32 } = Astro.props;
           .attr('y', 20)
           .text(d.text)
           .style('text-anchor', 'middle')
-          .style('font-size', '0.9rem')
-          .style('fill', 'black');
+          .style('font-size', fontSize)
+          .style('fill', textColor);
       });
     });
 
     // Extend shadow DOM height to include pitch and tiers
-    const totalHeight = waveformHeight + height + margin.top + margin.bottom + (tiers.length * tierHeight);
+  const totalHeight = waveformHeight + height + margin.top + margin.bottom + (tiers.length * tierHeight);
     // shadow.style.height = `${totalHeight}px`;
     shadow.style.height = 'auto';
     shadow.style.overflow = 'visible';
@@ -182,8 +189,8 @@ const { pitchData, praatData, waveformHeight = 32 } = Astro.props;
     .attr('class', 'y-axis')
     .attr('transform', `translate(60, ${margin.top})`) // Right edge, same top margin as pitch
     .call(d3.axisLeft(yAxisScale.range([height, 0])).ticks(5)) // Adjust range to match pitch area
-    .style('font-size', '0.8rem')
-    .style('font-family', 'IM Fell English, serif');
+    .style('font-size', fontSize)
+    .style('font-family', fontFamily);
 
             // Y Label
     yAxis.append('g')
@@ -191,7 +198,7 @@ const { pitchData, praatData, waveformHeight = 32 } = Astro.props;
     //   .attr('transform', `translate(20, ${(height + margin.top) / 2}) rotate(-90)`) // Adjust for new height
       .attr('transform', `translate(-40, ${height / 2}) rotate(-90)`)
       .style('text-anchor', 'middle')
-      .style('font-size', '0.8rem')
+      .style('font-size', fontSize)
         // .style('stroke', 'black')
       .text('Pitch (Hz)')
     //   .style('fill', document.documentElement.classList.contains('dark') ? '#f1f5f9' : '#333333')
@@ -224,11 +231,11 @@ const { pitchData, praatData, waveformHeight = 32 } = Astro.props;
         .attr('x', 55)
         .attr('y', 30 + (i * (tierHeight + 9))) // Small top margin + equal spacing
         .style('text-anchor', 'end')
-        .style('font-size', '0.8rem')
+        .style('font-size', fontSize)
         // .style('stroke', 'red')
         // .style('fill', document.documentElement.classList.contains('dark') ? '#f1f5f9' : '#333333')
         .text(label)
-        .style('stroke', `var(--light--text)`)
+        .style('fill', textColor)
 ;
     });
 
