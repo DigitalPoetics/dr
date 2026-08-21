@@ -14,6 +14,11 @@
     --button-background: #e3ddd0;
     --viz-background: #f8f6ef;
     --dark-viz-background: #242424;
+    /* box-shadow */
+    /* --box-shadow-light: 0 2px 8px rgba(0, 0, 0, 0.1); */
+    --box-shadow-light: 4px 4px 8px var(--light-text-opacity);
+    --box-shadow-dark: 4px 4px 8px var(--dark-text-opacity);
+    /* spacing */
     --title-letter-spacing: 0.05em;
     --title-letter-spacing-small: 0.05em;
     /* font */

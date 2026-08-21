@@ -12,17 +12,15 @@ export interface Props {
 const { pageTitle, description, imageUrl, imageAlt, srcPath } = Astro.props;
 ---
 <figure class="figure-container">
-  <!-- <hr> -->
   <div class="content-wrapper">
     <a href={srcPath} class="text-content" target="_blank">
       <div class="title-container">
         <p class="title">{pageTitle}</p>
         <p class="description">{description}</p>
+      </div>
         <div class="image-wrapper">
           <img src={typeof imageUrl === 'string' ? imageUrl : imageUrl.src} alt={imageAlt} class="responsive-image"/>
         </div>
-
-      </div>
     </a>
     <!-- <div class="text-content">
 
@@ -30,6 +28,7 @@ const { pageTitle, description, imageUrl, imageAlt, srcPath } = Astro.props;
     <!-- <div class="image-wrapper">
       <img src={typeof imageUrl === 'string' ? imageUrl : imageUrl.src} alt={imageAlt} class="responsive-image"/>
     </div> -->
+    
   </div>
 </figure>
 
@@ -39,12 +38,25 @@ const { pageTitle, description, imageUrl, imageAlt, srcPath } = Astro.props;
   } */
   
   .figure-container {
-    margin: 1rem 0 2rem 0;
+    margin: 1rem 0 3rem 0;
     /* padding: 0.5rem 0; */
     width: 100%;
-    /* border-top: var(--image-border);
-    border-top-width: 1px; */
+    /* border-top: var(--image-border); */
+    /* padding: 1rem 0 0 0; */
+    /* border-top-width: 1px; */
+    /* background-color: var(--viz-background); */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    padding: 1rem 1rem 1rem 1rem;
+    box-sizing: border-box;
+  /* border-radius: var(--radius-md); */
   }
+
+  html.dark .figure-container {
+    box-shadow: var(--box-shadow-dark);
+  }
+
+
+
 
   .content-wrapper {
     display: flex;
@@ -78,8 +90,9 @@ const { pageTitle, description, imageUrl, imageAlt, srcPath } = Astro.props;
     color: var(--hover-color);
   } */
 
+
   .title {
-    margin: 0 0 .2rem 0;
+    margin: 0 0 0.2rem 0;
     /* font-size: 1.3rem; */
     font-weight: 600;
     font-size: var(--font-size-base);
@@ -95,7 +108,7 @@ const { pageTitle, description, imageUrl, imageAlt, srcPath } = Astro.props;
   }
 
   .description {
-    margin: 0 0 0 0;
+    margin: 0 0 0.5rem 0;
     font-size: var(--font-size-sm);
     font-weight: normal;
     font-style: italic;
@@ -122,6 +135,10 @@ const { pageTitle, description, imageUrl, imageAlt, srcPath } = Astro.props;
   .image-wrapper {
     flex: 1;
     margin: 0.4rem 0 0 0;
+    /* padding: 1rem 1rem 1rem 1rem; */
+    /* box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); */
+
+    /* overflow: hidden; */
   }
 
   .responsive-image {
@@ -130,6 +147,8 @@ const { pageTitle, description, imageUrl, imageAlt, srcPath } = Astro.props;
     object-fit: cover;
     aspect-ratio: 16 / 10;
     border-radius: 0;
+    box-sizing: border-box;
+
     /* border-radius: var(--radius-md); */
 
     /* border: none; */
