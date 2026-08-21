@@ -15,12 +15,13 @@
     --viz-background: #f8f6ef;
     --dark-viz-background: #242424;
     /* box-shadow */
-    --box-shadow-light: 4px 4px 8px rgba(0, 0, 0, 0.2);
+    --box-shadow-light: -4px 4px 8px rgba(0, 0, 0, 0.2);
     /* --box-shadow-light: 4px 4px 8px var(--light-text-opacity); */
-    --box-shadow-dark: 4px 4px 8px var(--dark-text-opacity);
+    --box-shadow-dark: -4px 4px 8px var(--dark-text-opacity);
     /* spacing */
     --title-letter-spacing: 0.05em;
     --title-letter-spacing-small: 0.05em;
+    --heading-letter-spacing: -0.01em;
     /* font */
     --font-primary: 'Inter', sans-serif;
     --font-secondary: 'IM Fell English', serif;
@@ -137,7 +138,7 @@ h2 { font-size: var(--font-size-2xl); font-weight: 600; line-height: var(--line-
 h3 { font-size: var(--font-size-xl); font-weight: 600; line-height: var(--line-height-sm); margin-top: 2rem; }
 
 h1, h2, h3 {
-  letter-spacing: -0.01em;
+  letter-spacing: var(--heading-letter-spacing);
 }
 
 html.dark h1, html.dark h2, html.dark h3 {

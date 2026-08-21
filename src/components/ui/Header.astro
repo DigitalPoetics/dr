@@ -31,6 +31,11 @@ header {
   width: 100%;
   background-color: var(--light-background);
   z-index: 100;
+  transition: transform 0.5s ease;
+}
+
+header.hidden {
+    transform: translateY(-100%);
 }
 
 html.dark header {
@@ -67,10 +72,11 @@ html.dark header {
 }
 
 nav a {
-    font-size: var(--font-size-2xl);
+    font-size: var(--font-size-3xl);
     font-weight: 600;
     text-decoration: none;
     color: var(--light-text);
+    letter-spacing: var(--heading-letter-spacing);
 }
 
 nav a:hover,
@@ -89,3 +95,19 @@ html.dark a:focus {
 }
 
 </style>
+
+<!-- hide header on scroll -->
+<script>
+  const header = document.querySelector('header');
+  let lastY = 0;
+
+  window.addEventListener('scroll', () => {
+    const currentY = window.scrollY;
+    const navOpen = document.querySelector('.nav-bar')?.classList.contains('expanded');
+
+    if (!navOpen) {
+      header.classList.toggle('hidden', currentY > lastY && currentY > 50);
+    }
+    lastY = currentY;
+  }, { passive: true });
+</script>

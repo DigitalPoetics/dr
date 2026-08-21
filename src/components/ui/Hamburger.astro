@@ -8,32 +8,46 @@
 
 <style>
 
-.hamburger {
-  /* padding-right: 20px; */
-  margin: 0.4rem 1rem 0 0;
-  cursor: pointer;
-  transition: transform 0.2s ease-in-out;
-}
-
-.hamburger.active {
-  transform: scale(1.2);
-}
-
-.hamburger .line {
-  display: block;
-  width: 2rem;
-  height: 3px;
-  margin-bottom: 5px;
-  background-color: var(--light-text);
-}
-
-html.dark .hamburger .line {
-  background-color: var(--dark-text);
-}
-
-@media screen and (min-width: 636px) {
-  :global(.hamburger) {
-    display: block;
+  .hamburger {
+    /* padding-right: 20px; */
+    margin: 0.3rem 1rem 0 0;
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out;
   }
-}
+
+  /* .hamburger.active {
+    transform: scale(1.2);
+  } */
+
+  .hamburger.active .line:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+  }
+
+  .hamburger.active .line:nth-child(2) {
+    opacity: 0;
+  }
+
+  .hamburger.active .line:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+  }
+
+
+  .hamburger .line {
+    display: block;
+    width: 2rem;
+    height: 3px;
+    margin-bottom: 5px;
+    background-color: var(--light-text);
+    transition: transform 0.2s ease, opacity 0.2s ease;
+  }
+
+  html.dark .hamburger .line {
+    background-color: var(--dark-text);
+  }
+
+  @media screen and (min-width: 636px) {
+    :global(.hamburger) {
+      display: block;
+    }
+  }
 </style>

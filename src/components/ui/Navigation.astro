@@ -71,3 +71,25 @@ html.dark .nav-bar {
 
 
 </style>
+
+<script>
+  // hamburger menu toggle script
+  const hamburger = document.querySelector('.hamburger');
+  const navBar = document.querySelector('.nav-bar');
+
+  // Toggle nav-bar on hamburger click
+  if (hamburger && navBar) {
+    hamburger.addEventListener('click', () => {
+    navBar.classList.toggle('expanded');
+    hamburger.classList.toggle('active');
+  });
+  }
+
+
+  // auto-open accordion if current page is inside it
+  document.querySelectorAll('details').forEach(details => {
+    if (details.querySelector('a.active')) {
+      details.open = true;
+    }
+  });
+</script>
