@@ -240,14 +240,38 @@ cite {
   font-style: normal;
 }
 
-blockquote {
-  /* font-style: italic; */
+/* blockquote {
   margin: 2rem 0 2rem 2rem;
   padding-left: 1rem 1.5rem;
   border-left: var(--border-color);
-  /* background-color: var(--viz-background); */
   border-radius: 0 0.5rem 0.5rem 0;
+} */
+
+/* blockquote */
+blockquote {
+  position: relative;
+  margin: 2rem 0 2rem 0.5rem;
+  padding-left: 2rem;
 }
+
+blockquote::before {
+  content: '\201C';
+  position: absolute;
+  left: 0;
+  top: -0.5rem;
+  font-size: 4rem;
+  line-height: 1;
+  color: var(--highlight-color);
+  font-family: var(--font-primary);
+}
+
+@media screen and (min-width: 636px) {
+  blockquote {
+    margin: 2rem 0 2rem 2rem;
+  }
+}
+
+
 
 /* Image tag image */
 .responsive-image {

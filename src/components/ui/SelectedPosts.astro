@@ -1,116 +1,56 @@
 ---
 import BlogPost from './BlogPost.astro';
 
-export interface Props {
-  frontmatter?: any;
-  index?: string;
-  customPosts?: any[]; // Optional: manually provided posts
-  customTitle?: string; // Optional: custom title instead of tag-based
-  customHref?: string; // Optional: custom href for the title link
+interface Props {
+  series?: string;
 }
 
-const { frontmatter, index, customPosts, customTitle, customHref } = Astro.props;
-const isIndexActive = Astro.url.pathname === `/${index}/`;
+const { series } = Astro.props;
 
-// Use custom posts if provided, otherwise use the original filtering logic
-let selectedPosts;
-if (customPosts) {
-  selectedPosts = customPosts;
-} else {
-  const allPosts = Object.values(import.meta.glob('../../pages/posts/**/*.mdx', { eager: true }));
-  selectedPosts = allPosts.filter((post: any) =>
-    post.frontmatter?.index === index
-  );
-}
+const allPosts = Object.values(
+  import.meta.glob('../../pages/posts/**/*.mdx', { eager: true })
+) as any[];
 
-// Determine title and href
-const displayTitle = customTitle || (frontmatter?.tags?.[0] ? `~ ${frontmatter.tags[0]} ~` : 'Blog Posts');
-const titleHref = customHref || `/${index}/`;
-const showAsLink = customTitle ? !!customHref : !!frontmatter?.tags?.[0];
+const selectedPosts = allPosts
+  .filter(post => post.frontmatter?.series === series)
+  .sort((a, b) => (a.frontmatter?.seriesOrder ?? 0) - (b.frontmatter?.seriesOrder ?? 0));
+
+const seriesTitle = selectedPosts.find(p => p.frontmatter?.seriesOrder === 1)?.frontmatter?.title ?? series;
 ---
-<div class="posts-container">
-  <p>
-    {showAsLink ? (
-      <a href={titleHref} 
-        class={isIndexActive ? 'active' : ''}
-        target="_blank"
-        >{displayTitle}</a>
-    ) : (
-      displayTitle
-    )}
-  </p>
-
-  <hr>
-
-  <ul>
-    {selectedPosts.map((post: any) => 
-      <BlogPost 
-        url={post.url} 
-        title={post.frontmatter.title} 
-        description={post.frontmatter.description.slice(0, 70) + '...'}/>
-    )}
-  </ul>
-</div>
-
+{selectedPosts.length > 0 && (
+  <nav class="series-nav" aria-label="Series posts">
+    <h3 class="series-title">{seriesTitle}</h3>
+    <hr>
+    <ol>
+      {selectedPosts.map((post: any) =>
+        <BlogPost
+          url={post.url}
+          title={post.frontmatter.title}
+          description={post.frontmatter.description}
+        />
+      )}
+    </ol>
+  </nav>
+)}
 
 <style>
-    .posts-container {
-        margin: 1.5rem 0 1.5rem 0;
-        width: 100%;
-    }
+  .series-nav {
+    margin: 2rem 0;
+    width: 100%;
+  }
 
-    p {
-        margin: 0 0 0.5rem 0;
-    }
+  .series-title {
+    /* font-size: var(--font-size-base); */
+    font-weight: 600;
+    margin: 0 0 0.5rem 0;
+  }
 
+  hr {
+    margin: 0 0 0.5rem 0;
+  }
 
-    hr {
-        margin: 0 auto;
-    }
-    /* li {
-        list-style: none;
-        margin: 0;
-    } */
-
-    /* li::marker {
-        color: var(--button-background);
-    } */
-
-    /* li:has(> a.active)::marker {
-        color: var(--highlight-color);
-    } */
-
-    ul {
-        margin: 0.5rem 0 1rem 0;
-        padding: 0 0 0 1rem;
-    }
-
-    a {
-        text-decoration: none;
-        /* padding: 0 0 0 2rem; */
-        /* margin-top: 2rem; */
-        color: var(--light-text);
-        transition: color 0.2s ease;
-    }
-
-    a:hover, a:focus {
-        color: var(--hover-color);
-    }
-
-    /* a.active {
-        font-weight: bold;
-        color: var(--highlight-color);
-    }
-
-    html.dark a.active {
-        color: var(--highlight-color);
-    } */
-
-    html.dark a {
-        color: var(--dark-text);
-    }
-
-    html.dark a:hover, html.dark a:focus {
-        color: var(--hover-color);
-    }
+  ol {
+    margin: 0;
+    padding: 0 0 0 1.25rem;
+  }
 </style>

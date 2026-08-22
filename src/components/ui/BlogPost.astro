@@ -1,90 +1,93 @@
 ---
-const {title, url, description } = Astro.props;
-const isActive = Astro.url.pathname === `${url}/`;
+interface Props {
+  title: string;
+  url: string;
+  description: string;
+}
+
+const { title, url, description } = Astro.props;
+const isActive = Astro.url.pathname === url || Astro.url.pathname === `${url}/`;
+const truncated = description.length > 70 ? description.slice(0, 70) + '...' : description;
 ---
 <li>
-  <a href={`${url}/`} class={isActive ? 'active' : ''} target="_blank">{title}</a>
-  <p>{description}</p>
+    <a href={`${url}/`} class={isActive ? 'active' : ''} >
+        {title}
+        <p>{truncated}</p>
+    </a>
 </li>
 
 <style>
-    li {
-        /* list-style: square; */
-        list-style-type: "~ ";
-    }
+  li {
+    margin: 0;
+    /* margin-bottom: 0.5rem; */
+    /* cursor: pointer; */
+    transition: background-color 0.2s ease;
+  }
 
-    li::marker {
-        color: var(--light-text);
-        transition: color 0.2s ease;
-    }
+  li::marker {
+    color: var(--light-text);
+    transition: color 0.2s ease;
+  }
 
-    html.dark li::marker {
-        color: var(--dark-text);
-    }
+  html.dark li::marker {
+    color: var(--dark-text);
+  }
 
-    li p {
-        /* border-left: var(--image-border); */
-        color: var(--light-text-opacity);
-        /* margin: 0 0 1rem -0.70rem; */
-        /* padding-left: 0.70rem; */
-        font-size: 1rem;
-        line-height: var(--line-height-sm);
-        margin: 0 0 0.25rem 0;
-    }
+  li:has(> a:hover)::marker,
+  li:has(> a:focus)::marker,
+  li:has(> a.active)::marker {
+    color: var(--hover-color);
+  }
 
-    html.dark li p {
-        color: var(--dark-text-opacity);
-    }
+  li:has(> a.active)::marker {
+    color: var(--highlight-color);
+  }
 
-    li:has(> a:hover)::marker,
-    li:has(> a:focus)::marker {
-        color: var(--hover-color);
-    }
+  li:has(> a.active) {
+    font-weight: bold;
+  }
 
-    a {
-        text-decoration: none;
-        display: block;
-        line-height: var(--line-height-sm);
-        transition: color 0.2s ease;
-    }
+  li:hover {
+    background-color: var(--viz-background);
+  }
 
-    a:hover, a:focus {
-        color: var(--hover-color);
-    }
+  html.dark li:hover {
+    background-color: var(--dark-viz-background);
+  }
+  a {
+    text-decoration: none;
+    display: block;
+    padding: 0.35rem 0.5rem;
+    line-height: var(--line-height-sm);
+    transition: color 0.2s ease;
+  }
 
-    /* li::marker:hover, li::marker:focus {
-        color: var(--hover-color);
-    } */
-    
-    /* same page url */
-    a.active {
-        font-weight: bold;
-        color: var(--highlight-color);
-        /* border-bottom: var(--border-color); */
-    }
+  /* a:hover, a:focus {
+    color: var(--hover-color);
+  } */
 
-    li:has(> a.active)::marker {
-        color: var(--highlight-color);
-    }
+  li:hover a,
+  li:focus-within a {
+    color: var(--hover-color);
+  }
 
-    /* li:has(> a.active) p {
-        border-left: var(--border-color);
-    } */
+  a.active {
+    font-weight: 600;
+    color: var(--highlight-color);
+  }
 
-    html.dark a.active {
-        color: var(--highlight-color);
-    }
+  html.dark a.active {
+    color: var(--highlight-color);
+  }
 
-    p {
-        margin: 0 0 0 0;
-    }
+  p {
+    color: var(--light-text-opacity);
+    font-size: var(--font-size-sm);
+    line-height: var(--line-height-sm);
+    margin: 0.1rem 0 0 0;
+  }
 
-    @media screen and (min-width: 636px) {
-        li p {
-        /* border-left: var(--image-border); */
-        margin: 0 0 0.25rem -0.70rem;
-        padding-left: 0.70rem;
-    }
-
-    }
+  html.dark p {
+    color: var(--dark-text-opacity);
+  }
 </style>
