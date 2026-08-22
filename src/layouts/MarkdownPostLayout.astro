@@ -1,7 +1,7 @@
 ---
 import BaseLayout from "./BaseLayout.astro";
 import Figure from "../components/ui/Figure.astro";
-// import { Image } from "astro:assets";
+import { Image } from "astro:assets";
 // import SelectedPosts from "../components/SelectedPosts.astro";
 import SelectedPosts from "../components/ui/SelectedPosts.astro";
 import SeriesNav from "../components/ui/SeriesNav.astro";
@@ -17,9 +17,9 @@ pageTitle={frontmatter.title}>
     <!-- <Dinkus count={3}></Dinkus> -->
     <div class="post-body">
       <Figure>
-        <img 
+        <Image 
           slot="image" 
-          src={frontmatter.image.url} 
+          src={frontmatter.image.src} 
           alt={frontmatter.image.alt} 
           class="responsive-image" 
         />

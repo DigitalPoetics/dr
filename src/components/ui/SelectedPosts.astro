@@ -1,4 +1,5 @@
 ---
+import { getCollection } from 'astro:content';
 import BlogPost from './BlogPost.astro';
 
 interface Props {
@@ -7,15 +8,13 @@ interface Props {
 
 const { series } = Astro.props;
 
-const allPosts = Object.values(
-  import.meta.glob('../../pages/posts/**/*.mdx', { eager: true })
-) as any[];
+const allPosts = await getCollection('posts');
 
 const selectedPosts = allPosts
-  .filter(post => post.frontmatter?.series === series)
-  .sort((a, b) => (a.frontmatter?.seriesOrder ?? 0) - (b.frontmatter?.seriesOrder ?? 0));
+  .filter(post => post.data.series === series)
+  .sort((a, b) => (a.data.seriesOrder ?? 0) - (b.data.seriesOrder ?? 0));
 
-const seriesTitle = selectedPosts.find(p => p.frontmatter?.seriesOrder === 1)?.frontmatter?.title ?? series;
+const seriesTitle = selectedPosts.find(p => p.data.seriesOrder === 1)?.data.title ?? series;
 ---
 {selectedPosts.length > 0 && (
   <nav class="series-nav" aria-label="Series posts">
@@ -24,14 +23,15 @@ const seriesTitle = selectedPosts.find(p => p.frontmatter?.seriesOrder === 1)?.f
     <ol>
       {selectedPosts.map((post: any) =>
         <BlogPost
-          url={post.url}
-          title={post.frontmatter.title}
-          description={post.frontmatter.description}
+          url={`/posts/${post.id}`}
+          title={post.data.title}
+          description={post.data.description}
         />
       )}
     </ol>
   </nav>
 )}
+
 
 <style>
   .series-nav {
@@ -42,11 +42,11 @@ const seriesTitle = selectedPosts.find(p => p.frontmatter?.seriesOrder === 1)?.f
   .series-title {
     /* font-size: var(--font-size-base); */
     font-weight: 600;
-    margin: 0 0 0.5rem 0;
+    margin: 0 0 0.3rem 0;
   }
 
   hr {
-    margin: 0 0 0.5rem 0;
+    margin: 0 0 0.3rem 0;
   }
 
   ol {

@@ -1,36 +1,52 @@
 ---
+import { getCollection } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import Dinkus from "../../components/ui/Dinkus.astro";
+import Dinkus from '../../components/ui/Dinkus.astro';
 
-const allPosts = Object.values(import.meta.glob('/**/*.mdx', { eager: true }));
-const tags = [...new Set(allPosts
-                            .map((post: any) => post.frontmatter.tags)
-                            .flat()
-                            .filter(tag => tag))]   
-                            .sort();
+const allPosts = await getCollection('posts');
+const tags = [...new Set(allPosts.map(post => post.data.tags).flat().filter(tag => tag))].sort();
 const pageTittle = "Tag Index";
 ---
 <BaseLayout pageTitle={pageTittle}>
-    <Dinkus count={3}></Dinkus>
-    <main data-pagefind-ignore="all">
-        <div class="tags">
-            {tags.map((tag) => (
-                <p class="tag"><a href={`/posts/${tag}`} target="_blank">~ {tag}</a></p>
-            ))} 
-        </div>
-    </main>
-    <Dinkus count={3}></Dinkus>
+  <!-- <Dinkus count={3} /> -->
+  <main data-pagefind-ignore="all">
+    <div class="tags">
+      {tags.map(tag => (
+        <p class="tag"><a href={`/posts/${tag}`} target="_blank">{tag}</a></p>
+      ))}
+    </div>
+  </main>
+  <!-- <Dinkus count={3} /> -->
 </BaseLayout>
 
+
+
 <style>
+
+    .tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0;
+    }
+
+    .tag {
+        margin: 0;
+        font-size: var(--font-size-base);
+        /* padding: 0.5rem 1rem; */
+    }
+
     a {
-        text-decoration: none;
+        display: block;
+        padding: 0.5rem 1rem;
+        text-decoration: underline;
+        text-underline-offset: var(--text-underline-offset);
         color: var(--light-text);
-        transition: color 0.2s ease;
+        transition: color 0.2s ease, background-color 0.2s ease;
     }
 
     a:hover, a:focus {
         color: var(--hover-color);
+        background-color: var(--viz-background);
     }
 
     html.dark a {
@@ -39,40 +55,7 @@ const pageTittle = "Tag Index";
 
     html.dark a:hover, html.dark a:focus {
         color: var(--hover-color);
+        background-color: var(--dark-viz-background);
     }
-
-    .tags {
-        display: flex;
-        flex-wrap: wrap;
-        line-height: var(--line-height-sm);
-    }
-
-    .tag {
-        margin: 0 1rem 0.5rem 0;
-        /* border: dotted 1px #a1a1a1; */
-        border-radius: .2rem;
-        /* padding: .5em 1em; */
-        font-size: 1.1rem;
-        /* background-color: #F8FCFD; */
-        border: 1px solid var(--light-text-opacity);
-        padding: 0.5rem 1rem;
-        transition: border-color 0.2s ease;
-    }
-
-
-    .tag:has(a:hover) {
-        border-color: var(--hover-color);
-    }
-
-    html.dark .tag {
-        border: 1px solid var(--dark-text-opacity);
-        /* transition: border-color 0.2s ease; */
-    }
-    
-    html.dark .tag:has(a:hover) {
-        border-color: var(--hover-color);
-    }
-
-
 
 </style>

@@ -1,4 +1,6 @@
 ---
+import { getCollection } from 'astro:content';
+
 interface Props {
   series?: string;
   currentOrder?: number;
@@ -6,31 +8,28 @@ interface Props {
 
 const { series, currentOrder } = Astro.props;
 
-const allPosts = Object.values(
-  import.meta.glob('../../pages/posts/**/*.mdx', { eager: true })
-) as any[];
+const allPosts = await getCollection('posts');
 
 const seriesPosts = allPosts
-  .filter(post => post.frontmatter?.series === series)
-  .sort((a, b) => (a.frontmatter?.seriesOrder ?? 0) - (b.frontmatter?.seriesOrder ?? 0));
+  .filter(post => post.data.series === series)
+  .sort((a, b) => (a.data.seriesOrder ?? 0) - (b.data.seriesOrder ?? 0));
 
-const prev = seriesPosts.find(p => p.frontmatter?.seriesOrder === (currentOrder ?? 0) - 1);
-const next = seriesPosts.find(p => p.frontmatter?.seriesOrder === (currentOrder ?? 0) + 1);
+const prev = seriesPosts.find(p => p.data.seriesOrder === (currentOrder ?? 0) - 1);
+const next = seriesPosts.find(p => p.data.seriesOrder === (currentOrder ?? 0) + 1);
 ---
 {series && (
   <nav class="series-nav" aria-label="Series navigation">
-    <a href={prev ? `${prev.url}/` : '#'} class={`nav-item prev ${!prev ? 'dimmed' : ''}`}>
-      {/* <span class="label">← BACK</span> */}
+    <a href={prev ? `/posts/${prev.id}/` : '#'} class={`nav-item prev ${!prev ? 'dimmed' : ''}`}>
       <span class="label">PREVIOUS:</span>
-      <span class="title">{prev?.frontmatter.title ?? '—'}</span>
+      <span class="title">{prev?.data.title ?? '—'}</span>
     </a>
-    <a href={next ? `${next.url}/` : '#'} class={`nav-item next ${!next ? 'dimmed' : ''}`}>
-      {/* <span class="label">NEXT →</span> */}
+    <a href={next ? `/posts/${next.id}/` : '#'} class={`nav-item next ${!next ? 'dimmed' : ''}`}>
       <span class="label">NEXT:</span>
-      <span class="title">{next?.frontmatter.title ?? '—'}</span>
+      <span class="title">{next?.data.title ?? '—'}</span>
     </a>
   </nav>
 )}
+
 
 <style>
   .series-nav {

@@ -190,6 +190,7 @@ a, p, h1, h2, h3 {
 
 a {
   transition: color 0.2s ease;
+  /* text-underline-offset: var(--text-underline-offset); */
 }
 
 /* links */
@@ -277,28 +278,32 @@ blockquote::before {
 
 /* Image tag image */
 .responsive-image {
-  width: 100%;
+  display: block;
+  width: auto;
+  max-width: 100%;
   height: auto;
+  max-height: 70vh;
+  margin: 0 auto;
   /* max-height: 60vh; */
   /* border-radius: var(--radius-md); */
   border: var(--image-border);
 }
 
 .portrait-image {
-  width: 100%;
-  max-width: 400px;
+  display: block;
+  width: auto;
+  max-width: min(500px, 100%);
   height: auto;
-  /* max-height: 60vh; */
-  border-radius: var(--radius-md);
+  max-height: 100%;
+  /* border-radius: var(--radius-md); */
   border: var(--image-border);
   margin: 0 auto;
-  display: block;
 }
 
 @media screen and (min-width: 636px) {
   .portrait-image {
-    max-width: 100%;
-    /* height: auto; */
+    max-width: 45vw;
+    max-height: 70vh;
   }
 }
 
