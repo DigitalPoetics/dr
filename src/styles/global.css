@@ -25,6 +25,8 @@
     --title-letter-spacing: 0.05em;
     --title-letter-spacing-small: 0.05em;
     --heading-letter-spacing: -0.01em;
+    /* text-decoration */
+    --text-underline-offset: 0.15em;
     /* font */
     --font-primary: 'Inter', sans-serif;
     --font-secondary: 'IM Fell English', serif;

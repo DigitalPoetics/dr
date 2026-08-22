@@ -1,0 +1,101 @@
+---
+interface Props {
+  series?: string;
+  currentOrder?: number;
+}
+
+const { series, currentOrder } = Astro.props;
+
+const allPosts = Object.values(
+  import.meta.glob('../../pages/posts/**/*.mdx', { eager: true })
+) as any[];
+
+const seriesPosts = allPosts
+  .filter(post => post.frontmatter?.series === series)
+  .sort((a, b) => (a.frontmatter?.seriesOrder ?? 0) - (b.frontmatter?.seriesOrder ?? 0));
+
+const prev = seriesPosts.find(p => p.frontmatter?.seriesOrder === (currentOrder ?? 0) - 1);
+const next = seriesPosts.find(p => p.frontmatter?.seriesOrder === (currentOrder ?? 0) + 1);
+---
+{series && (
+  <nav class="series-nav" aria-label="Series navigation">
+    <a href={prev ? `${prev.url}/` : '#'} class={`nav-item prev ${!prev ? 'dimmed' : ''}`}>
+      {/* <span class="label">← BACK</span> */}
+      <span class="label">PREVIOUS:</span>
+      <span class="title">{prev?.frontmatter.title ?? '—'}</span>
+    </a>
+    <a href={next ? `${next.url}/` : '#'} class={`nav-item next ${!next ? 'dimmed' : ''}`}>
+      {/* <span class="label">NEXT →</span> */}
+      <span class="label">NEXT:</span>
+      <span class="title">{next?.frontmatter.title ?? '—'}</span>
+    </a>
+  </nav>
+)}
+
+<style>
+  .series-nav {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    margin: 2rem 0;
+    border-top: var(--image-border);
+    padding-top: 1.5rem;
+  }
+
+  .nav-item {
+    display: flex;
+    flex-direction: column;
+    padding: 0.25rem 1rem;
+    gap: 0.1rem;
+    text-decoration: none;
+    max-width: 45%;
+    transition: background-color 0.2s ease;
+    color: var(--light-text);
+  }
+
+  .nav-item.next {
+    text-align: right;
+    margin-left: auto;
+  }
+
+  .nav-item:hover {
+    background-color: var(--viz-background);
+  }
+
+  html.dark .nav-item:hover {
+    background-color: var(--dark-viz-background);
+  }
+
+  .label {
+    font-size: var(--font-size-sm);
+    color: var(--highlight-color);
+    font-weight: bold;
+  }
+
+  .title {
+    font-size: var(--font-size-sm);
+    font-weight: normal;
+    transition: color 0.2s ease;
+  }
+
+  .nav-item:hover .title {
+    color: var(--hover-color);
+  }
+
+  /* .nav-item:hover .label {
+    color: var(--hover-color);
+  } */
+
+  .dimmed {
+    /* opacity: 0.35; */
+    pointer-events: none;
+  }
+
+  html.dark .nav-item {
+    color: var(--dark-text);
+  }
+
+  /* html.dark .label {
+    color: var(--highlight-color);
+  } */
+</style>

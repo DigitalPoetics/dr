@@ -1,9 +1,10 @@
 ---
 import BaseLayout from "./BaseLayout.astro";
 import Figure from "../components/ui/Figure.astro";
-import { Image } from "astro:assets";
+// import { Image } from "astro:assets";
 // import SelectedPosts from "../components/SelectedPosts.astro";
 import SelectedPosts from "../components/ui/SelectedPosts.astro";
+import SeriesNav from "../components/ui/SeriesNav.astro";
 import Dinkus from "../components/ui/Dinkus.astro";
 // import Note from "../components/ui/Note.astro";
 const { frontmatter } = Astro.props;
@@ -24,21 +25,25 @@ pageTitle={frontmatter.title}>
         />
         <span slot="caption">{frontmatter.image.alt}</span>
       </Figure>
+      <Dinkus count={3}></Dinkus>
+
       <div class="post-meta" data-pagefind-ignore="all">
+        <div class="byline">
           <span data-pagefind-meta="author">{frontmatter.author}</span>
-          <span class="separator">·</span>
+          <span class="separator">|</span>
           <span data-pagefind-meta="date">
             {new Date(frontmatter.pubDate).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}
           </span>
-          <span class="separator">·</span>
+        </div>
+        <div class="tags">
           {frontmatter.tags.map((tag: string) => (
-            <a class="tag" href={`/posts/${tag}`} target="_blank">#{tag}</a>
-          ))} 
+            <a class="tag" href={`/posts/${tag}`} target="_blank">{tag}</a>
+          ))}
+        </div>
       </div>
 
         <div class="selected-posts">
           <SelectedPosts 
-            frontmatter={frontmatter} 
             series={frontmatter.series} 
           />
         </div>
@@ -51,19 +56,24 @@ pageTitle={frontmatter.title}>
   <div class="post-content">
     <slot />
   </div>
+  <SeriesNav series={frontmatter.series} currentOrder={frontmatter.seriesOrder} />
   <Dinkus count={3}></Dinkus>
 </BaseLayout>
 
 <style>
 
+  .post-body {
+    margin: 3rem 0 0 0;
+  }
+
   .post-meta {
-    display: flex;
-    flex-wrap: wrap;  
-    align-items: center;
+    display: block;
+    /* flex-direction: column;   */
+    /* align-items: center; */
     gap: 0.35rem;
     font-size: var(--font-size-sm);
     color: var(--light-text);
-    margin: 0.5rem 0 1.5rem 0;
+    margin: 2rem 0 1.5rem 0;
   }
 
   html.dark .post-meta {
@@ -79,8 +89,22 @@ pageTitle={frontmatter.title}>
     color: var(--dark-text);
   }
 
+  .byline {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
   .tag {
-    text-decoration: none;
+    text-decoration: underline;
+    text-underline-offset: var(--text-underline-offset);
+    /* text-underline-offset: 0.15em; */
     color: var(--light-text);
     transition: color 0.2s ease;
   }
