@@ -13,10 +13,11 @@ import Dinkus from '../components/ui/Dinkus.astro';
 
 const {frontmatter } = Astro.props;
 const pageTitle = "Digital Archaeology"
-const description = "A networked approach to literary formations, with diagrams for layouts, partitioins, and centralities."
+const description = "A networked approach to literary formations, with diagrams for layouts, partitions, and centralities."
 const index = 'digital-archaeology'
 
 // src image
+import ellistonImage from "../assets/images/elliston-brochures/elliston-brochure-1980-fall-poetry-networks.webp"
 import yifanhuImage from "../assets/images/digital-archaeology/yifanhu.png"
 import languageImage from "../assets/images/digital-archaeology/post45-language-writing.jpg"
 import betweennessImage from "../assets/images/digital-archaeology/betweenness.png"
@@ -25,6 +26,17 @@ import betweennessImage from "../assets/images/digital-archaeology/betweenness.p
     <!-- <p class="title-page">A networked approach to literary formations</p>
     <h4 class="title-page">WITH DIAGRAMS FOR</h4>
     <h3 class="title-page">LAYOUTS, PARTITIONS, AND CENTRALITIES</h3> -->
+    <Figure>
+		<Image slot="image"
+			src={ellistonImage}
+			alt="The Elliston Poetry Room porgram brochure."
+			class="responsive-image"
+			layout="constrained"
+		/>
+	  	<span slot="caption">
+			The Elliston Poetry Room program brochure, Fall 1980, The Elliston Collection: Poetry Readings and Lectures at the University of Cincinnati.
+		</span>
+  </Figure>
     <Dinkus count={3}></Dinkus>
 
     <Note>

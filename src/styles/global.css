@@ -190,7 +190,7 @@ a, p, h1, h2, h3 {
 
 a {
   transition: color 0.2s ease;
-  /* text-underline-offset: var(--text-underline-offset); */
+  text-underline-offset: var(--text-underline-offset);
 }
 
 /* links */
