@@ -30,7 +30,7 @@
     /* font */
     --font-primary: 'Inter', sans-serif;
     --font-secondary: 'IM Fell English', serif;
-    --diagram-font-primary: 'Inter', serif;
+    --diagram-font-primary: 'Inter', sans-serif;
     --diagram-font-secondary: 'IM Fell English', serif;
     --font-size-xs: 0.75rem;
     --font-size-sm: 0.875rem;
@@ -116,6 +116,8 @@
   font-display: swap;
 }
 
+
+/* body */
 body {
     margin: 0 auto;
     font-family: var(--font-primary);
@@ -212,7 +214,6 @@ html.dark body {
 }
 
 
-
 a:hover,
 a:focus {
   color: var(--hover-color);
@@ -273,7 +274,6 @@ blockquote::before {
     margin: 2rem 0 2rem 2rem;
   }
 }
-
 
 
 /* Image tag image */
@@ -341,27 +341,3 @@ code:not(.astro-code code) {
   font-size: 0.9em;
 }
 
-/* @media screen and (min-width: 636px) {
-  .astro-code,              
-  .astro-code span {
-    font-size: 1.0rem !important;
-  }
-} */
-
-
-/* dinkus animation */
-/* .section-break {
-  display: inline-block;
-  animation: rotate-on-scroll linear;
-  animation-timeline: view();
-  animation-range: entry -20% exit 20%;
-}
-
-@keyframes rotate-on-scroll {
-  from {
-    rotate: 0deg;
-  }
-  to {
-    rotate: 360deg;
-  }
-} */

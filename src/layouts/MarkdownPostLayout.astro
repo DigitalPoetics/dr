@@ -121,6 +121,39 @@ pageTitle={frontmatter.title}>
     color: var(--hover-color);
   }
 
+  /* print blog, hide elements */
+  @media print {
+    @page {
+      margin: 1rem 0 1rem 0;
+    }
 
+  :global(body) {
+    font-family: 'Times New Roman', 'EB Garamond', 'Georgia', serif;
+    background: #fff !important;
+  }
+
+  /* hide elements */
+  :global(.nav-top, .tags, .series-nav, .columns, .no-print) {
+    display: none !important;
+  }
+
+  /* show these items */
+  :global(.selected-posts nav.series-nav) {
+    display: block !important;
+  }
+
+  /* Show link destinations since they won't be clickable */
+  :global(div.post-content a[href]::after) {
+    content: "\00a0(" attr(href) ")";
+    text-decoration: none;
+    display: inline-block;
+  }
+  /* hide these anchor tags */
+  :global(div.post-content sup a::after,
+  div.post-content .data-footnote-backref::after) {
+    content: none !important;
+  }
+
+}
 
 </style>
