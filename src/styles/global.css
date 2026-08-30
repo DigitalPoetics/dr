@@ -276,7 +276,7 @@ blockquote::before {
 }
 
 
-/* Image tag image */
+/* css for Image tag and for img element */
 .post-content img, .responsive-image {
   display: block;
   width: auto;
