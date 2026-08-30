@@ -11,7 +11,7 @@ series: 'gephi-intro'
 seriesOrder: 5
 ---
 
-In this post, I will list the steps I took to convert the original dataset from the _Networking the New American Poetry_ project to links and nodes files. 
+In this post, I will list the steps I took to create nodes and edges files using the original dataset from the _Networking the New American Poetry_ project. 
 The dataset is titled **journal-items.csv**, which you can also download from the Github repository for this demo.
 
 **Data Source:** [Networking the New American Poetry](https://danowski.digitalscholarship.emory.edu/nnap/download/)\
@@ -21,7 +21,7 @@ FYI, I used ONLYOFFICE spreadsheet to clean the file and restructure the dataset
 The following steps will more or less remain the same when you use other spreadsheet softwares,
 but you will have to change the formulae.
 
-### Step 1: Clean the file
+### Step 1: Clean the dataset
 
 - Open the **journal-items.csv** file and save the spreadsheet in **.xlsx** format: **File** > **Save As...**
 
@@ -110,7 +110,7 @@ We will create the edges.csv file next.
 The edges file has journal in the Source column and poet in the Target column; 
 however, we will eventually replace the journal name and poet name with their corresponding numerical IDs from the nodes sheet.
 
-- Add a new sheet to our *journal-items.xlsx* file, and **Rename** it **edges**.
+- Add a new sheet to our **journal-items.xlsx** file, and **Rename** it **edges**.
 - Add the following headers: **Source** (column A), **blank header** (column B), **Target** (column C), **blank header** (column D), **Direction** (column E), **Weight** (column F). 
 
 We will first add the journal titles from all rows from Sheet2 to this edges sheet.
@@ -139,7 +139,7 @@ The edges spreadsheet has 3576 rows, and the last row has Yūgen (journal) and L
 Gephi takes numerical IDs for Source and Target columns, 
 so we will have to match the journal name and poet name with the corresponding numerical IDs from the nodes sheet.
 
-- Click on the **Name Box** on the left of the **Formula Bar**, type **A2:A3576** on the **Name Box**, and press **Return**. 
+- Click on the **Name Box** on the left of the **Formula Bar** **(fig. 7)**, type **A2:A3576** on the **Name Box**, and press **Return**. 
 This will select all cells in column A. 
 Click on the **Formula Bar**, copy and paste the following formula, and press **Cmd + Return** (**Ctrl + Enter** on Windows).  
 
@@ -157,7 +157,7 @@ Click on the **Formula Bar**, copy and paste the following formula, and press **
 The resulting edges sheet should look like this **(fig. 7)**. 
 
 ![Edges sheet filled with numerical IDs](../../assets/images/gephi-intro/wrangling-edges-ids.webp "numerical IDs")
-<figcaption>**Figure 7.** Edges sheet filled with numerical IDs in Source and Target columns.</figcaption>
+<figcaption>**Figure 7.** Edges sheet filled with numerical IDs in Source and Target columns. The marked area is the **Name Box**</figcaption>
 
 
 I have ONLYOFFICE, and this was the only way I could fill the whole column with the formula. 

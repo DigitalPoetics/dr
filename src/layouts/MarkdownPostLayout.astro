@@ -56,8 +56,8 @@ pageTitle={frontmatter.title}>
   <div class="post-content">
     <slot />
   </div>
-  <SeriesNav series={frontmatter.series} currentOrder={frontmatter.seriesOrder} />
   <Dinkus count={3}></Dinkus>
+  <SeriesNav series={frontmatter.series} currentOrder={frontmatter.seriesOrder} />
 
   <!-- modal image -->
   <dialog id="image-lightbox" tabindex="-1">
@@ -234,7 +234,7 @@ pageTitle={frontmatter.title}>
     padding: 0.5rem;
     background: none;
     border: none;
-    color: var(--light-background);
+    color: var(--hover-color);
     font-size: 4rem;
     line-height: var(--line-height-sm);
     cursor: pointer;
