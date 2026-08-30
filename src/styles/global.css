@@ -277,15 +277,13 @@ blockquote::before {
 
 
 /* Image tag image */
-.responsive-image {
+.post-content img, .responsive-image {
   display: block;
   width: auto;
   max-width: 100%;
   height: auto;
   max-height: 70vh;
   margin: 0 auto;
-  /* max-height: 60vh; */
-  /* border-radius: var(--radius-md); */
   border: var(--image-border);
 }
 
@@ -307,8 +305,25 @@ blockquote::before {
   }
 }
 
+/* expressive code */
+
+.expressive-code .frame {
+  --ec-frm-edBg: var(--viz-background);
+  --ec-brdRad: 0;
+  --ec-codeFontSize: var(--font-size-sm);
+  --ec-codeFontFml: var(--font-primary);
+}
+
+/* .expressive-code pre > code {
+  --ec-codeFontFml: var(--font-primary);
+} */
+
+html.dark .expressive-code .frame {
+  --ec-frm-edBg: var(--dark-viz-background);
+}
+
 /* shiki theme */
-.astro-code,
+/* .astro-code,
 .astro-code span {
   background-color: var(--viz-background) !important;
   margin: 0 !important;
@@ -319,7 +334,6 @@ blockquote::before {
     border-radius: 0.5rem;
     padding: 0.5rem;
     overflow-x: auto;
-    /* border: var(--image-border) !important; */
 }
 
 .astro-code span {
@@ -333,11 +347,10 @@ html.dark .astro-code span {
 }
 
 
-/* inline code */
 code:not(.astro-code code) {
   background-color: var(--viz-background);
   padding: 0.15em 0.4em;
   border-radius: var(--radius-md);
   font-size: 0.9em;
-}
+} */
 

@@ -24,7 +24,7 @@
   } */
 
 
-  figcaption {
+  :global(figcaption) {
     margin: 0.3rem 0 0 0;
     font-size: var(--font-size-sm);
     color: var(--light-text);
@@ -45,7 +45,7 @@
     margin: 0;
   } */
 
-  html.dark figcaption {
+  :global(html.dark figcaption) {
     color: var(--dark-text);
   }
 
@@ -54,7 +54,7 @@
       margin: 1rem 0 1rem 0;
       /* max-width: 100%; */
     }
-    figcaption {
+    :global(figcaption) {
       margin: 0.3rem auto 0 auto;
       width: 80%;
       max-width: 40rem;

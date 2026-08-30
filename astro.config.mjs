@@ -1,9 +1,11 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
 import netlify from '@astrojs/netlify';
+import expressiveCode from 'astro-expressive-code';
 import mdx from '@astrojs/mdx';
 import sitemap from '@astrojs/sitemap';
 import pagefind from "astro-pagefind";
+
 
 
 
@@ -12,7 +14,7 @@ export default defineConfig({
   output: "static",
   adapter: netlify(),
   site: 'https://diagrammaticreadings.com',
-  integrations: [mdx(), sitemap(), pagefind()],
+  integrations: [expressiveCode(), mdx(), sitemap(), pagefind()],
   build: {
     inlineStylesheets: "never",
   },

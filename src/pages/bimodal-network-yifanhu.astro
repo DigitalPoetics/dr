@@ -1,7 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import BimodalNetwork from '../components/bimodal-network/BimodalNetwork.astro';
-import { Code } from 'astro:components';
+import { Code } from 'astro-expressive-code/components';
 import Figure from '../components/ui/Figure.astro';
 import { Image } from 'astro:assets';
 
@@ -126,14 +126,13 @@ const institutionFilter3 = [
     This can be achived by increasing the strength of repulsion on the nodes, using the negative charge strength in d3.js <a href="https://d3js.org/d3-force/many-body" target="_blank">many-body force</a>:
   </p>
   <Code 
-  code={`
-    // Many-body force for Yifan Hu layout
-    const manyBody = d3.forceManyBody()
-      .strength(-40);
-  `}
-  lang="js"
-  theme="vitesse-light"
-/>
+    code={`
+      // Many-body force for Yifan Hu layout
+      const manyBody = d3.forceManyBody()
+        .strength(-40);
+    `}
+    lang="js"
+  />
   <p>The Yifan Hu layout is great for clustering, and it makes close-knit communities more distinct.</p>
   <h1 class="title-page">~</h1>
 
@@ -181,7 +180,6 @@ const institutionFilter3 = [
       .strength(0.4);
   `}
   lang="js"
-  theme="vitesse-light"
 />
 
 <p>The difference between Yifan Hu and Fruchterman-Reingold layouts is that the former creates negative space to give shape to the communities while the latter closes this space to distribute the nodes evenly across the SVG canvas, which helps reduce overlapping labels.</p>
