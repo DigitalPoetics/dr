@@ -60,7 +60,45 @@ pageTitle={frontmatter.title}>
   <Dinkus count={3}></Dinkus>
 
   <!-- modal image -->
-   
+  <dialog id="image-lightbox" tabindex="-1">
+    <button id="lightbox-close" aria-label="Close image">&times;</button>
+    <img id="lightbox-img" src="" alt="" />
+  </dialog>
+
+  <script is:inline>
+    const dialog = document.getElementById('image-lightbox');
+    const lightboxImg = document.getElementById('lightbox-img');
+    const closeBtn = document.getElementById('lightbox-close');
+
+    document.querySelectorAll('.post-content img').forEach((img) => {
+      img.addEventListener('click', () => {
+        lightboxImg.src = img.src;
+        lightboxImg.alt = img.alt;
+        dialog.showModal();
+      });
+    });
+
+    closeBtn.addEventListener('click', () => dialog.close());
+
+    dialog.addEventListener('click', (e) => {
+      if (e.target === dialog) dialog.close();
+    });
+
+    // Lock/unlock scroll
+    document.querySelectorAll('.post-content img').forEach((img) => {
+      img.addEventListener('click', () => {
+        lightboxImg.src = img.src;
+        lightboxImg.alt = img.alt;
+        dialog.showModal();
+        document.body.style.overflow = 'hidden';
+        dialog.focus();
+      });
+    });
+
+    dialog.addEventListener('close', () => {
+      document.body.style.overflow = '';
+    });
+  </script>
 </BaseLayout>
 
 <style>
@@ -137,6 +175,82 @@ pageTitle={frontmatter.title}>
     margin: 0 auto;
     border: var(--image-border);
   } */
+
+  /* list marker styling */
+  :global(.post-content ul,
+  .post-content ol) {
+    padding-left: 1rem;
+    /* list-style-position: inside; */
+  }
+
+  /* :global(.post-content ul li::marker){
+    color: var(--highlight-color);
+  } */
+
+  :global(.post-content ul){
+    list-style-type: square;
+  }
+
+  /* Make post images clickable */
+  /* modal image */
+  .post-content img {
+    cursor: zoom-in;
+  }
+
+  #image-lightbox {
+    border: none;
+    padding: 0;
+    margin: auto;
+    background: transparent;
+    box-sizing: border-box;
+    max-width: 100vw;
+    max-height: 100vh;
+    outline: none;
+    /* overflow: hidden; */
+  }
+
+  /* #image-lightbox:focus-visible {
+    outline: 2px solid var(--highlight-color);
+    outline-offset: 2px;
+  } */
+
+  #image-lightbox::backdrop {
+    background: rgba(0, 0, 0, 0.85);
+  }
+
+  #image-lightbox img {
+    display: block;
+    max-width: 95vw;
+    max-height: 90vh;
+    width: auto;
+    height: auto;
+    border: var(--image-border);
+  }
+
+  #lightbox-close {
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    padding: 0.5rem;
+    background: none;
+    border: none;
+    color: var(--light-background);
+    font-size: 4rem;
+    line-height: var(--line-height-sm);
+    cursor: pointer;
+    z-index: 10;
+    /* outline: none; */
+    transition: opacity 0.2s ease;
+  }
+
+  /* #lightbox-close:focus-visible {
+    outline: 2px solid var(--highlight-color);
+    outline-offset: 2px;
+  } */
+
+  #lightbox-close:hover {
+    opacity: 0.7;
+  }
 
   /* print blog, hide elements */
   @media print {

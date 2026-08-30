@@ -50,13 +50,6 @@
 }
 
 /* Register font */
-/* @font-face {
-    font-family: "IM Fell English";
-    src: url("/fonts/im-fell-english-regular.ttf") format("truetype");
-    font-weight: normal;
-    font-style: normal;
-    font-display: swap;
-} */
 
 /* https://gwfh.mranftl.com/fonts */
 
@@ -155,35 +148,6 @@ html.dark h1, html.dark h2, html.dark h3 {
   color: var(--dark-heading);
 }
 
-/* title page */
-/* .title-page {
-  text-align: center;
-  font-weight: normal;
-  max-width: 100%;
-  word-spacing: 0em;
-  margin: 1.5rem auto;
-  line-height: var(--line-height-md);
-  text-wrap: pretty;
-} */
-
-/* p.title-page {
-  word-spacing: normal;
-  max-width: 100%;
-  margin: 0 auto;
-} */
-
-/* @media screen and (min-width: 636px) {
-  .title-page {
-    font-size: 3rem;
-    max-width: 100%;
-    word-spacing: 0.3em;
-  }
-
-  p.title-page {
-    max-width: 70%;
-  }
-} */
-
 /* global text color */
 a, p, h1, h2, h3 {
   color: inherit;
@@ -194,17 +158,6 @@ a {
   transition: color 0.2s ease;
   text-underline-offset: var(--text-underline-offset);
 }
-
-/* links */
-/* p a {
-  text-decoration: underline;
-  text-decoration-color: color-mix(in srgb, currentColor 30%, transparent);
-  text-underline-offset: 0.15em;
-  transition: text-decoration-color 0.2s ease, color 0.2s ease;
-}
-p a:hover {
-  text-decoration-color: currentColor;
-} */
 
 
 /* Theme Icons */
@@ -233,23 +186,11 @@ sup a {
 .footnotes ol {
   padding-left: 1.5rem;
 }
-/* .footnotes a {
-  text-decoration: none;
-} */
-/* .footnotes p {
-  font-size: var(--font-size-base);
-} */
 
 cite {
   font-style: normal;
 }
 
-/* blockquote {
-  margin: 2rem 0 2rem 2rem;
-  padding-left: 1rem 1.5rem;
-  border-left: var(--border-color);
-  border-radius: 0 0.5rem 0.5rem 0;
-} */
 
 /* blockquote */
 blockquote {
@@ -321,36 +262,3 @@ blockquote::before {
 html.dark .expressive-code .frame {
   --ec-frm-edBg: var(--dark-viz-background);
 }
-
-/* shiki theme */
-/* .astro-code,
-.astro-code span {
-  background-color: var(--viz-background) !important;
-  margin: 0 !important;
-  
-}
-
-.astro-code {
-    border-radius: 0.5rem;
-    padding: 0.5rem;
-    overflow-x: auto;
-}
-
-.astro-code span {
-    font-size: 0.9rem !important;
-    line-height: var(--line-height-md);
-}
-
-html.dark .astro-code,
-html.dark .astro-code span {
-    background-color: var(--dark-viz-background) !important;
-}
-
-
-code:not(.astro-code code) {
-  background-color: var(--viz-background);
-  padding: 0.15em 0.4em;
-  border-radius: var(--radius-md);
-  font-size: 0.9em;
-} */
-
