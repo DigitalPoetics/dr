@@ -1,7 +1,7 @@
 ---
 title: 'Data'
 pubDate: 2026-08-22
-description: 'Create nodes and edges file for network analysis with Gephi'
+description: 'Create nodes and edges file for network analysis in Gephi'
 author: 'AB'
 image:
     src: '../../assets/images/tableau/ed-hawkins-warming-stripes-2018.webp'
@@ -92,7 +92,7 @@ Rows B2 to B12 are journals and rows B13 onward are poets.
 - Click on cell **C2**, click on the **Formula Bar**, copy and paste this formula, and press **Return** (**Enter** on Windows): 
 
 ```excel
-=IFS(ROW(B2:INDEX(B:B; COUNTA(B:B)))<=13; "journal"; ROW(B2:INDEX(B:B; COUNTA(B:B)))>13; "poet")
+=IFS(ROW(B2:INDEX(B:B; COUNTA(B:B)))<=12; "journal"; ROW(B2:INDEX(B:B; COUNTA(B:B)))>12; "poet")
 ```
 
 - Save the file: **File** > **Save** or **Cmd + S** (**Ctrl + S** on Windows)

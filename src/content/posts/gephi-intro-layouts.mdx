@@ -6,7 +6,7 @@ author: 'AB'
 image:
     src: '../../assets/images/gephi-intro/layout-felix-gaisbauer-network-layouts.webp'
     alt: 'Felix Gaisbauer et al., force-directed network layouts, 2023, https://doi.org/10.1007/s42001-023-00207-w.'
-tags: ['gephi', 'SNA', 'postwar US poetry']
+tags: ['gephi', 'SNA', 'fruchterman reingold', 'yifan hu', 'postwar US poetry']
 series: 'gephi-intro'
 seriesOrder: 3
 ---
@@ -22,7 +22,7 @@ We won’t spend our time looking at each and every school, but we can at least 
 
 Let’s change the network layout to give shape to the communities.
 
-### Step 1: Yifan Hu layout
+### Step 1: Clustering with Fruchterman Reingold algorithm
 
 First, we will make a copy of the **networking.gephi** file. 
 Every time we get a decent result, it’s important to leave that gephi file alone and work on a copy of the file.
@@ -41,9 +41,9 @@ Let’s see what we can do with this algorithm in terms of clustering.
 Once nodes stop moving, click **Stop** to stop the simulation.
 - Click on **Center the graph** (magnifying glass icon).
 
-We begin to see that the literary journals on the periphery—e.g., Origin— have a lot of poets who published in that journal only **(fig. 1)**. 
+We begin to see that the literary journals on the periphery—e.g., *Origin*— have a lot of poets who published in that journal only **(fig. 1)**. 
 Meaning, these journals are connected only with a few nearby journals. 
-However, there are journals in the middle—e.g., Yūgen—that are connected to many other journals. 
+However, there are journals in the middle—e.g., *Yūgen*—that are connected to many other journals. 
 What we see here are communities forming on the periphery. 
 
 ![Fruchterman Reingold layout](../../assets/images/gephi-intro/layout-fruchterman-gravity.webp "Fruchterman Reingold")
@@ -54,7 +54,7 @@ What we see here are communities forming on the periphery.
 In order to make the communities more distinct, we will use the Yifan Hu clustering algorithm. 
 This algorithm uses negative space to place nodes with strong ties close to each other in the graph and nodes with weak ties distant from each other.
 
-### Step 2: Yifan Hu algorithm
+### Step 2: Yifan Hu layout
 
 - Select **Yifan Hu** layout **(fig. 2)**.
 - Change the following parameters, under **Yifan Hu’s properties**:
@@ -91,6 +91,7 @@ Let’s map these communities into our diagram
 
 According to the community detection algorithm, *Origin*, *Big Table*, and *The Black Mountain Review* (green color) are in the same community **(fig. 3)**. 
 The biggest cluster is in purple color.
+
 Let’s export the image
 
 ### Step 4: Export the image

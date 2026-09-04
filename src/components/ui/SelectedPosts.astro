@@ -4,17 +4,21 @@ import BlogPost from './BlogPost.astro';
 
 interface Props {
   series?: string;
+  tag?: string;
 }
 
-const { series } = Astro.props;
+const { series, tag } = Astro.props;
 
 const allPosts = await getCollection('posts');
 
 const selectedPosts = allPosts
   .filter(post => post.data.series === series)
+  .filter(post => tag ? post.data.tags?.includes(tag) : true)
   .sort((a, b) => (a.data.seriesOrder ?? 0) - (b.data.seriesOrder ?? 0));
 
-const seriesTitle = selectedPosts.find(p => p.data.seriesOrder === 1)?.data.title ?? series;
+// const seriesTitle = selectedPosts.find(p => p.data.seriesOrder === 1)?.data.title ?? series;
+const seriesTitle = allPosts.find(p => p.data.series === series && p.data.seriesOrder === 1)?.data.title ?? series;
+
 ---
 {selectedPosts.length > 0 && (
   <nav class="series-nav" aria-label="Series posts">

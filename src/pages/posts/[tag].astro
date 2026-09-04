@@ -28,7 +28,7 @@ const { series } = Astro.props;
   <div data-pagefind-ignore="all">
     <Dinkus count={3} />
     {series.map(s => (
-      <SelectedPosts series={s} />
+      <SelectedPosts series={s} tag={tag} />
     ))}
     <Dinkus count={3} />
   </div>
