@@ -1,12 +1,12 @@
 ---
 title: 'Diagram'
 pubDate: 2026-08-22
-description: 'Create and design network diagrams in Gephi'
+description: 'Create and design network diagram in Gephi'
 author: 'AB'
 image:
     src: '../../assets/images/gephi-intro/diagram-diagram-mike-bostock-fruchterman-reingold.webp'
     alt: 'Mike Bostock, disjoint force-directed graph, 2023, https://observablehq.com/@d3/disjoint-force-directed-graph/2/.'
-tags: ['gephi', 'SNA', 'postwar US poetry']
+tags: ['gephi', 'SNA', 'fruchterman reingold', 'postwar US poetry']
 series: 'gephi-intro'
 seriesOrder: 2
 ---
@@ -100,14 +100,17 @@ Next, we will change color and size of the nodes and add labels.
 - Change the size of the nodes based on their degree of connections: **Nodes** tab > **Size** tab (ring icon) > **Ranking** > **Choose an attribute** > **Degree** > **Min size: 10**, **Max size: 150** > **Apply**.
 - Change the label size for nodes based on their degree: **Nodes** tab > **Label Size** tab (TT icon) > **Ranking** > **Choose an attribute** > **Degree** > **Min size: 5**, **Max size: 8** > **Apply**. 
 Follow the next step if the node labels do not appear.
-- Click on the **More Settings** pop up icon on the bottom right corner of the figure, then **Node Labels** > check **Show**.
+- Click on the **More Settings** pop up icon on the bottom right corner of the figure **(fig. 6)**, then **Node Labels** > check **Show**.
 - Change the font weight too: **Node Labels** > **Font: Arial-BoldMT, 32** > **Style: Regular** > **Ok**.
 - Save the file: **File** > **Save**.
+
+![More settings](../../assets/images/gephi-intro/diagram-diagram-nodes-more-settings.webp "More settings")
+<figcaption>**Figure 6.** Show Node Labels in More Settings.</figcaption>
 
 We are ready to export our diagram as an image. 
 Let’s head over to the **Preview** panel.
 
-Step 3: Export images
+### Step 3: Export images
 
 - Click on the **Preview** tab.
 - To view the image, click **Reset** and **Refresh**. Both buttons are at the bottom of the screen.
@@ -120,14 +123,14 @@ Let’s change the following settings for the visualization:
 - In **Edges**, check **Rescale weight**.
 - Click **Refresh**.
 
-Your figure should look like this **(fig. 6)**.
+Your figure should look like this **(fig. 7)**.
 
 - You can save these settings for future use. C
 lick **Save preset** (save icon on the top right corner of the current Preview Settings panel) > **Name: demo **> **Ok**.
 - Save the file: **File** > **Save**.
 
 ![Preview Settings](../../assets/images/gephi-intro/diagram-diagram-preview-settings.webp "Preview Settings")
-<figcaption>**Figure 6.** The final design of the network graph.</figcaption>
+<figcaption>**Figure 7.** The final design of the network graph.</figcaption>
 
 We are ready to export the graphic either as a PNG file or a PDF file.
 
@@ -142,10 +145,10 @@ Let’s save the picture again, but with a 16:9 aspect ratio **(7680 x 4320 px)*
 In the dialog box, **Save In** > select **gephi-intro** folder > **begin** folder > **Files of Type: PNG files** > **File Name: networking-web.png**. 
 Click on **Options...** In this dialog box, change **Width 7680** > **Height 4320** > **Ok**. Click **Save**.
 
-The image for website in 16:9 aspect ratio looks like this **(fig. 7)**. 
+The image for website in 16:9 aspect ratio looks like this **(fig. 8)**. 
 
 ![Network graph in 16:9 aspect ration](../../assets/images/gephi-intro/diagram-diagram-networking-web.webp "16:9 aspect ration")
-<figcaption>**Figure 7.** The network graph in 16:9 aspect ratio (7680 x 4320 px), perfect for widescreen.</figcaption>
+<figcaption>**Figure 8.** The network graph in 16:9 aspect ratio (7680 x 4320 px), perfect for widescreen.</figcaption>
 
 
 Let’s export the image in PDF format as well. 
